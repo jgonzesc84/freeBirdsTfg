@@ -6,6 +6,8 @@ target 'freeBirdsTfg' do
   use_frameworks!
 
   # Pods for freeBirdsTfg
+  pod 'AFNetworking', '~> 3.0'
+  pod 'Material', '~> 2.0'
 
   target 'freeBirdsTfgTests' do
     inherit! :search_paths
@@ -16,5 +18,6 @@ target 'freeBirdsTfg' do
     inherit! :search_paths
     # Pods for testing
   end
+ 
 
 end

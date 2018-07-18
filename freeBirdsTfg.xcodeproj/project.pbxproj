@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		407BEF76D91EB4D89F4A99BC /* Pods_freeBirdsTfgUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8BEDD6366B6D9C67E3E0B0A /* Pods_freeBirdsTfgUITests.framework */; };
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
 		5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* LoginViewController.swift */; };
 		5960022D20FF99240042CF9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960022B20FF99240042CF9F /* Login.storyboard */; };
@@ -14,6 +15,8 @@
 		5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960023020FF99260042CF9F /* LaunchScreen.storyboard */; };
 		5960023D20FF99260042CF9F /* freeBirdsTfgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960023C20FF99260042CF9F /* freeBirdsTfgTests.swift */; };
 		5960024820FF99260042CF9F /* freeBirdsTfgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */; };
+		809EF78F88E8034AFAAD3685 /* Pods_freeBirdsTfg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA21870D871DFA4DCA808DD /* Pods_freeBirdsTfg.framework */; };
+		B219B1AF7F43479F9E3A0EC5 /* Pods_freeBirdsTfgTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE4781651422FD257CC2B3B /* Pods_freeBirdsTfgTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AE4781651422FD257CC2B3B /* Pods_freeBirdsTfgTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freeBirdsTfgTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		10222579C2FE69211807D8AC /* Pods-freeBirdsTfg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg.debug.xcconfig"; sourceTree = "<group>"; };
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5960022920FF99240042CF9F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +52,13 @@
 		5960024320FF99260042CF9F /* freeBirdsTfgUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = freeBirdsTfgUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeBirdsTfgUITests.swift; sourceTree = "<group>"; };
 		5960024920FF99260042CF9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5D3A0301A529AF3679A9C332 /* Pods-freeBirdsTfgTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfgTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfgTests/Pods-freeBirdsTfgTests.release.xcconfig"; sourceTree = "<group>"; };
+		5F66D7E1BFE49F370227727B /* Pods-freeBirdsTfg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfg.release.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg.release.xcconfig"; sourceTree = "<group>"; };
+		9FA21870D871DFA4DCA808DD /* Pods_freeBirdsTfg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freeBirdsTfg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5AC5BF8984F32B7899CD9EE /* Pods-freeBirdsTfgUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfgUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfgUITests/Pods-freeBirdsTfgUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C8BEDD6366B6D9C67E3E0B0A /* Pods_freeBirdsTfgUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freeBirdsTfgUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ED784A177B128F717489B832 /* Pods-freeBirdsTfgTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfgTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfgTests/Pods-freeBirdsTfgTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F2329DAFA5ABD57D208753FE /* Pods-freeBirdsTfgUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfgUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfgUITests/Pods-freeBirdsTfgUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				809EF78F88E8034AFAAD3685 /* Pods_freeBirdsTfg.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B219B1AF7F43479F9E3A0EC5 /* Pods_freeBirdsTfgTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				407BEF76D91EB4D89F4A99BC /* Pods_freeBirdsTfgUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +96,8 @@
 				5960023B20FF99260042CF9F /* freeBirdsTfgTests */,
 				5960024620FF99260042CF9F /* freeBirdsTfgUITests */,
 				5960022520FF99240042CF9F /* Products */,
+				DD947795C26B66F41C1DAA3D /* Pods */,
+				9AB3E62A6058DBCE3ABAE891 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,6 +182,29 @@
 			path = storyboards;
 			sourceTree = "<group>";
 		};
+		9AB3E62A6058DBCE3ABAE891 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9FA21870D871DFA4DCA808DD /* Pods_freeBirdsTfg.framework */,
+				0AE4781651422FD257CC2B3B /* Pods_freeBirdsTfgTests.framework */,
+				C8BEDD6366B6D9C67E3E0B0A /* Pods_freeBirdsTfgUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD947795C26B66F41C1DAA3D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				10222579C2FE69211807D8AC /* Pods-freeBirdsTfg.debug.xcconfig */,
+				5F66D7E1BFE49F370227727B /* Pods-freeBirdsTfg.release.xcconfig */,
+				ED784A177B128F717489B832 /* Pods-freeBirdsTfgTests.debug.xcconfig */,
+				5D3A0301A529AF3679A9C332 /* Pods-freeBirdsTfgTests.release.xcconfig */,
+				B5AC5BF8984F32B7899CD9EE /* Pods-freeBirdsTfgUITests.debug.xcconfig */,
+				F2329DAFA5ABD57D208753FE /* Pods-freeBirdsTfgUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -172,9 +212,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5960024C20FF99260042CF9F /* Build configuration list for PBXNativeTarget "freeBirdsTfg" */;
 			buildPhases = (
+				188E5EA2CFA7C1A738AB4F74 /* [CP] Check Pods Manifest.lock */,
 				5960022020FF99240042CF9F /* Sources */,
 				5960022120FF99240042CF9F /* Frameworks */,
 				5960022220FF99240042CF9F /* Resources */,
+				16BEBC6C8009B63A4C83E6C8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -189,6 +231,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5960024F20FF99260042CF9F /* Build configuration list for PBXNativeTarget "freeBirdsTfgTests" */;
 			buildPhases = (
+				16D21086B5E5B22A4247B438 /* [CP] Check Pods Manifest.lock */,
 				5960023420FF99260042CF9F /* Sources */,
 				5960023520FF99260042CF9F /* Frameworks */,
 				5960023620FF99260042CF9F /* Resources */,
@@ -207,6 +250,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5960025220FF99260042CF9F /* Build configuration list for PBXNativeTarget "freeBirdsTfgUITests" */;
 			buildPhases = (
+				68CCAAB773955667A991635E /* [CP] Check Pods Manifest.lock */,
 				5960023F20FF99260042CF9F /* Sources */,
 				5960024020FF99260042CF9F /* Frameworks */,
 				5960024120FF99260042CF9F /* Resources */,
@@ -290,6 +334,85 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		16BEBC6C8009B63A4C83E6C8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
+				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		16D21086B5E5B22A4247B438 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-freeBirdsTfgTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		188E5EA2CFA7C1A738AB4F74 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-freeBirdsTfg-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68CCAAB773955667A991635E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-freeBirdsTfgUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5960022020FF99240042CF9F /* Sources */ = {
@@ -468,6 +591,7 @@
 		};
 		5960024D20FF99260042CF9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 10222579C2FE69211807D8AC /* Pods-freeBirdsTfg.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -485,6 +609,7 @@
 		};
 		5960024E20FF99260042CF9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5F66D7E1BFE49F370227727B /* Pods-freeBirdsTfg.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -502,6 +627,7 @@
 		};
 		5960025020FF99260042CF9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED784A177B128F717489B832 /* Pods-freeBirdsTfgTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -522,6 +648,7 @@
 		};
 		5960025120FF99260042CF9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5D3A0301A529AF3679A9C332 /* Pods-freeBirdsTfgTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -542,6 +669,7 @@
 		};
 		5960025320FF99260042CF9F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B5AC5BF8984F32B7899CD9EE /* Pods-freeBirdsTfgUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -561,6 +689,7 @@
 		};
 		5960025420FF99260042CF9F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F2329DAFA5ABD57D208753FE /* Pods-freeBirdsTfgUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
