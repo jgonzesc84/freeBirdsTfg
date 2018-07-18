@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
-		5960022D20FF99240042CF9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960022B20FF99240042CF9F /* Login.storyboard */; };
+		5960022A20FF99240042CF9F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* ViewController.swift */; };
+		5960022D20FF99240042CF9F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960022B20FF99240042CF9F /* Main.storyboard */; };
 		5960022F20FF99260042CF9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5960022E20FF99260042CF9F /* Assets.xcassets */; };
 		5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960023020FF99260042CF9F /* LaunchScreen.storyboard */; };
 		5960023D20FF99260042CF9F /* freeBirdsTfgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960023C20FF99260042CF9F /* freeBirdsTfgTests.swift */; };
 		5960024820FF99260042CF9F /* freeBirdsTfgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */; };
-		59E8030220FFAEF3001F014C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E8030120FFAEF3001F014C /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +36,8 @@
 /* Begin PBXFileReference section */
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5960022C20FF99240042CF9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		5960022920FF99240042CF9F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5960022C20FF99240042CF9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5960022E20FF99260042CF9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5960023120FF99260042CF9F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5960023320FF99260042CF9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,7 +47,6 @@
 		5960024320FF99260042CF9F /* freeBirdsTfgUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = freeBirdsTfgUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeBirdsTfgUITests.swift; sourceTree = "<group>"; };
 		5960024920FF99260042CF9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		59E8030120FFAEF3001F014C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +103,7 @@
 				59E802FC20FFA396001F014C /* Views */,
 				59E802FB20FFA379001F014C /* View Controllers */,
 				5960022720FF99240042CF9F /* AppDelegate.swift */,
+				5960022920FF99240042CF9F /* ViewController.swift */,
 				5960022E20FF99260042CF9F /* Assets.xcassets */,
 				5960023320FF99260042CF9F /* Info.plist */,
 			);
@@ -130,7 +131,6 @@
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				59E8030020FFAEBC001F014C /* Login */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -159,18 +159,10 @@
 		59E802FF20FFA3D2001F014C /* storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				5960022B20FF99240042CF9F /* Login.storyboard */,
+				5960022B20FF99240042CF9F /* Main.storyboard */,
 				5960023020FF99260042CF9F /* LaunchScreen.storyboard */,
 			);
 			path = storyboards;
-			sourceTree = "<group>";
-		};
-		59E8030020FFAEBC001F014C /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				59E8030120FFAEF3001F014C /* LoginViewController.swift */,
-			);
-			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -279,7 +271,7 @@
 			files = (
 				5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */,
 				5960022F20FF99260042CF9F /* Assets.xcassets in Resources */,
-				5960022D20FF99240042CF9F /* Login.storyboard in Resources */,
+				5960022D20FF99240042CF9F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -304,7 +296,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				59E8030220FFAEF3001F014C /* LoginViewController.swift in Sources */,
+				5960022A20FF99240042CF9F /* ViewController.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,12 +333,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		5960022B20FF99240042CF9F /* Login.storyboard */ = {
+		5960022B20FF99240042CF9F /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5960022C20FF99240042CF9F /* Base */,
 			);
-			name = Login.storyboard;
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		5960023020FF99260042CF9F /* LaunchScreen.storyboard */ = {
