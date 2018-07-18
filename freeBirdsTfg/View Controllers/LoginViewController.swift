@@ -7,12 +7,18 @@
 //
 
 import UIKit
+import Material
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var userTextField: TextField!
+    @IBOutlet weak var passTextField: TextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        //PRUEBAS MATERIAL
+        userTextField.clearIconButton?.tintColor = UIColor .blue
+        passTextField.visibilityIconButton?.tintColor = UIColor .blue
     }
 
     override func didReceiveMemoryWarning() {
