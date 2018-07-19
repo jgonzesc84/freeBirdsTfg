@@ -8,6 +8,8 @@ target 'freeBirdsTfg' do
   # Pods for freeBirdsTfg
   pod 'AFNetworking', '~> 3.0'
   pod 'Material', '~> 2.0'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 
   target 'freeBirdsTfgTests' do
     inherit! :search_paths
