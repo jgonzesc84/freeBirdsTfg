@@ -10,6 +10,7 @@ target 'freeBirdsTfg' do
   pod 'Material', '~> 2.0'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'lottie-ios'
 
   target 'freeBirdsTfgTests' do
     inherit! :search_paths

@@ -38,6 +38,7 @@ PODS:
   - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - GTMSessionFetcher/Core (1.1.15)
+  - lottie-ios (2.5.0)
   - Material (2.16.2):
     - Material/Core (= 2.16.2)
   - Material/Core (2.16.2):
@@ -55,6 +56,7 @@ DEPENDENCIES:
   - AFNetworking (~> 3.0)
   - Firebase/Auth
   - Firebase/Core
+  - lottie-ios
   - Material (~> 2.0)
 
 SPEC REPOS:
@@ -67,6 +69,7 @@ SPEC REPOS:
     - FirebaseInstanceID
     - GoogleToolboxForMac
     - GTMSessionFetcher
+    - lottie-ios
     - Material
     - Motion
     - nanopb
@@ -80,10 +83,11 @@ SPEC CHECKSUMS:
   FirebaseInstanceID: f3f0657372592ecdfdfe2cac604a5a75758376a6
   GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
   GTMSessionFetcher: 5fa5b80fd20e439ef5f545fb2cb3ca6c6714caa2
+  lottie-ios: d699fdee68d7b63e721d949388b015fef1aaa4ac
   Material: e8cceb3577ae4ee3811ec033a34ab4a3dc8c084c
   Motion: 93605fd4dffe44203b56949eb0bc73a9521af7b6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: 6d9979cda1174cbfe4c22287a39c2d36d1abd479
+PODFILE CHECKSUM: 8f5337066ffd46da49baf5dfef63bf783c96ce02
 
 COCOAPODS: 1.5.3

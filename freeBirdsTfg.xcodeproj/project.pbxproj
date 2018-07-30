@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		407BEF76D91EB4D89F4A99BC /* Pods_freeBirdsTfgUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8BEDD6366B6D9C67E3E0B0A /* Pods_freeBirdsTfgUITests.framework */; };
+		590F20052103A67F003F64A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F20032103A67F003F64A3 /* MainViewController.swift */; };
+		590F200B2103A734003F64A3 /* HousesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590F200A2103A734003F64A3 /* HousesView.xib */; };
+		590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F200C2103AB25003F64A3 /* TFHouses.swift */; };
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
 		5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* LoginViewController.swift */; };
 		5960022D20FF99240042CF9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960022B20FF99240042CF9F /* Login.storyboard */; };
@@ -15,9 +18,18 @@
 		5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960023020FF99260042CF9F /* LaunchScreen.storyboard */; };
 		5960023D20FF99260042CF9F /* freeBirdsTfgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960023C20FF99260042CF9F /* freeBirdsTfgTests.swift */; };
 		5960024820FF99260042CF9F /* freeBirdsTfgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */; };
+		5968B252210DCCF90092E166 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5968B251210DCCF90092E166 /* MainViewController.xib */; };
 		59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
 		59E8125E2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
 		59E8125F2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
+		59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */; };
+		59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */; };
+		59FEB808210F8C1C00901D62 /* KGHAPPYSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB805210F8C1C00901D62 /* KGHAPPYSolid.ttf */; };
+		59FEB80A210F8C2A00901D62 /* Skater Girls Rock.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB809210F8C2900901D62 /* Skater Girls Rock.ttf */; };
+		59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB80D210F99BE00901D62 /* ModernPictogramsForLottie_Home.json */; };
+		59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB812210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json */; };
+		59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB814210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json */; };
+		59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB815210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json */; };
 		809EF78F88E8034AFAAD3685 /* Pods_freeBirdsTfg.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FA21870D871DFA4DCA808DD /* Pods_freeBirdsTfg.framework */; };
 		B219B1AF7F43479F9E3A0EC5 /* Pods_freeBirdsTfgTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE4781651422FD257CC2B3B /* Pods_freeBirdsTfgTests.framework */; };
 /* End PBXBuildFile section */
@@ -42,6 +54,9 @@
 /* Begin PBXFileReference section */
 		0AE4781651422FD257CC2B3B /* Pods_freeBirdsTfgTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freeBirdsTfgTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		10222579C2FE69211807D8AC /* Pods-freeBirdsTfg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg.debug.xcconfig"; sourceTree = "<group>"; };
+		590F20032103A67F003F64A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		590F200A2103A734003F64A3 /* HousesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HousesView.xib; sourceTree = "<group>"; };
+		590F200C2103AB25003F64A3 /* TFHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFHouses.swift; sourceTree = "<group>"; };
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5960022920FF99240042CF9F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +70,16 @@
 		5960024320FF99260042CF9F /* freeBirdsTfgUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = freeBirdsTfgUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeBirdsTfgUITests.swift; sourceTree = "<group>"; };
 		5960024920FF99260042CF9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5968B251210DCCF90092E166 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
 		59E8125C2100F74C0071B018 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPYShadows.ttf; sourceTree = "<group>"; };
+		59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPY.ttf; sourceTree = "<group>"; };
+		59FEB805210F8C1C00901D62 /* KGHAPPYSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPYSolid.ttf; sourceTree = "<group>"; };
+		59FEB809210F8C2900901D62 /* Skater Girls Rock.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Skater Girls Rock.ttf"; sourceTree = "<group>"; };
+		59FEB80D210F99BE00901D62 /* ModernPictogramsForLottie_Home.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ModernPictogramsForLottie_Home.json; sourceTree = "<group>"; };
+		59FEB812210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ModernPictogramsForLottie_MagnifyingGlass.json; sourceTree = "<group>"; };
+		59FEB814210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json"; sourceTree = "<group>"; };
+		59FEB815210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ModernPictogramsForLottie_Home-w800-h800.json"; sourceTree = "<group>"; };
 		5D3A0301A529AF3679A9C332 /* Pods-freeBirdsTfgTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfgTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfgTests/Pods-freeBirdsTfgTests.release.xcconfig"; sourceTree = "<group>"; };
 		5F66D7E1BFE49F370227727B /* Pods-freeBirdsTfg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfg.release.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg.release.xcconfig"; sourceTree = "<group>"; };
 		9FA21870D871DFA4DCA808DD /* Pods_freeBirdsTfg.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_freeBirdsTfg.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +117,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		590F20022103A664003F64A3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				590F20032103A67F003F64A3 /* MainViewController.swift */,
+				5968B251210DCCF90092E166 /* MainViewController.xib */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		590F20072103A6DD003F64A3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				590F200A2103A734003F64A3 /* HousesView.xib */,
+				590F200C2103AB25003F64A3 /* TFHouses.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		5960021B20FF99240042CF9F = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +160,8 @@
 		5960022620FF99240042CF9F /* freeBirdsTfg */ = {
 			isa = PBXGroup;
 			children = (
+				59FEB80F210F99C400901D62 /* lottie */,
+				59FEB802210F8B9B00901D62 /* Fonts */,
 				59E802FF20FFA3D2001F014C /* storyboards */,
 				59E802FE20FFA3B7001F014C /* Manager */,
 				59E802FD20FFA3A3001F014C /* Helper */,
@@ -152,6 +196,7 @@
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				590F20022103A664003F64A3 /* Main */,
 				5960022920FF99240042CF9F /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
@@ -160,6 +205,7 @@
 		59E802FC20FFA396001F014C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				590F20072103A6DD003F64A3 /* Main */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -185,6 +231,28 @@
 				5960023020FF99260042CF9F /* LaunchScreen.storyboard */,
 			);
 			path = storyboards;
+			sourceTree = "<group>";
+		};
+		59FEB802210F8B9B00901D62 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				59FEB809210F8C2900901D62 /* Skater Girls Rock.ttf */,
+				59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */,
+				59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */,
+				59FEB805210F8C1C00901D62 /* KGHAPPYSolid.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		59FEB80F210F99C400901D62 /* lottie */ = {
+			isa = PBXGroup;
+			children = (
+				59FEB815210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json */,
+				59FEB814210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json */,
+				59FEB812210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json */,
+				59FEB80D210F99BE00901D62 /* ModernPictogramsForLottie_Home.json */,
+			);
+			path = lottie;
 			sourceTree = "<group>";
 		};
 		9AB3E62A6058DBCE3ABAE891 /* Frameworks */ = {
@@ -319,8 +387,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */,
+				59FEB808210F8C1C00901D62 /* KGHAPPYSolid.ttf in Resources */,
 				59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */,
+				59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */,
+				59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */,
+				59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */,
+				59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */,
+				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
+				59FEB80A210F8C2A00901D62 /* Skater Girls Rock.ttf in Resources */,
 				5960022F20FF99260042CF9F /* Assets.xcassets in Resources */,
+				59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */,
+				590F200B2103A734003F64A3 /* HousesView.xib in Resources */,
+				5968B252210DCCF90092E166 /* MainViewController.xib in Resources */,
 				5960022D20FF99240042CF9F /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +434,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -365,6 +444,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,7 +513,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
+				590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

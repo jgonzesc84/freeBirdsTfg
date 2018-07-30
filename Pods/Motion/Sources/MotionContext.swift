@@ -233,7 +233,7 @@ public extension MotionContext {
       
     case .optimized:
       #if os(tvOS)
-        snapshot = view.snapshotView(afterScreenUpdates: true)!
+        snapshot = vista.snapshotView(afterScreenUpdates: true)!
       
       #else
         if #available(iOS 9.0, *), let stackView = view as? UIStackView {
@@ -277,7 +277,7 @@ public extension MotionContext {
     }
     
     #if os(tvOS)
-      if let imageView = view as? UIImageView, imageView.adjustsImageWhenAncestorFocused {
+      if let imageView = vista as? UIImageView, imageView.adjustsImageWhenAncestorFocused {
         snapshot.frame = imageView.focusedFrameGuide.layoutFrame
       }
     
