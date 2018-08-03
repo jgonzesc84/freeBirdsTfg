@@ -21,9 +21,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
+                <outlet property="createHouseButton" destination="9oc-5e-Amm" id="uBE-mZ-qhN"/>
                 <outlet property="createHouseView" destination="LeS-Ps-McA" id="iCa-5h-8pq"/>
+                <outlet property="searchHouseButton" destination="JJa-yz-bFh" id="CEj-lt-DD5"/>
                 <outlet property="searchHouseView" destination="tRE-Ml-QBb" id="OWD-TA-bML"/>
-                <outlet property="userLabel" destination="Cgw-R5-CUV" id="94i-Kr-icb"/>
+                <outlet property="sepratorNavigationView" destination="n0C-eE-Zt4" id="Wgl-kp-br5"/>
+                <outlet property="titlelabel" destination="0am-8A-XHE" id="hMd-EC-lMc"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Mek-yo-qg9"/>
             </connections>
         </placeholder>
@@ -34,89 +37,43 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9VP-wz-rha" userLabel="navView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
-                    <color key="backgroundColor" red="0.54509803921568623" green="0.81960784313725488" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primera Pantalla" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0am-8A-XHE">
+                            <rect key="frame" x="30" y="28" width="315" height="31"/>
+                            <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="26"/>
+                            <color key="textColor" red="0.74509803921568629" green="0.91764705882352937" blue="0.8784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0C-eE-Zt4">
+                            <rect key="frame" x="67" y="64" width="240" height="3"/>
+                            <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="3" id="ZzA-WD-xFw"/>
+                            </constraints>
+                        </view>
+                    </subviews>
                     <constraints>
+                        <constraint firstItem="n0C-eE-Zt4" firstAttribute="leading" secondItem="9VP-wz-rha" secondAttribute="leading" constant="67" id="0nu-B3-BJA"/>
+                        <constraint firstAttribute="trailing" secondItem="0am-8A-XHE" secondAttribute="trailing" constant="30" id="3Y0-aP-Oqb"/>
+                        <constraint firstItem="0am-8A-XHE" firstAttribute="top" secondItem="9VP-wz-rha" secondAttribute="top" constant="28" id="JIu-2q-Q6n"/>
                         <constraint firstAttribute="height" constant="67" id="RUb-uR-5Rg"/>
+                        <constraint firstAttribute="bottom" secondItem="n0C-eE-Zt4" secondAttribute="bottom" id="n4L-vU-Vgg"/>
+                        <constraint firstAttribute="trailing" secondItem="n0C-eE-Zt4" secondAttribute="trailing" constant="68" id="oEg-ez-j9W"/>
+                        <constraint firstItem="0am-8A-XHE" firstAttribute="leading" secondItem="9VP-wz-rha" secondAttribute="leading" constant="30" id="pnN-5C-hoe"/>
+                        <constraint firstItem="n0C-eE-Zt4" firstAttribute="top" secondItem="0am-8A-XHE" secondAttribute="bottom" constant="5" id="tda-f7-XJs"/>
                     </constraints>
                 </view>
                 <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLV-gu-CFN" userLabel="Content View">
                     <rect key="frame" x="10" y="67" width="355" height="600"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wnn-sl-8lk" userLabel="nameView">
-                            <rect key="frame" x="0.0" y="0.0" width="355" height="60"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRE-Ml-QBb" userLabel="SearchView">
+                            <rect key="frame" x="0.0" y="300" width="355" height="300"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kaL-lM-H5c" userLabel="separator View">
-                                    <rect key="frame" x="0.0" y="59" width="355" height="1"/>
-                                    <color key="backgroundColor" red="0.15686274510000001" green="0.28627450980000002" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="gB1-BX-9nV"/>
-                                    </constraints>
-                                </view>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nombre Usuario" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cgw-R5-CUV">
-                                    <rect key="frame" x="92.5" y="18.5" width="190" height="30.5"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="19"/>
-                                    <color key="textColor" red="0.15686274509803921" green="0.28627450980392155" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.090196078431372548" green="0.67450980392156867" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstItem="kaL-lM-H5c" firstAttribute="leading" secondItem="Wnn-sl-8lk" secondAttribute="leading" id="De4-GP-Gln"/>
-                                <constraint firstAttribute="trailing" secondItem="kaL-lM-H5c" secondAttribute="trailing" id="f3c-kr-ULw"/>
-                                <constraint firstAttribute="bottom" secondItem="kaL-lM-H5c" secondAttribute="bottom" id="fA5-fv-BaY"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeS-Ps-McA" userLabel="CreateView">
-                            <rect key="frame" x="0.0" y="60" width="355" height="270"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DU6-os-tKm" userLabel="separator View">
-                                    <rect key="frame" x="0.0" y="269" width="355" height="1"/>
-                                    <color key="backgroundColor" red="0.15686274510000001" green="0.28627450980000002" blue="0.73333333329999995" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="W8u-2v-KKh"/>
-                                    </constraints>
-                                </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oc-5e-Amm" customClass="Button" customModule="Material">
-                                    <rect key="frame" x="76" y="206" width="198" height="37"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJa-yz-bFh" customClass="Button" customModule="Material">
+                                    <rect key="frame" x="73" y="227.5" width="209" height="37"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="24"/>
-                                    <state key="normal" title="Crea tu casa"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isMotionEnabled" value="NO"/>
-                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isMotionEnabledForSubviews" value="NO"/>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="pulseOpacity">
-                                            <real key="value" value="3"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
-                                            <color key="value" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="DU6-os-tKm" secondAttribute="trailing" id="ORD-zc-aIg"/>
-                                <constraint firstAttribute="bottom" secondItem="9oc-5e-Amm" secondAttribute="bottom" constant="27" id="Ta6-Uj-gON"/>
-                                <constraint firstAttribute="bottom" secondItem="DU6-os-tKm" secondAttribute="bottom" id="YIC-V3-ktY"/>
-                                <constraint firstItem="9oc-5e-Amm" firstAttribute="leading" secondItem="LeS-Ps-McA" secondAttribute="leading" constant="76" id="k1S-8q-kWk"/>
-                                <constraint firstAttribute="trailing" secondItem="9oc-5e-Amm" secondAttribute="trailing" constant="81" id="p5I-v2-4GF"/>
-                                <constraint firstItem="DU6-os-tKm" firstAttribute="leading" secondItem="LeS-Ps-McA" secondAttribute="leading" id="u6e-iJ-ppv"/>
-                            </constraints>
-                        </view>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRE-Ml-QBb" userLabel="SearchView">
-                            <rect key="frame" x="0.0" y="330" width="355" height="270"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QSS-Dq-6qU" userLabel="separator View">
-                                    <rect key="frame" x="0.0" y="269" width="355" height="1"/>
-                                    <color key="backgroundColor" red="0.15686274509803921" green="0.28627450980392155" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="pkG-jP-2Bc"/>
-                                    </constraints>
-                                </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJa-yz-bFh" customClass="Button" customModule="Material">
-                                    <rect key="frame" x="73" y="191.5" width="209" height="43"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="30"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
                                     <state key="normal" title="Busca Casa"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
@@ -131,28 +88,46 @@
                             <constraints>
                                 <constraint firstItem="JJa-yz-bFh" firstAttribute="leading" secondItem="tRE-Ml-QBb" secondAttribute="leading" constant="73" id="0IY-AH-q3E"/>
                                 <constraint firstAttribute="bottom" secondItem="JJa-yz-bFh" secondAttribute="bottom" constant="35.5" id="1DO-QX-KVM"/>
-                                <constraint firstAttribute="bottom" secondItem="QSS-Dq-6qU" secondAttribute="bottom" id="3Rq-j1-psm"/>
-                                <constraint firstAttribute="trailing" secondItem="QSS-Dq-6qU" secondAttribute="trailing" id="aNr-62-twk"/>
                                 <constraint firstAttribute="trailing" secondItem="JJa-yz-bFh" secondAttribute="trailing" constant="73" id="h0X-XP-awE"/>
-                                <constraint firstItem="QSS-Dq-6qU" firstAttribute="leading" secondItem="tRE-Ml-QBb" secondAttribute="leading" id="x8D-As-kIQ"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeS-Ps-McA" userLabel="CreateView">
+                            <rect key="frame" x="0.0" y="0.0" width="355" height="300"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oc-5e-Amm" customClass="Button" customModule="Material">
+                                    <rect key="frame" x="76" y="236" width="198" height="37"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="24"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Crea tu casa"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isMotionEnabled" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isMotionEnabledForSubviews" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="pulseOpacity">
+                                            <real key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
+                                            <color key="value" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="9oc-5e-Amm" secondAttribute="bottom" constant="27" id="Ta6-Uj-gON"/>
+                                <constraint firstItem="9oc-5e-Amm" firstAttribute="leading" secondItem="LeS-Ps-McA" secondAttribute="leading" constant="76" id="k1S-8q-kWk"/>
+                                <constraint firstAttribute="trailing" secondItem="9oc-5e-Amm" secondAttribute="trailing" constant="81" id="p5I-v2-4GF"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.090196078431372548" green="0.67450980392156867" blue="0.58823529411764708" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="tRE-Ml-QBb" secondAttribute="trailing" id="2Pz-cJ-Twl"/>
-                        <constraint firstAttribute="trailing" secondItem="Wnn-sl-8lk" secondAttribute="trailing" id="6RG-DL-DCJ"/>
                         <constraint firstItem="tRE-Ml-QBb" firstAttribute="leading" secondItem="eLV-gu-CFN" secondAttribute="leading" id="B0l-ky-44D"/>
-                        <constraint firstItem="Wnn-sl-8lk" firstAttribute="top" secondItem="eLV-gu-CFN" secondAttribute="top" id="Gk3-9K-rK7"/>
-                        <constraint firstItem="tRE-Ml-QBb" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.45" id="Hcd-4n-ehQ"/>
-                        <constraint firstItem="LeS-Ps-McA" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.45" id="Lri-re-dog"/>
+                        <constraint firstItem="tRE-Ml-QBb" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.5" id="Hcd-4n-ehQ"/>
+                        <constraint firstItem="LeS-Ps-McA" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.5" id="Lri-re-dog"/>
                         <constraint firstItem="tRE-Ml-QBb" firstAttribute="top" secondItem="LeS-Ps-McA" secondAttribute="bottom" id="M4P-ty-9xj"/>
-                        <constraint firstItem="Wnn-sl-8lk" firstAttribute="leading" secondItem="eLV-gu-CFN" secondAttribute="leading" id="kPZ-cu-XOm"/>
-                        <constraint firstItem="LeS-Ps-McA" firstAttribute="top" secondItem="Wnn-sl-8lk" secondAttribute="bottom" id="pYV-4d-xVz"/>
                         <constraint firstAttribute="trailing" secondItem="LeS-Ps-McA" secondAttribute="trailing" id="rF7-Ej-Vlb"/>
                         <constraint firstAttribute="bottom" secondItem="tRE-Ml-QBb" secondAttribute="bottom" id="trp-Gd-VDd"/>
                         <constraint firstItem="LeS-Ps-McA" firstAttribute="leading" secondItem="eLV-gu-CFN" secondAttribute="leading" id="uO9-j0-clG"/>
-                        <constraint firstItem="Wnn-sl-8lk" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.1" id="xbc-uc-tdI"/>
                     </constraints>
                 </view>
             </subviews>

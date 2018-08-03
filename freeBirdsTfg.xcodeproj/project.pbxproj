@@ -11,6 +11,11 @@
 		590F20052103A67F003F64A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F20032103A67F003F64A3 /* MainViewController.swift */; };
 		590F200B2103A734003F64A3 /* HousesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590F200A2103A734003F64A3 /* HousesView.xib */; };
 		590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F200C2103AB25003F64A3 /* TFHouses.swift */; };
+		594612332114D17900903478 /* construction_site.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612322114D17800903478 /* construction_site.json */; };
+		594612352114D18300903478 /* spirit_geek.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612342114D18300903478 /* spirit_geek.json */; };
+		594612392114E64E00903478 /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594612382114E64E00903478 /* constant.swift */; };
+		5946123B2114F91400903478 /* spirit_geekGray.json in Resources */ = {isa = PBXBuildFile; fileRef = 5946123A2114F91400903478 /* spirit_geekGray.json */; };
+		5946123E2115005200903478 /* Humble.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5946123C2114FF4300903478 /* Humble.ttf */; };
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
 		5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* LoginViewController.swift */; };
 		5960022D20FF99240042CF9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960022B20FF99240042CF9F /* Login.storyboard */; };
@@ -57,6 +62,11 @@
 		590F20032103A67F003F64A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		590F200A2103A734003F64A3 /* HousesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HousesView.xib; sourceTree = "<group>"; };
 		590F200C2103AB25003F64A3 /* TFHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFHouses.swift; sourceTree = "<group>"; };
+		594612322114D17800903478 /* construction_site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = construction_site.json; sourceTree = "<group>"; };
+		594612342114D18300903478 /* spirit_geek.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirit_geek.json; sourceTree = "<group>"; };
+		594612382114E64E00903478 /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
+		5946123A2114F91400903478 /* spirit_geekGray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirit_geekGray.json; sourceTree = "<group>"; };
+		5946123C2114FF4300903478 /* Humble.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Humble.ttf; sourceTree = "<group>"; };
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5960022920FF99240042CF9F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +180,7 @@
 				5960022720FF99240042CF9F /* AppDelegate.swift */,
 				5960022E20FF99260042CF9F /* Assets.xcassets */,
 				5960023320FF99260042CF9F /* Info.plist */,
+				594612382114E64E00903478 /* constant.swift */,
 			);
 			path = freeBirdsTfg;
 			sourceTree = "<group>";
@@ -236,6 +247,7 @@
 		59FEB802210F8B9B00901D62 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				5946123C2114FF4300903478 /* Humble.ttf */,
 				59FEB809210F8C2900901D62 /* Skater Girls Rock.ttf */,
 				59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */,
 				59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */,
@@ -247,6 +259,9 @@
 		59FEB80F210F99C400901D62 /* lottie */ = {
 			isa = PBXGroup;
 			children = (
+				5946123A2114F91400903478 /* spirit_geekGray.json */,
+				594612342114D18300903478 /* spirit_geek.json */,
+				594612322114D17800903478 /* construction_site.json */,
 				59FEB815210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json */,
 				59FEB814210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json */,
 				59FEB812210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json */,
@@ -395,10 +410,14 @@
 				59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */,
 				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
 				59FEB80A210F8C2A00901D62 /* Skater Girls Rock.ttf in Resources */,
+				5946123E2115005200903478 /* Humble.ttf in Resources */,
 				5960022F20FF99260042CF9F /* Assets.xcassets in Resources */,
 				59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */,
 				590F200B2103A734003F64A3 /* HousesView.xib in Resources */,
+				5946123B2114F91400903478 /* spirit_geekGray.json in Resources */,
 				5968B252210DCCF90092E166 /* MainViewController.xib in Resources */,
+				594612332114D17900903478 /* construction_site.json in Resources */,
+				594612352114D18300903478 /* spirit_geek.json in Resources */,
 				5960022D20FF99240042CF9F /* Login.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -515,6 +534,7 @@
 			files = (
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
+				594612392114E64E00903478 /* constant.swift in Sources */,
 				590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
 			);

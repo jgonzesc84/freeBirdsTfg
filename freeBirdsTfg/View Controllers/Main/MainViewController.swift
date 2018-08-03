@@ -8,23 +8,23 @@
 
 import UIKit
 import Lottie
+import Material
 
 class MainViewController: UIViewController {
 
   
   
+    @IBOutlet weak var sepratorNavigationView: UIView!
+    @IBOutlet weak var titlelabel: UILabel!
+    @IBOutlet weak var searchHouseButton: Button!
+    @IBOutlet weak var createHouseButton: Button!
     @IBOutlet weak var searchHouseView: UIView!
     @IBOutlet weak var createHouseView: UIView!
-    @IBOutlet weak var userLabel: UILabel!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let nav = self.navigationController
-         nav?.navigationBar.isTranslucent = true
-         nav?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-         nav?.navigationBar.shadowImage = UIImage()
-      //  let button = nav?.navigationBar.backItem
+        self.initView()
       
         
     }
@@ -32,12 +32,28 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         lottieAnimationHouse()
         lottieAnimationSearch()
+        self.animationButtons( button: self.searchHouseButton )
+        self.animationButtons( button: self.createHouseButton)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        UIView.animate(withDuration: 1) {
+            self.searchHouseButton.alpha = 1
+            self.createHouseButton.alpha = 1
+        }
     }
     
+    func initView(){
+        self.configureNav()
+        self.searchHouseButton.alpha = 0
+        self.createHouseButton.alpha = 0
+        self.giveSomeStyle(button: self.searchHouseButton)
+        self.giveSomeStyle(button: self.createHouseButton)
+     
+    }
     func lottieAnimationHouse(){
-        let animationView = LOTAnimationView(name: "ModernPictogramsForLottie_Home-w800-h800")
+        let animationView = LOTAnimationView(name: "construction_site")
         let frame = createHouseView.frame
-        animationView.frame = CGRect(x:frame.width/2 - 200, y: frame.height/2 - 200, width: 400, height: 400)
+        animationView.frame = CGRect(x:frame.width/2 - 150, y: frame.height/2 - 150, width: 300, height: 300)
         animationView.contentMode = .scaleToFill
         createHouseView.addSubview(animationView)
         createHouseView.sendSubview(toBack: animationView)
@@ -47,18 +63,49 @@ class MainViewController: UIViewController {
     }
     
     func lottieAnimationSearch(){
-        let animationView = LOTAnimationView(name: "ModernPictogramsForLottie_MagnifyingGlass-w800-h800")
+        let animationView = LOTAnimationView(name: "spirit_geekGray")
         let frame = searchHouseView.frame
-        animationView.frame = CGRect(x:frame.width/2 - 200, y: frame.height/2 - 200, width: 400, height: 400)
+        animationView.frame = CGRect(x:frame.width/2 - 200, y: frame.height/2 - 250, width: 500, height: 500 )
        //  animationView.center = self.searchHouseView.center
         animationView.contentMode = .scaleAspectFit 
         searchHouseView.addSubview(animationView)
         searchHouseView.sendSubview(toBack:animationView )
+        animationView.backgroundColor = UIColor .white
+      /*  animationView.layer.cornerRadius = animationView.frame.size.width / 2
+        animationView.layer.borderColor = UIColor .black.cgColor
+        animationView.layer.borderWidth = 5.0
+        animationView.clipsToBounds = true*/
         animationView.play()
         animationView.loopAnimation = true
         
     }
+ 
+    func animationButtons(button:UIView){
+            UIView.animate(withDuration: 1) {
+                button.center.y -= self.view.bounds.height/4
+       
+    }
 
+}
+    func giveSomeStyle(button:Button){
+        button.layer.cornerRadius = 10
+        button.layer.borderColor = UIColor .black.cgColor
+        button.layer.borderWidth = 5.0
+        button.titleColor = UIColor.AppColor.Gray.greyApp
+        button.pulseColor = UIColor.AppColor.Gray.greyApp
+    }
     
-
+    func configureNav(){
+        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+        // Sets shadow (line below the bar) to a blank image
+        UINavigationBar.appearance().shadowImage = UIImage()
+        // Sets the translucent background color
+        UINavigationBar.appearance().backgroundColor = .clear
+        // Set translucent. (Default value is already true, so this can be removed if desired.)
+        UINavigationBar.appearance().isTranslucent = true
+        
+        sepratorNavigationView.layer.cornerRadius = 5
+        
+    }
+    
 }

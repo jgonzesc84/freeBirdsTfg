@@ -14,6 +14,7 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
     
 
+    @IBOutlet weak var control: UISegmentedControl!
     @IBOutlet weak var userTextField: TextField!
     @IBOutlet weak var passTextField: TextField!
     @IBOutlet weak var loginButton: Button!
@@ -21,46 +22,70 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //PRUEBAS MATERIAL
-        userTextField.clearIconButton?.tintColor = UIColor .blue
-        passTextField.visibilityIconButton?.tintColor = UIColor .blue
+       initView()
+        loginAllTheTime()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func initView(){
+    userTextField.clearIconButton?.tintColor = UIColor .blue
+    passTextField.visibilityIconButton?.tintColor = UIColor .blue
     }
-
+    func loginAllTheTime(){
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user == nil
+            {
+              
+            }else{
+           self.goHome()
+            }
+    }
+    }
  
     @IBAction func loginAction(_ sender: Any) {
         
-     /*   if userTextField.text != "" && passTextField.text != "" {
-        
-            Auth.auth().createUser(withEmail:userTextField.text!, password: passTextField.text!) { (user, error) in
-                if user != nil
-                {
-                    print("EXITO")
-                    
-                }else{
-                    //ERROR IMPLEMETAR ALERTA SI NO SE HA CONSEGUIDO LOGUEAER
-                    if let myError = error?.localizedDescription
+        if userTextField.text != "" && passTextField.text != "" {
+            
+            if control.selectedSegmentIndex == 0{
+                Auth.auth().createUser(withEmail:userTextField.text!, password: passTextField.text!) { (user, error) in
+                    if user != nil
                     {
-                        print(myError)
+                       self.goHome()
+                        
                     }else{
-                        print("ERROR")
+                        //ERROR IMPLEMETAR ALERTA SI NO SE HA CONSEGUIDO LOGUEAER
+                     self.showError(error: error!)
+                    }
+            }
+        
+            }else{
+                Auth.auth().signIn(withEmail: userTextField.text!, password: passTextField.text!) { (user, error) in
+                    if user != nil
+                    {
+                        self.goHome()
+                    }else{
+                      
+                        self.showError(error: error!)
                     }
                 }
+                
+                
             }
             
         }else{
             //MATERIAL PONER MENSAJES DE EERROR
-        }*/
-       /* let storyBoard: UIStoryboard = UIStoryboard(name: "MainStoryboard", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "MainViewController") as! MainViewController
-        self.present(newViewController, animated: true, completion: nil)*/
-        // WZKTimeoutExpirationCvvAndDateViewController* vc = [[WZKTimeoutExpirationCvvAndDateViewController alloc] initWithNibName:@"WZKTimeoutExpirationCvvAndDateViewController" bundle:nil];
-        let vc = MainViewController(nibName: "MainViewController", bundle: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
+        }
         
+    }
+    
+    func goHome(){
+        let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+        let vc = UINavigationController(rootViewController: Objvc)
+        self.present(vc, animated: true) {
+        }
+    }
+    func showError(error:Error){
+       let myError = error.localizedDescription
+            print(myError)
     }
     
 }
