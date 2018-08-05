@@ -110,6 +110,9 @@
                                             <color key="value" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="goToCreateHouse:" destination="-1" eventType="touchUpInside" id="QYa-Z2-ufN"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <constraints>

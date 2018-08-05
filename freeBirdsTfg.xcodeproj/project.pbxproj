@@ -16,6 +16,11 @@
 		594612392114E64E00903478 /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594612382114E64E00903478 /* constant.swift */; };
 		5946123B2114F91400903478 /* spirit_geekGray.json in Resources */ = {isa = PBXBuildFile; fileRef = 5946123A2114F91400903478 /* spirit_geekGray.json */; };
 		5946123E2115005200903478 /* Humble.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5946123C2114FF4300903478 /* Humble.ttf */; };
+		59465D832115D9A700106020 /* Navigation.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59465D822115D9A700106020 /* Navigation.xib */; };
+		59465D872115DEA500106020 /* backAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 59465D862115DEA500106020 /* backAnimation.json */; };
+		59465D892115DF5F00106020 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59465D882115DF5F00106020 /* NavigationView.swift */; };
+		59465D8C21163E0800106020 /* CreateHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59465D8A21163E0800106020 /* CreateHouse.swift */; };
+		59465D8D21163E0800106020 /* CreateHouse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59465D8B21163E0800106020 /* CreateHouse.xib */; };
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
 		5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* LoginViewController.swift */; };
 		5960022D20FF99240042CF9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960022B20FF99240042CF9F /* Login.storyboard */; };
@@ -67,6 +72,11 @@
 		594612382114E64E00903478 /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
 		5946123A2114F91400903478 /* spirit_geekGray.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirit_geekGray.json; sourceTree = "<group>"; };
 		5946123C2114FF4300903478 /* Humble.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Humble.ttf; sourceTree = "<group>"; };
+		59465D822115D9A700106020 /* Navigation.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Navigation.xib; sourceTree = "<group>"; };
+		59465D862115DEA500106020 /* backAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = backAnimation.json; sourceTree = "<group>"; };
+		59465D882115DF5F00106020 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
+		59465D8A21163E0800106020 /* CreateHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHouse.swift; sourceTree = "<group>"; };
+		59465D8B21163E0800106020 /* CreateHouse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouse.xib; sourceTree = "<group>"; };
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5960022920FF99240042CF9F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +155,40 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		59465D7C2115D7DA00106020 /* CreateHouse */ = {
+			isa = PBXGroup;
+			children = (
+				59465D8A21163E0800106020 /* CreateHouse.swift */,
+				59465D8B21163E0800106020 /* CreateHouse.xib */,
+			);
+			path = CreateHouse;
+			sourceTree = "<group>";
+		};
+		59465D812115D99300106020 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				59465D822115D9A700106020 /* Navigation.xib */,
+				59465D882115DF5F00106020 /* NavigationView.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		59465D842115DD7700106020 /* constant */ = {
+			isa = PBXGroup;
+			children = (
+				59465D852115DD8300106020 /* colour */,
+			);
+			path = constant;
+			sourceTree = "<group>";
+		};
+		59465D852115DD8300106020 /* colour */ = {
+			isa = PBXGroup;
+			children = (
+				594612382114E64E00903478 /* constant.swift */,
+			);
+			path = colour;
+			sourceTree = "<group>";
+		};
 		5960021B20FF99240042CF9F = {
 			isa = PBXGroup;
 			children = (
@@ -170,6 +214,7 @@
 		5960022620FF99240042CF9F /* freeBirdsTfg */ = {
 			isa = PBXGroup;
 			children = (
+				59465D842115DD7700106020 /* constant */,
 				59FEB80F210F99C400901D62 /* lottie */,
 				59FEB802210F8B9B00901D62 /* Fonts */,
 				59E802FF20FFA3D2001F014C /* storyboards */,
@@ -180,7 +225,6 @@
 				5960022720FF99240042CF9F /* AppDelegate.swift */,
 				5960022E20FF99260042CF9F /* Assets.xcassets */,
 				5960023320FF99260042CF9F /* Info.plist */,
-				594612382114E64E00903478 /* constant.swift */,
 			);
 			path = freeBirdsTfg;
 			sourceTree = "<group>";
@@ -207,6 +251,7 @@
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				59465D7C2115D7DA00106020 /* CreateHouse */,
 				590F20022103A664003F64A3 /* Main */,
 				5960022920FF99240042CF9F /* LoginViewController.swift */,
 			);
@@ -216,6 +261,7 @@
 		59E802FC20FFA396001F014C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				59465D812115D99300106020 /* General */,
 				590F20072103A6DD003F64A3 /* Main */,
 			);
 			path = Views;
@@ -259,6 +305,7 @@
 		59FEB80F210F99C400901D62 /* lottie */ = {
 			isa = PBXGroup;
 			children = (
+				59465D862115DEA500106020 /* backAnimation.json */,
 				5946123A2114F91400903478 /* spirit_geekGray.json */,
 				594612342114D18300903478 /* spirit_geek.json */,
 				594612322114D17800903478 /* construction_site.json */,
@@ -407,14 +454,17 @@
 				59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */,
 				59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */,
 				59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */,
+				59465D832115D9A700106020 /* Navigation.xib in Resources */,
 				59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */,
 				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
+				59465D8D21163E0800106020 /* CreateHouse.xib in Resources */,
 				59FEB80A210F8C2A00901D62 /* Skater Girls Rock.ttf in Resources */,
 				5946123E2115005200903478 /* Humble.ttf in Resources */,
 				5960022F20FF99260042CF9F /* Assets.xcassets in Resources */,
 				59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */,
 				590F200B2103A734003F64A3 /* HousesView.xib in Resources */,
 				5946123B2114F91400903478 /* spirit_geekGray.json in Resources */,
+				59465D872115DEA500106020 /* backAnimation.json in Resources */,
 				5968B252210DCCF90092E166 /* MainViewController.xib in Resources */,
 				594612332114D17900903478 /* construction_site.json in Resources */,
 				594612352114D18300903478 /* spirit_geek.json in Resources */,
@@ -532,6 +582,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59465D892115DF5F00106020 /* NavigationView.swift in Sources */,
+				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
 				594612392114E64E00903478 /* constant.swift in Sources */,

@@ -25,15 +25,14 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initView()
-      
+        lottieAnimationHouse()
+        lottieAnimationSearch()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        lottieAnimationHouse()
-        lottieAnimationSearch()
-        self.animationButtons( button: self.searchHouseButton )
-        self.animationButtons( button: self.createHouseButton)
+        
+       
     }
     override func viewDidAppear(_ animated: Bool) {
         UIView.animate(withDuration: 1) {
@@ -53,7 +52,7 @@ class MainViewController: UIViewController {
     func lottieAnimationHouse(){
         let animationView = LOTAnimationView(name: "construction_site")
         let frame = createHouseView.frame
-        animationView.frame = CGRect(x:frame.width/2 - 150, y: frame.height/2 - 150, width: 300, height: 300)
+        animationView.frame = CGRect(x:frame.width/2 - frame.width/2, y: frame.height/2 - frame.height/2, width: frame.size.width, height: frame.size.height )
         animationView.contentMode = .scaleToFill
         createHouseView.addSubview(animationView)
         createHouseView.sendSubview(toBack: animationView)
@@ -65,7 +64,7 @@ class MainViewController: UIViewController {
     func lottieAnimationSearch(){
         let animationView = LOTAnimationView(name: "spirit_geekGray")
         let frame = searchHouseView.frame
-        animationView.frame = CGRect(x:frame.width/2 - 200, y: frame.height/2 - 250, width: 500, height: 500 )
+        animationView.frame = CGRect(x:frame.width/2 - frame.width/2, y: frame.height/2 - frame.height/2, width: frame.size.width, height: frame.size.height )
        //  animationView.center = self.searchHouseView.center
         animationView.contentMode = .scaleAspectFit 
         searchHouseView.addSubview(animationView)
@@ -89,7 +88,7 @@ class MainViewController: UIViewController {
 }
     func giveSomeStyle(button:Button){
         button.layer.cornerRadius = 10
-        button.layer.borderColor = UIColor .black.cgColor
+        button.layer.borderColor = UIColor.AppColor.Gray.greyApp .cgColor
         button.layer.borderWidth = 5.0
         button.titleColor = UIColor.AppColor.Gray.greyApp
         button.pulseColor = UIColor.AppColor.Gray.greyApp
@@ -103,9 +102,13 @@ class MainViewController: UIViewController {
         UINavigationBar.appearance().backgroundColor = .clear
         // Set translucent. (Default value is already true, so this can be removed if desired.)
         UINavigationBar.appearance().isTranslucent = true
-        
         sepratorNavigationView.layer.cornerRadius = 5
         
     }
     
+    @IBAction func goToCreateHouse(_ sender: Any) {
+       // let vc = UIViewController.init(nibName: "CreateHouse", bundle: nil)
+        let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }
