@@ -21,6 +21,12 @@
 		59465D892115DF5F00106020 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59465D882115DF5F00106020 /* NavigationView.swift */; };
 		59465D8C21163E0800106020 /* CreateHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59465D8A21163E0800106020 /* CreateHouse.swift */; };
 		59465D8D21163E0800106020 /* CreateHouse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59465D8B21163E0800106020 /* CreateHouse.xib */; };
+		5950CAE42117083800A97B49 /* CreateHouseTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAE32117083800A97B49 /* CreateHouseTableView.xib */; };
+		5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5950CAE52117088800A97B49 /* CreateHouseTableViewController.swift */; };
+		5950CAE821170FD200A97B49 /* FontYo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5950CAE721170FD200A97B49 /* FontYo.swift */; };
+		5950CAEB21171B7C00A97B49 /* PrecioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5950CAE921171B7C00A97B49 /* PrecioCell.swift */; };
+		5950CAEC21171B7C00A97B49 /* PrecioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAEA21171B7C00A97B49 /* PrecioCell.xib */; };
+		5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAEE211720CA00A97B49 /* checkAnimation.json */; };
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
 		5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* LoginViewController.swift */; };
 		5960022D20FF99240042CF9F /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960022B20FF99240042CF9F /* Login.storyboard */; };
@@ -77,6 +83,12 @@
 		59465D882115DF5F00106020 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		59465D8A21163E0800106020 /* CreateHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHouse.swift; sourceTree = "<group>"; };
 		59465D8B21163E0800106020 /* CreateHouse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouse.xib; sourceTree = "<group>"; };
+		5950CAE32117083800A97B49 /* CreateHouseTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouseTableView.xib; sourceTree = "<group>"; };
+		5950CAE52117088800A97B49 /* CreateHouseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHouseTableViewController.swift; sourceTree = "<group>"; };
+		5950CAE721170FD200A97B49 /* FontYo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontYo.swift; sourceTree = "<group>"; };
+		5950CAE921171B7C00A97B49 /* PrecioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecioCell.swift; sourceTree = "<group>"; };
+		5950CAEA21171B7C00A97B49 /* PrecioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrecioCell.xib; sourceTree = "<group>"; };
+		5950CAEE211720CA00A97B49 /* checkAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkAnimation.json; sourceTree = "<group>"; };
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5960022920FF99240042CF9F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -189,6 +201,25 @@
 			path = colour;
 			sourceTree = "<group>";
 		};
+		5950CAE02117064000A97B49 /* CreateHouse */ = {
+			isa = PBXGroup;
+			children = (
+				5950CAED21171B8200A97B49 /* Cells */,
+				5950CAE32117083800A97B49 /* CreateHouseTableView.xib */,
+				5950CAE52117088800A97B49 /* CreateHouseTableViewController.swift */,
+			);
+			path = CreateHouse;
+			sourceTree = "<group>";
+		};
+		5950CAED21171B8200A97B49 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5950CAE921171B7C00A97B49 /* PrecioCell.swift */,
+				5950CAEA21171B7C00A97B49 /* PrecioCell.xib */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		5960021B20FF99240042CF9F = {
 			isa = PBXGroup;
 			children = (
@@ -261,6 +292,7 @@
 		59E802FC20FFA396001F014C /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5950CAE02117064000A97B49 /* CreateHouse */,
 				59465D812115D99300106020 /* General */,
 				590F20072103A6DD003F64A3 /* Main */,
 			);
@@ -298,6 +330,7 @@
 				59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */,
 				59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */,
 				59FEB805210F8C1C00901D62 /* KGHAPPYSolid.ttf */,
+				5950CAE721170FD200A97B49 /* FontYo.swift */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -305,6 +338,7 @@
 		59FEB80F210F99C400901D62 /* lottie */ = {
 			isa = PBXGroup;
 			children = (
+				5950CAEE211720CA00A97B49 /* checkAnimation.json */,
 				59465D862115DEA500106020 /* backAnimation.json */,
 				5946123A2114F91400903478 /* spirit_geekGray.json */,
 				594612342114D18300903478 /* spirit_geek.json */,
@@ -450,6 +484,7 @@
 			files = (
 				5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */,
 				59FEB808210F8C1C00901D62 /* KGHAPPYSolid.ttf in Resources */,
+				5950CAE42117083800A97B49 /* CreateHouseTableView.xib in Resources */,
 				59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */,
 				59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */,
 				59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */,
@@ -459,10 +494,12 @@
 				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
 				59465D8D21163E0800106020 /* CreateHouse.xib in Resources */,
 				59FEB80A210F8C2A00901D62 /* Skater Girls Rock.ttf in Resources */,
+				5950CAEC21171B7C00A97B49 /* PrecioCell.xib in Resources */,
 				5946123E2115005200903478 /* Humble.ttf in Resources */,
 				5960022F20FF99260042CF9F /* Assets.xcassets in Resources */,
 				59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */,
 				590F200B2103A734003F64A3 /* HousesView.xib in Resources */,
+				5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */,
 				5946123B2114F91400903478 /* spirit_geekGray.json in Resources */,
 				59465D872115DEA500106020 /* backAnimation.json in Resources */,
 				5968B252210DCCF90092E166 /* MainViewController.xib in Resources */,
@@ -587,7 +624,10 @@
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
 				594612392114E64E00903478 /* constant.swift in Sources */,
+				5950CAEB21171B7C00A97B49 /* PrecioCell.swift in Sources */,
 				590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */,
+				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,
+				5950CAE821170FD200A97B49 /* FontYo.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

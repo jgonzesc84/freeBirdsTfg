@@ -12,24 +12,32 @@ import Material
 class CreateHouse: UIViewController {
 
    
+    @IBOutlet weak var labelHeder: UILabel!
+    @IBOutlet weak var titlelabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareNav()
-
+        prepareNav(label: titlelabel)
+         initView()
         
     }
+    func initView(){
+        labelHeder.font = UIFont.AppFont.middleFont.middlWord
+        labelHeder.layer.borderColor = UIColor.AppColor.Green.mindApp .cgColor
+        labelHeder.text = "Como es tu casa? describela!!"
+        labelHeder.layer.borderWidth = 3
+    }
     
-    func prepareNav(){
-       // navigationItem.title = "titulo"
+    
+    func prepareNav(label : UILabel){
+        titlelabel .text = "Crea tu Casa"
         let backButton = Button(type : .custom)
         backButton.pulseColor = UIColor.AppColor.Gray.greyApp
         backButton.setImage(#imageLiteral(resourceName: "left_angle_bracket"), for: .normal)
-      //  backButton.backgroundColor = UIColor .clear
         backButton.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem?.customView?.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(goBack)))
-        //barButtonItem.customView?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onBarButtonItemClicked)))
+        
      
     }
 
