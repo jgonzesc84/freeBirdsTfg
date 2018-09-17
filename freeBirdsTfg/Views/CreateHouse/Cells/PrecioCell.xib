@@ -22,19 +22,30 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wud-ee-z0e">
                         <rect key="frame" x="0.0" y="0.0" width="445" height="100.5"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="24V-bP-1Zt">
+                                <rect key="frame" x="0.0" y="98.5" width="445" height="2"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="BOE-I8-bC5"/>
+                                </constraints>
+                            </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M1P-iS-cG4">
-                                <rect key="frame" x="100" y="28" width="245" height="44"/>
-                                <nil key="textColor"/>
+                                <rect key="frame" x="83.5" y="28" width="278" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="278" id="7Mi-pv-Klf"/>
+                                </constraints>
+                                <color key="textColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="M1P-iS-cG4" secondAttribute="trailing" constant="100" id="S9b-0V-i1x"/>
-                            <constraint firstItem="M1P-iS-cG4" firstAttribute="leading" secondItem="wud-ee-z0e" secondAttribute="leading" constant="100" id="hQX-n8-fAg"/>
-                            <constraint firstItem="M1P-iS-cG4" firstAttribute="top" secondItem="wud-ee-z0e" secondAttribute="top" constant="28" id="qAF-VP-9KR"/>
-                            <constraint firstAttribute="bottom" secondItem="M1P-iS-cG4" secondAttribute="bottom" constant="28.5" id="vrt-OS-48f"/>
+                            <constraint firstAttribute="trailing" secondItem="24V-bP-1Zt" secondAttribute="trailing" id="1V8-ZI-VoB"/>
+                            <constraint firstAttribute="bottom" secondItem="24V-bP-1Zt" secondAttribute="bottom" id="CaE-ag-ZUW"/>
+                            <constraint firstItem="24V-bP-1Zt" firstAttribute="leading" secondItem="wud-ee-z0e" secondAttribute="leading" id="HZ6-eZ-ynx"/>
+                            <constraint firstItem="M1P-iS-cG4" firstAttribute="centerX" secondItem="wud-ee-z0e" secondAttribute="centerX" id="a4D-qa-AxO"/>
+                            <constraint firstItem="M1P-iS-cG4" firstAttribute="centerY" secondItem="wud-ee-z0e" secondAttribute="centerY" id="e5J-Va-NVg"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -47,6 +58,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="borderView" destination="wud-ee-z0e" id="y0K-ur-FYK"/>
+                <outlet property="botSeparatorlaneView" destination="24V-bP-1Zt" id="RYW-u0-kBb"/>
                 <outlet property="priceTextEdit" destination="M1P-iS-cG4" id="wV7-Ep-vqQ"/>
             </connections>
             <point key="canvasLocation" x="7.5" y="87.5"/>

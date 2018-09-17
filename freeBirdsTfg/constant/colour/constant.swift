@@ -39,6 +39,7 @@ extension UIColor {
         
         struct Gray {
             static let greyApp = UIColor().colorFromHex("A49D98")
+            static let greyCancel = UIColor().colorFromHex("BBBBC1")
         }
     }
     

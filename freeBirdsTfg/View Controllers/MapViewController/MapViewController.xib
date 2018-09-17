@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MapViewController" customModule="freeBirdsTfg" customModuleProvider="target">
+            <connections>
+                <outlet property="map" destination="Mje-YN-rns" id="d3K-gd-CSB"/>
+                <outlet property="titleLabel" destination="8yq-YT-RTp" id="4I5-kR-HjL"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="viewsearch" destination="wzc-N6-gPR" id="Ok5-HY-dZQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" restorationIdentifier="MapViewController" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8gb-Sm-OVF">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeS-Wf-vdC" userLabel="Nav view">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yq-YT-RTp">
+                                    <rect key="frame" x="107" y="23" width="161" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="161" id="Vgd-aQ-mIl"/>
+                                        <constraint firstAttribute="height" constant="21" id="j64-Pb-pMz"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.94117647059999998" green="0.70980392160000005" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="67" id="1Wg-ct-Uvf"/>
+                                <constraint firstItem="8yq-YT-RTp" firstAttribute="centerY" secondItem="PeS-Wf-vdC" secondAttribute="centerY" id="Ny0-wg-ZsE"/>
+                                <constraint firstItem="8yq-YT-RTp" firstAttribute="centerX" secondItem="PeS-Wf-vdC" secondAttribute="centerX" id="jc1-ba-8Gu"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O11-c8-SNS" userLabel="bodyView">
+                            <rect key="frame" x="0.0" y="67" width="375" height="600"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wzc-N6-gPR" userLabel="searchView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="233"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="233" id="863-g9-wdD"/>
+                                    </constraints>
+                                </view>
+                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mje-YN-rns">
+                                    <rect key="frame" x="0.0" y="233" width="375" height="367"/>
+                                </mapView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="Mje-YN-rns" secondAttribute="trailing" id="0yM-IG-uVk"/>
+                                <constraint firstItem="wzc-N6-gPR" firstAttribute="top" secondItem="O11-c8-SNS" secondAttribute="top" id="7b1-yv-oXb"/>
+                                <constraint firstItem="Mje-YN-rns" firstAttribute="top" secondItem="wzc-N6-gPR" secondAttribute="bottom" id="fMu-ra-jde"/>
+                                <constraint firstItem="Mje-YN-rns" firstAttribute="leading" secondItem="O11-c8-SNS" secondAttribute="leading" id="kEB-GF-rQs"/>
+                                <constraint firstAttribute="bottom" secondItem="Mje-YN-rns" secondAttribute="bottom" id="lWF-HH-rnY"/>
+                                <constraint firstItem="wzc-N6-gPR" firstAttribute="leading" secondItem="O11-c8-SNS" secondAttribute="leading" id="nhs-bC-IXv"/>
+                                <constraint firstAttribute="trailing" secondItem="wzc-N6-gPR" secondAttribute="trailing" id="vTC-pB-xar"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="O11-c8-SNS" secondAttribute="bottom" id="02A-Ng-zaR"/>
+                        <constraint firstAttribute="trailing" secondItem="PeS-Wf-vdC" secondAttribute="trailing" id="0vV-sz-UVI"/>
+                        <constraint firstItem="PeS-Wf-vdC" firstAttribute="leading" secondItem="8gb-Sm-OVF" secondAttribute="leading" id="OBC-ZK-xso"/>
+                        <constraint firstItem="O11-c8-SNS" firstAttribute="leading" secondItem="8gb-Sm-OVF" secondAttribute="leading" id="mdn-AL-4jf"/>
+                        <constraint firstItem="O11-c8-SNS" firstAttribute="top" secondItem="PeS-Wf-vdC" secondAttribute="bottom" id="tH7-Cr-v5y"/>
+                        <constraint firstAttribute="trailing" secondItem="O11-c8-SNS" secondAttribute="trailing" id="wD6-VI-fX0"/>
+                        <constraint firstItem="PeS-Wf-vdC" firstAttribute="top" secondItem="8gb-Sm-OVF" secondAttribute="top" id="xzK-Ah-hgQ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="8gb-Sm-OVF" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="8rQ-e2-0jJ"/>
+                <constraint firstAttribute="top" secondItem="8gb-Sm-OVF" secondAttribute="top" id="NBO-kC-Yi4"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="8gb-Sm-OVF" secondAttribute="trailing" id="Tdd-7G-sNd"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8gb-Sm-OVF" secondAttribute="bottom" id="vhg-AN-1AA"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="53.5"/>
+        </view>
+    </objects>
+</document>

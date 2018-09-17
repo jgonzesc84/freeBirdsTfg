@@ -11,6 +11,23 @@
 		590F20052103A67F003F64A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F20032103A67F003F64A3 /* MainViewController.swift */; };
 		590F200B2103A734003F64A3 /* HousesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590F200A2103A734003F64A3 /* HousesView.xib */; };
 		590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F200C2103AB25003F64A3 /* TFHouses.swift */; };
+		59118B292149546D00031AFB /* ModelRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59118B282149546D00031AFB /* ModelRoom.swift */; };
+		59118B2E2149859400031AFB /* HouseSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59118B2C2149859400031AFB /* HouseSectionCell.swift */; };
+		59118B2F2149859400031AFB /* HouseSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59118B2D2149859400031AFB /* HouseSectionCell.xib */; };
+		5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5924F5CD214BD5F9004DECCA /* LocalizationCell.swift */; };
+		5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5924F5CE214BD5F9004DECCA /* LocalizationCell.xib */; };
+		5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5924F5D3214BE5D0004DECCA /* MapViewController.swift */; };
+		5924F5D6214BE5D0004DECCA /* MapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5924F5D4214BE5D0004DECCA /* MapViewController.xib */; };
+		5924F5D9214BE7D3004DECCA /* searchMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5924F5D8214BE7D3004DECCA /* searchMapView.swift */; };
+		5924F5DB214BE7EB004DECCA /* searchMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5924F5DA214BE7EB004DECCA /* searchMapView.xib */; };
+		5924F5E1214BE9B1004DECCA /* searchMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5924F5DF214BE9B1004DECCA /* searchMapCell.swift */; };
+		5924F5E2214BE9B1004DECCA /* searchMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5924F5E0214BE9B1004DECCA /* searchMapCell.xib */; };
+		5935267C2143C3E5002A53D1 /* roomTrashCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5935267B2143C3E5002A53D1 /* roomTrashCell.xib */; };
+		5935267E2143C65E002A53D1 /* roomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5935267D2143C65E002A53D1 /* roomCell.xib */; };
+		593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5935267F2143C8BB002A53D1 /* roomCellTrash.swift */; };
+		593526822143C8F0002A53D1 /* roomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593526812143C8F0002A53D1 /* roomCell.swift */; };
+		593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CC71B21446C440026C7F5 /* addRoomModalView.swift */; };
+		5944648C2144185000545608 /* addRoomModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5944648B2144185000545608 /* addRoomModalView.xib */; };
 		594612332114D17900903478 /* construction_site.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612322114D17800903478 /* construction_site.json */; };
 		594612352114D18300903478 /* spirit_geek.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612342114D18300903478 /* spirit_geek.json */; };
 		594612392114E64E00903478 /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594612382114E64E00903478 /* constant.swift */; };
@@ -35,6 +52,13 @@
 		5960023D20FF99260042CF9F /* freeBirdsTfgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960023C20FF99260042CF9F /* freeBirdsTfgTests.swift */; };
 		5960024820FF99260042CF9F /* freeBirdsTfgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */; };
 		5968B252210DCCF90092E166 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5968B251210DCCF90092E166 /* MainViewController.xib */; };
+		5975AF40212441E600D0194F /* createHouseTableSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5975AF3F212441E600D0194F /* createHouseTableSection.xib */; };
+		5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975AF422124426900D0194F /* createHouseTableSection.swift */; };
+		597BCAE0214A7C3D0092309D /* ModelHouseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BCADF214A7C3D0092309D /* ModelHouseSection.swift */; };
+		597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BCAE1214A86560092309D /* SectionHouseCollectionViewCell.swift */; };
+		597BCAE4214A86560092309D /* SectionHouseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597BCAE2214A86560092309D /* SectionHouseCollectionViewCell.xib */; };
+		59972E842146EAE700001B27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59972E832146EAE700001B27 /* BaseViewController.swift */; };
+		59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C277EF2143DD09006CDBC4 /* mainHelper.swift */; };
 		59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
 		59E8125E2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
 		59E8125F2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
@@ -73,6 +97,23 @@
 		590F20032103A67F003F64A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		590F200A2103A734003F64A3 /* HousesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HousesView.xib; sourceTree = "<group>"; };
 		590F200C2103AB25003F64A3 /* TFHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFHouses.swift; sourceTree = "<group>"; };
+		59118B282149546D00031AFB /* ModelRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRoom.swift; sourceTree = "<group>"; };
+		59118B2C2149859400031AFB /* HouseSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseSectionCell.swift; sourceTree = "<group>"; };
+		59118B2D2149859400031AFB /* HouseSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseSectionCell.xib; sourceTree = "<group>"; };
+		5924F5CD214BD5F9004DECCA /* LocalizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCell.swift; sourceTree = "<group>"; };
+		5924F5CE214BD5F9004DECCA /* LocalizationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalizationCell.xib; sourceTree = "<group>"; };
+		5924F5D3214BE5D0004DECCA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		5924F5D4214BE5D0004DECCA /* MapViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapViewController.xib; sourceTree = "<group>"; };
+		5924F5D8214BE7D3004DECCA /* searchMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchMapView.swift; sourceTree = "<group>"; };
+		5924F5DA214BE7EB004DECCA /* searchMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchMapView.xib; sourceTree = "<group>"; };
+		5924F5DF214BE9B1004DECCA /* searchMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchMapCell.swift; sourceTree = "<group>"; };
+		5924F5E0214BE9B1004DECCA /* searchMapCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchMapCell.xib; sourceTree = "<group>"; };
+		5935267B2143C3E5002A53D1 /* roomTrashCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = roomTrashCell.xib; sourceTree = "<group>"; };
+		5935267D2143C65E002A53D1 /* roomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = roomCell.xib; sourceTree = "<group>"; };
+		5935267F2143C8BB002A53D1 /* roomCellTrash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomCellTrash.swift; sourceTree = "<group>"; };
+		593526812143C8F0002A53D1 /* roomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomCell.swift; sourceTree = "<group>"; };
+		593CC71B21446C440026C7F5 /* addRoomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRoomModalView.swift; sourceTree = "<group>"; };
+		5944648B2144185000545608 /* addRoomModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addRoomModalView.xib; sourceTree = "<group>"; };
 		594612322114D17800903478 /* construction_site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = construction_site.json; sourceTree = "<group>"; };
 		594612342114D18300903478 /* spirit_geek.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirit_geek.json; sourceTree = "<group>"; };
 		594612382114E64E00903478 /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
@@ -103,6 +144,13 @@
 		5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeBirdsTfgUITests.swift; sourceTree = "<group>"; };
 		5960024920FF99260042CF9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5968B251210DCCF90092E166 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		5975AF3F212441E600D0194F /* createHouseTableSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = createHouseTableSection.xib; sourceTree = "<group>"; };
+		5975AF422124426900D0194F /* createHouseTableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createHouseTableSection.swift; sourceTree = "<group>"; };
+		597BCADF214A7C3D0092309D /* ModelHouseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHouseSection.swift; sourceTree = "<group>"; };
+		597BCAE1214A86560092309D /* SectionHouseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHouseCollectionViewCell.swift; sourceTree = "<group>"; };
+		597BCAE2214A86560092309D /* SectionHouseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHouseCollectionViewCell.xib; sourceTree = "<group>"; };
+		59972E832146EAE700001B27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		59C277EF2143DD09006CDBC4 /* mainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainHelper.swift; sourceTree = "<group>"; };
 		59E8125C2100F74C0071B018 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPYShadows.ttf; sourceTree = "<group>"; };
 		59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPY.ttf; sourceTree = "<group>"; };
@@ -161,26 +209,84 @@
 		590F20072103A6DD003F64A3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				5944648A2144182800545608 /* Modal */,
 				590F200A2103A734003F64A3 /* HousesView.xib */,
 				590F200C2103AB25003F64A3 /* TFHouses.swift */,
+				59972E832146EAE700001B27 /* BaseViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		59465D7C2115D7DA00106020 /* CreateHouse */ = {
+		59118B272149544A00031AFB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				59118B282149546D00031AFB /* ModelRoom.swift */,
+				597BCADF214A7C3D0092309D /* ModelHouseSection.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		59118B2A2149549900031AFB /* LoginViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5960022920FF99240042CF9F /* LoginViewController.swift */,
+			);
+			path = LoginViewController;
+			sourceTree = "<group>";
+		};
+		59118B2B2149846800031AFB /* trash */ = {
+			isa = PBXGroup;
+			children = (
+				5935267F2143C8BB002A53D1 /* roomCellTrash.swift */,
+				5935267B2143C3E5002A53D1 /* roomTrashCell.xib */,
+			);
+			path = trash;
+			sourceTree = "<group>";
+		};
+		5924F5D7214BE5DB004DECCA /* MapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5924F5D3214BE5D0004DECCA /* MapViewController.swift */,
+				5924F5D4214BE5D0004DECCA /* MapViewController.xib */,
+			);
+			path = MapViewController;
+			sourceTree = "<group>";
+		};
+		5924F5DC214BE960004DECCA /* cells */ = {
+			isa = PBXGroup;
+			children = (
+				5924F5DF214BE9B1004DECCA /* searchMapCell.swift */,
+				5924F5E0214BE9B1004DECCA /* searchMapCell.xib */,
+			);
+			path = cells;
+			sourceTree = "<group>";
+		};
+		5944648A2144182800545608 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				5944648B2144185000545608 /* addRoomModalView.xib */,
+				593CC71B21446C440026C7F5 /* addRoomModalView.swift */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		59465D7C2115D7DA00106020 /* CreateHouseViewController */ = {
 			isa = PBXGroup;
 			children = (
 				59465D8A21163E0800106020 /* CreateHouse.swift */,
 				59465D8B21163E0800106020 /* CreateHouse.xib */,
 			);
-			path = CreateHouse;
+			path = CreateHouseViewController;
 			sourceTree = "<group>";
 		};
 		59465D812115D99300106020 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				5924F5DC214BE960004DECCA /* cells */,
 				59465D822115D9A700106020 /* Navigation.xib */,
 				59465D882115DF5F00106020 /* NavigationView.swift */,
+				5924F5D8214BE7D3004DECCA /* searchMapView.swift */,
+				5924F5DA214BE7EB004DECCA /* searchMapView.xib */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -204,6 +310,7 @@
 		5950CAE02117064000A97B49 /* CreateHouse */ = {
 			isa = PBXGroup;
 			children = (
+				5975AF41212441F700D0194F /* section */,
 				5950CAED21171B8200A97B49 /* Cells */,
 				5950CAE32117083800A97B49 /* CreateHouseTableView.xib */,
 				5950CAE52117088800A97B49 /* CreateHouseTableViewController.swift */,
@@ -214,8 +321,13 @@
 		5950CAED21171B8200A97B49 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				597BCADE214A7A9F0092309D /* HouseSectionCell */,
 				5950CAE921171B7C00A97B49 /* PrecioCell.swift */,
 				5950CAEA21171B7C00A97B49 /* PrecioCell.xib */,
+				593526812143C8F0002A53D1 /* roomCell.swift */,
+				5935267D2143C65E002A53D1 /* roomCell.xib */,
+				5924F5CD214BD5F9004DECCA /* LocalizationCell.swift */,
+				5924F5CE214BD5F9004DECCA /* LocalizationCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -245,6 +357,8 @@
 		5960022620FF99240042CF9F /* freeBirdsTfg */ = {
 			isa = PBXGroup;
 			children = (
+				59118B2B2149846800031AFB /* trash */,
+				59118B272149544A00031AFB /* Model */,
 				59465D842115DD7700106020 /* constant */,
 				59FEB80F210F99C400901D62 /* lottie */,
 				59FEB802210F8B9B00901D62 /* Fonts */,
@@ -279,12 +393,33 @@
 			path = freeBirdsTfgUITests;
 			sourceTree = "<group>";
 		};
+		5975AF41212441F700D0194F /* section */ = {
+			isa = PBXGroup;
+			children = (
+				5975AF3F212441E600D0194F /* createHouseTableSection.xib */,
+				5975AF422124426900D0194F /* createHouseTableSection.swift */,
+			);
+			path = section;
+			sourceTree = "<group>";
+		};
+		597BCADE214A7A9F0092309D /* HouseSectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				59118B2D2149859400031AFB /* HouseSectionCell.xib */,
+				59118B2C2149859400031AFB /* HouseSectionCell.swift */,
+				597BCAE1214A86560092309D /* SectionHouseCollectionViewCell.swift */,
+				597BCAE2214A86560092309D /* SectionHouseCollectionViewCell.xib */,
+			);
+			path = HouseSectionCell;
+			sourceTree = "<group>";
+		};
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				59465D7C2115D7DA00106020 /* CreateHouse */,
+				5924F5D7214BE5DB004DECCA /* MapViewController */,
+				59118B2A2149549900031AFB /* LoginViewController */,
+				59465D7C2115D7DA00106020 /* CreateHouseViewController */,
 				590F20022103A664003F64A3 /* Main */,
-				5960022920FF99240042CF9F /* LoginViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -302,6 +437,7 @@
 		59E802FD20FFA3A3001F014C /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				59C277EF2143DD09006CDBC4 /* mainHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -484,14 +620,23 @@
 			files = (
 				5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */,
 				59FEB808210F8C1C00901D62 /* KGHAPPYSolid.ttf in Resources */,
+				5935267C2143C3E5002A53D1 /* roomTrashCell.xib in Resources */,
+				5924F5D6214BE5D0004DECCA /* MapViewController.xib in Resources */,
+				5924F5DB214BE7EB004DECCA /* searchMapView.xib in Resources */,
+				5944648C2144185000545608 /* addRoomModalView.xib in Resources */,
+				5975AF40212441E600D0194F /* createHouseTableSection.xib in Resources */,
+				59118B2F2149859400031AFB /* HouseSectionCell.xib in Resources */,
 				5950CAE42117083800A97B49 /* CreateHouseTableView.xib in Resources */,
 				59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */,
 				59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */,
 				59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */,
+				5935267E2143C65E002A53D1 /* roomCell.xib in Resources */,
 				59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */,
+				5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */,
 				59465D832115D9A700106020 /* Navigation.xib in Resources */,
 				59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */,
 				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
+				5924F5E2214BE9B1004DECCA /* searchMapCell.xib in Resources */,
 				59465D8D21163E0800106020 /* CreateHouse.xib in Resources */,
 				59FEB80A210F8C2A00901D62 /* Skater Girls Rock.ttf in Resources */,
 				5950CAEC21171B7C00A97B49 /* PrecioCell.xib in Resources */,
@@ -502,6 +647,7 @@
 				5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */,
 				5946123B2114F91400903478 /* spirit_geekGray.json in Resources */,
 				59465D872115DEA500106020 /* backAnimation.json in Resources */,
+				597BCAE4214A86560092309D /* SectionHouseCollectionViewCell.xib in Resources */,
 				5968B252210DCCF90092E166 /* MainViewController.xib in Resources */,
 				594612332114D17900903478 /* construction_site.json in Resources */,
 				594612352114D18300903478 /* spirit_geek.json in Resources */,
@@ -619,15 +765,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5924F5D9214BE7D3004DECCA /* searchMapView.swift in Sources */,
+				597BCAE0214A7C3D0092309D /* ModelHouseSection.swift in Sources */,
+				5924F5E1214BE9B1004DECCA /* searchMapCell.swift in Sources */,
 				59465D892115DF5F00106020 /* NavigationView.swift in Sources */,
 				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
+				5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */,
+				593526822143C8F0002A53D1 /* roomCell.swift in Sources */,
+				5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */,
+				59118B292149546D00031AFB /* ModelRoom.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
 				594612392114E64E00903478 /* constant.swift in Sources */,
+				593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */,
+				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
+				593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */,
 				5950CAEB21171B7C00A97B49 /* PrecioCell.swift in Sources */,
 				590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */,
+				59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */,
 				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,
+				597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */,
+				59972E842146EAE700001B27 /* BaseViewController.swift in Sources */,
 				5950CAE821170FD200A97B49 /* FontYo.swift in Sources */,
+				59118B2E2149859400031AFB /* HouseSectionCell.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

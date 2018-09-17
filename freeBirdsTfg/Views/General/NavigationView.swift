@@ -39,7 +39,7 @@ class NavigationView: UIView {
     
     
     func iniView(){
-        
+       
     }
 
     func lottieAnimationBack(){

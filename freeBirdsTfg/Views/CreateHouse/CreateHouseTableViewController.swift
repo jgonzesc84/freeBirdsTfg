@@ -8,13 +8,17 @@
 
 import UIKit
 
-class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewDataSource, PriceDelegate{
-  
-    
-
+class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewDataSource, PriceDelegate {
+ 
     @IBOutlet weak var createTable: UITableView!
     @IBOutlet var contentView: UIView!
     var price = ""
+    let titleSection = ["Precio","Habitaciones","Secciones","Localización"]
+    
+    public var cellCollection : HouseSectionCell?
+    public var showModalParent: ((Any) -> ())?
+    public var listOfRoom = Array<ModelRoom>()
+    
  //  MARK: - cicle life
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,6 +39,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         createTable.delegate = self
         createTable.dataSource = self
         
+        
         initView()
         
     }
@@ -42,58 +47,139 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     func initView(){
         
         createTable.register(UINib(nibName:"PrecioCell", bundle: nil), forCellReuseIdentifier: "PrecioCell")
-        createTable.rowHeight = UITableViewAutomaticDimension
-        createTable.estimatedRowHeight = 44
+        createTable.register(UINib(nibName:"roomCell", bundle: nil), forCellReuseIdentifier: "roomCell")
+        createTable.register(UINib(nibName:"HouseSectionCell", bundle: nil), forCellReuseIdentifier: "HouseSectionCell")
+        createTable.register(UINib(nibName:"LocalizationCell",bundle: nil), forCellReuseIdentifier: "LocalizationCell")
+        createTable.register(UINib(nibName:"createHouseTableSection", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerSection")
+        createTable.separatorStyle = UITableViewCellSeparatorStyle .none
+        
+       
     }
 
   //  MARK: - Table view data source
 
      func numberOfSections(in tableView: UITableView) -> Int {
        
-        return 1
+        return titleSection.count
     }
 
      func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+     //poner las listas para saber cuantas filas hay en la seccion
        
-        return 1
+        switch section {
+        case 0 :
+            return 1
+        case 1 :
+            return listOfRoom.count+1
+        case 3:
+            return 1
+        default:
+            return 1
+        }
+        
+      
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+       
+        let title = titleSection[indexPath.section]
+        switch title {
+        case "Precio":
+            return 44
+        case "Habitaciones":
+           return 75
+        case "Secciones":
+            return 300
+        case "Localización":
+            return 75
+        default:
+            return 44
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : PrecioCell = tableView.dequeueReusableCell(withIdentifier: "PrecioCell", for: indexPath) as! PrecioCell
-        cell.delegate = self
+         let numbSection = indexPath.section
+        switch numbSection {
+        case 0:
+            let cell : PrecioCell = tableView.dequeueReusableCell(withIdentifier: "PrecioCell", for: indexPath) as! PrecioCell
+            cell.delegate = self
+            return cell
+        
+        case 1:
+            
+            let cell : roomCell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath) as! roomCell
+            cell.prepareForReuse()
+            cell.showModal = { (cellExpandible) -> () in
+                self.showModalParent!(cellExpandible)
+            }
+            
+            if(listOfRoom.count > 0 && listOfRoom.count <= indexPath.row){
+                cell.setup(room: listOfRoom[indexPath.row-1])
+            }
+           
+            return cell
+        case 2:
+            
+            cellCollection = tableView.dequeueReusableCell(withIdentifier: "HouseSectionCell", for: indexPath) as? HouseSectionCell
+            cellCollection?.showModalToParent = { (cellCollection) -> () in
+            self.showModalParent!(cellCollection)
+            }
+            return cellCollection!
+        case 3:
+             let cell : LocalizationCell = tableView.dequeueReusableCell(withIdentifier: "LocalizationCell", for: indexPath) as! LocalizationCell
+             cell.goToMapView = { (cell) -> () in
+                self.showModalParent!(cell)
+             }
+            return cell
+            
+        default:
+            return UITableViewCell()
+        }
+    }
+    
+    //  MARK: - Table view Header
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50;
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let title = titleSection[section]
+        // Dequeue with the reuse identifier
+        let cell = self.createTable.dequeueReusableHeaderFooterView(withIdentifier: "headerSection")
+        let header = cell as! createHouseTableSection
+        header.titleLabel.text = title
         return cell
     }
     
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (indexPath.section == 1 && indexPath.row > 0){
+            return true
+        }
+       return false
     }
-    */
 
-   
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal,
+                                        title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
+                                         let row = indexPath.row-1
+                                         self.listOfRoom.remove(at: row)
+                                            tableView.deleteRows(at: [indexPath], with: .automatic)
+                                            completionHandler(true)
+                                         
+        }
+        // 7
+        deleteAction.image = UIImage(named: "trash_ico")
+        deleteAction.backgroundColor = UIColor .AppColor.Green.mindApp
+         let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
     }
-    */
 
     //  MARK: - delegate cell Price
-    
+   
     func passPrice(priceString: String?) {
         price = priceString!
     }
-
+  
    
 
 }

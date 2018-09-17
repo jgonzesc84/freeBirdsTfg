@@ -13,6 +13,8 @@ import Material
 class PrecioCell: UITableViewCell , TextFieldDelegate {
 
    
+    @IBOutlet weak var botSeparatorlaneView: UIView!
+    @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var priceTextEdit: UITextField!
     @IBOutlet weak var okButton: UIButton!
     weak var delegate: PriceDelegate?
@@ -26,12 +28,8 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
     func intiView(){
     
     self.selectionStyle = UITableViewCellSelectionStyle.none
-    priceTextEdit.font = UIFont.AppFont.middleFont.middlWord
-    priceTextEdit.textColor = UIColor.AppColor.Gray.greyApp
-    priceTextEdit.layer.borderColor = UIColor.AppColor.Green.mindApp .cgColor
-    priceTextEdit.layer.borderWidth = 3.0
+    MainHelper.theStyle(view: borderView)
     priceTextEdit.placeholder = " PRECIO "
-        
     priceTextEdit.keyboardType = UIKeyboardType.numberPad
     priceTextEdit.delegate = self
     }
@@ -41,9 +39,6 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
      
        
     }
-    
-    
-    
     func textFieldDidEndEditing(_ textField: UITextField) {
         let price : String = textField.text!
         if (price.count > 0){
