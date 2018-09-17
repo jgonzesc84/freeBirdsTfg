@@ -33,7 +33,7 @@ class MapViewController: BaseViewController {
     func setupSearchView(){
         self.searchMapView = Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)![0] as? searchMapView
         self.searchMapView?.mapView = map
-        let frame = CGRect(x: 0, y: 67, width: viewsearch.frame.size.width, height: viewsearch.frame.size.height)
+        let frame = CGRect(x: 0, y: 67, width: UIScreen.main.bounds.width , height: viewsearch.frame.size.height)
         self.searchMapView? .frame = frame
         self.searchMapView?.setOldFrame(frame: frame)
        // self.searchMapView?.backView .frame = CGRect(x: 0, y: 0, width: frame.size.width, height: self.view.frame.size.height)

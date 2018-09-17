@@ -12,8 +12,8 @@ import MapKit
 class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISearchBarDelegate {
     
     
+    @IBOutlet weak var backViewHeightConstant: NSLayoutConstraint!
     @IBOutlet weak var backView: UIView!
-    @IBOutlet weak var backViewHeightConstaint: NSLayoutConstraint!
     @IBOutlet var mainViewII: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var searchDirectionBar: UISearchBar!
@@ -56,8 +56,19 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         directionTable.delegate = self
         directionTable.dataSource = self
         directionTableHeightConstant.constant = 0
+        dismissViewSetup()
+        backViewHeightConstant.constant = 0
+        searchTextStyle()
     }
    
+    func searchTextStyle(){
+        let textFieldInsideUISearchBar = searchDirectionBar.value(forKey: "searchField") as? UITextField
+        textFieldInsideUISearchBar?.textColor = UIColor .AppColor.Gray.greyApp
+        textFieldInsideUISearchBar?.font = UIFont.AppFont.middleFont.middlWord
+        
+       /* let textFieldInsideUISearchBarLabel = searchDirectionBar!.value(forKey: "placeholderLabel") as? UILabel
+        textFieldInsideUISearchBarLabel?.textColor = UIColor.whiteColor()*/
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell : searchMapCell = tableView.dequeueReusableCell(withIdentifier: "searchMapCell") as! searchMapCell
@@ -89,6 +100,9 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if (searchText.count > 0 ){
+            if (backViewHeightConstant.constant == 0) {
+                backViewHeightConstant.constant = UIScreen.main.bounds.height
+            }
             let frame = UIScreen.main.bounds
             self.frame = CGRect(x: (oldFrame?.origin.x)! , y: (oldFrame?.origin.y)!, width: frame.size.width, height: frame.size.height)
             let request = MKLocalSearchRequest()
@@ -111,6 +125,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
             }
         }else{
             self.frame = oldFrame!
+            backViewHeightConstant.constant = 0
             self.matchingItems.removeAll()
             self.directionTable.reloadData()
         }
@@ -118,6 +133,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
     
     
 }
+    
     
     func parseAddress(selectedItem:MKPlacemark) -> String {
         
@@ -149,6 +165,20 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         )
         
         return addressLine
+    }
+    
+    
+    func dismissViewSetup(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        backView?.addGestureRecognizer(tap)
+        backView?.isUserInteractionEnabled = true
+    }
+    
+    @objc func handleTap(_ sender: UITapGestureRecognizer) {
+        backViewHeightConstant.constant = 0
+        self.matchingItems.removeAll()
+        self.directionTable.reloadData()
+        
     }
 }
 
