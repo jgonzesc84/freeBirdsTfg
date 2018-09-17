@@ -14,6 +14,7 @@ class MapViewController: BaseViewController {
 
     var searchMapView : searchMapView?
     
+    @IBOutlet weak var navView: UIView!
     @IBOutlet weak var map: MKMapView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var viewsearch: UIView!
@@ -32,10 +33,17 @@ class MapViewController: BaseViewController {
     func setupSearchView(){
         self.searchMapView = Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)![0] as? searchMapView
         self.searchMapView?.mapView = map
-        let frame = viewsearch.frame
+        let frame = CGRect(x: 0, y: 67, width: viewsearch.frame.size.width, height: viewsearch.frame.size.height)
         self.searchMapView? .frame = frame
+        self.searchMapView?.setOldFrame(frame: frame)
+       // self.searchMapView?.backView .frame = CGRect(x: 0, y: 0, width: frame.size.width, height: self.view.frame.size.height)
         self.view.addSubview(self.searchMapView!)
-    
+       let bottomConst  = NSLayoutConstraint(item: self.searchMapView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: navView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+       // let topConstant = self.searchMapView!.topAnchor.constraint(equalTo: navView.bottomAnchor)
+    //    self.view.addConstraint(topConstant)
+        self.view.addConstraints([bottomConst])
+      
+      
     }
 
     /*

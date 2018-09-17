@@ -12,6 +12,8 @@ import MapKit
 class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISearchBarDelegate {
     
     
+    @IBOutlet weak var backView: UIView!
+    @IBOutlet weak var backViewHeightConstaint: NSLayoutConstraint!
     @IBOutlet var mainViewII: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var searchDirectionBar: UISearchBar!
@@ -21,11 +23,13 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView?
     let searchController = UISearchController(searchResultsController: nil)
+    var oldFrame : CGRect?
     
     override func awakeFromNib() {
         super .awakeFromNib()
        // commonInit()
         initView()
+        
         
     }
    /* override init(frame: CGRect) {
@@ -51,7 +55,70 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
          searchDirectionBar.delegate = self
         directionTable.delegate = self
         directionTable.dataSource = self
+        directionTableHeightConstant.constant = 0
     }
+   
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell : searchMapCell = tableView.dequeueReusableCell(withIdentifier: "searchMapCell") as! searchMapCell
+        let selectedItem = matchingItems[indexPath.row].placemark
+        cell.directionLabel.text = selectedItem.title
+        return cell
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let numberOf = matchingItems.count
+        directionTableHeightConstant.constant = CGFloat(numberOf * 44)
+        
+        return numberOf
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedItem = matchingItems[indexPath.row].placemark
+        print(selectedItem)
+        //comunicar con el mapa
+        // handleMapSearchDelegate?.dropPinZoomIn(selectedItem)
+        //  dismissViewControllerAnimated(true, completion: nil)
+        directionTable.isHidden = true
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 44.00
+    }
+    func setOldFrame(frame : CGRect){
+        oldFrame = frame
+    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if (searchText.count > 0 ){
+            let frame = UIScreen.main.bounds
+            self.frame = CGRect(x: (oldFrame?.origin.x)! , y: (oldFrame?.origin.y)!, width: frame.size.width, height: frame.size.height)
+            let request = MKLocalSearchRequest()
+            request.naturalLanguageQuery = searchText
+            request.region = (self.mapView?.region)!
+            let search = MKLocalSearch(request: request)
+            
+            search.start { response, _ in
+                guard let response = response else {
+                    return
+                }
+                if(searchBar.text?.count == 0){
+                    self.matchingItems.removeAll()
+                    self.directionTable.reloadData()
+                }else{
+                    self.matchingItems = response.mapItems
+                    self.directionTable.reloadData()
+                }
+               
+            }
+        }else{
+            self.frame = oldFrame!
+            self.matchingItems.removeAll()
+            self.directionTable.reloadData()
+        }
+       
+    
+    
+}
+    
     func parseAddress(selectedItem:MKPlacemark) -> String {
         
         // put a space between "4" and "Melrose Place"
@@ -83,42 +150,6 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         
         return addressLine
     }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell : searchMapCell = tableView.dequeueReusableCell(withIdentifier: "searchMapCell") as! searchMapCell
-        let selectedItem = matchingItems[indexPath.row].placemark
-        cell.directionLabel.text = selectedItem.title
-        return cell
-    }
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return matchingItems.count
-    }
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedItem = matchingItems[indexPath.row].placemark
-        print(selectedItem)
-        // handleMapSearchDelegate?.dropPinZoomIn(selectedItem)
-        //  dismissViewControllerAnimated(true, completion: nil)
-        directionTable.isHidden = true
-    }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        
-        let request = MKLocalSearchRequest()
-        request.naturalLanguageQuery = searchText
-        request.region = (self.mapView?.region)!
-        let search = MKLocalSearch(request: request)
-        
-        search.start { response, _ in
-            guard let response = response else {
-                return
-            }
-            self.matchingItems = response.mapItems
-            self.directionTable.reloadData()
-        }
-    
-    
-}
 }
 
 extension searchMapView : UISearchResultsUpdating {
