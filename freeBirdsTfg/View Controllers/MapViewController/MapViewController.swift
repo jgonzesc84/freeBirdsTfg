@@ -22,7 +22,9 @@ class MapViewController: BaseViewController {
         super.viewDidLoad()
         prepareNav(label: titleLabel, text: "Localizacion")
         setupSearchView()
-        // Do any additional setup after loading the view.
+        MainHelper.navStyle(view: navView)
+        initView()
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,22 +40,65 @@ class MapViewController: BaseViewController {
         self.searchMapView?.setOldFrame(frame: frame)
        // self.searchMapView?.backView .frame = CGRect(x: 0, y: 0, width: frame.size.width, height: self.view.frame.size.height)
         self.view.addSubview(self.searchMapView!)
-       let bottomConst  = NSLayoutConstraint(item: self.searchMapView!, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: navView, attribute: NSLayoutAttribute.bottom, multiplier: 1, constant: 0)
+       let bottomConst  = NSLayoutConstraint(item: self.searchMapView!, attribute: .top, relatedBy: .equal, toItem: navView, attribute: .bottom, multiplier: 1, constant: 0)
        // let topConstant = self.searchMapView!.topAnchor.constraint(equalTo: navView.bottomAnchor)
     //    self.view.addConstraint(topConstant)
         self.view.addConstraints([bottomConst])
       
       
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func initView(){
+        hearSearchBarMap()
     }
-    */
+    
+    func hearSearchBarMap(){
+        // createHouseTable.showModalParent = { (sender) -> () in
+        self.searchMapView?.getDirection = { (itemLocation) -> () in
+            let locationItem = itemLocation.placemark
+            self.map.addAnnotation(locationItem)
+            self.setupRegion(item: itemLocation)
+            
+        }
+    }
+    func setupRegion(item : MKMapItem){
+     
+      
+        var region =  MKCoordinateRegion();
+        region.center = item.placemark.coordinate
+        region =  self.map.regionThatFits(region)
+        map.setRegion(region, animated: true)
 
 }
+}
+
+/*
+ if([mapView.annotations count] == 0)
+ return;
+ 
+ CLLocationCoordinate2D topLeftCoord;
+ topLeftCoord.latitude = -90;
+ topLeftCoord.longitude = 180;
+ 
+ CLLocationCoordinate2D bottomRightCoord;
+ bottomRightCoord.latitude = 90;
+ bottomRightCoord.longitude = -180;
+ 
+ for(MapAnnotation* annotation in mapView.annotations)
+ {
+ topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+ topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+ 
+ bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+ bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+ }
+ 
+ MKCoordinateRegion region;
+ region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.5;
+ region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.5;
+ region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 1.1; // Add a little extra space on the sides
+ region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 1.1; // Add a little extra space on the sides
+ 
+ region = [mapView regionThatFits:region];
+ [mapView setRegion:region animated:YES];
+ 
+ */

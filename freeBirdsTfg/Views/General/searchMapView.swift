@@ -19,11 +19,12 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
     @IBOutlet weak var searchDirectionBar: UISearchBar!
     @IBOutlet weak var directionTable: UITableView!
     @IBOutlet weak var directionTableHeightConstant: NSLayoutConstraint!
-    // weak var handleMapSearchDelegate: HandleMapSearch?
+    
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView?
     let searchController = UISearchController(searchResultsController: nil)
     var oldFrame : CGRect?
+      public var getDirection: ((MKMapItem) -> ())?
     
     override func awakeFromNib() {
         super .awakeFromNib()
@@ -32,33 +33,21 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         
         
     }
-   /* override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        commonInit()
-        initView()
-       
-    }
-    
-   func commonInit(){
-        Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)
-        addSubview(mainViewII)
-        mainViewII.frame = self.bounds
-        mainViewII.autoresizingMask = [.flexibleHeight , .flexibleWidth]
-    }*/
+  
     func initView(){
         directionTable.register(UINib(nibName: "searchMapCell", bundle: nil), forCellReuseIdentifier: "searchMapCell")
         directionTable.separatorStyle = UITableViewCellSeparatorStyle .none
          searchDirectionBar.delegate = self
         directionTable.delegate = self
         directionTable.dataSource = self
-        directionTableHeightConstant.constant = 0
+        directionTableHeightConstant.constant = UIScreen.main.bounds.height / 2
         dismissViewSetup()
         backViewHeightConstant.constant = 0
         searchTextStyle()
+        searchDirectionBar.layer.borderColor = UIColor .white .cgColor
+        searchDirectionBar.layer.borderWidth = 3.00
+        self.directionTable.rowHeight = UITableViewAutomaticDimension;
+        self.directionTable.estimatedRowHeight = 44.0
     }
    
     func searchTextStyle(){
@@ -78,22 +67,22 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let numberOf = matchingItems.count
-        directionTableHeightConstant.constant = CGFloat(numberOf * 44)
+       // directionTableHeightConstant.constant = CGFloat(numberOf * 44)
         
         return numberOf
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedItem = matchingItems[indexPath.row].placemark
-        print(selectedItem)
-        //comunicar con el mapa
-        // handleMapSearchDelegate?.dropPinZoomIn(selectedItem)
-        //  dismissViewControllerAnimated(true, completion: nil)
+        searchDirectionBar.text = selectedItem.title
+        self.getDirection?(matchingItems[indexPath.row])
         directionTable.isHidden = true
+        backViewHeightConstant.constant = 0
+        searchDirectionBar.resignFirstResponder()
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 44.00
-    }
+        return
+    }*/
     func setOldFrame(frame : CGRect){
         oldFrame = frame
     }
@@ -105,24 +94,34 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
             }
             let frame = UIScreen.main.bounds
             self.frame = CGRect(x: (oldFrame?.origin.x)! , y: (oldFrame?.origin.y)!, width: frame.size.width, height: frame.size.height)
-            let request = MKLocalSearchRequest()
-            request.naturalLanguageQuery = searchText
-            request.region = (self.mapView?.region)!
-            let search = MKLocalSearch(request: request)
-            
-            search.start { response, _ in
-                guard let response = response else {
-                    return
+            let space = searchText.contains(" ")
+            let coma = searchText.contains(",")
+            let numbersRange = searchText.rangeOfCharacter(from: .decimalDigits)
+            let hasNumbers = (numbersRange != nil)
+            if( space || coma || hasNumbers){
+                let request = MKLocalSearchRequest()
+                request.naturalLanguageQuery = searchText
+                request.region = (self.mapView?.region)!
+                let search = MKLocalSearch(request: request)
+                
+                search.start { response, _ in
+                    guard let response = response else {
+                        return
+                    }
+                    if(searchBar.text?.count == 0){
+                        self.matchingItems.removeAll()
+                        self.directionTable.reloadData()
+                    }else{
+                        if (self.directionTable.isHidden){
+                            self.directionTable.isHidden = false
+                        }
+                        self.matchingItems = response.mapItems
+                        self.directionTable.reloadData()
+                    }
+                    
                 }
-                if(searchBar.text?.count == 0){
-                    self.matchingItems.removeAll()
-                    self.directionTable.reloadData()
-                }else{
-                    self.matchingItems = response.mapItems
-                    self.directionTable.reloadData()
-                }
-               
             }
+            
         }else{
             self.frame = oldFrame!
             backViewHeightConstant.constant = 0
@@ -182,7 +181,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
     }
 }
 
-extension searchMapView : UISearchResultsUpdating {
+/*extension searchMapView : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         guard let mapView = mapView,
             let searchBarText = searchController.searchBar.text else { return }
@@ -200,6 +199,6 @@ extension searchMapView : UISearchResultsUpdating {
             self.directionTable.reloadData()
         }
     }
-}
+}*/
 
 

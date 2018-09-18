@@ -91,4 +91,45 @@ class MainHelper{
         view.clipsToBounds = false
     }
     
+    static func navStyle(view : UIView){
+        view.backgroundColor = UIColor .white
+        for item in view.subviews {
+            var label : UILabel?
+            let separator : UIView?
+            let name = String(describing: type(of: item))
+            switch name{
+            case "UIView":
+                 separator = item
+                 separator?.backgroundColor = UIColor .AppColor.Green.mindApp
+                /* var frame = separator?.frame
+                 frame?.size.height = 50
+                 separator?.frame = frame!
+                 separator?.translatesAutoresizingMaskIntoConstraints = false
+                 view.addConstraint(NSLayoutConstraint(item: separator!, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 100))
+                 view.addConstraint(NSLayoutConstraint(item: separator!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 67))
+                 view.addConstraint(NSLayoutConstraint(item: separator!, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 67))*/
+                
+                break
+            case "UILabel":
+                label = item as? UILabel
+                label?.font = UIFont.AppFont.titleFont.navTitleFont
+                label?.textColor = UIColor .AppColor.Green.mindApp
+                label?.textAlignment = .center
+                label?.translatesAutoresizingMaskIntoConstraints = false
+               //view.addConstraint(NSLayoutConstraint(item: label!, attribute: .centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0))
+               // view.addConstraint(NSLayoutConstraint(item: label!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0))
+                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .leading, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 20))
+                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .trailing, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 20))
+                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: .top, multiplier: 1, constant: 28))
+                break
+            default:
+                
+                break
+                
+            }
+            
+        }
+        
+    }
+    
 }
