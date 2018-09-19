@@ -48,6 +48,7 @@ class MapViewController: BaseViewController {
       
     }
     func initView(){
+      //  map.mapType = .satellite
         hearSearchBarMap()
     }
     
@@ -65,9 +66,35 @@ class MapViewController: BaseViewController {
       
         var region =  MKCoordinateRegion();
         region.center = item.placemark.coordinate
-        region =  self.map.regionThatFits(region)
+         region.span.longitudeDelta = 0.004
+         region.span.latitudeDelta = 0.002
         map.setRegion(region, animated: true)
-
+        
+        /*let annotation = item.placemark
+        
+        var  topLeftCoord = CLLocationCoordinate2D ()
+        topLeftCoord.latitude = -90
+        topLeftCoord.longitude = 180
+        
+        var bottomRightCoord = CLLocationCoordinate2D ()
+        bottomRightCoord.latitude = 90
+        bottomRightCoord.longitude = -180
+        
+        topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
+        topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
+        
+        bottomRightCoord.longitude = fmax(bottomRightCoord.longitude, annotation.coordinate.longitude);
+        bottomRightCoord.latitude = fmin(bottomRightCoord.latitude, annotation.coordinate.latitude);
+        
+        var region = MKCoordinateRegion ()
+        region.center.latitude = topLeftCoord.latitude - (topLeftCoord.latitude - bottomRightCoord.latitude) * 0.2;
+        region.center.longitude = topLeftCoord.longitude + (bottomRightCoord.longitude - topLeftCoord.longitude) * 0.2;
+        region.span.latitudeDelta = fabs(topLeftCoord.latitude - bottomRightCoord.latitude) * 0.3;
+        region.span.longitudeDelta = fabs(bottomRightCoord.longitude - topLeftCoord.longitude) * 0.3;
+        
+        region =  map.regionThatFits(region)
+        
+        map.setRegion(region, animated: true)*/
 }
 }
 

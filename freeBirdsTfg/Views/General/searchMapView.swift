@@ -12,13 +12,15 @@ import MapKit
 class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISearchBarDelegate {
     
     
-    @IBOutlet weak var backViewHeightConstant: NSLayoutConstraint!
+    
     @IBOutlet weak var backView: UIView!
     @IBOutlet var mainViewII: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var searchDirectionBar: UISearchBar!
     @IBOutlet weak var directionTable: UITableView!
+    
     @IBOutlet weak var directionTableHeightConstant: NSLayoutConstraint!
+    @IBOutlet weak var backViewHeightConstant: NSLayoutConstraint!
     
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView?
@@ -77,7 +79,8 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         self.getDirection?(matchingItems[indexPath.row])
         directionTable.isHidden = true
         backViewHeightConstant.constant = 0
-        searchDirectionBar.resignFirstResponder()
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: searchDirectionBar.frame.size.height)
+       // searchDirectionBar.resignFirstResponder()
     }
     /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
@@ -171,10 +174,13 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         backView?.addGestureRecognizer(tap)
         backView?.isUserInteractionEnabled = true
+        
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         backViewHeightConstant.constant = 0
+          directionTable.isHidden = true
+        self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: searchDirectionBar.frame.size.height)
         self.matchingItems.removeAll()
         self.directionTable.reloadData()
         
