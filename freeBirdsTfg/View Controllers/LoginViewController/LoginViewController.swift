@@ -21,9 +21,11 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //PRUEBAS MATERIAL
-       initView()
         loginAllTheTime()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        initView()
     }
 
     func initView(){

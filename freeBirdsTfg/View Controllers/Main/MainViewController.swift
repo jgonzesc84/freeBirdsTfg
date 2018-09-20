@@ -27,6 +27,8 @@ class MainViewController: UIViewController {
         self.initView()
         lottieAnimationHouse()
         lottieAnimationSearch()
+        self.animationButtons(button: self.searchHouseButton)
+        self.animationButtons(button: self.createHouseButton)
         
     }
     
@@ -35,6 +37,7 @@ class MainViewController: UIViewController {
        
     }
     override func viewDidAppear(_ animated: Bool) {
+       
         UIView.animate(withDuration: 1) {
             self.searchHouseButton.alpha = 1
             self.createHouseButton.alpha = 1
@@ -81,7 +84,7 @@ class MainViewController: UIViewController {
  
     func animationButtons(button:UIView){
             UIView.animate(withDuration: 1) {
-                button.center.y -= self.view.bounds.height/4
+                button.center.y -= self.view.bounds.height/16
        
     }
 

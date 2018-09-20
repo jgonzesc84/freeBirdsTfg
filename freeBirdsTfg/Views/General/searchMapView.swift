@@ -30,11 +30,9 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
     
     override func awakeFromNib() {
         super .awakeFromNib()
-       // commonInit()
         initView()
-        
-        
     }
+    
   
     func initView(){
         directionTable.register(UINib(nibName: "searchMapCell", bundle: nil), forCellReuseIdentifier: "searchMapCell")
@@ -80,12 +78,10 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         directionTable.isHidden = true
         backViewHeightConstant.constant = 0
         self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: searchDirectionBar.frame.size.height)
-       // searchDirectionBar.resignFirstResponder()
+        searchDirectionBar.resignFirstResponder()
+      
     }
-    /*func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return
-    }*/
+   
     func setOldFrame(frame : CGRect){
         oldFrame = frame
     }
@@ -137,7 +133,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
 }
     
     
-    func parseAddress(selectedItem:MKPlacemark) -> String {
+    func parseAddress(selectedItem:CLPlacemark) -> String {
         
         // put a space between "4" and "Melrose Place"
         let firstSpace = (selectedItem.subThoroughfare != nil &&
@@ -183,6 +179,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         self.frame = CGRect(x: self.frame.origin.x, y: self.frame.origin.y, width: self.frame.size.width, height: searchDirectionBar.frame.size.height)
         self.matchingItems.removeAll()
         self.directionTable.reloadData()
+        self.searchDirectionBar.resignFirstResponder()
         
     }
 }

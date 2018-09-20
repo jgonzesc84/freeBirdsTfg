@@ -90,6 +90,13 @@ class MainHelper{
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.clipsToBounds = false
     }
+    static func acceptButtonStyle(button : Button){
+    button.layer.cornerRadius = 3.0
+    button.backgroundColor = UIColor .AppColor.Green.mindApp
+    button.titleLabel?.font = UIFont.AppFont.middleFont.middlWord!
+    button.titleColor = UIColor .white
+    button.pulseColor = UIColor.AppColor.Gray.greyApp
+    }
     
     static func navStyle(view : UIView){
         view.backgroundColor = UIColor .white

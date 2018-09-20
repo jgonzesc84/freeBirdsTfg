@@ -32,6 +32,12 @@ class BaseViewController: UIViewController {
         
     }
     
+    func animationButtons(button:UIView){
+        UIView.animate(withDuration: 1) {
+            button.center.y -= self.view.bounds.height/4
+        }
+        }
+    
     func prepareNav(label : UILabel , text: String){
         label.text = text
         let backButton = Button(type : .custom)
@@ -43,6 +49,8 @@ class BaseViewController: UIViewController {
         
         
     }
+    
+    
     
     @objc func goBack(){
         
