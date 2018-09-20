@@ -54,7 +54,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         let textFieldInsideUISearchBar = searchDirectionBar.value(forKey: "searchField") as? UITextField
         textFieldInsideUISearchBar?.textColor = UIColor .AppColor.Gray.greyApp
         textFieldInsideUISearchBar?.font = UIFont.AppFont.middleFont.middlWord
-        
+        textFieldInsideUISearchBar?.minimumFontSize = 12
        /* let textFieldInsideUISearchBarLabel = searchDirectionBar!.value(forKey: "placeholderLabel") as? UILabel
         textFieldInsideUISearchBarLabel?.textColor = UIColor.whiteColor()*/
     }
