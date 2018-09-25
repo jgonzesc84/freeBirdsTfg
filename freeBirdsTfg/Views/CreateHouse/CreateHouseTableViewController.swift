@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewDataSource, PriceDelegate {
  
     @IBOutlet weak var createTable: UITableView!
     @IBOutlet var contentView: UIView!
+    var annotationLocation : MKPointAnnotation?
+    var placemarkLocation : MKPlacemark?
+    var direction : String?
     var price = ""
     let titleSection = ["Precio","Habitaciones","Secciones","Localización"]
     
@@ -51,6 +55,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         createTable.register(UINib(nibName:"HouseSectionCell", bundle: nil), forCellReuseIdentifier: "HouseSectionCell")
         createTable.register(UINib(nibName:"LocalizationCell",bundle: nil), forCellReuseIdentifier: "LocalizationCell")
         createTable.register(UINib(nibName:"createHouseTableSection", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerSection")
+         createTable.register(UINib(nibName:"showLocalizationCell", bundle: nil), forCellReuseIdentifier: "showlocalizationCell")
         createTable.separatorStyle = UITableViewCellSeparatorStyle .none
         
        
@@ -90,7 +95,11 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         case "Secciones":
             return 300
         case "Localización":
-            return 75
+            if((self.annotationLocation) != nil || (self.placemarkLocation) != nil){
+               return 187
+            }else{
+              return 75
+            }
         default:
             return 44
         }
@@ -125,12 +134,36 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             }
             return cellCollection!
         case 3:
-             let cell : LocalizationCell = tableView.dequeueReusableCell(withIdentifier: "LocalizationCell", for: indexPath) as! LocalizationCell
-             cell.goToMapView = { (cell) -> () in
-                self.showModalParent!(cell)
-             }
-            return cell
-            
+            if((self.annotationLocation) != nil || (self.placemarkLocation) != nil){
+                let cell : showLocalizationCell = tableView.dequeueReusableCell(withIdentifier: "showlocalizationCell", for: indexPath) as! showLocalizationCell
+                if(self.annotationLocation != nil){
+                     cell.setupCell(annotation: self.annotationLocation! , direction: self.direction!)
+                }else{
+                    cell.setupCell(placemark: self.placemarkLocation! , direction: self.direction!)
+                }
+                return cell
+                
+            }else{
+                let cell : LocalizationCell = tableView.dequeueReusableCell(withIdentifier: "LocalizationCell", for: indexPath) as! LocalizationCell
+                cell.goToMapView = { (cell) -> () in
+                    
+                    let vc = MapViewController (nibName: "MapViewController", bundle: nil)
+                    vc.sendLocation = { (dictio) -> () in
+                        let obj = dictio["annotation"]
+                        if (obj is MKPointAnnotation){
+                            self.annotationLocation = obj as! MKPointAnnotation?
+                        }else{
+                           self.placemarkLocation = obj as! MKPlacemark?
+                        }
+                        self.direction = dictio["direction"] as! String?
+                        self.createTable.reloadData()
+                    }
+                    self.showModalParent!(vc)
+                    
+                    
+                }
+                return cell
+            }
         default:
             return UITableViewCell()
         }

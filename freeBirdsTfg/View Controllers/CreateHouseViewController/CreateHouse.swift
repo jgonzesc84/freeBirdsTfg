@@ -15,6 +15,8 @@ class CreateHouse: BaseViewController {
     @IBOutlet weak var createHouseTable: CreateHouseTableViewController!
     @IBOutlet weak var labelHeder: UILabel!
     @IBOutlet weak var titlelabel: UILabel!
+    
+    
  
     public var modalView : addRoomModalView?
     override func viewDidLoad() {
@@ -70,10 +72,11 @@ class CreateHouse: BaseViewController {
                 self.prepareModal()
                 self.modalView?.setupModal(mode: false)
                 self.view.addSubview(self.modalView!)
-            }else if sender is LocalizationCell{
+            }else if sender is MapViewController{
                 
-                let vc = MapViewController (nibName: "MapViewController", bundle: nil)
+                let vc =  sender as! MapViewController
                 self.navigationController?.pushViewController(vc, animated: true)
+                
             }
            
         }
@@ -102,6 +105,9 @@ class CreateHouse: BaseViewController {
                 self.createHouseTable.cellCollection?.sectionCollectionView.reloadData()
             }
         }
+    }
+    func heardMapView(){
+    
     }
     
     //  MARK: - delegate roomexpandibleCell

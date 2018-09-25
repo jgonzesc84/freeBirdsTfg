@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="showLocalizationCell" selectionStyle="default" indentationWidth="10" rowHeight="188" id="KGk-i7-Jjw" customClass="showLocalizationCell" customModule="freeBirdsTfg" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="312" height="188"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="312" height="187.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="odB-1X-3Dd">
+                        <rect key="frame" x="0.0" y="0.0" width="312" height="188"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCR-M5-6Mh">
+                                <rect key="frame" x="8" y="9" width="296" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcz-Uw-670">
+                                <rect key="frame" x="102" y="44" width="108" height="100"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="R0w-v7-rCB">
+                                        <rect key="frame" x="0.0" y="0.0" width="108" height="100"/>
+                                    </mapView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="108" id="2Nc-fQ-Ayr"/>
+                                    <constraint firstAttribute="bottom" secondItem="R0w-v7-rCB" secondAttribute="bottom" id="5a1-ER-ayd"/>
+                                    <constraint firstItem="R0w-v7-rCB" firstAttribute="top" secondItem="vcz-Uw-670" secondAttribute="top" id="85h-2G-3Xl"/>
+                                    <constraint firstAttribute="trailing" secondItem="R0w-v7-rCB" secondAttribute="trailing" id="CTh-tG-Ud4"/>
+                                    <constraint firstAttribute="height" constant="100" id="eHB-gS-Mde"/>
+                                    <constraint firstItem="R0w-v7-rCB" firstAttribute="leading" secondItem="vcz-Uw-670" secondAttribute="leading" id="nao-IL-H0Y"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mCR-M5-6Mh" firstAttribute="leading" secondItem="odB-1X-3Dd" secondAttribute="leading" constant="8" id="9d6-WM-sYb"/>
+                            <constraint firstAttribute="trailing" secondItem="mCR-M5-6Mh" secondAttribute="trailing" constant="8" id="KGc-6t-hVT"/>
+                            <constraint firstItem="vcz-Uw-670" firstAttribute="centerY" secondItem="odB-1X-3Dd" secondAttribute="centerY" id="Wni-Jk-tfD"/>
+                            <constraint firstItem="mCR-M5-6Mh" firstAttribute="top" secondItem="odB-1X-3Dd" secondAttribute="top" constant="9" id="gwW-iI-goH"/>
+                            <constraint firstItem="vcz-Uw-670" firstAttribute="centerX" secondItem="odB-1X-3Dd" secondAttribute="centerX" id="nwk-VQ-Cx5"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="odB-1X-3Dd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ENA-Ow-3OD"/>
+                    <constraint firstAttribute="bottom" secondItem="odB-1X-3Dd" secondAttribute="bottom" constant="-0.5" id="cEa-N1-5Jr"/>
+                    <constraint firstAttribute="trailing" secondItem="odB-1X-3Dd" secondAttribute="trailing" id="dMO-Oc-1M8"/>
+                    <constraint firstItem="odB-1X-3Dd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yCk-HV-FCB"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="containerMapView" destination="vcz-Uw-670" id="Cz1-Hl-Gap"/>
+                <outlet property="directionLabel" destination="mCR-M5-6Mh" id="pZE-kW-ItJ"/>
+                <outlet property="mainView" destination="odB-1X-3Dd" id="QnO-rf-sum"/>
+                <outlet property="mapCell" destination="R0w-v7-rCB" id="O3h-i3-zWO"/>
+            </connections>
+            <point key="canvasLocation" x="38" y="126"/>
+        </tableViewCell>
+    </objects>
+</document>
