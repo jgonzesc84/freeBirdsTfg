@@ -10,6 +10,8 @@ target 'freeBirdsTfg' do
   pod 'Material', '~> 2.0'
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Storage'
   pod 'lottie-ios'
 
   target 'freeBirdsTfgTests' do
