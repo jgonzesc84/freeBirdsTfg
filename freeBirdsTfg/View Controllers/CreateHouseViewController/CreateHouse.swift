@@ -19,6 +19,7 @@ class CreateHouse: BaseViewController {
     
     var alreadyMoved = true
     //variables del modelo de la casa
+    var house : ModelHouse?
     var price : String?
     var directionModel : ModelDirection?
     var listOfSection : Array<ModelHouseSection>?
@@ -180,8 +181,9 @@ class CreateHouse: BaseViewController {
     }
     
     @IBAction func acceptActionButton(_ sender: Any) {
+      //  house = ModelHouse(price: price?, section: listOfSection?, listOfRoom: listOfRoom!, direction: directionModel!)
+       //  FireBaseManager.createHouse(model: model)
         
-        //ingreso FIREBASE!!!!!!!
         
     }
     //  MARK: - delegate roomexpandibleCell
