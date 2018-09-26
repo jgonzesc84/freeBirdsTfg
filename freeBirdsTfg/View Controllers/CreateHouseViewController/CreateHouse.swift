@@ -181,8 +181,8 @@ class CreateHouse: BaseViewController {
     }
     
     @IBAction func acceptActionButton(_ sender: Any) {
-      //  house = ModelHouse(price: price?, section: listOfSection?, listOfRoom: listOfRoom!, direction: directionModel!)
-       //  FireBaseManager.createHouse(model: model)
+        house = ModelHouse(price: price, section: listOfSection, listOfRoom: listOfRoom!, direction: directionModel!)
+        FireBaseManager.createHouse(model: house!)
         
         
     }
