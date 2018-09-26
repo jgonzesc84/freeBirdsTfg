@@ -11,8 +11,6 @@
 		3B303B83215A34380002A7CA /* showLocalizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B303B81215A34380002A7CA /* showLocalizationCell.xib */; };
 		407BEF76D91EB4D89F4A99BC /* Pods_freeBirdsTfgUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8BEDD6366B6D9C67E3E0B0A /* Pods_freeBirdsTfgUITests.framework */; };
 		590F20052103A67F003F64A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F20032103A67F003F64A3 /* MainViewController.swift */; };
-		590F200B2103A734003F64A3 /* HousesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 590F200A2103A734003F64A3 /* HousesView.xib */; };
-		590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F200C2103AB25003F64A3 /* TFHouses.swift */; };
 		59118B292149546D00031AFB /* ModelRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59118B282149546D00031AFB /* ModelRoom.swift */; };
 		59118B2E2149859400031AFB /* HouseSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59118B2C2149859400031AFB /* HouseSectionCell.swift */; };
 		59118B2F2149859400031AFB /* HouseSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59118B2D2149859400031AFB /* HouseSectionCell.xib */; };
@@ -28,6 +26,8 @@
 		5935267E2143C65E002A53D1 /* roomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5935267D2143C65E002A53D1 /* roomCell.xib */; };
 		593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5935267F2143C8BB002A53D1 /* roomCellTrash.swift */; };
 		593526822143C8F0002A53D1 /* roomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593526812143C8F0002A53D1 /* roomCell.swift */; };
+		593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B5C5D215ACC470013CBD1 /* ModelHouse.swift */; };
+		593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */; };
 		593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CC71B21446C440026C7F5 /* addRoomModalView.swift */; };
 		5944648C2144185000545608 /* addRoomModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5944648B2144185000545608 /* addRoomModalView.xib */; };
 		594612332114D17900903478 /* construction_site.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612322114D17800903478 /* construction_site.json */; };
@@ -100,8 +100,6 @@
 		3B303B80215A34380002A7CA /* showLocalizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showLocalizationCell.swift; sourceTree = "<group>"; };
 		3B303B81215A34380002A7CA /* showLocalizationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = showLocalizationCell.xib; sourceTree = "<group>"; };
 		590F20032103A67F003F64A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		590F200A2103A734003F64A3 /* HousesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HousesView.xib; sourceTree = "<group>"; };
-		590F200C2103AB25003F64A3 /* TFHouses.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TFHouses.swift; sourceTree = "<group>"; };
 		59118B282149546D00031AFB /* ModelRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRoom.swift; sourceTree = "<group>"; };
 		59118B2C2149859400031AFB /* HouseSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseSectionCell.swift; sourceTree = "<group>"; };
 		59118B2D2149859400031AFB /* HouseSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseSectionCell.xib; sourceTree = "<group>"; };
@@ -117,6 +115,8 @@
 		5935267D2143C65E002A53D1 /* roomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = roomCell.xib; sourceTree = "<group>"; };
 		5935267F2143C8BB002A53D1 /* roomCellTrash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomCellTrash.swift; sourceTree = "<group>"; };
 		593526812143C8F0002A53D1 /* roomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomCell.swift; sourceTree = "<group>"; };
+		593B5C5D215ACC470013CBD1 /* ModelHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHouse.swift; sourceTree = "<group>"; };
+		593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDirection.swift; sourceTree = "<group>"; };
 		593CC71B21446C440026C7F5 /* addRoomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRoomModalView.swift; sourceTree = "<group>"; };
 		5944648B2144185000545608 /* addRoomModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addRoomModalView.xib; sourceTree = "<group>"; };
 		594612322114D17800903478 /* construction_site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = construction_site.json; sourceTree = "<group>"; };
@@ -227,8 +227,6 @@
 			isa = PBXGroup;
 			children = (
 				5944648A2144182800545608 /* Modal */,
-				590F200A2103A734003F64A3 /* HousesView.xib */,
-				590F200C2103AB25003F64A3 /* TFHouses.swift */,
 				59972E832146EAE700001B27 /* BaseViewController.swift */,
 			);
 			path = Main;
@@ -240,6 +238,8 @@
 				59118B282149546D00031AFB /* ModelRoom.swift */,
 				597BCADF214A7C3D0092309D /* ModelHouseSection.swift */,
 				595594582151A41A006490D5 /* Direction.swift */,
+				593B5C5D215ACC470013CBD1 /* ModelHouse.swift */,
+				593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -661,7 +661,6 @@
 				5946123E2115005200903478 /* Humble.ttf in Resources */,
 				5960022F20FF99260042CF9F /* Assets.xcassets in Resources */,
 				59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */,
-				590F200B2103A734003F64A3 /* HousesView.xib in Resources */,
 				5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */,
 				5946123B2114F91400903478 /* spirit_geekGray.json in Resources */,
 				59465D872115DEA500106020 /* backAnimation.json in Resources */,
@@ -791,15 +790,16 @@
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */,
 				593526822143C8F0002A53D1 /* roomCell.swift in Sources */,
+				593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */,
 				5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */,
 				59118B292149546D00031AFB /* ModelRoom.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
+				593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */,
 				594612392114E64E00903478 /* constant.swift in Sources */,
 				593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */,
 				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
 				593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */,
 				5950CAEB21171B7C00A97B49 /* PrecioCell.swift in Sources */,
-				590F200D2103AB25003F64A3 /* TFHouses.swift in Sources */,
 				59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */,
 				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,
 				597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */,

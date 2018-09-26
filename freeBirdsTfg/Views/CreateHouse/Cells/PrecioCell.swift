@@ -13,6 +13,7 @@ import Material
 class PrecioCell: UITableViewCell , TextFieldDelegate {
 
    
+    @IBOutlet weak var acceptButton: Button!
     @IBOutlet weak var botSeparatorlaneView: UIView!
     @IBOutlet weak var borderView: UIView!
     @IBOutlet weak var priceTextEdit: UITextField!
@@ -32,6 +33,8 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
     priceTextEdit.placeholder = " PRECIO "
     priceTextEdit.keyboardType = UIKeyboardType.numberPad
     priceTextEdit.delegate = self
+    acceptButton.layer.cornerRadius = acceptButton.frame.height / 2
+        acceptButton.layer.borderWidth = 0
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -48,12 +51,12 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
        
         
     }
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+ /*   func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let someting = textField.text
         let char = string
         return true
-    }
+    }*/
     
     /*func animationSetup(){
         let animationView = LOTAnimationView(name: "checkAnimation")
@@ -67,6 +70,12 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
         animationView.loopAnimation = true
     }*/
     
+    @IBAction func acceptButtonAction(_ sender: Any) {
+        if((priceTextEdit.text?.count)! > 0){
+            priceTextEdit.resignFirstResponder()
+        }
+        
+    }
 }
 
 

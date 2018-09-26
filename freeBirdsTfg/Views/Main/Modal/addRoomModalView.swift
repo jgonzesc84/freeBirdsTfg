@@ -18,7 +18,8 @@ class addRoomModalView: UIView {
     @IBOutlet weak var priceSlider: UISlider!
     public var roomModel = ModelRoom()
     //addSectionOutlets
-
+    @IBOutlet weak var ModalAddRoom: UIView!
+    
     @IBOutlet weak var modalAddSectionView: UIView!
     @IBOutlet weak var titleSectionTextField: UITextField!
     @IBOutlet weak var descriptionSectionTextField: UITextField!
@@ -54,10 +55,14 @@ class addRoomModalView: UIView {
         self.mode = mode
         if (mode){
             modalAddRoomView.isHidden = false
+            self.hideKeyboardWhenTappedAround()
             MainHelper.theStyle(view: self.modalAddRoomView)
+            modalAddRoomView.layer.cornerRadius = modalAddRoomView.frame.height / 32
             mockuP()
         }else{
-             modalAddSectionView.isHidden = false
+            self.hideKeyboardWhenTappedAround()
+            modalAddSectionView.isHidden = false
+            modalAddSectionView.layer.cornerRadius = modalAddSectionView.frame.height / 32
             MainHelper.theStyle(view: self.modalAddSectionView)
             cameraButton.layer.cornerRadius = cameraButton.frame.size.width / 4
             titleSectionTextField.placeholder = "Introduzca el nombre de la seccion"

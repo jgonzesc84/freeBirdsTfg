@@ -45,7 +45,7 @@ class roomCell: UITableViewCell  {
         MainHelper.theStyle(view: roomView)
         userImageView.layer.cornerRadius = userImageView.frame.size.height/2
         //roomImageView.layer.cornerRadius = roomImageView.frame.size.width/4
-        addButton.layer.cornerRadius = addButton.frame.size.height/2
+        addButton.layer.cornerRadius = addButton.frame.size.height / 2
         addView.isHidden = false
         roomView.isHidden = true
         

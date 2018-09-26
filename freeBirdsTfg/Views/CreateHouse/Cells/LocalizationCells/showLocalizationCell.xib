@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -29,10 +29,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcz-Uw-670">
-                                <rect key="frame" x="102" y="44" width="108" height="100"/>
+                                <rect key="frame" x="102" y="40" width="108" height="108"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="R0w-v7-rCB">
-                                        <rect key="frame" x="0.0" y="0.0" width="108" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="108" height="108"/>
                                     </mapView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -41,7 +41,7 @@
                                     <constraint firstAttribute="bottom" secondItem="R0w-v7-rCB" secondAttribute="bottom" id="5a1-ER-ayd"/>
                                     <constraint firstItem="R0w-v7-rCB" firstAttribute="top" secondItem="vcz-Uw-670" secondAttribute="top" id="85h-2G-3Xl"/>
                                     <constraint firstAttribute="trailing" secondItem="R0w-v7-rCB" secondAttribute="trailing" id="CTh-tG-Ud4"/>
-                                    <constraint firstAttribute="height" constant="100" id="eHB-gS-Mde"/>
+                                    <constraint firstAttribute="height" constant="108" id="eHB-gS-Mde"/>
                                     <constraint firstItem="R0w-v7-rCB" firstAttribute="leading" secondItem="vcz-Uw-670" secondAttribute="leading" id="nao-IL-H0Y"/>
                                 </constraints>
                             </view>

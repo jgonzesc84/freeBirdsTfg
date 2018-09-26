@@ -76,18 +76,6 @@
                                         <constraint firstAttribute="height" constant="1" id="aog-lK-PV1"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUB-NW-HV3">
-                                    <rect key="frame" x="336" y="15" width="50" height="46"/>
-                                    <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="50" id="ARm-wT-CRQ"/>
-                                        <constraint firstAttribute="height" constant="46" id="Lii-zu-MDB"/>
-                                    </constraints>
-                                    <state key="normal" image="cm_add_white"/>
-                                    <connections>
-                                        <action selector="addButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="f6P-Jf-bCT"/>
-                                    </connections>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Añadir habitacion" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7P-Hq-o47">
                                     <rect key="frame" x="23" y="26" width="236" height="21"/>
                                     <constraints>
@@ -97,17 +85,29 @@
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pUB-NW-HV3">
+                                    <rect key="frame" x="336" y="12" width="50" height="50"/>
+                                    <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="ARm-wT-CRQ"/>
+                                        <constraint firstAttribute="height" constant="50" id="Lii-zu-MDB"/>
+                                    </constraints>
+                                    <state key="normal" image="cm_add_white"/>
+                                    <connections>
+                                        <action selector="addButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="f6P-Jf-bCT"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="k7P-Hq-o47" firstAttribute="top" secondItem="mdl-e8-1vp" secondAttribute="top" constant="26" id="Dig-jD-t4q"/>
                                 <constraint firstAttribute="trailing" secondItem="pUB-NW-HV3" secondAttribute="trailing" constant="32" id="DsQ-up-q8p"/>
                                 <constraint firstItem="FgT-v4-HEI" firstAttribute="top" secondItem="mdl-e8-1vp" secondAttribute="top" id="LzZ-dr-NGV"/>
+                                <constraint firstItem="pUB-NW-HV3" firstAttribute="centerY" secondItem="mdl-e8-1vp" secondAttribute="centerY" id="WPC-IN-P3i"/>
                                 <constraint firstAttribute="trailing" secondItem="FgT-v4-HEI" secondAttribute="trailing" id="eSn-El-gbB"/>
                                 <constraint firstItem="k7P-Hq-o47" firstAttribute="leading" secondItem="mdl-e8-1vp" secondAttribute="leading" constant="23" id="jBQ-en-aku"/>
                                 <constraint firstAttribute="bottom" secondItem="k7P-Hq-o47" secondAttribute="bottom" constant="28" id="mXH-Bl-DHd"/>
                                 <constraint firstItem="FgT-v4-HEI" firstAttribute="leading" secondItem="mdl-e8-1vp" secondAttribute="leading" id="mmV-tj-eNY"/>
-                                <constraint firstItem="pUB-NW-HV3" firstAttribute="top" secondItem="mdl-e8-1vp" secondAttribute="top" constant="15" id="xmu-SI-1jh"/>
                             </constraints>
                         </view>
                     </subviews>

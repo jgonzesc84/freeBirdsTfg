@@ -30,21 +30,35 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="M1P-iS-cG4">
-                                <rect key="frame" x="83.5" y="28" width="278" height="44"/>
+                                <rect key="frame" x="147.5" y="28" width="150" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="278" id="7Mi-pv-Klf"/>
+                                    <constraint firstAttribute="width" constant="150" id="7Mi-pv-Klf"/>
                                 </constraints>
                                 <color key="textColor" red="0.73333333333333328" green="0.73333333333333328" blue="0.75686274509803919" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Lr-WX-xdq" customClass="Button" customModule="Material">
+                                <rect key="frame" x="363" y="25.5" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="cJC-G2-7sd"/>
+                                    <constraint firstAttribute="height" constant="50" id="yjR-o6-QDa"/>
+                                </constraints>
+                                <state key="normal" image="cm_add_white"/>
+                                <connections>
+                                    <action selector="acceptButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="B3s-SO-KwQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="24V-bP-1Zt" secondAttribute="trailing" id="1V8-ZI-VoB"/>
+                            <constraint firstItem="4Lr-WX-xdq" firstAttribute="centerY" secondItem="wud-ee-z0e" secondAttribute="centerY" id="8yH-rE-p1q"/>
                             <constraint firstAttribute="bottom" secondItem="24V-bP-1Zt" secondAttribute="bottom" id="CaE-ag-ZUW"/>
                             <constraint firstItem="24V-bP-1Zt" firstAttribute="leading" secondItem="wud-ee-z0e" secondAttribute="leading" id="HZ6-eZ-ynx"/>
                             <constraint firstItem="M1P-iS-cG4" firstAttribute="centerX" secondItem="wud-ee-z0e" secondAttribute="centerX" id="a4D-qa-AxO"/>
+                            <constraint firstAttribute="trailing" secondItem="4Lr-WX-xdq" secondAttribute="trailing" constant="32" id="b3U-16-e1x"/>
                             <constraint firstItem="M1P-iS-cG4" firstAttribute="centerY" secondItem="wud-ee-z0e" secondAttribute="centerY" id="e5J-Va-NVg"/>
                         </constraints>
                     </view>
@@ -58,6 +72,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="acceptButton" destination="4Lr-WX-xdq" id="19U-Ky-SLH"/>
                 <outlet property="borderView" destination="wud-ee-z0e" id="y0K-ur-FYK"/>
                 <outlet property="botSeparatorlaneView" destination="24V-bP-1Zt" id="RYW-u0-kBb"/>
                 <outlet property="priceTextEdit" destination="M1P-iS-cG4" id="wV7-Ep-vqQ"/>
@@ -65,4 +80,7 @@
             <point key="canvasLocation" x="7.5" y="87.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="cm_add_white" width="24" height="24"/>
+    </resources>
 </document>

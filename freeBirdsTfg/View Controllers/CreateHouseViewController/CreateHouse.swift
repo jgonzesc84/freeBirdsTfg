@@ -15,8 +15,9 @@ class CreateHouse: BaseViewController {
     @IBOutlet weak var createHouseTable: CreateHouseTableViewController!
     @IBOutlet weak var labelHeder: UILabel!
     @IBOutlet weak var titlelabel: UILabel!
+    @IBOutlet weak var buttonAccept: Button!
     
-    
+    var alreadyMoved = true
  
     public var modalView : addRoomModalView?
     override func viewDidLoad() {
@@ -31,8 +32,24 @@ class CreateHouse: BaseViewController {
         labelHeder.text = "Como es tu casa? describela!!"
         labelHeder.layer.borderWidth = 3
         heardCell()
+        MainHelper.acceptButtonStyle(button: buttonAccept)
+        MainHelper.borderShadow(view: buttonAccept)
+      //  MainHelper.dissableButton(button: buttonAccept)
+       
+        
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+     
+        if(alreadyMoved){
+            UIView.animate(withDuration: 1) {
+              //  self.buttonAccept.center.y -= self.buttonAccept.frame.height
+                self.buttonAccept.alpha = 1.0
+            }
+            alreadyMoved = false
+        }
+        
+    }
     
    /* func prepareNav(label : UILabel){
         titlelabel .text = "Crea tu Casa"
@@ -64,19 +81,26 @@ class CreateHouse: BaseViewController {
     func heardCell(){
         createHouseTable.showModalParent = { (sender) -> () in
            
-            if sender is roomCell{
+            switch sender {
+            case is roomCell:
                 self.prepareModal()
                 self.modalView?.setupModal(mode: true)
                 self.view.addSubview(self.modalView!)
-            }else if sender is SectionHouseCollectionViewCell{
+                break;
+            case is SectionHouseCollectionViewCell:
                 self.prepareModal()
                 self.modalView?.setupModal(mode: false)
                 self.view.addSubview(self.modalView!)
-            }else if sender is MapViewController{
-                
+                break;
+            case is MapViewController:
                 let vc =  sender as! MapViewController
                 self.navigationController?.pushViewController(vc, animated: true)
-                
+                break;
+            case is PrecioCell:
+                print("precio")
+                break;
+            default:
+                break;
             }
            
         }
@@ -93,6 +117,7 @@ class CreateHouse: BaseViewController {
     }
     
     func heardModalView(){
+        
         self.modalView?.returnData = { (model) -> () in
             
             if model is ModelRoom{
@@ -110,6 +135,11 @@ class CreateHouse: BaseViewController {
     
     }
     
+    
+    @IBAction func acceptActionButton(_ sender: Any) {
+        
+        
+    }
     //  MARK: - delegate roomexpandibleCell
  
   

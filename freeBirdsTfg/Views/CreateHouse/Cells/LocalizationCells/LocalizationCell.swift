@@ -22,8 +22,9 @@ class LocalizationCell: UITableViewCell {
     
     func initView(){
         MainHelper.theStyle(view: addLocalizationView)
-        addLocalizationViewButton.layer.cornerRadius = addLocalizationViewButton.frame.size.height / 2
+        addLocalizationViewButton.layer.cornerRadius = addLocalizationViewButton.frame.size.width / 2
         addLocalizationViewButton.layer.borderWidth = 0
+         self.selectionStyle = .none
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

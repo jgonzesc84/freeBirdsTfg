@@ -245,11 +245,13 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         if (obj is MKPointAnnotation){
             self.annotation = (obj as? MKPointAnnotation)
              dictio["annotation"] = self.annotation
+            
         }else{
             self.placemark = (obj as? MKPlacemark)
             dictio["annotation"] = self.placemark
+          
         }
-        dictio["location"] = self.direction
+        dictio["direction"] = self.direction
         sendLocation?(dictio)
         self.navigationController?.popViewController(animated: true)
         

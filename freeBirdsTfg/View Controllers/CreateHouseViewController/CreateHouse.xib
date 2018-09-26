@@ -21,6 +21,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateHouse" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
+                <outlet property="buttonAccept" destination="EB2-hF-NcT" id="tCp-w8-3gc"/>
                 <outlet property="createHouseTable" destination="CAu-PQ-wA4" id="h9r-gi-imc"/>
                 <outlet property="labelHeder" destination="0f9-RT-CqG" id="8Am-At-gC7"/>
                 <outlet property="titlelabel" destination="cSA-Br-dRj" id="ktt-GM-zi8"/>
@@ -61,10 +62,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBJ-ur-ng3" userLabel="Header">
-                    <rect key="frame" x="0.0" y="67" width="375" height="133.5"/>
+                    <rect key="frame" x="0.0" y="67" width="375" height="100"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titulo header" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-RT-CqG">
-                            <rect key="frame" x="27" y="26" width="305" height="78"/>
+                            <rect key="frame" x="27" y="26" width="305" height="44.5"/>
                             <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="23"/>
                             <color key="textColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -79,20 +80,30 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAu-PQ-wA4" customClass="CreateHouseTableViewController" customModule="freeBirdsTfg" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="200.5" width="375" height="466.5"/>
+                    <rect key="frame" x="0.0" y="166.5" width="375" height="435.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EB2-hF-NcT" customClass="Button" customModule="Material">
+                    <rect key="frame" x="115" y="607" width="144" height="30"/>
+                    <state key="normal" title="Acceptar"/>
+                    <connections>
+                        <action selector="acceptActionButton:" destination="-1" eventType="touchUpInside" id="cOu-y4-O4h"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="CAu-PQ-wA4" firstAttribute="top" secondItem="tBJ-ur-ng3" secondAttribute="bottom" id="0I6-4F-9Ty"/>
-                <constraint firstItem="tBJ-ur-ng3" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.2" id="A7q-y8-SVU"/>
+                <constraint firstItem="tBJ-ur-ng3" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.15" id="A7q-y8-SVU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tBJ-ur-ng3" secondAttribute="trailing" id="COa-vk-s8t"/>
+                <constraint firstItem="EB2-hF-NcT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="115" id="Hhs-jx-K53"/>
                 <constraint firstAttribute="top" secondItem="S3I-H3-jNA" secondAttribute="top" id="Mea-eZ-PTy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CAu-PQ-wA4" secondAttribute="trailing" id="PxP-Te-qXv"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CAu-PQ-wA4" secondAttribute="bottom" id="Xbq-AX-QH2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EB2-hF-NcT" secondAttribute="trailing" constant="116" id="TvW-wr-w43"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CAu-PQ-wA4" secondAttribute="bottom" constant="65" id="Xbq-AX-QH2"/>
                 <constraint firstItem="tBJ-ur-ng3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Y9t-km-jTq"/>
                 <constraint firstItem="S3I-H3-jNA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YiV-th-dy8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EB2-hF-NcT" secondAttribute="bottom" constant="30" id="e86-kS-P2A"/>
                 <constraint firstItem="CAu-PQ-wA4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vyb-JM-yrU"/>
                 <constraint firstItem="tBJ-ur-ng3" firstAttribute="top" secondItem="S3I-H3-jNA" secondAttribute="bottom" id="w8b-D4-ioA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S3I-H3-jNA" secondAttribute="trailing" id="xeD-Yi-Ia8"/>

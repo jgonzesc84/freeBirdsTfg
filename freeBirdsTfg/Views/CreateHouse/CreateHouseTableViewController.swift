@@ -89,7 +89,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         let title = titleSection[indexPath.section]
         switch title {
         case "Precio":
-            return 44
+            return 80
         case "Habitaciones":
            return 75
         case "Secciones":
@@ -177,7 +177,6 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let title = titleSection[section]
-        // Dequeue with the reuse identifier
         let cell = self.createTable.dequeueReusableHeaderFooterView(withIdentifier: "headerSection")
         let header = cell as! createHouseTableSection
         header.titleLabel.text = title
