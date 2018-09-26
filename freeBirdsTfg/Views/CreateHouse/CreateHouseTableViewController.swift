@@ -16,10 +16,12 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     var annotationLocation : MKPointAnnotation?
     var placemarkLocation : MKPlacemark?
     var direction : String?
+    var directionModel : ModelDirection?
     var price = ""
     let titleSection = ["Precio","Habitaciones","Secciones","Localización"]
     
     public var cellCollection : HouseSectionCell?
+    public var sendLocationToParent: ((Any) -> ())?
     public var showModalParent: ((Any) -> ())?
     public var listOfRoom = Array<ModelRoom>()
     
@@ -111,6 +113,9 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         case 0:
             let cell : PrecioCell = tableView.dequeueReusableCell(withIdentifier: "PrecioCell", for: indexPath) as! PrecioCell
             cell.delegate = self
+            cell.sendInfo = { (priceCell) -> () in
+                 self.showModalParent!(priceCell)
+            }
             return cell
         
         case 1:
@@ -152,11 +157,14 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                         let obj = dictio["annotation"]
                         if (obj is MKPointAnnotation){
                             self.annotationLocation = obj as! MKPointAnnotation?
+                            self.directionModel = ModelDirection(title:(self.annotationLocation?.title)!, coordinate: (self.annotationLocation?.coordinate)!)
                         }else{
                            self.placemarkLocation = obj as! MKPlacemark?
+                            self.directionModel = ModelDirection(title:(self.placemarkLocation?.title)!, coordinate: (self.placemarkLocation?.coordinate)!)
                         }
                         self.direction = dictio["direction"] as! String?
                         self.createTable.reloadData()
+                        self.sendLocationToParent!(self.directionModel!)
                     }
                     self.showModalParent!(vc)
                     
@@ -197,6 +205,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                                          self.listOfRoom.remove(at: row)
                                             tableView.deleteRows(at: [indexPath], with: .automatic)
                                             completionHandler(true)
+                                            self.sendLocationToParent!(self.listOfRoom)
                                          
         }
         // 7

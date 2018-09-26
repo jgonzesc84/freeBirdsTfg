@@ -18,8 +18,15 @@ class CreateHouse: BaseViewController {
     @IBOutlet weak var buttonAccept: Button!
     
     var alreadyMoved = true
- 
+    //variables del modelo de la casa
+    var price : String?
+    var directionModel : ModelDirection?
+    var listOfSection : Array<ModelHouseSection>?
+    var listOfRoom : Array<ModelRoom>?
+    //
+    
     public var modalView : addRoomModalView?
+    public var mapView : MapViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareNav(label: titlelabel, text: "Crea tu Casa")
@@ -32,9 +39,10 @@ class CreateHouse: BaseViewController {
         labelHeder.text = "Como es tu casa? describela!!"
         labelHeder.layer.borderWidth = 3
         heardCell()
+        heardMapCell()
         MainHelper.acceptButtonStyle(button: buttonAccept)
         MainHelper.borderShadow(view: buttonAccept)
-      //  MainHelper.dissableButton(button: buttonAccept)
+        MainHelper.dissableButtonCreate(button: buttonAccept)
        
         
     }
@@ -93,11 +101,18 @@ class CreateHouse: BaseViewController {
                 self.view.addSubview(self.modalView!)
                 break;
             case is MapViewController:
-                let vc =  sender as! MapViewController
-                self.navigationController?.pushViewController(vc, animated: true)
+                self.mapView =  sender as? MapViewController
+                self.navigationController?.pushViewController(self.mapView!, animated: true)
                 break;
             case is PrecioCell:
-                print("precio")
+               let cell =  sender as! PrecioCell
+                let price = cell.priceTextEdit.text
+                self.price = price
+               self.prepareButton()
+               
+                break;
+            case is roomCell:
+                
                 break;
             default:
                 break;
@@ -123,21 +138,50 @@ class CreateHouse: BaseViewController {
             if model is ModelRoom{
                 let test = model as! ModelRoom
                 self.createHouseTable.listOfRoom.append(test)
+                self.listOfRoom =  self.createHouseTable.listOfRoom
                 self.createHouseTable.createTable.reloadData()
+                self.prepareButton()
             }else if model is ModelHouseSection{
                 let test = model as! ModelHouseSection
                 self.createHouseTable.cellCollection?.listOfModelHouseSection.append(test)
+                self.listOfSection =  self.createHouseTable.cellCollection?.listOfModelHouseSection
                 self.createHouseTable.cellCollection?.sectionCollectionView.reloadData()
+                self.prepareButton()
             }
         }
     }
-    func heardMapView(){
-    
+    func heardMapCell(){
+       createHouseTable.sendLocationToParent = { (model) -> () in
+        if( model is ModelDirection){
+            let direction = model as! ModelDirection
+            self.directionModel = direction
+            self.prepareButton()
+        }else if (model is Array<ModelRoom>){
+            let arrayRoom = model as! Array<ModelRoom>
+            self.listOfRoom = arrayRoom
+            self.prepareButton()
+        }
+        
+        }
     }
     
+    func prepareButton(){
+        if(self.listOfRoom != nil){
+            let numb = self.listOfRoom?.count
+            if( numb! > 0 && self.directionModel != nil){
+                MainHelper.enabledButtonCreate(button: buttonAccept)
+            }else{
+                MainHelper.dissableButtonCreate(button: buttonAccept)
+            }
+        }else{
+             MainHelper.dissableButtonCreate(button: buttonAccept)
+        }
+        
+    }
     
     @IBAction func acceptActionButton(_ sender: Any) {
         
+        //ingreso FIREBASE!!!!!!!
         
     }
     //  MARK: - delegate roomexpandibleCell

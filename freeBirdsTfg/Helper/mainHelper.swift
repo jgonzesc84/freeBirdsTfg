@@ -52,12 +52,26 @@ class MainHelper{
        button.isEnabled = false;
        button.layer.borderColor = UIColor .AppColor.Gray.greyCancel .cgColor
        button.titleColor = UIColor.AppColor.Gray.greyCancel
-        
+    }
+    static func dissableButtonCreate(button: Button){
+         UIView.animate(withDuration: 1) {
+        button.isEnabled = false;
+        button.layer.borderColor = UIColor .AppColor.Gray.greyCancel .cgColor
+        button.backgroundColor = UIColor .white
+        button.titleColor = UIColor.AppColor.Gray.greyCancel
+        }
     }
     static func enabledButton(button: Button){
         button.isEnabled = true;
         button.layer.borderColor = UIColor .AppColor.Green.mindApp .cgColor
         button.titleColor = UIColor.AppColor.Green.mindApp
+    }
+    static func enabledButtonCreate(button: Button){
+         UIView.animate(withDuration: 1) {
+        button.isEnabled = true;
+        button.backgroundColor = UIColor.AppColor.Green.mindApp
+        button.titleColor = UIColor .white
+        }
     }
     
    static func giveMeStyle(textField: UITextField){

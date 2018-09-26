@@ -19,6 +19,7 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
     @IBOutlet weak var priceTextEdit: UITextField!
     @IBOutlet weak var okButton: UIButton!
     weak var delegate: PriceDelegate?
+    public var sendInfo: ((Any) -> ())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,6 +36,8 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
     priceTextEdit.delegate = self
     acceptButton.layer.cornerRadius = acceptButton.frame.height / 2
         acceptButton.layer.borderWidth = 0
+    self.hideKeyboardWhenTappedAround()
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -73,6 +76,8 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
     @IBAction func acceptButtonAction(_ sender: Any) {
         if((priceTextEdit.text?.count)! > 0){
             priceTextEdit.resignFirstResponder()
+           // let price = priceTextEdit.text
+            sendInfo?(self)
         }
         
     }
