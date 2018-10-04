@@ -50,16 +50,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         setupSearchView()
         MainHelper.borderShadow(view: acceptButton)
         MainHelper.acceptButtonStyle(button: acceptButton)
-       
-      
-       
     }
-  
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     func setupSearchView(){
        
         let widthFrame = UIScreen.main.bounds.width > viewsearch.frame.size.width ? UIScreen.main.bounds.width : self.viewsearch.frame.size.width

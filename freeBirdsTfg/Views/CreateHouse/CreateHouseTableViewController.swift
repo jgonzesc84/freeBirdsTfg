@@ -25,6 +25,8 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     public var showModalParent: ((Any) -> ())?
     public var listOfRoom = Array<ModelRoom>()
     
+     public var modalView : addRoomModalView?
+    
  //  MARK: - cicle life
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,10 +46,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         contentView.autoresizingMask = [.flexibleHeight , .flexibleWidth]
         createTable.delegate = self
         createTable.dataSource = self
-        
-        
         initView()
-        
     }
 
     func initView(){
@@ -57,12 +56,10 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         createTable.register(UINib(nibName:"HouseSectionCell", bundle: nil), forCellReuseIdentifier: "HouseSectionCell")
         createTable.register(UINib(nibName:"LocalizationCell",bundle: nil), forCellReuseIdentifier: "LocalizationCell")
         createTable.register(UINib(nibName:"createHouseTableSection", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerSection")
-         createTable.register(UINib(nibName:"showLocalizationCell", bundle: nil), forCellReuseIdentifier: "showlocalizationCell")
+        createTable.register(UINib(nibName:"showLocalizationCell", bundle: nil), forCellReuseIdentifier: "showlocalizationCell")
         createTable.separatorStyle = UITableViewCellSeparatorStyle .none
-        
-       
     }
-
+    
   //  MARK: - Table view data source
 
      func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,6 +83,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         
       
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        
         let title = titleSection[indexPath.section]
@@ -123,31 +121,38 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             let cell : roomCell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath) as! roomCell
             cell.prepareForReuse()
             cell.showModal = { (cellExpandible) -> () in
-                self.showModalParent!(cellExpandible)
+                    self.prepareModal()
+                    self.modalView?.setupModal(mode: true)
+                if let topVC = UIApplication.getTopMostViewController() {
+                    topVC.view.addSubview(self.modalView!)
+                }
+                
+                
             }
-            
             if(listOfRoom.count > 0 && listOfRoom.count <= indexPath.row){
                 cell.setup(room: listOfRoom[indexPath.row-1])
             }
-           
             return cell
         case 2:
             
             cellCollection = tableView.dequeueReusableCell(withIdentifier: "HouseSectionCell", for: indexPath) as? HouseSectionCell
             cellCollection?.showModalToParent = { (cellCollection) -> () in
-            self.showModalParent!(cellCollection)
+                self.prepareModal()
+                self.modalView?.setupModal(mode: false)
+                if let topVC = UIApplication.getTopMostViewController() {
+                    topVC.view.addSubview(self.modalView!)
+                }
             }
             return cellCollection!
         case 3:
             if((self.annotationLocation) != nil || (self.placemarkLocation) != nil){
                 let cell : showLocalizationCell = tableView.dequeueReusableCell(withIdentifier: "showlocalizationCell", for: indexPath) as! showLocalizationCell
                 if(self.annotationLocation != nil){
-                     cell.setupCell(annotation: self.annotationLocation! , direction: self.direction!)
+                    cell.setupCell(annotation: self.annotationLocation! , direction: self.direction!)
                 }else{
                     cell.setupCell(placemark: self.placemarkLocation! , direction: self.direction!)
                 }
                 return cell
-                
             }else{
                 let cell : LocalizationCell = tableView.dequeueReusableCell(withIdentifier: "LocalizationCell", for: indexPath) as! LocalizationCell
                 cell.goToMapView = { (cell) -> () in
@@ -159,16 +164,16 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                             self.annotationLocation = obj as! MKPointAnnotation?
                             self.directionModel = ModelDirection(title:(self.annotationLocation?.title)!, coordinate: (self.annotationLocation?.coordinate)!)
                         }else{
-                           self.placemarkLocation = obj as! MKPlacemark?
+                            self.placemarkLocation = obj as! MKPlacemark?
                             self.directionModel = ModelDirection(title:(self.placemarkLocation?.title)!, coordinate: (self.placemarkLocation?.coordinate)!)
                         }
                         self.direction = dictio["direction"] as! String?
                         self.createTable.reloadData()
-                        self.sendLocationToParent!(self.directionModel!)
+                        self.showModalParent!(self.directionModel!)
                     }
-                    self.showModalParent!(vc)
-                    
-                    
+                    if let topVC = UIApplication.getTopMostViewController() {
+                        topVC.navigationController?.pushViewController(vc, animated: true)
+                    }
                 }
                 return cell
             }
@@ -205,10 +210,8 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                                          self.listOfRoom.remove(at: row)
                                             tableView.deleteRows(at: [indexPath], with: .automatic)
                                             completionHandler(true)
-                                            self.sendLocationToParent!(self.listOfRoom)
-                                         
+                                            self.showModalParent!(self.listOfRoom)
         }
-        // 7
         deleteAction.image = UIImage(named: "trash_ico")
         deleteAction.backgroundColor = UIColor .AppColor.Green.mindApp
          let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
@@ -220,7 +223,40 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     func passPrice(priceString: String?) {
         price = priceString!
     }
-  
+    /**
+     @function Metododo que le da tamaño a la vista modal y deja un bloque escuchando la respuesta de este
+     **/
+    func prepareModal(){
+        self.modalView = Bundle.main.loadNibNamed("addRoomModalView", owner: self, options: nil)![0] as? addRoomModalView
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.modalView? .frame = frame
+        MainHelper.theStyle(view: self.modalView!)
+        self.heardModalView()
+    }
+    /**
+    @funcion Metodo que escucha el clousure de las vista modales y avisa a CreateHouse Vista contedora
+    **/
+    func heardModalView(){
+        
+        self.modalView?.returnData = { (model) -> () in
+            
+            if model is ModelRoom{
+                let test = model as! ModelRoom
+                self.listOfRoom.append(test)
+                self.createTable.reloadData()
+                self.showModalParent!(self.listOfRoom)
+            }else if model is ModelHouseSection{
+                let test = model as! ModelHouseSection
+                self.cellCollection?.listOfModelHouseSection.append(test)
+                self.cellCollection?.sectionCollectionView.reloadData()
+                let listSection = self.cellCollection?.listOfModelHouseSection
+                self.showModalParent!(listSection as Any)
+            }
+        }
+    }
+    
    
 
 }

@@ -11,6 +11,7 @@ import MapKit
 
 class showLocalizationCell: UITableViewCell {
 
+    @IBOutlet weak var mapBack: MKMapView!
     @IBOutlet weak var directionLabel: UILabel!
     @IBOutlet weak var mapCell: MKMapView!
     @IBOutlet weak var mainView: UIView!
@@ -26,6 +27,8 @@ class showLocalizationCell: UITableViewCell {
         mapCell.isUserInteractionEnabled = false
         layoutSubviews()
         self.selectionStyle = .none
+        //mapBack.mapType = .satellite
+        mapBack.layer.cornerRadius = mapBack.frame.size.height / 16
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
@@ -57,6 +60,8 @@ class showLocalizationCell: UITableViewCell {
         region.span.latitudeDelta = 0.002
         self.mapCell.setRegion(region, animated: true)
         self.mapCell.addAnnotation(annotation)
+        self.mapBack.setRegion(region, animated: false)
+        self.mapBack.addAnnotation(annotation)
         //    self.mapCell.addAnnotation(annotation)
         //  self.mapCell.setCenter(annotation.coordinate, animated: false)
     }
@@ -68,7 +73,10 @@ class showLocalizationCell: UITableViewCell {
         region.span.longitudeDelta = 0.004
         region.span.latitudeDelta = 0.002
         self.mapCell.setRegion(region, animated: true)
+        self.mapBack.setRegion(region, animated: false)
         self.mapCell.addAnnotation(placemark)
+       // self.mapBack.addAnnotation(placemark)
+        
     }
     
 }

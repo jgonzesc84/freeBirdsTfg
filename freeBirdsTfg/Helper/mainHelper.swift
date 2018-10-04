@@ -19,11 +19,12 @@ class MainHelper{
     class var sharedInstance: MainHelper {
             return sharedHelper
   }
-    
+    /**
+  @func Metodo que da un estilo por defecto a cualquier vista y subVista que contenga
+ **/
     static func theStyle(view: UIView){
       
         for subView in view.subviews {
-            //String(describing: YourType.self)
              let name = String(describing: type(of: subView))
             switch name{
             case "UITextField":
@@ -187,6 +188,10 @@ class MainHelper{
     }
     
 }
+/**
+ @extension De Uiview para ocultar el teclado cunado se pulse sobre
+ cualquier superficie de la vista.
+ **/
 extension UIView {
     
     
@@ -198,5 +203,25 @@ extension UIView {
     
     @objc func pepe() {
         self.endEditing(true)
+    }
+}
+/**
+ @extension Extension que localiza el topViewController se usa
+ para poder añadir las vistas modales por encima de todas las demás
+ **/
+extension UIApplication {
+    class func getTopMostViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        if let nav = base as? UINavigationController {
+            return getTopMostViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return getTopMostViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return getTopMostViewController(base: presented)
+        }
+        return base
     }
 }

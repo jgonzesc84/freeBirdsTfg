@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -28,6 +28,29 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpM-YC-jqT">
+                                <rect key="frame" x="36" y="30" width="240" height="128"/>
+                                <subviews>
+                                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="TUv-rk-Azt">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                    </mapView>
+                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ykQ-qu-Yer">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="TUv-rk-Azt" secondAttribute="trailing" id="43V-qm-FJW"/>
+                                    <constraint firstAttribute="trailing" secondItem="ykQ-qu-Yer" secondAttribute="trailing" id="44n-Jx-Bdb"/>
+                                    <constraint firstItem="ykQ-qu-Yer" firstAttribute="leading" secondItem="PpM-YC-jqT" secondAttribute="leading" id="7c0-8D-HAm"/>
+                                    <constraint firstAttribute="bottom" secondItem="ykQ-qu-Yer" secondAttribute="bottom" id="HVW-Z0-r5W"/>
+                                    <constraint firstItem="TUv-rk-Azt" firstAttribute="top" secondItem="PpM-YC-jqT" secondAttribute="top" id="bQj-Rh-pb3"/>
+                                    <constraint firstAttribute="bottom" secondItem="TUv-rk-Azt" secondAttribute="bottom" id="hcG-Cv-3EZ"/>
+                                    <constraint firstItem="ykQ-qu-Yer" firstAttribute="top" secondItem="PpM-YC-jqT" secondAttribute="top" id="rPP-rb-p5x"/>
+                                    <constraint firstItem="TUv-rk-Azt" firstAttribute="leading" secondItem="PpM-YC-jqT" secondAttribute="leading" id="zJg-9u-JG8"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcz-Uw-670">
                                 <rect key="frame" x="102" y="40" width="108" height="108"/>
                                 <subviews>
@@ -48,9 +71,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="PpM-YC-jqT" firstAttribute="top" secondItem="odB-1X-3Dd" secondAttribute="top" constant="30" id="2hC-9F-wCJ"/>
+                            <constraint firstAttribute="bottom" secondItem="PpM-YC-jqT" secondAttribute="bottom" constant="30" id="8fv-6b-mJ5"/>
                             <constraint firstItem="mCR-M5-6Mh" firstAttribute="leading" secondItem="odB-1X-3Dd" secondAttribute="leading" constant="8" id="9d6-WM-sYb"/>
+                            <constraint firstAttribute="trailing" secondItem="PpM-YC-jqT" secondAttribute="trailing" constant="36" id="9vA-PX-Ye0"/>
                             <constraint firstAttribute="trailing" secondItem="mCR-M5-6Mh" secondAttribute="trailing" constant="8" id="KGc-6t-hVT"/>
                             <constraint firstItem="vcz-Uw-670" firstAttribute="centerY" secondItem="odB-1X-3Dd" secondAttribute="centerY" id="Wni-Jk-tfD"/>
+                            <constraint firstItem="PpM-YC-jqT" firstAttribute="leading" secondItem="odB-1X-3Dd" secondAttribute="leading" constant="36" id="ZLg-27-uny"/>
                             <constraint firstItem="mCR-M5-6Mh" firstAttribute="top" secondItem="odB-1X-3Dd" secondAttribute="top" constant="9" id="gwW-iI-goH"/>
                             <constraint firstItem="vcz-Uw-670" firstAttribute="centerX" secondItem="odB-1X-3Dd" secondAttribute="centerX" id="nwk-VQ-Cx5"/>
                         </constraints>
@@ -68,6 +95,7 @@
                 <outlet property="containerMapView" destination="vcz-Uw-670" id="Cz1-Hl-Gap"/>
                 <outlet property="directionLabel" destination="mCR-M5-6Mh" id="pZE-kW-ItJ"/>
                 <outlet property="mainView" destination="odB-1X-3Dd" id="QnO-rf-sum"/>
+                <outlet property="mapBack" destination="TUv-rk-Azt" id="mnm-ms-cez"/>
                 <outlet property="mapCell" destination="R0w-v7-rCB" id="O3h-i3-zWO"/>
             </connections>
             <point key="canvasLocation" x="38" y="126"/>

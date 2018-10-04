@@ -40,7 +40,6 @@ class CreateHouse: BaseViewController {
         labelHeder.text = "Como es tu casa? describela!!"
         labelHeder.layer.borderWidth = 3
         heardCell()
-        heardMapCell()
         MainHelper.acceptButtonStyle(button: buttonAccept)
         MainHelper.borderShadow(view: buttonAccept)
         MainHelper.dissableButtonCreate(button: buttonAccept)
@@ -59,61 +58,32 @@ class CreateHouse: BaseViewController {
         }
         
     }
-    
-   /* func prepareNav(label : UILabel){
-        titlelabel .text = "Crea tu Casa"
-        let backButton = Button(type : .custom)
-        backButton.pulseColor = UIColor.AppColor.Gray.greyApp
-        backButton.setImage(#imageLiteral(resourceName: "left_angle_bracket"), for: .normal)
-        backButton.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        navigationItem.leftBarButtonItem?.customView?.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(goBack)))
-        
-     
-    }*/
-
-   /* func setNavBarToTheView() {
-        let navBar: UINavigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 64.0))
-        self.view.addSubview(navBar);
-        let navItem = UINavigationItem(title: "Camera");
-        let doneItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.cancel, target: self, action: nil);
-        navItem.leftBarButtonItem = doneItem;
-        navBar.setItems([navItem], animated: true);
-    }*/
-    
-    
-   /* @objc func goBack(){
-        
-        self.navigationController?.popViewController(animated: true)
-    }*/
-    
+    /**
+     @param sender es quien envia la solicitud al controlador principal
+     @fucntion Metodo que escucha las acciones de las celdas, y prepara las escuchas menos en la de precio
+     que recoge la info directamente
+    **/
     func heardCell(){
         createHouseTable.showModalParent = { (sender) -> () in
-           
+            
             switch sender {
-            case is roomCell:
-                self.prepareModal()
-                self.modalView?.setupModal(mode: true)
-                self.view.addSubview(self.modalView!)
+            case is Array<ModelRoom>:
+                self.listOfRoom = sender as? Array<ModelRoom>
+                self.prepareButton()
                 break;
-            case is SectionHouseCollectionViewCell:
-                self.prepareModal()
-                self.modalView?.setupModal(mode: false)
-                self.view.addSubview(self.modalView!)
+            case is Array<ModelHouseSection>:
+                self.listOfSection = sender as? Array<ModelHouseSection>
+                self.prepareButton()
                 break;
-            case is MapViewController:
-                self.mapView =  sender as? MapViewController
-                self.navigationController?.pushViewController(self.mapView!, animated: true)
+            case is ModelDirection:
+                self.directionModel = sender as? ModelDirection
+                self.prepareButton()
                 break;
             case is PrecioCell:
-               let cell =  sender as! PrecioCell
+                let cell =  sender as! PrecioCell
                 let price = cell.priceTextEdit.text
                 self.price = price
-               self.prepareButton()
-               
-                break;
-            case is roomCell:
-                
+                self.prepareButton()
                 break;
             default:
                 break;
@@ -121,51 +91,7 @@ class CreateHouse: BaseViewController {
            
         }
     }
-    
-    func prepareModal(){
-        self.modalView = Bundle.main.loadNibNamed("addRoomModalView", owner: self, options: nil)![0] as? addRoomModalView
-        let width = UIScreen.main.bounds.width
-        let height = UIScreen.main.bounds.height
-        let frame = CGRect(x: 0, y: 0, width: width, height: height)
-        self.modalView? .frame = frame
-        MainHelper.theStyle(view: self.modalView!)
-        self.heardModalView()
-    }
-    
-    func heardModalView(){
-        
-        self.modalView?.returnData = { (model) -> () in
-            
-            if model is ModelRoom{
-                let test = model as! ModelRoom
-                self.createHouseTable.listOfRoom.append(test)
-                self.listOfRoom =  self.createHouseTable.listOfRoom
-                self.createHouseTable.createTable.reloadData()
-                self.prepareButton()
-            }else if model is ModelHouseSection{
-                let test = model as! ModelHouseSection
-                self.createHouseTable.cellCollection?.listOfModelHouseSection.append(test)
-                self.listOfSection =  self.createHouseTable.cellCollection?.listOfModelHouseSection
-                self.createHouseTable.cellCollection?.sectionCollectionView.reloadData()
-                self.prepareButton()
-            }
-        }
-    }
-    func heardMapCell(){
-       createHouseTable.sendLocationToParent = { (model) -> () in
-        if( model is ModelDirection){
-            let direction = model as! ModelDirection
-            self.directionModel = direction
-            self.prepareButton()
-        }else if (model is Array<ModelRoom>){
-            let arrayRoom = model as! Array<ModelRoom>
-            self.listOfRoom = arrayRoom
-            self.prepareButton()
-        }
-        
-        }
-    }
-    
+   
     func prepareButton(){
         if(self.listOfRoom != nil){
             let numb = self.listOfRoom?.count
@@ -179,21 +105,16 @@ class CreateHouse: BaseViewController {
         }
         
     }
-    
+    //TODO insertar id de usario en la casa
+    /**
+     @function Metodo que envia el modelo Casa a Firebase
+    **/
     @IBAction func acceptActionButton(_ sender: Any) {
         house = ModelHouse(price: price, section: listOfSection, listOfRoom: listOfRoom!, direction: directionModel!)
         FireBaseManager.createHouse(model: house!)
         
         
     }
-    //  MARK: - delegate roomexpandibleCell
- 
-  
-  /*
-    secondViewController.buttonAction = {(text) -> () in
-    self.textLabel.text = text
-    return secondViewController.dismiss(animated: true, completion: nil)
-    }
- */
+
 
 }
