@@ -19,13 +19,13 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     var directionModel : ModelDirection?
     var price = ""
     let titleSection = ["Precio","Habitaciones","Secciones","Localización"]
+    var editRow = 0
     
     public var cellCollection : HouseSectionCell?
     public var sendLocationToParent: ((Any) -> ())?
     public var showModalParent: ((Any) -> ())?
     public var listOfRoom = Array<ModelRoom>()
-    
-     public var modalView : addRoomModalView?
+    public var modalView : addRoomModalView?
     
  //  MARK: - cicle life
     override init(frame: CGRect) {
@@ -112,7 +112,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             let cell : PrecioCell = tableView.dequeueReusableCell(withIdentifier: "PrecioCell", for: indexPath) as! PrecioCell
             cell.delegate = self
             cell.sendInfo = { (priceCell) -> () in
-                 self.showModalParent!(priceCell)
+                 self.showModalParent?(priceCell)
             }
             return cell
         
@@ -121,17 +121,19 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             let cell : roomCell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath) as! roomCell
             cell.prepareForReuse()
             cell.showModal = { (cellExpandible) -> () in
-                    self.prepareModal()
-                    self.modalView?.setupModal(mode: true)
+                self.prepareModal()
+                self.modalView?.setupModal(mode: true)
+                 self.modalView?.editeMode = false
                 if let topVC = UIApplication.getTopMostViewController() {
                     topVC.view.addSubview(self.modalView!)
                 }
-                
-                
             }
-            if(listOfRoom.count > 0 && listOfRoom.count <= indexPath.row){
-                cell.setup(room: listOfRoom[indexPath.row-1])
+            if(indexPath.row>0){
+                 cell.setup(room: listOfRoom[indexPath.row-1])
             }
+          /*  if(listOfRoom.count > 0 && listOfRoom.count <= indexPath.row){
+               
+            }*/
             return cell
         case 2:
             
@@ -169,7 +171,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                         }
                         self.direction = dictio["direction"] as! String?
                         self.createTable.reloadData()
-                        self.showModalParent!(self.directionModel!)
+                        self.showModalParent?(self.directionModel!)
                     }
                     if let topVC = UIApplication.getTopMostViewController() {
                         topVC.navigationController?.pushViewController(vc, animated: true)
@@ -179,6 +181,47 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             }
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let sectionTitle = titleSection[indexPath.section]
+        
+        switch sectionTitle {
+        case "Habitaciones":
+            var row = indexPath.row
+            if(row > 0){
+                row -= 1
+                editRow = row
+                prepareModal()
+                modalView?.setupModal(mode: true)
+                self.modalView?.editeMode = true
+                modalView?.fillModal(model: listOfRoom[row])
+                if let topVC = UIApplication.getTopMostViewController() {
+                    topVC.view.addSubview(self.modalView!)
+                }
+            }
+            
+            break;
+        case "Secciones":
+            let row = indexPath.row
+            let maxItem = self.cellCollection?.listOfModelHouseSection.count
+            if(row != maxItem){
+                modalView?.setupModal(mode: false)
+                modalView?.fillModal(model: cellCollection!.listOfModelHouseSection[row] )
+                if let topVC = UIApplication.getTopMostViewController() {
+                    topVC.view.addSubview(self.modalView!)
+                }
+            }
+            
+        break
+        case "Localización":
+            //diferenciar entre los dos tipos de celda
+          //vamos al map view con la coordenada que hay incrita
+        break;
+        default:
+            
+            break
         }
     }
     
@@ -196,12 +239,12 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         return cell
     }
     
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+  /*  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if (indexPath.section == 1 && indexPath.row > 0){
             return true
         }
        return false
-    }
+    }*/
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal,
@@ -210,7 +253,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                                          self.listOfRoom.remove(at: row)
                                             tableView.deleteRows(at: [indexPath], with: .automatic)
                                             completionHandler(true)
-                                            self.showModalParent!(self.listOfRoom)
+                                            self.showModalParent?(self.listOfRoom)
         }
         deleteAction.image = UIImage(named: "trash_ico")
         deleteAction.backgroundColor = UIColor .AppColor.Green.mindApp
@@ -246,13 +289,27 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 let test = model as! ModelRoom
                 self.listOfRoom.append(test)
                 self.createTable.reloadData()
-                self.showModalParent!(self.listOfRoom)
+                self.showModalParent?(self.listOfRoom)
             }else if model is ModelHouseSection{
                 let test = model as! ModelHouseSection
                 self.cellCollection?.listOfModelHouseSection.append(test)
                 self.cellCollection?.sectionCollectionView.reloadData()
                 let listSection = self.cellCollection?.listOfModelHouseSection
-                self.showModalParent!(listSection as Any)
+                self.showModalParent?(listSection as Any)
+            }
+        }
+        self.modalView?.returnEditData = { (model) -> () in
+            if model is ModelRoom{
+                let test = model as! ModelRoom
+                self.listOfRoom[self.editRow] = test
+                self.createTable.reloadData()
+                self.showModalParent?(self.listOfRoom)
+            }else if model is ModelHouseSection{
+                let test = model as! ModelHouseSection
+                self.cellCollection?.listOfModelHouseSection.append(test)
+                self.cellCollection?.sectionCollectionView.reloadData()
+                let listSection = self.cellCollection?.listOfModelHouseSection
+                self.showModalParent?(listSection as Any)
             }
         }
     }

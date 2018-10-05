@@ -19,7 +19,6 @@ class addRoomModalView: UIView {
     public var roomModel = ModelRoom()
     //addSectionOutlets
     @IBOutlet weak var ModalAddRoom: UIView!
-    
     @IBOutlet weak var modalAddSectionView: UIView!
     @IBOutlet weak var titleSectionTextField: UITextField!
     @IBOutlet weak var descriptionSectionTextField: UITextField!
@@ -31,6 +30,9 @@ class addRoomModalView: UIView {
     //clousure methods
     public var mode = true
     public var returnData: ((Any) -> ())?
+     public var returnEditData: ((Any) -> ())?
+    //
+    public var editeMode : Bool!
    
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,7 +42,6 @@ class addRoomModalView: UIView {
     }
     func mockuP(){
         if(mode){
-            
             userTextEdit.text = "UsuarioPrueba"
             priceTextEdit.text = "100"
         }else{
@@ -73,6 +74,26 @@ class addRoomModalView: UIView {
          dismissViewSetup()
        
 }
+    public func fillModal(model:Any){
+        switch model {
+        case is ModelRoom:
+            let room = model as! ModelRoom
+            userTextEdit.text = room.user
+            priceTextEdit.text = room.price
+            //falta img
+            break;
+        case is ModelHouseSection:
+            let section = model as! ModelHouseSection
+            titleSectionTextField.text = section.title
+            descriptionSectionTextField.text = section.description
+            //falta img
+            //dos botones aceptar y eliminar
+            break;
+        default:
+            break
+        }
+        
+    }
     
     func dismissViewSetup(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -88,13 +109,22 @@ class addRoomModalView: UIView {
         if (mode == true){
             roomModel.price = priceTextEdit.text!
             roomModel.user = userTextEdit.text!
-            returnData?(roomModel)
+            if(editeMode){
+                returnEditData?(roomModel)
+            }else{
+                returnData?(roomModel)
+            }
+            
             removeFromSuperview()
         }else{
             sectionModel.title = titleSectionTextField.text
             sectionModel.description = descriptionSectionTextField.text
-            returnData?(sectionModel)
-            removeFromSuperview()
+            if(editeMode){
+                 returnEditData?(sectionModel)
+            }else{
+                 returnData?(sectionModel)
+            }
+             removeFromSuperview()
         }
         
         
