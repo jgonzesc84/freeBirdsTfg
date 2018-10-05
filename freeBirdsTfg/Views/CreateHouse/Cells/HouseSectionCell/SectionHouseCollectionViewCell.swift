@@ -27,14 +27,20 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
         initView()
         MainHelper.theStyle(view: sectionView)
         // Initialization code
+        /**/
     }
     
     func initView(){
-    addButton.layer.cornerRadius = addButton.frame.size.width / 2
-    addButton.layer.borderWidth = 3.0
-    addButton.layer.borderColor = Color.white .cgColor
+        addButton.layer.cornerRadius = addButton.frame.size.width / 2
+        addButton.layer.borderWidth = 3.0
+        addButton.layer.borderColor = Color.white .cgColor
         titleLabelSectionView.isHidden = true
         descriptionLabelSectionView.isHidden = true
+        descriptionLabelSectionView.layer.cornerRadius = 50
+        titleLabelSectionView.layer.cornerRadius = 50
+        MainHelper.borderShadow(view: titleLabelSectionView)
+        MainHelper.borderShadow(view: descriptionLabelSectionView)
+       
     }
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -42,7 +48,7 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
     }
     
     func setup(model : ModelHouseSection){
-       addView.isHidden = true
+        addView.isHidden = true
         titleLabelSectionView.isHidden = false
         descriptionLabelSectionView.isHidden = false
         titleLabelSectionView.text = model.title
@@ -55,7 +61,7 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
         titleLabelSectionView.text = ""
         descriptionLabelSectionView.text = ""
         
-        }
+    }
     @IBAction func addButtonAction(_ sender: Any) {
         showModal?(self)
         

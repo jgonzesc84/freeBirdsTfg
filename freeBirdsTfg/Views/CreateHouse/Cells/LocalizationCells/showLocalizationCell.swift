@@ -60,10 +60,14 @@ class showLocalizationCell: UITableViewCell {
         region.span.latitudeDelta = 0.002
         self.mapCell.setRegion(region, animated: true)
         self.mapCell.addAnnotation(annotation)
-        self.mapBack.setRegion(region, animated: false)
-        self.mapBack.addAnnotation(annotation)
-        //    self.mapCell.addAnnotation(annotation)
-        //  self.mapCell.setCenter(annotation.coordinate, animated: false)
+        //backregion
+        var backRegion =  MKCoordinateRegion();
+        backRegion.center = annotation.coordinate
+        backRegion.span.longitudeDelta = 0.02
+        backRegion.span.latitudeDelta = 0.01
+        self.mapBack.setRegion(backRegion, animated: false)
+      
+       
     }
     func setupCell(placemark : MKPlacemark , direction : String){
         
@@ -73,9 +77,13 @@ class showLocalizationCell: UITableViewCell {
         region.span.longitudeDelta = 0.004
         region.span.latitudeDelta = 0.002
         self.mapCell.setRegion(region, animated: true)
-        self.mapBack.setRegion(region, animated: false)
         self.mapCell.addAnnotation(placemark)
-       // self.mapBack.addAnnotation(placemark)
+        //backregion
+        var backRegion =  MKCoordinateRegion();
+        backRegion.center = placemark.coordinate
+        backRegion.span.longitudeDelta = 0.02
+        backRegion.span.latitudeDelta = 0.01
+        self.mapBack.setRegion(backRegion, animated: false)
         
     }
     
