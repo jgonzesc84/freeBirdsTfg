@@ -19,7 +19,8 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     var directionModel : ModelDirection?
     var price = ""
     let titleSection = ["Precio","Habitaciones","Secciones","Localización"]
-    var editRow = 0
+    var editAddRoomRow = 0
+    var editSectionRow = 0
     
     public var cellCollection : HouseSectionCell?
     public var sendLocationToParent: ((Any) -> ())?
@@ -138,12 +139,31 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         case 2:
             
             cellCollection = tableView.dequeueReusableCell(withIdentifier: "HouseSectionCell", for: indexPath) as? HouseSectionCell
-            cellCollection?.showModalToParent = { (cellCollection) -> () in
-                self.prepareModal()
-                self.modalView?.setupModal(mode: false)
-                if let topVC = UIApplication.getTopMostViewController() {
-                    topVC.view.addSubview(self.modalView!)
+            cellCollection?.showModalToParent = { (sender) -> () in
+                switch  sender{
+                case is Int:
+                    let position = sender as! Int
+                    self.editSectionRow = position
+                    self.prepareModal()
+                    self.modalView?.setupModal(mode: false)
+                    self.modalView?.editeMode = true
+                    self.modalView?.fillModal(model: self.cellCollection?.listOfModelHouseSection[position] as Any )
+                    if let topVC = UIApplication.getTopMostViewController() {
+                        topVC.view.addSubview(self.modalView!)
+                    }
+                    break;
+                case is SectionHouseCollectionViewCell:
+                    self.prepareModal()
+                    self.modalView?.setupModal(mode: false)
+                    self.modalView?.editeMode = false
+                    if let topVC = UIApplication.getTopMostViewController() {
+                        topVC.view.addSubview(self.modalView!)
+                    }
+                    break;
+                default :
+                    break;
                 }
+                
             }
             return cellCollection!
         case 3:
@@ -192,7 +212,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             var row = indexPath.row
             if(row > 0){
                 row -= 1
-                editRow = row
+                editAddRoomRow = row
                 prepareModal()
                 modalView?.setupModal(mode: true)
                 self.modalView?.editeMode = true
@@ -203,7 +223,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             }
             
             break;
-        case "Secciones":
+       /* case "Secciones":
             let row = indexPath.row
             let maxItem = self.cellCollection?.listOfModelHouseSection.count
             if(row != maxItem){
@@ -214,7 +234,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 }
             }
             
-        break
+        break*/
         case "Localización":
             //diferenciar entre los dos tipos de celda
           //vamos al map view con la coordenada que hay incrita
@@ -301,12 +321,12 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         self.modalView?.returnEditData = { (model) -> () in
             if model is ModelRoom{
                 let test = model as! ModelRoom
-                self.listOfRoom[self.editRow] = test
+                self.listOfRoom[self.editAddRoomRow] = test
                 self.createTable.reloadData()
                 self.showModalParent?(self.listOfRoom)
             }else if model is ModelHouseSection{
                 let test = model as! ModelHouseSection
-                self.cellCollection?.listOfModelHouseSection.append(test)
+                self.cellCollection?.listOfModelHouseSection[self.editSectionRow] = test
                 self.cellCollection?.sectionCollectionView.reloadData()
                 let listSection = self.cellCollection?.listOfModelHouseSection
                 self.showModalParent?(listSection as Any)

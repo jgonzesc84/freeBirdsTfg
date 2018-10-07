@@ -11,7 +11,8 @@ import UIKit
 class HouseSectionCell: UITableViewCell, UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
    
     public var listOfModelHouseSection = Array<ModelHouseSection>()
-     public var showModalToParent: ((SectionHouseCollectionViewCell) -> ())?
+     public var showModalToParent: ((Any) -> ())?
+   
     public var maxLimit  = 0
     @IBOutlet weak var sectionCollectionView: UICollectionView!
     
@@ -68,8 +69,6 @@ class HouseSectionCell: UITableViewCell, UICollectionViewDelegate ,UICollectionV
         let cell : SectionHouseCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SectionHouseCollectionViewCell", for: indexPath) as! SectionHouseCollectionViewCell
        cell.resetCell()
         let total = listOfModelHouseSection.count
-       // let choose = total > 0 ? total + 1 : 0
-       // let actualRow = indexPath.row
         if(total > 0 && indexPath.row < (maxLimit) - 1){
           cell.setup(model: listOfModelHouseSection[indexPath.row])
         }
@@ -78,6 +77,17 @@ class HouseSectionCell: UITableViewCell, UICollectionViewDelegate ,UICollectionV
             self.showModalToParent?(collectionCell)
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let position = indexPath.row
+        if(position != (maxLimit) - 1){
+            self.showModalToParent?(position)
+            
+            
+        }
+        
     }
     
     //MARK collectionViewFlow Layout encargado de decirle de que tamañoi son las celdas y que espacio hay entre ellas

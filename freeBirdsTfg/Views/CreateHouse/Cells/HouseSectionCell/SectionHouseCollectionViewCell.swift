@@ -22,6 +22,8 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabelSectionView: UILabel!
     
     public var showModal: ((SectionHouseCollectionViewCell) -> ())?
+    public var model : ModelHouseSection?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         initView()
@@ -48,11 +50,12 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
     }
     
     func setup(model : ModelHouseSection){
+        self.model = model
         addView.isHidden = true
         titleLabelSectionView.isHidden = false
         descriptionLabelSectionView.isHidden = false
-        titleLabelSectionView.text = model.title
-        descriptionLabelSectionView.text = model.description
+        titleLabelSectionView.text = self.model?.title
+        descriptionLabelSectionView.text = self.model?.description
     }
     func resetCell(){
         addView.isHidden = false
