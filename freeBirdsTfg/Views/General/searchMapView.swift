@@ -101,7 +101,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
                 let request = MKLocalSearchRequest()
                 request.naturalLanguageQuery = searchText
                 request.region = (self.mapView?.region)!
-                let search = MKLocalSearch(request: request)
+            let search = MKLocalSearch(request: request)
                 
                 search.start { response, _ in
                     guard let response = response else {

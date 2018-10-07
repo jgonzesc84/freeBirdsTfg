@@ -59,6 +59,10 @@ class showLocalizationCell: UITableViewCell {
         region.span.longitudeDelta = 0.004
         region.span.latitudeDelta = 0.002
         self.mapCell.setRegion(region, animated: true)
+        if (mapCell.annotations.count > 0){
+            let anot = mapCell!.annotations[0]
+            self.mapCell.removeAnnotation(anot)
+        }
         self.mapCell.addAnnotation(annotation)
         //backregion
         var backRegion =  MKCoordinateRegion();
@@ -76,6 +80,10 @@ class showLocalizationCell: UITableViewCell {
         region.center = placemark.coordinate
         region.span.longitudeDelta = 0.004
         region.span.latitudeDelta = 0.002
+        if (mapCell.annotations.count > 0){
+            let anot = mapCell!.annotations[0]
+            self.mapCell.removeAnnotation(anot)
+        }
         self.mapCell.setRegion(region, animated: true)
         self.mapCell.addAnnotation(placemark)
         //backregion

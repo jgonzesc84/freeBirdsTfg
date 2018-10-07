@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -68,10 +68,11 @@
                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Mje-YN-rns">
                                     <rect key="frame" x="0.0" y="56" width="375" height="544"/>
                                 </mapView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXT-w6-QFS" customClass="Button" customModule="Material">
-                                    <rect key="frame" x="113" y="550" width="148" height="50"/>
-                                    <color key="backgroundColor" red="0.0" green="0.77647058820000003" blue="0.7725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WXT-w6-QFS" customClass="Button" customModule="Material">
+                                    <rect key="frame" x="113.5" y="550" width="148" height="50"/>
+                                    <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
+                                        <constraint firstAttribute="width" constant="148" id="SzB-Ch-9iw"/>
                                         <constraint firstAttribute="height" constant="50" id="sFj-72-O3c"/>
                                     </constraints>
                                     <state key="normal" title="Aceptar">
@@ -97,8 +98,6 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Mje-YN-rns" secondAttribute="trailing" id="0yM-IG-uVk"/>
                                 <constraint firstItem="wzc-N6-gPR" firstAttribute="top" secondItem="O11-c8-SNS" secondAttribute="top" id="7b1-yv-oXb"/>
-                                <constraint firstAttribute="trailing" secondItem="WXT-w6-QFS" secondAttribute="trailing" constant="114" id="8R5-Yq-of1"/>
-                                <constraint firstItem="WXT-w6-QFS" firstAttribute="leading" secondItem="O11-c8-SNS" secondAttribute="leading" constant="113" id="CfT-jg-JYb"/>
                                 <constraint firstAttribute="trailing" secondItem="vh6-Vw-VCA" secondAttribute="trailing" constant="11" id="FZA-NV-S1y"/>
                                 <constraint firstItem="vh6-Vw-VCA" firstAttribute="top" secondItem="wzc-N6-gPR" secondAttribute="bottom" constant="30" id="G9p-Nh-bf5"/>
                                 <constraint firstAttribute="bottom" secondItem="WXT-w6-QFS" secondAttribute="bottom" id="UVn-r8-ztj"/>

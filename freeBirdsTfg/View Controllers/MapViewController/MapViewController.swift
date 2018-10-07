@@ -28,6 +28,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
     var finalPosition : CGFloat?
     var modeSatelite : Bool?
     
+    var annotationFromCell : MKAnnotation?
     var annotation : MKPointAnnotation?
     var placemark : MKPlacemark?
     var direction : String?
@@ -36,20 +37,36 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareNav(label: titleLabel, text: "Localizacion")
-       // setupSearchView()
-       
         MainHelper.navStyle(view: navView)
         initView()
-        setupCurrentLocation()
+        if let anot = annotation {
+            setupRegion(location: anot.coordinate)
+            map.addAnnotation(anot)
+            map.setCenter(anot.coordinate, animated: true)
+            searchMapView?.searchDirectionBar.text = anot.title
+        }else{
+             setupCurrentLocation()
+        }
         MainHelper.borderShadow(view: sateliteModeMapButton)
         MainHelper.acceptButtonStyle(button: sateliteModeMapButton)
+       
+    }
+    
+    func initView(){
+        //  map.mapType = .satellite
+        self.searchMapView = Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)![0] as? searchMapView
+        self.searchMapView?.mapView = map
+        self.map.delegate = self
+        modeSatelite = false
+        hearSearchBarMap()
+        setupMap()
     }
    
     
     override func viewDidAppear(_ animated: Bool) {
         setupSearchView()
-        MainHelper.borderShadow(view: acceptButton)
-        MainHelper.acceptButtonStyle(button: acceptButton)
+         confAcceptButton()
+       
     }
     func setupSearchView(){
        
@@ -57,7 +74,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         
         let frame = CGRect(x: 0, y: 67, width: widthFrame , height: viewsearch.frame.size.height)
         self.searchMapView? .frame = frame
-         self.searchMapView?.setOldFrame(frame: frame)
+        self.searchMapView?.setOldFrame(frame: frame)
         self.view.addSubview(self.searchMapView!)
         self.viewDidLayoutSubviews()
         let bottomConst  = NSLayoutConstraint(item: self.searchMapView!, attribute: .top, relatedBy: .equal, toItem: navView, attribute: .bottom, multiplier: 1, constant: 0)
@@ -65,9 +82,15 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
       
     }
     func confAcceptButton(){
-        self.acceptButton.isHidden = true
-        self.acceptButton.alpha = 0
-        self.acceptButton.center.y += acceptButton.frame.size.height;
+        MainHelper.borderShadow(view: acceptButton)
+        MainHelper.acceptButtonStyle(button: acceptButton)
+       // acceptButton.center.y -= acceptButton.frame.size.height / 5;
+        if(self.finalPosition == nil ){
+            self.animationButtons(button: self.acceptButton)
+            UIView.animate(withDuration: 1) {
+                self.acceptButton.alpha = 1
+            }
+        }
        
     }
     
@@ -83,16 +106,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         }
     }
 
-    func initView(){
-      //  map.mapType = .satellite
-        self.searchMapView = Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)![0] as? searchMapView
-        self.searchMapView?.mapView = map
-        self.map.delegate = self
-          modeSatelite = false
-        hearSearchBarMap()
-        confAcceptButton()
-        setupMap()
-    }
+   
     
     func setupMap(){
         let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(addWaypoint(longGesture:)))
@@ -136,10 +150,10 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
     func hearSearchBarMap(){
        
         self.searchMapView?.getDirection = { (itemLocation) -> () in
-             self.map.removeAnnotations(self.map.annotations)
+            self.map.removeAnnotations(self.map.annotations)
             let locationItem = itemLocation.placemark
             self.map.addAnnotation(locationItem)
-            self.setupRegion(item: itemLocation)
+            self.setupRegion(location: itemLocation.placemark.coordinate)
            
         }
     }
@@ -151,11 +165,11 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         }
         
     }
-    
-    func setupRegion(item : MKMapItem){
+    //item.placemark.coordinate
+    func setupRegion(location : CLLocationCoordinate2D){
       
         var region =  MKCoordinateRegion();
-        region.center = item.placemark.coordinate
+        region.center = location
          region.span.longitudeDelta = 0.004
          region.span.latitudeDelta = 0.002
         map.setRegion(region, animated: true)
@@ -167,8 +181,6 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         
         let annotation = MKPointAnnotation()
         annotation.coordinate = location
-       // annotation.pinImage = "pin"
-       // annotation.pinColor = UIColor .AppColor.Green.mindApp
         CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: location.latitude, longitude: location.longitude), completionHandler: {(placemarks, error) -> Void in
             if error != nil {
               //  print("Reverse geocoder failed with error" + (error?.localizedDescription)!)
@@ -182,9 +194,12 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
                 region.center = annotation.coordinate
                 region.span.longitudeDelta = 0.004
                 region.span.latitudeDelta = 0.002
+                if (self.map.annotations.count > 0){
+                    let anot = self.map!.annotations[0]
+                   self.map.removeAnnotation(anot)
+                }
                 self.map.setRegion(region, animated: true)
                 self.map.addAnnotation(annotation)
-               // self.map.setCenter(annotation.coordinate, animated: true)*/
                 self.searchMapView?.searchDirectionBar.text = annotation.title
                 
             }
@@ -192,16 +207,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
                 annotation.title = "Unknown Place"
                 self.map.addAnnotation(annotation)
               
-              //  print("Problem with the data received from geocoder")
             }
-            self.acceptButton.isHidden = false
-            if(self.finalPosition == nil ){
-                self.animationButtons(button: self.acceptButton)
-                UIView.animate(withDuration: 1) {
-                    self.acceptButton.alpha = 1
-                }
-            }
-           
         })
        
     }

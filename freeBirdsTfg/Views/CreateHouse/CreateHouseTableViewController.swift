@@ -178,7 +178,6 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             }else{
                 let cell : LocalizationCell = tableView.dequeueReusableCell(withIdentifier: "LocalizationCell", for: indexPath) as! LocalizationCell
                 cell.goToMapView = { (cell) -> () in
-                    
                     let vc = MapViewController (nibName: "MapViewController", bundle: nil)
                     vc.sendLocation = { (dictio) -> () in
                         let obj = dictio["annotation"]
@@ -223,19 +222,33 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             }
             
             break;
-       /* case "Secciones":
-            let row = indexPath.row
-            let maxItem = self.cellCollection?.listOfModelHouseSection.count
-            if(row != maxItem){
-                modalView?.setupModal(mode: false)
-                modalView?.fillModal(model: cellCollection!.listOfModelHouseSection[row] )
-                if let topVC = UIApplication.getTopMostViewController() {
-                    topVC.view.addSubview(self.modalView!)
+        case "Localización":
+            let cell = tableView.cellForRow(at:indexPath)
+            if(cell is showLocalizationCell){
+                let cellWithDirection = cell as! showLocalizationCell
+                let vc = MapViewController (nibName: "MapViewController", bundle: nil)
+                let listOfAnnotation = cellWithDirection.mapCell.annotations
+                let annotation = listOfAnnotation[0] as! MKPointAnnotation
+                vc.annotation = annotation
+                vc.sendLocation = { (dictio) -> () in
+                    let obj = dictio["annotation"]
+                    if (obj is MKPointAnnotation){
+                        self.annotationLocation = obj as! MKPointAnnotation?
+                        self.directionModel = ModelDirection(title:(self.annotationLocation?.title)!, coordinate: (self.annotationLocation?.coordinate)!)
+                    }else{
+                        self.placemarkLocation = obj as! MKPlacemark?
+                        self.directionModel = ModelDirection(title:(self.placemarkLocation?.title)!, coordinate: (self.placemarkLocation?.coordinate)!)
+                    }
+                    self.direction = dictio["direction"] as! String?
+                    self.createTable.reloadData()
+                    self.showModalParent?(self.directionModel!)
                 }
+                if let topVC = UIApplication.getTopMostViewController() {
+                    topVC.navigationController?.pushViewController(vc, animated: true)
+                }
+                
             }
             
-        break*/
-        case "Localización":
             //diferenciar entre los dos tipos de celda
           //vamos al map view con la coordenada que hay incrita
         break;
