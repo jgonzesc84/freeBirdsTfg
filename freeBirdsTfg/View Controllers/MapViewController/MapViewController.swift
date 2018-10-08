@@ -44,8 +44,13 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
             map.addAnnotation(anot)
             map.setCenter(anot.coordinate, animated: true)
             searchMapView?.searchDirectionBar.text = anot.title
+        }else if let place = placemark{
+            setupRegion(location: place.coordinate)
+            map.addAnnotation(place)
+            map.setCenter(place.coordinate, animated: true)
+            searchMapView?.searchDirectionBar.text = place.title
         }else{
-             setupCurrentLocation()
+            setupCurrentLocation()
         }
         MainHelper.borderShadow(view: sateliteModeMapButton)
         MainHelper.acceptButtonStyle(button: sateliteModeMapButton)

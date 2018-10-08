@@ -41,7 +41,6 @@ class showLocalizationCell: UITableViewCell {
         mapCell.layer.cornerRadius = containerMapView.frame.size.height / 2
         containerMapView.borderColor = UIColor .AppColor.Green.mindApp
         containerMapView.layer.width = 2
-        
         containerMapView.layer.shadowColor = UIColor .black .cgColor
         containerMapView.layer.shadowOffset = CGSize(width: 0, height: 0)
         containerMapView.layer.shadowRadius = 3
@@ -56,6 +55,7 @@ class showLocalizationCell: UITableViewCell {
         directionLabel.text = direction
         var region =  MKCoordinateRegion();
         region.center = annotation.coordinate
+        annotation.title = direction
         region.span.longitudeDelta = 0.004
         region.span.latitudeDelta = 0.002
         self.mapCell.setRegion(region, animated: true)
@@ -76,7 +76,7 @@ class showLocalizationCell: UITableViewCell {
     func setupCell(placemark : MKPlacemark , direction : String){
         
         directionLabel.text = direction
-        var region =  MKCoordinateRegion();
+        var region =  MKCoordinateRegion()
         region.center = placemark.coordinate
         region.span.longitudeDelta = 0.004
         region.span.latitudeDelta = 0.002

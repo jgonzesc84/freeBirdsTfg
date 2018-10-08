@@ -106,6 +106,19 @@ class MainHelper{
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.clipsToBounds = false
     }
+    
+    static func borderShadowRedonde(view : UIView){
+        view.layer.width = 2
+        view.layer.shadowColor = UIColor .black .cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shadowRadius = 3
+        view.layer.shadowOpacity = 1
+        view.layer.masksToBounds = false
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen .main.scale
+    }
+    
+    
     static func acceptButtonStyle(button : Button){
     button.layer.cornerRadius = 3.0
     button.backgroundColor = UIColor .AppColor.Green.mindApp

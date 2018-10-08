@@ -87,7 +87,7 @@ class addRoomModalView: UIView {
             titleSectionTextField.text = section.title
             descriptionSectionTextField.text = section.description
             //falta img
-            //dos botones aceptar y eliminar
+
             break;
         default:
             break

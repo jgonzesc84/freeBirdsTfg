@@ -228,8 +228,18 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 let cellWithDirection = cell as! showLocalizationCell
                 let vc = MapViewController (nibName: "MapViewController", bundle: nil)
                 let listOfAnnotation = cellWithDirection.mapCell.annotations
-                let annotation = listOfAnnotation[0] as! MKPointAnnotation
-                vc.annotation = annotation
+                let annotation = listOfAnnotation[0]
+                switch annotation{
+                case is MKPointAnnotation:
+                vc.annotation =  annotation as? MKPointAnnotation
+                break
+                case is MKPlacemark:
+                 vc.placemark = annotation as? MKPlacemark
+                break
+                default:
+                break
+                }
+               // vc.annotation = annotation
                 vc.sendLocation = { (dictio) -> () in
                     let obj = dictio["annotation"]
                     if (obj is MKPointAnnotation){
@@ -271,13 +281,13 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         header.titleLabel.text = title
         return cell
     }
-    
-  /*  func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+    //solo se puede borrar las celdas de la seccion Añadir habitacion
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if (indexPath.section == 1 && indexPath.row > 0){
             return true
         }
        return false
-    }*/
+    }
 
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal,

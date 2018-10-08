@@ -71,8 +71,20 @@ class HouseSectionCell: UITableViewCell, UICollectionViewDelegate ,UICollectionV
         let total = listOfModelHouseSection.count
         if(total > 0 && indexPath.row < (maxLimit) - 1){
           cell.setup(model: listOfModelHouseSection[indexPath.row])
+          cell.deleteCell = { (cell) -> () in
+          self.listOfModelHouseSection.remove(at: indexPath.row)
+            //OPTION A
+            self.sectionCollectionView.performBatchUpdates({
+                let indexSet = IndexSet(integersIn: 0...0)
+                self.sectionCollectionView.reloadSections(indexSet)
+            }, completion: nil)
+          //OPTION B
+           /* UIView.transition(with: self.sectionCollectionView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+                self.sectionCollectionView.reloadData()
+            }, completion: nil)*/
         }
-        //
+        }
+        
         cell.showModal = { (collectionCell) -> () in
             self.showModalToParent?(collectionCell)
         }
