@@ -73,10 +73,6 @@ class MainViewController: UIViewController {
         searchHouseView.addSubview(animationView)
         searchHouseView.sendSubview(toBack:animationView )
         animationView.backgroundColor = UIColor .white
-      /*  animationView.layer.cornerRadius = animationView.frame.size.width / 2
-        animationView.layer.borderColor = UIColor .black.cgColor
-        animationView.layer.borderWidth = 5.0
-        animationView.clipsToBounds = true*/
         animationView.play()
         animationView.loopAnimation = true
         
@@ -109,6 +105,10 @@ class MainViewController: UIViewController {
         
     }
     
+    @IBAction func goToSearchHouse(_ sender: Any) {
+        let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func goToCreateHouse(_ sender: Any) {
        // let vc = UIViewController.init(nibName: "CreateHouse", bundle: nil)
         let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)

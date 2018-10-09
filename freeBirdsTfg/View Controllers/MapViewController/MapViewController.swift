@@ -58,7 +58,6 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
     }
     
     func initView(){
-        //  map.mapType = .satellite
         self.searchMapView = Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)![0] as? searchMapView
         self.searchMapView?.mapView = map
         self.map.delegate = self
@@ -101,7 +100,6 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
     
     func setupCurrentLocation(){
         self.locationManager.requestWhenInUseAuthorization()
-        
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
             //locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -180,7 +178,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         map.setRegion(region, animated: true)
         
 }
-    // public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         

@@ -2,7 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>pffff</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>KGHAPPYSolid.ttf</string>
@@ -10,10 +11,10 @@
 		<string>Skater Girls Rock.ttf</string>
 		<string>KGHAPPY.ttf</string>
 	</array>
-    <key>NSLocationUsageDescription</key>
-    <string>pfff</string>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>pfff</string>
+	<key>NSLocationUsageDescription</key>
+	<string>pfff</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>pfff</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en-US</string>
 	<key>CFBundleExecutable</key>

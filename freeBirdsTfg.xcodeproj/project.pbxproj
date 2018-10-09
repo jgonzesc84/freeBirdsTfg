@@ -10,6 +10,9 @@
 		3B303B82215A34380002A7CA /* showLocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B303B80215A34380002A7CA /* showLocalizationCell.swift */; };
 		3B303B83215A34380002A7CA /* showLocalizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B303B81215A34380002A7CA /* showLocalizationCell.xib */; };
 		3B5BBA60215B98B0005DD98B /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B5BBA5F215B98B0005DD98B /* FireBaseManager.swift */; };
+		3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692F1C216CC5E200DE9A24 /* MapSearchHouseViewController.swift */; };
+		3B692F1F216CC5E200DE9A24 /* MapSearchHouseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B692F1D216CC5E200DE9A24 /* MapSearchHouseViewController.xib */; };
+		3B692F24216CC9D600DE9A24 /* MapSearchHouseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B692F23216CC9D600DE9A24 /* MapSearchHouseController.swift */; };
 		407BEF76D91EB4D89F4A99BC /* Pods_freeBirdsTfgUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8BEDD6366B6D9C67E3E0B0A /* Pods_freeBirdsTfgUITests.framework */; };
 		590F20052103A67F003F64A3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 590F20032103A67F003F64A3 /* MainViewController.swift */; };
 		59118B292149546D00031AFB /* ModelRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59118B282149546D00031AFB /* ModelRoom.swift */; };
@@ -100,7 +103,10 @@
 		10222579C2FE69211807D8AC /* Pods-freeBirdsTfg.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfg.debug.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg.debug.xcconfig"; sourceTree = "<group>"; };
 		3B303B80215A34380002A7CA /* showLocalizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = showLocalizationCell.swift; sourceTree = "<group>"; };
 		3B303B81215A34380002A7CA /* showLocalizationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = showLocalizationCell.xib; sourceTree = "<group>"; };
-		3B5BBA5F215B98B0005DD98B /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FireBaseManager.swift; path = freeBirdsTfg/Views/CreateHouse/Cells/LocalizationCells/FireBaseManager.swift; sourceTree = SOURCE_ROOT; };
+		3B5BBA5F215B98B0005DD98B /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FireBaseManager.swift; path = freeBirdsTfg/Manager/FireBaseManager.swift; sourceTree = SOURCE_ROOT; };
+		3B692F1C216CC5E200DE9A24 /* MapSearchHouseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MapSearchHouseViewController.swift; path = "../New Group/MapSearchHouseViewController.swift"; sourceTree = "<group>"; };
+		3B692F1D216CC5E200DE9A24 /* MapSearchHouseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchHouseViewController.xib; sourceTree = "<group>"; };
+		3B692F23216CC9D600DE9A24 /* MapSearchHouseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchHouseController.swift; sourceTree = "<group>"; };
 		590F20032103A67F003F64A3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		59118B282149546D00031AFB /* ModelRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRoom.swift; sourceTree = "<group>"; };
 		59118B2C2149859400031AFB /* HouseSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseSectionCell.swift; sourceTree = "<group>"; };
@@ -214,6 +220,31 @@
 				3B303B81215A34380002A7CA /* showLocalizationCell.xib */,
 			);
 			path = LocalizationCells;
+			sourceTree = "<group>";
+		};
+		3B692F20216CC6C900DE9A24 /* MapSearchViewController */ = {
+			isa = PBXGroup;
+			children = (
+				3B692F1C216CC5E200DE9A24 /* MapSearchHouseViewController.swift */,
+				3B692F1D216CC5E200DE9A24 /* MapSearchHouseViewController.xib */,
+			);
+			path = MapSearchViewController;
+			sourceTree = "<group>";
+		};
+		3B692F21216CC99100DE9A24 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3B692F22216CC9A100DE9A24 /* Controllers Map Search House */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		3B692F22216CC9A100DE9A24 /* Controllers Map Search House */ = {
+			isa = PBXGroup;
+			children = (
+				3B692F23216CC9D600DE9A24 /* MapSearchHouseController.swift */,
+			);
+			path = "Controllers Map Search House";
 			sourceTree = "<group>";
 		};
 		590F20022103A664003F64A3 /* Main */ = {
@@ -376,6 +407,7 @@
 		5960022620FF99240042CF9F /* freeBirdsTfg */ = {
 			isa = PBXGroup;
 			children = (
+				3B692F21216CC99100DE9A24 /* Controller */,
 				59118B2B2149846800031AFB /* trash */,
 				59118B272149544A00031AFB /* Model */,
 				59465D842115DD7700106020 /* constant */,
@@ -435,6 +467,7 @@
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				3B692F20216CC6C900DE9A24 /* MapSearchViewController */,
 				5924F5D7214BE5DB004DECCA /* MapViewController */,
 				59118B2A2149549900031AFB /* LoginViewController */,
 				59465D7C2115D7DA00106020 /* CreateHouseViewController */,
@@ -670,6 +703,7 @@
 				597BCAE4214A86560092309D /* SectionHouseCollectionViewCell.xib in Resources */,
 				5968B252210DCCF90092E166 /* MainViewController.xib in Resources */,
 				594612332114D17900903478 /* construction_site.json in Resources */,
+				3B692F1F216CC5E200DE9A24 /* MapSearchHouseViewController.xib in Resources */,
 				594612352114D18300903478 /* spirit_geek.json in Resources */,
 				5960022D20FF99240042CF9F /* Login.storyboard in Resources */,
 			);
@@ -793,8 +827,10 @@
 				5924F5E1214BE9B1004DECCA /* searchMapCell.swift in Sources */,
 				59465D892115DF5F00106020 /* NavigationView.swift in Sources */,
 				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
+				3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */,
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */,
+				3B692F24216CC9D600DE9A24 /* MapSearchHouseController.swift in Sources */,
 				593526822143C8F0002A53D1 /* roomCell.swift in Sources */,
 				593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */,
 				5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */,
