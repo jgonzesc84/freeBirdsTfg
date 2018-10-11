@@ -69,7 +69,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
     
     override func viewDidAppear(_ animated: Bool) {
         setupSearchView()
-         confAcceptButton()
+        confAcceptButton()
        
     }
     func setupSearchView(){

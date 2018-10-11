@@ -28,6 +28,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         MainHelper.navStyle(view:navView)
         initView()
         controller = MapSearchHouseController(viewMap:self)
+        FireBaseManager.getHouse()
         //llamar servicio para traer casa parseadas en anotaciones TAREA CONTROLADOR
     }
     

@@ -10,6 +10,8 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import  CoreLocation
+
 private let fireManager = FireBaseManager()
 
 class FireBaseManager{
@@ -18,7 +20,7 @@ class FireBaseManager{
         return fireManager
     }
     
-      var ref = DatabaseReference()
+var ref = DatabaseReference()
     
     static func  createHouse(model : ModelHouse){
     
@@ -40,7 +42,7 @@ class FireBaseManager{
                         "image":item.image as Any,
                         "price":item.price!,
                          ] as Dictionary
-            ref.child("CASA").child(idHouse).child("ROOMLIST").child("ROOM").child(idRoom).setValue(dict)
+            ref.child("CASA").child(idHouse).child("ROOMS").child(idRoom).setValue(dict)
         }
         
     if let secciones = model.section {
@@ -50,15 +52,34 @@ class FireBaseManager{
                             "description":section.description!,
                             "image":section.image as Any,
                             ] as Dictionary
-                ref.child("CASA").child(idHouse).child("SECTIONLIST").child("SECTION").child(idSection).setValue(dict)
+                ref.child("CASA").child(idHouse).child("SECTIONS").child(idSection).setValue(dict)
             }
         } else {
         
         }
-        
-     
-
-        
+    }
+    
+    static func getHouse(){
+         let ref = Database.database().reference()
+            ref.child("CASA").observe(DataEventType.value, with:{ (snaphot) in
+            for item in snaphot.children.allObjects as! [DataSnapshot]{
+                let valores = item.value as?  [String:AnyObject]
+                let testDirection = valores!["DIRECTION"] as? [String:AnyObject]
+                let street = testDirection!["title"] as? String
+                let latitud = testDirection!["latitude"] as? Double
+                let longitude = testDirection!["longitude"] as? Double
+                let location = CLLocationCoordinate2D(latitude: latitud!, longitude: longitude!)
+                let direction = ModelDirection(title:street!, coordinate: location)
+                
+                let testSeccionList = valores!["SECTIONS"] as? [String:AnyObject]
+                //testDirection?.keys
+                
+                let numberOfItems = testDirection?.count
+                print(numberOfItems)
+                
+               
+            }
+    })
     }
     
     
