@@ -10,7 +10,11 @@ import UIKit
 import Lottie
 import Material
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController , testDelegate{
+  
+    
+    
+    
 
   
   
@@ -106,12 +110,24 @@ class MainViewController: UIViewController {
     }
     
     @IBAction func goToSearchHouse(_ sender: Any) {
-        let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
-        self.navigationController?.pushViewController(vc, animated: true)
+       
+        
+        let fire = FireBaseManager()
+        fire.delegate = self
+        fire.getHouse()
+    
+        
+        
+       
     }
     @IBAction func goToCreateHouse(_ sender: Any) {
-       // let vc = UIViewController.init(nibName: "CreateHouse", bundle: nil)
         let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func getHouseArray(array: Array<ModelHouse>?) {
+        let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
+        vc.listOfHouses = array
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }

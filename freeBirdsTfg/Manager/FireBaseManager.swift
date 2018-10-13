@@ -14,9 +14,18 @@ import  CoreLocation
 
 private let fireManager = FireBaseManager()
 
-class FireBaseManager{
+protocol testDelegate: class {
+    func getHouseArray(array: Array<ModelHouse>?)
+}
 
+class FireBaseManager{
+    
+    
+    var fullArrayHouse : ((Array<ModelHouse>) -> ())?
+    weak var delegate: testDelegate?
+    
     class var sharedInstance: FireBaseManager {
+      
         return fireManager
     }
     
@@ -59,30 +68,80 @@ var ref = DatabaseReference()
         }
     }
     
-    static func getHouse(){
-         let ref = Database.database().reference()
-            ref.child("CASA").observe(DataEventType.value, with:{ (snaphot) in
-            for item in snaphot.children.allObjects as! [DataSnapshot]{
+     func getHouse(){
+        var collectionHouse : Array<ModelHouse> = []
+        
+        let ref = Database.database().reference()
+        var cont = 0
+        ref.child("CASA").observeSingleEvent(of: DataEventType.value) { (shot) in
+             let totalHouse = shot.childrenCount
+            for item in shot.children.allObjects as! [DataSnapshot]{
                 let valores = item.value as?  [String:AnyObject]
-                let testDirection = valores!["DIRECTION"] as? [String:AnyObject]
-                let street = testDirection!["title"] as? String
-                let latitud = testDirection!["latitude"] as? Double
-                let longitude = testDirection!["longitude"] as? Double
-                let location = CLLocationCoordinate2D(latitude: latitud!, longitude: longitude!)
-                let direction = ModelDirection(title:street!, coordinate: location)
-                
-                let testSeccionList = valores!["SECTIONS"] as? [String:AnyObject]
-                //testDirection?.keys
-                
-                let numberOfItems = testDirection?.count
-                print(numberOfItems)
-                
-               
+                let direction = self.getDirection(dictio: valores!)
+                let arraySection = self.getSection(dictio: valores!)
+                let arrayRoom = self.getRoom(dictio: valores!)
+                let price = valores!["price"] as? String
+                let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
+                collectionHouse.append(fullHouse)
+                cont += 1
+                if(cont == totalHouse){
+                    self.delegate?.getHouseArray(array:  collectionHouse)
+                }
             }
-    })
+        }
+    }
+    
+    func getDirection(dictio: Dictionary<String, Any>) -> (ModelDirection){
+        let testDirection = dictio["DIRECTION"] as? [String:AnyObject]
+        let street = testDirection!["title"] as? String
+        let latitud = testDirection!["latitude"] as? Double
+        let longitude = testDirection!["longitude"] as? Double
+        let location = CLLocationCoordinate2D(latitude: latitud!, longitude: longitude!)
+        let direction = ModelDirection(title:street!, coordinate: location)
+        return direction
+    }
+    
+    func getSection(dictio : Dictionary <String, Any>) -> (Array<ModelHouseSection>){
+        let testSeccionList = dictio["SECTIONS"] as? [String:AnyObject]
+        var arraySection : Array<ModelHouseSection> = []
+        let dictio = testSeccionList?.keys
+        if let somethingDictio = dictio{
+            let componentArray = Array(somethingDictio)
+            for key in componentArray{
+                let sectionDictio = testSeccionList![key]
+                let titleSection = sectionDictio!["title"] as? String
+                let descriptionSection = sectionDictio!["description"] as? String
+                let sectionModel = ModelHouseSection()
+                sectionModel.title = titleSection!
+                sectionModel.description = descriptionSection!
+                arraySection.append(sectionModel)
+            }
+        }
+        return arraySection
+    }
+    func getRoom(dictio : Dictionary <String, Any>) -> (Array<ModelRoom>){
+        let testRoomList = dictio["ROOMS"] as? [String:AnyObject]
+        var arrayRoom : Array<ModelRoom> = []
+        let dictioRoom = testRoomList?.keys
+        let componentRoom = Array(dictioRoom!)
+        for key in componentRoom{
+            let sectionDictio = testRoomList![key]
+            let user = sectionDictio!["user"] as? String
+            let price = sectionDictio!["price"] as? String
+            let roomModel = ModelRoom()
+            roomModel.user = user!
+            roomModel.price = price!
+            arrayRoom.append(roomModel)
+        }
+        return arrayRoom
+    }
+        
+    
+        
+      
     }
     
     
     
     
-}
+

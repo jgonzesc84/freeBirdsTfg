@@ -19,6 +19,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
     
     var searchMapView : searchMapView?
     var controller : MapSearchHouseController?
+    var listOfHouses : Array <ModelHouse>?
    
       let locationManager = CLLocationManager()
     
@@ -28,7 +29,8 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         MainHelper.navStyle(view:navView)
         initView()
         controller = MapSearchHouseController(viewMap:self)
-        FireBaseManager.getHouse()
+        //let fire = FireBaseManager()
+       // fire.getHouse()
         //llamar servicio para traer casa parseadas en anotaciones TAREA CONTROLADOR
     }
     
