@@ -38,7 +38,7 @@ var ref = DatabaseReference()
     let idHouse = ref.childByAutoId().key
    
     ref.child("CASA").child(idHouse).child("PRICE").setValue(model.price)
-        
+     ref.child("CASA").child(idHouse).child("IDHOUSE").setValue(idHouse)
         if let secciones = model.section {
             for section in secciones {
                 let idSection = ref.childByAutoId().key
@@ -81,8 +81,10 @@ var ref = DatabaseReference()
                 let direction = self.getDirection(dictio: valores!)
                 let arraySection = self.getSection(dictio: valores!)
                 let arrayRoom = self.getRoom(dictio: valores!)
+                let idHouse = valores!["IDHOUSE"] as? String
                 let price = valores!["PRICE"] as? String
                 let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
+                fullHouse.idHouse = idHouse
                 collectionHouse.append(fullHouse)
                 cont += 1
                 if(cont == totalHouse){
@@ -115,6 +117,7 @@ var ref = DatabaseReference()
             var directionOk = false
             var roomOk = false
             var price = ""
+            var idHouse = ""
             var direction = ModelDirection()
             var arraySection = Array<ModelHouseSection> ()
             var arrayRoom = Array<ModelRoom>()
@@ -129,6 +132,9 @@ var ref = DatabaseReference()
                         switch key{
                         case "PRICE":
                          price = valores!["PRICE"] as! String
+                            break
+                        case "IDHOUSE":
+                            idHouse = valores!["IDHOUSE"] as! String
                             break
                         case "DIRECTION":
                               direction = self.getDirection(dictio: valores as! Dictionary<String, Any>)
@@ -148,6 +154,7 @@ var ref = DatabaseReference()
                     }
                     if(directionOk && roomOk && makeHouse){
                         let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
+                        fullHouse.idHouse = idHouse
                         self.delegate?.getNewHouse(model: fullHouse)
                     }
                 }
