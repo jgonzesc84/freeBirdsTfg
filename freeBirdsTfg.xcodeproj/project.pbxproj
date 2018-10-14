@@ -225,6 +225,7 @@
 		3B692F20216CC6C900DE9A24 /* MapSearchViewController */ = {
 			isa = PBXGroup;
 			children = (
+				593F85EB2173B07B00CBBF5B /* cell */,
 				3B692F1C216CC5E200DE9A24 /* MapSearchHouseViewController.swift */,
 				3B692F1D216CC5E200DE9A24 /* MapSearchHouseViewController.xib */,
 			);
@@ -310,6 +311,13 @@
 				5924F5E0214BE9B1004DECCA /* searchMapCell.xib */,
 			);
 			path = cells;
+			sourceTree = "<group>";
+		};
+		593F85EB2173B07B00CBBF5B /* cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		5944648A2144182800545608 /* Modal */ = {

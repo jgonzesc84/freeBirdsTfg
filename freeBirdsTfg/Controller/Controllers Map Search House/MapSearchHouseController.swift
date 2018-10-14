@@ -12,7 +12,6 @@ import MapKit
 
 class MapSearchHouseController {
     
-    
     var description: String?
     
     
@@ -21,6 +20,18 @@ class MapSearchHouseController {
     
     init(viewMap: MapSearchHouseViewController!){
         self.viewMap = viewMap
+       
+    }
+    
+    func addAnnotation(){
+        let list = viewMap?.listOfHouses
+        for item in list! {
+            let annotation = MKPointAnnotation()
+            annotation.coordinate = item.direction!.coordinate!
+            annotation.title = item.direction!.title
+            viewMap?.map.addAnnotation(annotation)
+
+        }
     }
     
     func updateCurrentPosition(manager: CLLocationManager){
@@ -54,6 +65,14 @@ class MapSearchHouseController {
             }
         })
     }
+    
+    func updateMap(model: ModelHouse) {
+    let annotation = MKPointAnnotation()
+        annotation.coordinate = model.direction!.coordinate!
+        annotation.title = model.direction!.title
+        self.viewMap?.map.addAnnotation(annotation)
+    }
+  
     
 }
 

@@ -10,14 +10,9 @@ import UIKit
 import Lottie
 import Material
 
-class MainViewController: UIViewController , testDelegate{
+class MainViewController: UIViewController , getAllHouseDelegate{
   
-    
-    
-    
 
-  
-  
     @IBOutlet weak var sepratorNavigationView: UIView!
     @IBOutlet weak var titlelabel: UILabel!
     @IBOutlet weak var searchHouseButton: Button!
@@ -25,6 +20,7 @@ class MainViewController: UIViewController , testDelegate{
     @IBOutlet weak var searchHouseView: UIView!
     @IBOutlet weak var createHouseView: UIView!
    
+    let fire = FireBaseManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +50,7 @@ class MainViewController: UIViewController , testDelegate{
         self.createHouseButton.alpha = 0
         self.giveSomeStyle(button: self.searchHouseButton)
         self.giveSomeStyle(button: self.createHouseButton)
-     
+        fire.delegate = self
     }
     func lottieAnimationHouse(){
         let animationView = LOTAnimationView(name: "construction_site")
@@ -110,15 +106,7 @@ class MainViewController: UIViewController , testDelegate{
     }
     
     @IBAction func goToSearchHouse(_ sender: Any) {
-       
-        
-        let fire = FireBaseManager()
-        fire.delegate = self
         fire.getHouse()
-    
-        
-        
-       
     }
     @IBAction func goToCreateHouse(_ sender: Any) {
         let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)
@@ -129,5 +117,8 @@ class MainViewController: UIViewController , testDelegate{
         let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
         vc.listOfHouses = array
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    func getNewHouse(model: ModelHouse) {
+        //ver comop quitar est a mierda
     }
 }
