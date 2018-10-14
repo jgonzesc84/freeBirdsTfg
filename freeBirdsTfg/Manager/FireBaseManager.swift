@@ -37,7 +37,7 @@ var ref = DatabaseReference()
     let ref = Database.database().reference()
     let idHouse = ref.childByAutoId().key
    
-    ref.child("CASA").child(idHouse).child("price").setValue(model.price)
+    ref.child("CASA").child(idHouse).child("PRICE").setValue(model.price)
         
         if let secciones = model.section {
             for section in secciones {
@@ -62,7 +62,7 @@ var ref = DatabaseReference()
              let idRoom = ref.childByAutoId().key
             let dict = ["user":item.user! ,
                         "image":item.image as Any,
-                        "price":item.price!,
+                        "PRICE":item.price!,
                          ] as Dictionary
             ref.child("CASA").child(idHouse).child("ROOMS").child(idRoom).setValue(dict)
         }
@@ -81,7 +81,7 @@ var ref = DatabaseReference()
                 let direction = self.getDirection(dictio: valores!)
                 let arraySection = self.getSection(dictio: valores!)
                 let arrayRoom = self.getRoom(dictio: valores!)
-                let price = valores!["price"] as? String
+                let price = valores!["PRICE"] as? String
                 let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
                 collectionHouse.append(fullHouse)
                 cont += 1
@@ -127,8 +127,8 @@ var ref = DatabaseReference()
                     let keys = valores?.allKeys as? Array<String>
                     for key in keys!{
                         switch key{
-                        case "price":
-                         price = valores!["price"] as! String
+                        case "PRICE":
+                         price = valores!["PRICE"] as! String
                             break
                         case "DIRECTION":
                               direction = self.getDirection(dictio: valores as! Dictionary<String, Any>)
@@ -193,7 +193,7 @@ var ref = DatabaseReference()
         for key in componentRoom{
             let sectionDictio = testRoomList![key]
             let user = sectionDictio!["user"] as? String
-            let price = sectionDictio!["price"] as? String
+            let price = sectionDictio!["PRICE"] as? String
             let roomModel = ModelRoom()
             roomModel.user = user!
             roomModel.price = price!
