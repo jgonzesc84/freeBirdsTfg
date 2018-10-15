@@ -25,6 +25,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
     var searchMapView : searchMapView?
     var controller : MapSearchHouseController?
     var listOfHouses : Array <ModelHouse>?
+    var listOfRoom : Array <ModelRoom>!
     let fire = FireBaseManager()
     let locationManager = CLLocationManager()
     
@@ -36,22 +37,34 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller = MapSearchHouseController(viewMap:self)
         controller?.addAnnotation()
         fire.delegate = self
-        fire.updateHouseMap()
-        
+       // fire.updateHouseMap()
+       
        
     }
    
     
     override func viewDidAppear(_ animated: Bool) {
           setupSearchView()
+          setupDetailHouseTableView()
           setupCurrentLocation()
+        fire.getHouseUpdated { (succes) in
+            if(succes){
+                //seguir estructira poner loader y tal
+            }
+        }
         
     }
-
+    override func viewDidDisappear(_ animated: Bool) {
+       
+    }
     func initView(){
         searchMapView = Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)![0] as? searchMapView
-        self.searchMapView?.mapView = map
-        self.map.delegate = self
+        searchMapView?.mapView = map
+        map.delegate = self
+        houseDetailTableView.delegate = self
+        houseDetailTableView.dataSource = self
+        listOfRoom = Array <ModelRoom>()
+        
        
     }
     func setupSearchView(){
@@ -63,6 +76,9 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         self.viewDidLayoutSubviews()
         let bottomConst  = NSLayoutConstraint(item: self.searchMapView!, attribute: .top, relatedBy: .equal, toItem: navView, attribute: .bottom, multiplier: 1, constant: 0)
         self.view.addConstraints([bottomConst])
+    }
+    func setupDetailHouseTableView(){
+        controller?.setupTableViewDetails()
     }
     
     func setupCurrentLocation(){
@@ -80,28 +96,38 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
        
     }
     
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        controller?.didSelectAnnotation(annotation:(view.annotation as? FBAnnotationPoint)!)
+    }
+
+    
+    //delegates methods
     func getHouseArray(array: Array<ModelHouse>?) {
-        //do nothing
+        //do nothing see change this
     }
     
     func getNewHouse(model: ModelHouse) {
         controller?.updateMap(model: model)
     }
     
+    
     /**
-     confiuguracion tableView detalle casas
+     configuración tableView detalle casas
      
      **/
-    func setupTableViewDetailHouse(){
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+        return (controller?.giveHeightForTable())! ;
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       return 1
+        
+        return listOfRoom.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        return cell
+        
+        return (controller?.drawCell(tableView: tableView, indexPath: indexPath))!
     }
     
     

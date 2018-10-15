@@ -33,6 +33,7 @@
 		593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B5C5D215ACC470013CBD1 /* ModelHouse.swift */; };
 		593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */; };
 		593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CC71B21446C440026C7F5 /* addRoomModalView.swift */; };
+		593F85F42173C08000CBBF5B /* FBAnnotationPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */; };
 		5944648C2144185000545608 /* addRoomModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5944648B2144185000545608 /* addRoomModalView.xib */; };
 		594612332114D17900903478 /* construction_site.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612322114D17800903478 /* construction_site.json */; };
 		594612352114D18300903478 /* spirit_geek.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612342114D18300903478 /* spirit_geek.json */; };
@@ -59,6 +60,9 @@
 		5960023D20FF99260042CF9F /* freeBirdsTfgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960023C20FF99260042CF9F /* freeBirdsTfgTests.swift */; };
 		5960024820FF99260042CF9F /* freeBirdsTfgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */; };
 		5968B252210DCCF90092E166 /* MainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5968B251210DCCF90092E166 /* MainViewController.xib */; };
+		5969209A2174769F0075D164 /* MapSearchHousedetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596920982174769F0075D164 /* MapSearchHousedetailCell.swift */; };
+		5969209B2174769F0075D164 /* MapSearchHousedetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596920992174769F0075D164 /* MapSearchHousedetailCell.xib */; };
+		5969209D217478530075D164 /* MapSearchHousedetailCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5969209C217478530075D164 /* MapSearchHousedetailCellController.swift */; };
 		5975AF40212441E600D0194F /* createHouseTableSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5975AF3F212441E600D0194F /* createHouseTableSection.xib */; };
 		5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5975AF422124426900D0194F /* createHouseTableSection.swift */; };
 		597BCAE0214A7C3D0092309D /* ModelHouseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BCADF214A7C3D0092309D /* ModelHouseSection.swift */; };
@@ -126,6 +130,7 @@
 		593B5C5D215ACC470013CBD1 /* ModelHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHouse.swift; sourceTree = "<group>"; };
 		593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDirection.swift; sourceTree = "<group>"; };
 		593CC71B21446C440026C7F5 /* addRoomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRoomModalView.swift; sourceTree = "<group>"; };
+		593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnnotationPoint.swift; sourceTree = "<group>"; };
 		5944648B2144185000545608 /* addRoomModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addRoomModalView.xib; sourceTree = "<group>"; };
 		594612322114D17800903478 /* construction_site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = construction_site.json; sourceTree = "<group>"; };
 		594612342114D18300903478 /* spirit_geek.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirit_geek.json; sourceTree = "<group>"; };
@@ -158,6 +163,9 @@
 		5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeBirdsTfgUITests.swift; sourceTree = "<group>"; };
 		5960024920FF99260042CF9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5968B251210DCCF90092E166 /* MainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainViewController.xib; sourceTree = "<group>"; };
+		596920982174769F0075D164 /* MapSearchHousedetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchHousedetailCell.swift; sourceTree = "<group>"; };
+		596920992174769F0075D164 /* MapSearchHousedetailCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MapSearchHousedetailCell.xib; sourceTree = "<group>"; };
+		5969209C217478530075D164 /* MapSearchHousedetailCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSearchHousedetailCellController.swift; sourceTree = "<group>"; };
 		5975AF3F212441E600D0194F /* createHouseTableSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = createHouseTableSection.xib; sourceTree = "<group>"; };
 		5975AF422124426900D0194F /* createHouseTableSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = createHouseTableSection.swift; sourceTree = "<group>"; };
 		597BCADF214A7C3D0092309D /* ModelHouseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHouseSection.swift; sourceTree = "<group>"; };
@@ -316,8 +324,19 @@
 		593F85EB2173B07B00CBBF5B /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				596920982174769F0075D164 /* MapSearchHousedetailCell.swift */,
+				596920992174769F0075D164 /* MapSearchHousedetailCell.xib */,
+				5969209C217478530075D164 /* MapSearchHousedetailCellController.swift */,
 			);
 			path = cell;
+			sourceTree = "<group>";
+		};
+		593F85F22173C03F00CBBF5B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */,
+			);
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		5944648A2144182800545608 /* Modal */ = {
@@ -415,6 +434,7 @@
 		5960022620FF99240042CF9F /* freeBirdsTfg */ = {
 			isa = PBXGroup;
 			children = (
+				593F85F22173C03F00CBBF5B /* Classes */,
 				3B692F21216CC99100DE9A24 /* Controller */,
 				59118B2B2149846800031AFB /* trash */,
 				59118B272149544A00031AFB /* Model */,
@@ -695,6 +715,7 @@
 				59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */,
 				5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */,
 				59465D832115D9A700106020 /* Navigation.xib in Resources */,
+				5969209B2174769F0075D164 /* MapSearchHousedetailCell.xib in Resources */,
 				59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */,
 				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
 				5924F5E2214BE9B1004DECCA /* searchMapCell.xib in Resources */,
@@ -833,6 +854,8 @@
 				5924F5D9214BE7D3004DECCA /* searchMapView.swift in Sources */,
 				597BCAE0214A7C3D0092309D /* ModelHouseSection.swift in Sources */,
 				5924F5E1214BE9B1004DECCA /* searchMapCell.swift in Sources */,
+				5969209A2174769F0075D164 /* MapSearchHousedetailCell.swift in Sources */,
+				5969209D217478530075D164 /* MapSearchHousedetailCellController.swift in Sources */,
 				59465D892115DF5F00106020 /* NavigationView.swift in Sources */,
 				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
 				3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */,
@@ -849,6 +872,7 @@
 				593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */,
 				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
 				593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */,
+				593F85F42173C08000CBBF5B /* FBAnnotationPoint.swift in Sources */,
 				5950CAEB21171B7C00A97B49 /* PrecioCell.swift in Sources */,
 				59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */,
 				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,

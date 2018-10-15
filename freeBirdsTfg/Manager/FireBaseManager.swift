@@ -39,15 +39,19 @@ var ref = DatabaseReference()
    
     ref.child("CASA").child(idHouse).child("PRICE").setValue(model.price)
      ref.child("CASA").child(idHouse).child("IDHOUSE").setValue(idHouse)
+        
         if let secciones = model.section {
+            var dictioTotal = Dictionary<String, Any>()
             for section in secciones {
                 let idSection = ref.childByAutoId().key
                 let dict = ["title":section.title! ,
                             "description":section.description!,
                             "image":section.image as Any,
                             ] as Dictionary
-                ref.child("CASA").child(idHouse).child("SECTIONS").child(idSection).setValue(dict)
+                dictioTotal[idSection] = dict
+                
             }
+            ref.child("CASA").child(idHouse).child("SECTIONS").setValue(dictioTotal)
         } else {
             
         }
@@ -57,15 +61,18 @@ var ref = DatabaseReference()
                 "idDirection": ref.childByAutoId().key] as Dictionary
         
         ref.child("CASA").child(idHouse).child("DIRECTION").setValue(dict)
-       
+        var dictioTotal = Dictionary<String, Any>()
         for item in model.listOfRoom! {
              let idRoom = ref.childByAutoId().key
             let dict = ["user":item.user! ,
                         "image":item.image as Any,
                         "PRICE":item.price!,
                          ] as Dictionary
-            ref.child("CASA").child(idHouse).child("ROOMS").child(idRoom).setValue(dict)
+            dictioTotal[idRoom] = dict
+            
         }
+        ref.child("CASA").child(idHouse).child("ROOMS").setValue(dictioTotal)
+        
     }
     
      func getHouse(){
@@ -73,7 +80,7 @@ var ref = DatabaseReference()
         
         let ref = Database.database().reference()
         var cont = 0
-        ref.child("CASA").observeSingleEvent(of: DataEventType.value) { (shot) in
+         ref.child("CASA").observeSingleEvent(of: DataEventType.value) { (shot) in
              let totalHouse = shot.childrenCount
             if (totalHouse != 0){
             for item in shot.children.allObjects as! [DataSnapshot]{
@@ -96,74 +103,6 @@ var ref = DatabaseReference()
             }
         }
     }
-    
-    
-    func updateHouseMap(){
-       let ref = Database.database().reference()
-        
-        ref.child("CASA").queryLimited(toLast: 1).observe(DataEventType.value, with: { (shot) in
-            /**
-             FireBase
-             problema 1: tra el último nodo el que ya esta no metrelo
-             problema 2: esta atento a cualquier cambio en el último nodo y como no se hace la inserción  del objeto
-             casa con todos sus child a la vez solo uno por uno, cuando se modifica algún child baja a ese child sin bajar los demás, pues es
-             el primero que se modifica. Por ahora se usa el swicth
-             problema 3: No se puede llamar al delegado apra que cree la anotación si no  estan todos los campos bajados de la casa por los flag
-             problema 4: repensar esto `ara el modo edición y eliminación 
-             /////////
-             revisión mira de crear el objeto casa de golpe si se puede, Entender mejor Firebase para hacer las peticiones justas restructurar base de datos (posible).
-             **/
-            var makeHouse = true
-            var directionOk = false
-            var roomOk = false
-            var price = ""
-            var idHouse = ""
-            var direction = ModelDirection()
-            var arraySection = Array<ModelHouseSection> ()
-            var arrayRoom = Array<ModelRoom>()
-            if let data = shot.value as? NSDictionary {
-                let firstLevel = data as?  [String:AnyObject]
-                 let dictioKey = firstLevel?.keys
-                 if let key = dictioKey{
-                var oneKey = Array(key)
-                    let valores = firstLevel![oneKey[0]]
-                    let keys = valores?.allKeys as? Array<String>
-                    for key in keys!{
-                        switch key{
-                        case "PRICE":
-                         price = valores!["PRICE"] as! String
-                            break
-                        case "IDHOUSE":
-                            idHouse = valores!["IDHOUSE"] as! String
-                            break
-                        case "DIRECTION":
-                              direction = self.getDirection(dictio: valores as! Dictionary<String, Any>)
-                            directionOk = true
-                            break
-                        case "ROOMS":
-                             arrayRoom = self.getRoom(dictio: valores! as! Dictionary<String, Any>)
-                             roomOk = true
-                            break
-                        case "SECTIONS":
-                             arraySection = self.getSection(dictio: valores as! Dictionary<String, Any>)
-                            break
-                        default:
-                             makeHouse = false
-                            break
-                        }
-                    }
-                    if(directionOk && roomOk && makeHouse){
-                        let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
-                        fullHouse.idHouse = idHouse
-                        self.delegate?.getNewHouse(model: fullHouse)
-                    }
-                }
-            }
-        }) { (Error) in
-            
-        }
-    }
-    
     func getDirection(dictio: Dictionary<String, Any>) -> (ModelDirection){
         let testDirection = dictio["DIRECTION"] as? [String:AnyObject]
         let street = testDirection!["title"] as? String
@@ -204,12 +143,99 @@ var ref = DatabaseReference()
             let roomModel = ModelRoom()
             roomModel.user = user!
             roomModel.price = price!
+           
             arrayRoom.append(roomModel)
         }
         return arrayRoom
     }
-        
+   /* func getRoomUpdate(dictio : Dictionary <String, Any>) -> ( Dictionary <String, Any>){
+        let testRoomList = dictio["ROOMS"] as? [String:AnyObject]
+        let dictioRoom = testRoomList?.keys
+        var dictio = Dictionary <String , Any>()
+        let componentRoom = Array(dictioRoom!)
+        for key in componentRoom{
+            let sectionDictio = testRoomList![key]
+            let user = sectionDictio!["user"] as? String
+            let price = sectionDictio!["PRICE"] as? String
+            let freeRooms = sectionDictio!["FreeRooms"] as? String
+            let roomModel = ModelRoom()
+            roomModel.user = user!
+            roomModel.price = price!
+            dictio["model"] = roomModel
+            dictio["order"] = freeRooms
+            
+        }
+        return dictio
+    }*/
     
+    
+    /*
+     dictio["model"] = roomModel
+     dictio["order"] = freeRooms
+     let freeRooms = sectionDictio!["FreeRooms "] as? String
+     //et fullNameArr = fullName.components(separatedBy: " ")
+     /* let splitArray = freeRooms?.components(separatedBy:"-")
+     let order = splitArray?[0]
+     let totalRoom = splitArray?[1]*/
+ 
+ */
+    func getHouseUpdated(completion: @escaping (Bool) -> ()){
+          let ref = Database.database().reference()
+        var makeHouse = true
+        var directionOk = false
+        var roomOk = false
+        var price = ""
+        var idHouse = ""
+        var direction = ModelDirection()
+         var arrayRoom = Array<ModelRoom> ()
+        var arraySection = Array<ModelHouseSection> ()
+          ref.child("CASA").queryLimited(toLast: 1).observe(DataEventType.value, with: { shot in
+            if let data = shot.value as? NSDictionary {
+                let firstLevel = data as?  [String:AnyObject]
+                let dictioKey = firstLevel?.keys
+                if let key = dictioKey{
+                    var oneKey = Array(key)
+                    let valores = firstLevel![oneKey[0]]
+                    let keys = valores?.allKeys as? Array<String>
+                    for key in keys!{
+                        switch key{
+                        case "PRICE":
+                            price = valores!["PRICE"] as! String
+                            break
+                        case "IDHOUSE":
+                            idHouse = valores!["IDHOUSE"] as! String
+                            break
+                        case "DIRECTION":
+                            direction = self.getDirection(dictio: valores as! Dictionary<String, Any>)
+                            directionOk = true
+                            break
+                        case "ROOMS":
+                           arrayRoom = self.getRoom(dictio: valores! as! Dictionary<String, Any>)
+                           roomOk = true
+                            break
+                        case "SECTIONS":
+                            arraySection = self.getSection(dictio: valores as! Dictionary<String, Any>)
+                            break
+                        default:
+                            makeHouse = false
+                            break
+                        }
+                    }
+                    if(directionOk && roomOk && makeHouse){
+                        let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
+                        fullHouse.idHouse = idHouse
+                        self.delegate?.getNewHouse(model: fullHouse)
+                        makeHouse = true
+                        roomOk = false
+                        directionOk = false
+                    }
+                }
+            }
+        
+            completion(true)
+        })
+    }
+  
         
       
     }

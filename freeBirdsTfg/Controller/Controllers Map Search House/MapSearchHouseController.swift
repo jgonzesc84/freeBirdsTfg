@@ -13,10 +13,11 @@ import MapKit
 class MapSearchHouseController {
     
     var description: String?
-    
+    var tableIsVisible = false
     
     var viewMap : MapSearchHouseViewController?
      let locationManager = CLLocationManager()
+     var rooms = Array <ModelRoom>()
     
     init(viewMap: MapSearchHouseViewController!){
         self.viewMap = viewMap
@@ -26,7 +27,8 @@ class MapSearchHouseController {
     func addAnnotation(){
         let list = viewMap?.listOfHouses
         for item in list! {
-            let annotation = MKPointAnnotation()
+            let annotation = FBAnnotationPoint()
+            annotation.idHouse = item.idHouse
             annotation.coordinate = item.direction!.coordinate!
             annotation.title = item.direction!.title
             viewMap?.map.addAnnotation(annotation)
@@ -49,12 +51,7 @@ class MapSearchHouseController {
                 region.center = annotation.coordinate
                 region.span.longitudeDelta = 0.004
                 region.span.latitudeDelta = 0.002
-               /* if ((self.viewMap?.map.annotations.count)! > 0){
-                    let anot = self.viewMap?.map!.annotations[0]
-                    self.viewMap?.map.removeAnnotation(anot!)
-                }*/
                 self.viewMap?.map.setRegion(region, animated: true)
-               // self.viewMap?.map.addAnnotation(annotation)
                 self.viewMap?.searchMapView?.searchDirectionBar.text = annotation.title
                 
             }
@@ -67,11 +64,76 @@ class MapSearchHouseController {
     }
     
     func updateMap(model: ModelHouse) {
-    let annotation = MKPointAnnotation()
+    let annotation = FBAnnotationPoint()
         annotation.coordinate = model.direction!.coordinate!
         annotation.title = model.direction!.title
+        annotation.idHouse = model.idHouse
         self.viewMap?.map.addAnnotation(annotation)
+        self.viewMap?.listOfHouses?.append(model)
     }
+    
+    func didSelectAnnotation(annotation: FBAnnotationPoint ){
+        //poner anotacion en posicion y rellenar celdas con las habitaciones garcias al idHouse
+        /*
+         MKMapRect r = [mapView visibleMapRect];
+         MKMapPoint pt = MKMapPointForCoordinate([annotation coordinate]);
+         r.origin.x = pt.x - r.size.width * 0.5;
+         r.origin.y = pt.y - r.size.height * 0.25;
+         [mapView setVisibleMapRect:r animated:YES];
+       */
+        //el esconder la tabla será cuando el usuario mueva el mapa no aqui
+        sizeTable(show : false)
+        let id = annotation.idHouse
+        var array = viewMap?.listOfHouses?.filter({ (ModelHouse) -> Bool in
+            return ModelHouse.idHouse == id
+        })
+        let house = array![0]
+        rooms = house.listOfRoom!
+        viewMap!.listOfRoom = rooms
+        viewMap!.houseDetailTableView.reloadData()
+        sizeTable(show : true)
+    }
+    
+    func setupTableViewDetails(){
+        viewMap!.houseDetailTableView.separatorStyle = UITableViewCellSeparatorStyle .none
+         viewMap?.houseDetailTableView.register(UINib(nibName:"MapSearchHousedetailCell", bundle: nil), forCellReuseIdentifier: "detailCell")
+    }
+    
+    func sizeTable(show : Bool){
+      
+        if(show && !tableIsVisible){
+            UIView.animate(withDuration: 1) {
+                  self.viewMap!.houseDetailTableView.center.y -= 240
+                self.viewMap!.houseDetailTableViewConstraint.constant = 240
+                self.tableIsVisible = true
+            }
+        }else{
+            UIView.animate(withDuration: 1) {
+                 self.viewMap!.houseDetailTableView.center.y += 240
+                self.viewMap!.houseDetailTableViewConstraint.constant = 0
+                self.tableIsVisible = false
+
+            }
+        }
+        
+    }
+    
+    func giveHeightForTable() -> CGFloat{
+        return 240
+        
+    }
+    
+    func drawCell(tableView : UITableView , indexPath: IndexPath) -> (MapSearchHousedetailCell){
+       
+        let cell : MapSearchHousedetailCell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! MapSearchHousedetailCell
+        cell.resetCell()
+        let model = rooms[indexPath.row]
+        cell.configureCell(model: model)
+        return cell
+    }
+
+    
+    
   
     
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" restorationIdentifier="MapSearchHousedetailCell" selectionStyle="default" indentationWidth="10" rowHeight="237" id="KGk-i7-Jjw" customClass="MapSearchHousedetailCell" customModule="freeBirdsTfg" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="237"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="383" height="236.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IcM-QE-ux6">
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="240.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevenRoom Ico" translatesAutoresizingMaskIntoConstraints="NO" id="4YF-XF-gvv">
+                                <rect key="frame" x="40" y="14.5" width="303" height="186"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7l-Ox-iOc">
+                                <rect key="frame" x="170.5" y="208" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="J7l-Ox-iOc" secondAttribute="bottom" constant="11.5" id="3Lw-Gd-P4a"/>
+                            <constraint firstItem="J7l-Ox-iOc" firstAttribute="centerX" secondItem="IcM-QE-ux6" secondAttribute="centerX" id="Afo-Nk-uoA"/>
+                            <constraint firstAttribute="trailing" secondItem="4YF-XF-gvv" secondAttribute="trailing" constant="40" id="OKL-hx-kv8"/>
+                            <constraint firstAttribute="height" constant="240" id="Ppd-hb-0vQ"/>
+                            <constraint firstItem="4YF-XF-gvv" firstAttribute="leading" secondItem="IcM-QE-ux6" secondAttribute="leading" constant="40" id="PwL-hv-kvM"/>
+                            <constraint firstItem="4YF-XF-gvv" firstAttribute="top" secondItem="IcM-QE-ux6" secondAttribute="top" constant="14" id="QEc-aM-1YX"/>
+                            <constraint firstAttribute="bottom" secondItem="4YF-XF-gvv" secondAttribute="bottom" constant="40" id="XS8-Ai-reT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="IcM-QE-ux6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Evj-yb-tcS"/>
+                    <constraint firstAttribute="trailing" secondItem="IcM-QE-ux6" secondAttribute="trailing" id="HGJ-JX-YCC"/>
+                    <constraint firstItem="IcM-QE-ux6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ev3-60-fHi"/>
+                    <constraint firstAttribute="bottom" secondItem="IcM-QE-ux6" secondAttribute="bottom" id="xg5-dK-YQa"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="imageRoomView" destination="4YF-XF-gvv" id="Ssl-DU-0M4"/>
+                <outlet property="priceLabel" destination="J7l-Ox-iOc" id="iID-1W-Tuc"/>
+            </connections>
+            <point key="canvasLocation" x="188" y="189.3553223388306"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="stevenRoom Ico" width="100" height="56"/>
+    </resources>
+</document>

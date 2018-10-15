@@ -89,6 +89,11 @@ class MainHelper{
         label.font = UIFont .AppFont.middleFont.middlWord
         
     }
+    static func giveMeWhiteStyleLabel(label: UILabel){
+        label.textColor = UIColor .white
+        label.font = UIFont .AppFont.middleFont.middlWord
+        
+    }
     
    static func giveMeStyle(button : Button){
         button.layer.cornerRadius = 10
