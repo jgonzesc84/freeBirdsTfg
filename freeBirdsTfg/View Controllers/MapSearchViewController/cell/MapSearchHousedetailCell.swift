@@ -22,6 +22,9 @@ class MapSearchHousedetailCell: UITableViewCell {
     
     func initView(){
         MainHelper.giveMeStyle(label:priceLabel)
+// view.layer.shadowRadius = 2
+        priceLabel.font = UIFont .AppFont.titleFont.titleFontSolid
+        priceLabel.textColor = UIColor .white
         imageRoomView.layer.cornerRadius = imageRoomView.frame.height / 4
         MainHelper.borderShadowRedonde(view: imageRoomView)
         self.selectionStyle = UITableViewCellSelectionStyle .none

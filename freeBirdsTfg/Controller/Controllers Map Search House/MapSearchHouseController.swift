@@ -14,6 +14,8 @@ class MapSearchHouseController {
     
     var description: String?
     var tableIsVisible = false
+    var userInteraction = false
+    var tableViewHeight : CGFloat?
     
     var viewMap : MapSearchHouseViewController?
      let locationManager = CLLocationManager()
@@ -36,6 +38,16 @@ class MapSearchHouseController {
         }
     }
     
+    func userScrollMap(){
+        
+        if(userInteraction){
+            userInteraction = false
+        }else{
+            
+            sizeTable(show : false)
+        }
+    }
+    
     func updateCurrentPosition(manager: CLLocationManager){
         guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
         let annotation = MKPointAnnotation()
@@ -53,7 +65,6 @@ class MapSearchHouseController {
                 region.span.latitudeDelta = 0.002
                 self.viewMap?.map.setRegion(region, animated: true)
                 self.viewMap?.searchMapView?.searchDirectionBar.text = annotation.title
-                
             }
             else {
                 annotation.title = "Unknown Place"
@@ -72,17 +83,36 @@ class MapSearchHouseController {
         self.viewMap?.listOfHouses?.append(model)
     }
     
+    func configureAnnotation(mapView: MKMapView, annotation:MKAnnotation) -> MKAnnotationView?{
+        
+        let annotationID = "annotationID"
+        var annotationView : FBAnnotationView?
+        
+        if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationID) {
+            annotationView = dequeuedAnnotationView as? FBAnnotationView
+            annotationView?.annotation = annotation
+        }else{
+            annotationView = FBAnnotationView(annotation: annotation, reuseIdentifier: annotationID)
+        }
+        if let annotationView = annotationView {
+            annotationView.image = UIImage(named:"houseIcon2")
+        }
+        return annotationView
+        
+    }
+    
     func didSelectAnnotation(annotation: FBAnnotationPoint ){
-        //poner anotacion en posicion y rellenar celdas con las habitaciones garcias al idHouse
-        /*
-         MKMapRect r = [mapView visibleMapRect];
-         MKMapPoint pt = MKMapPointForCoordinate([annotation coordinate]);
-         r.origin.x = pt.x - r.size.width * 0.5;
-         r.origin.y = pt.y - r.size.height * 0.25;
-         [mapView setVisibleMapRect:r animated:YES];
-       */
-        //el esconder la tabla será cuando el usuario mueva el mapa no aqui
-        sizeTable(show : false)
+      
+        userInteraction = true
+        var MapRect =  self.viewMap?.map.visibleMapRect
+        let MapPoint = MKMapPointForCoordinate(annotation.coordinate)
+        
+        MapRect!.origin.x = MapPoint.x - MapRect!.size.width * 0.5
+        MapRect!.origin.y = MapPoint.y - MapRect!.size.height * 0.60
+        
+        
+        self.viewMap?.map.setVisibleMapRect(MapRect!, animated: true)
+        
         let id = annotation.idHouse
         var array = viewMap?.listOfHouses?.filter({ (ModelHouse) -> Bool in
             return ModelHouse.idHouse == id
@@ -90,36 +120,45 @@ class MapSearchHouseController {
         let house = array![0]
         rooms = house.listOfRoom!
         viewMap!.listOfRoom = rooms
-        viewMap!.houseDetailTableView.reloadData()
+        
+        UIView.transition(with:  viewMap!.houseDetailTableView,
+                          duration: 1,
+                          options: .transitionCurlUp,
+                          animations: {  self.viewMap!.houseDetailTableView.reloadData() })
         sizeTable(show : true)
     }
     
     func setupTableViewDetails(){
         viewMap!.houseDetailTableView.separatorStyle = UITableViewCellSeparatorStyle .none
-         viewMap?.houseDetailTableView.register(UINib(nibName:"MapSearchHousedetailCell", bundle: nil), forCellReuseIdentifier: "detailCell")
+        viewMap?.houseDetailTableView.register(UINib(nibName:"MapSearchHousedetailCell", bundle: nil), forCellReuseIdentifier: "detailCell")
     }
     
     func sizeTable(show : Bool){
       
-        if(show && !tableIsVisible){
-            UIView.animate(withDuration: 1) {
-                  self.viewMap!.houseDetailTableView.center.y -= 240
-                self.viewMap!.houseDetailTableViewConstraint.constant = 240
-                self.tableIsVisible = true
+        if(show ){
+            if(!tableIsVisible){
+                UIView.animate(withDuration: 1) {
+                    self.viewMap!.houseDetailTableView.center.y -= (self.viewMap?.map.frame.size.height)! * 0.35
+                    self.viewMap!.houseDetailTableViewConstraint.constant = (self.viewMap?.map.frame.size.height)! * 0.35
+                    self.tableIsVisible = true
+                }
             }
+            
         }else{
-            UIView.animate(withDuration: 1) {
-                 self.viewMap!.houseDetailTableView.center.y += 240
+            UIView.animate(withDuration: 1
+                , animations: {
+                    self.viewMap!.houseDetailTableView.center.y += (self.viewMap?.map.frame.size.height)! * 0.35
+                    self.tableIsVisible = false
+            }) { (finished: Bool) in
                 self.viewMap!.houseDetailTableViewConstraint.constant = 0
-                self.tableIsVisible = false
-
             }
         }
         
     }
     
     func giveHeightForTable() -> CGFloat{
-        return 240
+       tableViewHeight = (self.viewMap?.map.frame.size.height)! * 0.3
+        return (self.viewMap?.map.frame.size.height)! * 0.35
         
     }
     

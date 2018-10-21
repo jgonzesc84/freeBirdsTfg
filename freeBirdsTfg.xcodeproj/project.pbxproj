@@ -34,6 +34,7 @@
 		593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */; };
 		593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CC71B21446C440026C7F5 /* addRoomModalView.swift */; };
 		593F85F42173C08000CBBF5B /* FBAnnotationPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */; };
+		5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59421429217C877A001EB275 /* FBAnnotationView.swift */; };
 		5944648C2144185000545608 /* addRoomModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5944648B2144185000545608 /* addRoomModalView.xib */; };
 		594612332114D17900903478 /* construction_site.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612322114D17800903478 /* construction_site.json */; };
 		594612352114D18300903478 /* spirit_geek.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612342114D18300903478 /* spirit_geek.json */; };
@@ -131,6 +132,7 @@
 		593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDirection.swift; sourceTree = "<group>"; };
 		593CC71B21446C440026C7F5 /* addRoomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRoomModalView.swift; sourceTree = "<group>"; };
 		593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnnotationPoint.swift; sourceTree = "<group>"; };
+		59421429217C877A001EB275 /* FBAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnnotationView.swift; sourceTree = "<group>"; };
 		5944648B2144185000545608 /* addRoomModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addRoomModalView.xib; sourceTree = "<group>"; };
 		594612322114D17800903478 /* construction_site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = construction_site.json; sourceTree = "<group>"; };
 		594612342114D18300903478 /* spirit_geek.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirit_geek.json; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			isa = PBXGroup;
 			children = (
 				593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */,
+				59421429217C877A001EB275 /* FBAnnotationView.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -859,6 +862,7 @@
 				59465D892115DF5F00106020 /* NavigationView.swift in Sources */,
 				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
 				3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */,
+				5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */,
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */,
 				3B692F24216CC9D600DE9A24 /* MapSearchHouseController.swift in Sources */,

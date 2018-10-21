@@ -15,18 +15,18 @@
         <tableViewCell contentMode="scaleToFill" restorationIdentifier="MapSearchHousedetailCell" selectionStyle="default" indentationWidth="10" rowHeight="237" id="KGk-i7-Jjw" customClass="MapSearchHousedetailCell" customModule="freeBirdsTfg" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="383" height="237"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="383" height="236.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IcM-QE-ux6">
-                        <rect key="frame" x="0.0" y="0.0" width="383" height="240.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="383" height="236.5"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevenRoom Ico" translatesAutoresizingMaskIntoConstraints="NO" id="4YF-XF-gvv">
-                                <rect key="frame" x="40" y="14.5" width="303" height="186"/>
+                                <rect key="frame" x="40" y="14" width="303" height="182.5"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J7l-Ox-iOc">
-                                <rect key="frame" x="170.5" y="208" width="42" height="21"/>
+                                <rect key="frame" x="170.5" y="95" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -34,12 +34,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="J7l-Ox-iOc" secondAttribute="bottom" constant="11.5" id="3Lw-Gd-P4a"/>
-                            <constraint firstItem="J7l-Ox-iOc" firstAttribute="centerX" secondItem="IcM-QE-ux6" secondAttribute="centerX" id="Afo-Nk-uoA"/>
+                            <constraint firstItem="J7l-Ox-iOc" firstAttribute="centerY" secondItem="4YF-XF-gvv" secondAttribute="centerY" id="7b7-iq-gmX"/>
                             <constraint firstAttribute="trailing" secondItem="4YF-XF-gvv" secondAttribute="trailing" constant="40" id="OKL-hx-kv8"/>
-                            <constraint firstAttribute="height" constant="240" id="Ppd-hb-0vQ"/>
                             <constraint firstItem="4YF-XF-gvv" firstAttribute="leading" secondItem="IcM-QE-ux6" secondAttribute="leading" constant="40" id="PwL-hv-kvM"/>
                             <constraint firstItem="4YF-XF-gvv" firstAttribute="top" secondItem="IcM-QE-ux6" secondAttribute="top" constant="14" id="QEc-aM-1YX"/>
+                            <constraint firstItem="J7l-Ox-iOc" firstAttribute="centerX" secondItem="4YF-XF-gvv" secondAttribute="centerX" id="Tac-At-gTV"/>
                             <constraint firstAttribute="bottom" secondItem="4YF-XF-gvv" secondAttribute="bottom" constant="40" id="XS8-Ai-reT"/>
                         </constraints>
                     </view>

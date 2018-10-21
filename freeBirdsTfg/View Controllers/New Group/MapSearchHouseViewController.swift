@@ -95,11 +95,24 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
        controller?.updateCurrentPosition(manager: manager)
        
     }
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+      return  controller?.configureAnnotation(mapView: mapView, annotation: annotation)
+    }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         controller?.didSelectAnnotation(annotation:(view.annotation as? FBAnnotationPoint)!)
     }
 
+  //  - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        controller?.userScrollMap()
+    }
+    
+   /* func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        controller?.userScrollMap()
+        //metodo que cunado se hay contemplado la animacion vuelva a salir las habitatciones despues de esconderse?
+    }*/
+    
     
     //delegates methods
     func getHouseArray(array: Array<ModelHouse>?) {
