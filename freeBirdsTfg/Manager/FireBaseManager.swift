@@ -17,23 +17,51 @@ private let fireManager = FireBaseManager()
  protocol getAllHouseDelegate: class {
      func getHouseArray(array: Array<ModelHouse>?)
      func getNewHouse(model: ModelHouse)
+     func isActiveSession(active: Bool )
 }
 
 class FireBaseManager{
-    
-    
-    var fullArrayHouse : ((Array<ModelHouse>) -> ())?
+    //MARK: propiedades
+   //TODO cargarse el delegado y poner un clousure!!
+    public var userAuth: ((Bool) -> ())?
     weak var delegate: getAllHouseDelegate?
+    var ref = DatabaseReference()
+    var fullArrayHouse : ((Array<ModelHouse>) -> ())?
     
+    //MARK: singleTon
     class var sharedInstance: FireBaseManager {
-      
+        
         return fireManager
     }
     
-var ref = DatabaseReference()
+    //MARK: registro y session
+    static func registerUser() {
+
+    }
     
+     func initSession() -> Bool{
+        let sessionActive = false
+       
+        return sessionActive
+    }
+    //(completion: @escaping (Bool) -> ())
+   func isSessionActive(){
+    var sessionActive = false
+    Auth.auth().addStateDidChangeListener {  (auth, user) in
+        if user == nil
+        {
+            sessionActive = false
+        }else{
+            sessionActive = true
+            //aqui guarara el objeto user o auth?¿ en un manager usuario
+        }
+        self.delegate?.isActiveSession(active: sessionActive)
+    }
+    
+    
+    }
+    // MARK: Creacion casa
     static func  createHouse(model : ModelHouse){
-    
     let ref = Database.database().reference()
     let idHouse = ref.childByAutoId().key
    

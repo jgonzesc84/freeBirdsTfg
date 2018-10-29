@@ -10,7 +10,7 @@ import UIKit
 import Lottie
 import Material
 
-class MainViewController: UIViewController , getAllHouseDelegate{
+class MainViewController: UIViewController {
   
 
     @IBOutlet weak var sepratorNavigationView: UIView!
@@ -113,6 +113,15 @@ class MainViewController: UIViewController , getAllHouseDelegate{
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
+   
+   
+}
+
+extension  MainViewController : getAllHouseDelegate{
+    
+    func isActiveSession(active: Bool) {
+        
+    }
     func getHouseArray(array: Array<ModelHouse>?) {
         let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
         vc.listOfHouses = array
@@ -121,4 +130,6 @@ class MainViewController: UIViewController , getAllHouseDelegate{
     func getNewHouse(model: ModelHouse) {
         //ver comop quitar est a mierda
     }
+    
+    
 }

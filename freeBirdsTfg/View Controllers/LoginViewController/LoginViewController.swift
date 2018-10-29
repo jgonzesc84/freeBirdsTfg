@@ -14,77 +14,40 @@ import FirebaseAuth
 class LoginViewController: UIViewController {
     
 
+    @IBOutlet weak var labelPassw: UILabel!
+    @IBOutlet weak var labelUser: UILabel!
+    @IBOutlet weak var labelLogin: UILabel!
     @IBOutlet weak var control: UISegmentedControl!
     @IBOutlet weak var userTextField: TextField!
     @IBOutlet weak var passTextField: TextField!
     @IBOutlet weak var loginButton: Button!
+    @IBOutlet weak var loginContainerInnerView: UIView!
+
+    var controller : LoginController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        loginAllTheTime()
+        controller = LoginController(viewLogin:self)
+         initView()
     }
     
+   
     override func viewDidAppear(_ animated: Bool) {
-        initView()
+       
+        
     }
-
+   
     func initView(){
-    userTextField.clearIconButton?.tintColor = UIColor .blue
-    passTextField.visibilityIconButton?.tintColor = UIColor .blue
-    }
-    func loginAllTheTime(){
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if user == nil
-            {
-              
-            }else{
-           self.goHome()
-            }
-    }
+        controller!.Style()
     }
  
     @IBAction func loginAction(_ sender: Any) {
         
-        if userTextField.text != "" && passTextField.text != "" {
-            
-            if control.selectedSegmentIndex == 0{
-                Auth.auth().createUser(withEmail:userTextField.text!, password: passTextField.text!) { (user, error) in
-                    if user != nil
-                    {
-                       self.goHome()
-                        
-                    }else{
-                        //ERROR IMPLEMETAR ALERTA SI NO SE HA CONSEGUIDO LOGUEAER
-                     self.showError(error: error!)
-                    }
-            }
-        
-            }else{
-                Auth.auth().signIn(withEmail: userTextField.text!, password: passTextField.text!) { (user, error) in
-                    if user != nil
-                    {
-                        self.goHome()
-                    }else{
-                      
-                        self.showError(error: error!)
-                    }
-                }
-                
-                
-            }
-            
-        }else{
-            //MATERIAL PONER MENSAJES DE EERROR
-        }
-        
+        controller?.buttonAction()
+    
     }
     
-    func goHome(){
-        let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-        let vc = UINavigationController(rootViewController: Objvc)
-        self.present(vc, animated: true) {
-        }
-    }
+   
     func showError(error:Error){
        let myError = error.localizedDescription
             print(myError)
