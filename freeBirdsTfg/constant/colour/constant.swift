@@ -15,10 +15,11 @@ extension UIColor {
     struct AppColor {
         struct Green {
             static let mindApp = UIColor().colorFromHex("BEEAE0")
+            static let greenDinosaur = UIColor().colorFromHex("007a88")
         }
         
         struct Blue {
-            
+            static let blueDinosaur = UIColor().colorFromHex("1d285a")
         }
         
         struct Violet {

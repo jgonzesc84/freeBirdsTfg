@@ -18,7 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-        
+        let attr = NSDictionary(object: UIFont(name: "SkaterGirlsRock", size: 16.0)!, forKey: NSAttributedStringKey.font as NSCopying)
+        UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] , for: .normal)
         return true
     }
 
@@ -46,4 +47,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
 

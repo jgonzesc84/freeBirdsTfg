@@ -17,6 +17,7 @@ extension UIFont{
             static let titleFontShadow = UIFont (name:"KGHAPPYShadows" , size: 23)
             static let titleFontSolid = UIFont (name:"KGHAPPYSolid" , size: 23)
             static let navTitleFont = UIFont (name:"KGHAPPY" , size: 26)
+             static let startTitleFontSolid = UIFont (name:"KGHAPPYSolid" , size: 34)
         }
         
         struct middleFont {

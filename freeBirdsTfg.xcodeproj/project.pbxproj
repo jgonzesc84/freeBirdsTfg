@@ -49,6 +49,7 @@
 		59465D892115DF5F00106020 /* NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59465D882115DF5F00106020 /* NavigationView.swift */; };
 		59465D8C21163E0800106020 /* CreateHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59465D8A21163E0800106020 /* CreateHouse.swift */; };
 		59465D8D21163E0800106020 /* CreateHouse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59465D8B21163E0800106020 /* CreateHouse.xib */; };
+		5948EC692185D6B000E787B5 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5948EC682185D6B000E787B5 /* LoginController.swift */; };
 		5950CAE42117083800A97B49 /* CreateHouseTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAE32117083800A97B49 /* CreateHouseTableView.xib */; };
 		5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5950CAE52117088800A97B49 /* CreateHouseTableViewController.swift */; };
 		5950CAE821170FD200A97B49 /* FontYo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5950CAE721170FD200A97B49 /* FontYo.swift */; };
@@ -73,6 +74,8 @@
 		597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BCAE1214A86560092309D /* SectionHouseCollectionViewCell.swift */; };
 		597BCAE4214A86560092309D /* SectionHouseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597BCAE2214A86560092309D /* SectionHouseCollectionViewCell.xib */; };
 		59972E842146EAE700001B27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59972E832146EAE700001B27 /* BaseViewController.swift */; };
+		59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */; };
+		59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */; };
 		59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C277EF2143DD09006CDBC4 /* mainHelper.swift */; };
 		59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
 		59E8125E2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
@@ -150,6 +153,7 @@
 		59465D882115DF5F00106020 /* NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationView.swift; sourceTree = "<group>"; };
 		59465D8A21163E0800106020 /* CreateHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHouse.swift; sourceTree = "<group>"; };
 		59465D8B21163E0800106020 /* CreateHouse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouse.xib; sourceTree = "<group>"; };
+		5948EC682185D6B000E787B5 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		5950CAE32117083800A97B49 /* CreateHouseTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateHouseTableView.xib; sourceTree = "<group>"; };
 		5950CAE52117088800A97B49 /* CreateHouseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateHouseTableViewController.swift; sourceTree = "<group>"; };
 		5950CAE721170FD200A97B49 /* FontYo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontYo.swift; sourceTree = "<group>"; };
@@ -180,6 +184,8 @@
 		597BCAE1214A86560092309D /* SectionHouseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHouseCollectionViewCell.swift; sourceTree = "<group>"; };
 		597BCAE2214A86560092309D /* SectionHouseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHouseCollectionViewCell.xib; sourceTree = "<group>"; };
 		59972E832146EAE700001B27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaViewController.swift; sourceTree = "<group>"; };
+		59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAplhaAnimation.json; sourceTree = "<group>"; };
 		59C277EF2143DD09006CDBC4 /* mainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainHelper.swift; sourceTree = "<group>"; };
 		59E8125C2100F74C0071B018 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPYShadows.ttf; sourceTree = "<group>"; };
@@ -251,6 +257,7 @@
 		3B692F21216CC99100DE9A24 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5948EC672185D68C00E787B5 /* LoginController */,
 				3B692F22216CC9A100DE9A24 /* Controllers Map Search House */,
 			);
 			path = Controller;
@@ -404,6 +411,14 @@
 			path = colour;
 			sourceTree = "<group>";
 		};
+		5948EC672185D68C00E787B5 /* LoginController */ = {
+			isa = PBXGroup;
+			children = (
+				5948EC682185D6B000E787B5 /* LoginController.swift */,
+			);
+			path = LoginController;
+			sourceTree = "<group>";
+		};
 		5950CAE02117064000A97B49 /* CreateHouse */ = {
 			isa = PBXGroup;
 			children = (
@@ -511,9 +526,18 @@
 			path = HouseSectionCell;
 			sourceTree = "<group>";
 		};
+		59A50A6C21864E9D00ACE75B /* AlphaViewController */ = {
+			isa = PBXGroup;
+			children = (
+				59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */,
+			);
+			path = AlphaViewController;
+			sourceTree = "<group>";
+		};
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				59A50A6C21864E9D00ACE75B /* AlphaViewController */,
 				3B692F20216CC6C900DE9A24 /* MapSearchViewController */,
 				5924F5D7214BE5DB004DECCA /* MapViewController */,
 				59118B2A2149549900031AFB /* LoginViewController */,
@@ -575,6 +599,7 @@
 		59FEB80F210F99C400901D62 /* lottie */ = {
 			isa = PBXGroup;
 			children = (
+				59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */,
 				5950CAEE211720CA00A97B49 /* checkAnimation.json */,
 				59465D862115DEA500106020 /* backAnimation.json */,
 				5946123A2114F91400903478 /* spirit_geekGray.json */,
@@ -729,6 +754,7 @@
 				59118B2F2149859400031AFB /* HouseSectionCell.xib in Resources */,
 				5950CAE42117083800A97B49 /* CreateHouseTableView.xib in Resources */,
 				59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */,
+				59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */,
 				59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */,
 				59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */,
 				5935267E2143C65E002A53D1 /* roomCell.xib in Resources */,
@@ -893,6 +919,7 @@
 				593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */,
 				594612392114E64E00903478 /* constant.swift in Sources */,
 				593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */,
+				59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */,
 				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
 				3BB44E2F217E0F3D00D610DF /* ModalCompleteHouseController.swift in Sources */,
 				593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */,
@@ -907,6 +934,7 @@
 				3B303B82215A34380002A7CA /* showLocalizationCell.swift in Sources */,
 				595594592151A41A006490D5 /* Direction.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
+				5948EC692185D6B000E787B5 /* LoginController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

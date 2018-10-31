@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLocationManagerDelegate,  getAllHouseDelegate, UITableViewDelegate, UITableViewDataSource {
+class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
    
    
     @IBOutlet weak var navView: UIView!
@@ -37,7 +37,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller = MapSearchHouseController(viewMap:self)
         controller?.addAnnotation()
         fire.delegate = self
-       // fire.updateHouseMap()
+      //fire.updateHouseMap()
        
        
     }
@@ -47,7 +47,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
           setupSearchView()
           setupDetailHouseTableView()
           setupCurrentLocation()
-        fire.getHouseUpdated { (succes) in
+         fire.getHouseUpdated { (succes) in
             if(succes){
                 //seguir estructira poner loader y tal
             }
@@ -113,15 +113,16 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         //metodo que cunado se hay contemplado la animacion vuelva a salir las habitatciones despues de esconderse?
     }*/
     
+    func delegateGetAllHouseDelegate(model: ModelHouse){
+        
+    }
     
     //delegates methods
     func getHouseArray(array: Array<ModelHouse>?) {
         //do nothing see change this
     }
     
-    func getNewHouse(model: ModelHouse) {
-        controller?.updateMap(model: model)
-    }
+    
     
     
     /**
@@ -144,4 +145,15 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
     }
     
     
+}
+
+extension MapSearchHouseViewController : getAllHouseDelegate {
+    
+    func isActiveSession(active: Bool) {
+        
+    }
+
+    func getNewHouse(model: ModelHouse) {
+     controller?.updateMap(model: model)
+    }
 }
