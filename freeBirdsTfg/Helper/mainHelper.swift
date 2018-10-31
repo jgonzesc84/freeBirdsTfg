@@ -25,26 +25,30 @@ class MainHelper{
     static func theStyle(view: UIView){
       
         for subView in view.subviews {
-             let name = String(describing: type(of: subView))
+            let name = String(describing: type(of: subView))
             switch name{
             case "UITextField":
                 let textField = subView as! UITextField
                 giveMeStyle(textField: textField)
-            break
+                break
             case "Button":
-            let button = subView as! Button
-            giveMeStyle(button: button)
-            break
+                let button = subView as! Button
+                giveMeStyle(button: button)
+                break
             case "UILabel":
-             let label = subView as! UILabel
-             giveMeStyle(label: label)
-            break
+                let label = subView as! UILabel
+                giveMeStyle(label: label)
+                break
+            case "UITextView":
+                let textView = subView as! UITextView
+                giveMeStyle(textView: textView)
+                break
             default:
+                
+                break
+                
+            }
             
-            break
-            
-        }
-        
         }
     }
     
@@ -102,6 +106,11 @@ class MainHelper{
         button.titleLabel?.font = UIFont.AppFont.middleFont.middlWord!
         button.titleColor = UIColor.AppColor.Green.mindApp
         button.pulseColor = UIColor.AppColor.Gray.greyApp
+    }
+    
+    static func giveMeStyle(textView: UITextView){
+        textView.font = UIFont.AppFont.middleFont.middlWord
+        textView.textColor = UIColor.AppColor.Gray.greyApp
     }
     
     static func borderShadow(view : UIView){

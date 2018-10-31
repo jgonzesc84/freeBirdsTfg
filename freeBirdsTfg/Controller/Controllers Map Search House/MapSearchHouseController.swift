@@ -18,8 +18,8 @@ class MapSearchHouseController {
     var tableViewHeight : CGFloat?
     
     var viewMap : MapSearchHouseViewController?
-     let locationManager = CLLocationManager()
-     var rooms = Array <ModelRoom>()
+    let locationManager = CLLocationManager()
+    var rooms = Array <ModelRoom>()
     
     init(viewMap: MapSearchHouseViewController!){
         self.viewMap = viewMap

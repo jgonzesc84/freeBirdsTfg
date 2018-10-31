@@ -26,6 +26,12 @@ class addRoomModalView: UIView {
     @IBOutlet weak var sectiomRoomImage: UIImageView!
     @IBOutlet weak var acceptSectionButton: UIButton!
     public var sectionModel = ModelHouseSection ()
+    //modalContentView
+    
+    @IBOutlet weak var modalcontentView: UIView!
+    
+    
+    
     
     //clousure methods
     public var mode = true
@@ -38,6 +44,7 @@ class addRoomModalView: UIView {
         super.awakeFromNib()
         modalAddSectionView.isHidden = true
         modalAddRoomView.isHidden = true
+        modalcontentView.isHidden = true
         //commonInit()
     }
     func mockuP(){

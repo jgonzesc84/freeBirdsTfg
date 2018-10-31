@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../../Murcia.gpx">
+      location = "group:Murcia.gpx">
    </FileRef>
    <FileRef
       location = "group:freeBirdsTfg.xcodeproj">
