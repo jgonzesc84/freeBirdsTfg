@@ -33,12 +33,19 @@
 		5935267E2143C65E002A53D1 /* roomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5935267D2143C65E002A53D1 /* roomCell.xib */; };
 		593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5935267F2143C8BB002A53D1 /* roomCellTrash.swift */; };
 		593526822143C8F0002A53D1 /* roomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593526812143C8F0002A53D1 /* roomCell.swift */; };
+		5939CC43218D8ED0005C67D0 /* ModalCreateRoom.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5939CC42218D8ED0005C67D0 /* ModalCreateRoom.xib */; };
+		5939CC48218D902F005C67D0 /* ModalCreateRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939CC47218D902F005C67D0 /* ModalCreateRoom.swift */; };
+		5939CC4A218D9044005C67D0 /* ModalCreateRoomController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939CC49218D9044005C67D0 /* ModalCreateRoomController.swift */; };
+		5939CC4C218D9828005C67D0 /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939CC4B218D9828005C67D0 /* ModalController.swift */; };
+		5939CC4F218DD8BF005C67D0 /* ModalCreateSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5939CC4E218DD8BF005C67D0 /* ModalCreateSectionView.xib */; };
+		5939CC51218DDA0A005C67D0 /* ModalCreateSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939CC50218DDA0A005C67D0 /* ModalCreateSectionView.swift */; };
+		5939CC53218DDB16005C67D0 /* ModalCreateSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5939CC52218DDB16005C67D0 /* ModalCreateSectionController.swift */; };
 		593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B5C5D215ACC470013CBD1 /* ModelHouse.swift */; };
 		593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */; };
-		593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CC71B21446C440026C7F5 /* addRoomModalView.swift */; };
+		593CC71C21446C440026C7F5 /* ModalMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593CC71B21446C440026C7F5 /* ModalMain.swift */; };
 		593F85F42173C08000CBBF5B /* FBAnnotationPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */; };
 		5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59421429217C877A001EB275 /* FBAnnotationView.swift */; };
-		5944648C2144185000545608 /* addRoomModalView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5944648B2144185000545608 /* addRoomModalView.xib */; };
+		5944648C2144185000545608 /* ModalMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5944648B2144185000545608 /* ModalMainView.xib */; };
 		594612332114D17900903478 /* construction_site.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612322114D17800903478 /* construction_site.json */; };
 		594612352114D18300903478 /* spirit_geek.json in Resources */ = {isa = PBXBuildFile; fileRef = 594612342114D18300903478 /* spirit_geek.json */; };
 		594612392114E64E00903478 /* constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 594612382114E64E00903478 /* constant.swift */; };
@@ -137,12 +144,19 @@
 		5935267D2143C65E002A53D1 /* roomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = roomCell.xib; sourceTree = "<group>"; };
 		5935267F2143C8BB002A53D1 /* roomCellTrash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomCellTrash.swift; sourceTree = "<group>"; };
 		593526812143C8F0002A53D1 /* roomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomCell.swift; sourceTree = "<group>"; };
+		5939CC42218D8ED0005C67D0 /* ModalCreateRoom.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalCreateRoom.xib; sourceTree = "<group>"; };
+		5939CC47218D902F005C67D0 /* ModalCreateRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCreateRoom.swift; sourceTree = "<group>"; };
+		5939CC49218D9044005C67D0 /* ModalCreateRoomController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCreateRoomController.swift; sourceTree = "<group>"; };
+		5939CC4B218D9828005C67D0 /* ModalController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalController.swift; sourceTree = "<group>"; };
+		5939CC4E218DD8BF005C67D0 /* ModalCreateSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalCreateSectionView.xib; sourceTree = "<group>"; };
+		5939CC50218DDA0A005C67D0 /* ModalCreateSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCreateSectionView.swift; sourceTree = "<group>"; };
+		5939CC52218DDB16005C67D0 /* ModalCreateSectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalCreateSectionController.swift; sourceTree = "<group>"; };
 		593B5C5D215ACC470013CBD1 /* ModelHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHouse.swift; sourceTree = "<group>"; };
 		593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDirection.swift; sourceTree = "<group>"; };
-		593CC71B21446C440026C7F5 /* addRoomModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = addRoomModalView.swift; sourceTree = "<group>"; };
+		593CC71B21446C440026C7F5 /* ModalMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalMain.swift; sourceTree = "<group>"; };
 		593F85F32173C08000CBBF5B /* FBAnnotationPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnnotationPoint.swift; sourceTree = "<group>"; };
 		59421429217C877A001EB275 /* FBAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnnotationView.swift; sourceTree = "<group>"; };
-		5944648B2144185000545608 /* addRoomModalView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = addRoomModalView.xib; sourceTree = "<group>"; };
+		5944648B2144185000545608 /* ModalMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalMainView.xib; sourceTree = "<group>"; };
 		594612322114D17800903478 /* construction_site.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = construction_site.json; sourceTree = "<group>"; };
 		594612342114D18300903478 /* spirit_geek.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = spirit_geek.json; sourceTree = "<group>"; };
 		594612382114E64E00903478 /* constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = constant.swift; sourceTree = "<group>"; };
@@ -274,9 +288,7 @@
 		3BB44E25217DF6B800D610DF /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				3BB44E28217DF71500D610DF /* ModalCompleteHouse.swift */,
-				3BB44E2A217E097100D610DF /* ModalCompleteHouse.xib */,
-				3BB44E2E217E0F3D00D610DF /* ModalCompleteHouseController.swift */,
+				5939CC44218D8FC6005C67D0 /* CreationHouse */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -346,6 +358,46 @@
 			path = cells;
 			sourceTree = "<group>";
 		};
+		5939CC44218D8FC6005C67D0 /* CreationHouse */ = {
+			isa = PBXGroup;
+			children = (
+				5939CC4D218DD898005C67D0 /* Create Section House  */,
+				5939CC46218D8FF9005C67D0 /* Complete House */,
+				5939CC45218D8FE5005C67D0 /* Create Room */,
+			);
+			path = CreationHouse;
+			sourceTree = "<group>";
+		};
+		5939CC45218D8FE5005C67D0 /* Create Room */ = {
+			isa = PBXGroup;
+			children = (
+				5939CC42218D8ED0005C67D0 /* ModalCreateRoom.xib */,
+				5939CC47218D902F005C67D0 /* ModalCreateRoom.swift */,
+				5939CC49218D9044005C67D0 /* ModalCreateRoomController.swift */,
+			);
+			path = "Create Room";
+			sourceTree = "<group>";
+		};
+		5939CC46218D8FF9005C67D0 /* Complete House */ = {
+			isa = PBXGroup;
+			children = (
+				3BB44E28217DF71500D610DF /* ModalCompleteHouse.swift */,
+				3BB44E2A217E097100D610DF /* ModalCompleteHouse.xib */,
+				3BB44E2E217E0F3D00D610DF /* ModalCompleteHouseController.swift */,
+			);
+			path = "Complete House";
+			sourceTree = "<group>";
+		};
+		5939CC4D218DD898005C67D0 /* Create Section House  */ = {
+			isa = PBXGroup;
+			children = (
+				5939CC4E218DD8BF005C67D0 /* ModalCreateSectionView.xib */,
+				5939CC50218DDA0A005C67D0 /* ModalCreateSectionView.swift */,
+				5939CC52218DDB16005C67D0 /* ModalCreateSectionController.swift */,
+			);
+			path = "Create Section House ";
+			sourceTree = "<group>";
+		};
 		593F85EB2173B07B00CBBF5B /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,8 +420,9 @@
 		5944648A2144182800545608 /* Modal */ = {
 			isa = PBXGroup;
 			children = (
-				5944648B2144185000545608 /* addRoomModalView.xib */,
-				593CC71B21446C440026C7F5 /* addRoomModalView.swift */,
+				5944648B2144185000545608 /* ModalMainView.xib */,
+				593CC71B21446C440026C7F5 /* ModalMain.swift */,
+				5939CC4B218D9828005C67D0 /* ModalController.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -749,7 +802,7 @@
 				5935267C2143C3E5002A53D1 /* roomTrashCell.xib in Resources */,
 				5924F5D6214BE5D0004DECCA /* MapViewController.xib in Resources */,
 				5924F5DB214BE7EB004DECCA /* searchMapView.xib in Resources */,
-				5944648C2144185000545608 /* addRoomModalView.xib in Resources */,
+				5944648C2144185000545608 /* ModalMainView.xib in Resources */,
 				5975AF40212441E600D0194F /* createHouseTableSection.xib in Resources */,
 				59118B2F2149859400031AFB /* HouseSectionCell.xib in Resources */,
 				5950CAE42117083800A97B49 /* CreateHouseTableView.xib in Resources */,
@@ -757,10 +810,12 @@
 				59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */,
 				59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */,
 				59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */,
+				5939CC43218D8ED0005C67D0 /* ModalCreateRoom.xib in Resources */,
 				5935267E2143C65E002A53D1 /* roomCell.xib in Resources */,
 				59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */,
 				5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */,
 				59465D832115D9A700106020 /* Navigation.xib in Resources */,
+				5939CC4F218DD8BF005C67D0 /* ModalCreateSectionView.xib in Resources */,
 				5969209B2174769F0075D164 /* MapSearchHousedetailCell.xib in Resources */,
 				59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */,
 				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
@@ -907,24 +962,29 @@
 				59465D892115DF5F00106020 /* NavigationView.swift in Sources */,
 				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
 				3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */,
+				5939CC51218DDA0A005C67D0 /* ModalCreateSectionView.swift in Sources */,
 				5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */,
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */,
 				3B692F24216CC9D600DE9A24 /* MapSearchHouseController.swift in Sources */,
 				593526822143C8F0002A53D1 /* roomCell.swift in Sources */,
+				5939CC48218D902F005C67D0 /* ModalCreateRoom.swift in Sources */,
 				593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */,
 				5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */,
+				5939CC4A218D9044005C67D0 /* ModalCreateRoomController.swift in Sources */,
 				59118B292149546D00031AFB /* ModelRoom.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
 				593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */,
 				594612392114E64E00903478 /* constant.swift in Sources */,
 				593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */,
+				5939CC4C218D9828005C67D0 /* ModalController.swift in Sources */,
 				59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */,
 				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
 				3BB44E2F217E0F3D00D610DF /* ModalCompleteHouseController.swift in Sources */,
-				593CC71C21446C440026C7F5 /* addRoomModalView.swift in Sources */,
+				593CC71C21446C440026C7F5 /* ModalMain.swift in Sources */,
 				593F85F42173C08000CBBF5B /* FBAnnotationPoint.swift in Sources */,
 				5950CAEB21171B7C00A97B49 /* PrecioCell.swift in Sources */,
+				5939CC53218DDB16005C67D0 /* ModalCreateSectionController.swift in Sources */,
 				59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */,
 				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,
 				597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */,

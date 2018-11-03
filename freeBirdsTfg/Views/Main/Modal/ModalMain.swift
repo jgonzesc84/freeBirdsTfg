@@ -1,5 +1,5 @@
 //
-//  addRoomModalView.swift
+//  ModalMain.swift
 //  freeBirdsTfg
 //
 //  Created by javier gonzalez escudero on 8/9/18.
@@ -8,7 +8,9 @@
 
 import UIKit
 import Material
-class addRoomModalView: UIView {
+
+
+class ModalMain: UIView {
      //addRoomOutlets
     @IBOutlet weak var userTextEdit: UITextField!
     @IBOutlet weak var priceTextEdit: UITextField!
@@ -26,17 +28,16 @@ class addRoomModalView: UIView {
     @IBOutlet weak var sectiomRoomImage: UIImageView!
     @IBOutlet weak var acceptSectionButton: UIButton!
     public var sectionModel = ModelHouseSection ()
+   
     //modalContentView
-    
-    @IBOutlet weak var modalcontentView: UIView!
-    
+    var controller : ModalController?
     
     
     
     //clousure methods
     public var mode = true
     public var returnData: ((Any) -> ())?
-     public var returnEditData: ((Any) -> ())?
+    public var returnEditData: ((Any) -> ())?
     //
     public var editeMode : Bool!
    
@@ -44,8 +45,8 @@ class addRoomModalView: UIView {
         super.awakeFromNib()
         modalAddSectionView.isHidden = true
         modalAddRoomView.isHidden = true
-        modalcontentView.isHidden = true
         //commonInit()
+        controller = ModalController(ModalView: self)
     }
     func mockuP(){
         if(mode){
@@ -58,6 +59,7 @@ class addRoomModalView: UIView {
         }
       
     }
+    
     
     public func setupModal(mode : Bool){
         self.mode = mode
@@ -79,17 +81,28 @@ class addRoomModalView: UIView {
         }
         
          dismissViewSetup()
+        //aqui que el controlador cargue la vista que toca
        
+        
 }
+    
+    func loadContentView(name : String){
+         controller!.chargeViewModal(name : name)
+         dismissViewSetup()
+    }
+    
+    
     public func fillModal(model:Any){
         switch model {
         case is ModelRoom:
+            
             let room = model as! ModelRoom
             userTextEdit.text = room.user
             priceTextEdit.text = room.price
             //falta img
             break;
         case is ModelHouseSection:
+            
             let section = model as! ModelHouseSection
             titleSectionTextField.text = section.title
             descriptionSectionTextField.text = section.description

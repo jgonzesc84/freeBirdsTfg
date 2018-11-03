@@ -24,7 +24,7 @@ class AlphaViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         lottieAnimationLoading()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0) {
             self.calculateLandingPage()
         }
        

@@ -26,7 +26,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     public var sendLocationToParent: ((Any) -> ())?
     public var showModalParent: ((Any) -> ())?
     public var listOfRoom = Array<ModelRoom>()
-    public var modalView : addRoomModalView?
+    public var modalView : ModalMain?
     
  //  MARK: - cicle life
     override init(frame: CGRect) {
@@ -123,8 +123,10 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             cell.prepareForReuse()
             cell.showModal = { (cellExpandible) -> () in
                 self.prepareModal()
-                self.modalView?.setupModal(mode: true)
-                 self.modalView?.editeMode = false
+               // self.modalView?.setupModal(mode: true)
+                self.modalView?.loadContentView(name: "createRoom")
+                //self.modalView?.ostia = completeHouse
+               //  self.modalView?.editeMode = false
                 if let topVC = UIApplication.getTopMostViewController() {
                     topVC.view.addSubview(self.modalView!)
                 }
@@ -147,6 +149,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                     self.prepareModal()
                     self.modalView?.setupModal(mode: false)
                     self.modalView?.editeMode = true
+                    self.modalView?.loadContentView(name:"editSection")
                     self.modalView?.fillModal(model: self.cellCollection?.listOfModelHouseSection[position] as Any )
                     if let topVC = UIApplication.getTopMostViewController() {
                         topVC.view.addSubview(self.modalView!)
@@ -154,8 +157,9 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                     break;
                 case is SectionHouseCollectionViewCell:
                     self.prepareModal()
-                    self.modalView?.setupModal(mode: false)
-                    self.modalView?.editeMode = false
+                  //  self.modalView?.setupModal(mode: false)
+                  //  self.modalView?.editeMode = false
+                    self.modalView?.loadContentView(name:"createSection")
                     if let topVC = UIApplication.getTopMostViewController() {
                         topVC.view.addSubview(self.modalView!)
                     }
@@ -213,8 +217,9 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 row -= 1
                 editAddRoomRow = row
                 prepareModal()
-                modalView?.setupModal(mode: true)
-                self.modalView?.editeMode = true
+              //  modalView?.setupModal(mode: true)
+              //  self.modalView?.editeMode = true
+                modalView?.loadContentView(name: "editRoom")
                 modalView?.fillModal(model: listOfRoom[row])
                 if let topVC = UIApplication.getTopMostViewController() {
                     topVC.view.addSubview(self.modalView!)
@@ -313,7 +318,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
      @function Metododo que le da tamaño a la vista modal y deja un bloque escuchando la respuesta de este
      **/
     func prepareModal(){
-        self.modalView = Bundle.main.loadNibNamed("addRoomModalView", owner: self, options: nil)![0] as? addRoomModalView
+        self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
         let width = UIScreen.main.bounds.width
         let height = UIScreen.main.bounds.height
         let frame = CGRect(x: 0, y: 0, width: width, height: height)

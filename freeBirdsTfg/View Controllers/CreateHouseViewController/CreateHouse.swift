@@ -26,7 +26,7 @@ class CreateHouse: BaseViewController {
     var listOfRoom : Array<ModelRoom>?
     //
     
-    public var modalView : addRoomModalView?
+    public var modalView : ModalMain?
     public var mapView : MapViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
