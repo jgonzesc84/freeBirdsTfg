@@ -123,10 +123,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             cell.prepareForReuse()
             cell.showModal = { (cellExpandible) -> () in
                 self.prepareModal()
-               // self.modalView?.setupModal(mode: true)
                 self.modalView?.loadContentView(name: "createRoom")
-                //self.modalView?.ostia = completeHouse
-               //  self.modalView?.editeMode = false
                 if let topVC = UIApplication.getTopMostViewController() {
                     topVC.view.addSubview(self.modalView!)
                 }
@@ -134,9 +131,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             if(indexPath.row>0){
                  cell.setup(room: listOfRoom[indexPath.row-1])
             }
-          /*  if(listOfRoom.count > 0 && listOfRoom.count <= indexPath.row){
-               
-            }*/
+        
             return cell
         case 2:
             
@@ -147,8 +142,6 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                     let position = sender as! Int
                     self.editSectionRow = position
                     self.prepareModal()
-                    self.modalView?.setupModal(mode: false)
-                    self.modalView?.editeMode = true
                     self.modalView?.loadContentView(name:"editSection")
                     self.modalView?.fillModal(model: self.cellCollection?.listOfModelHouseSection[position] as Any )
                     if let topVC = UIApplication.getTopMostViewController() {
@@ -157,8 +150,6 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                     break;
                 case is SectionHouseCollectionViewCell:
                     self.prepareModal()
-                  //  self.modalView?.setupModal(mode: false)
-                  //  self.modalView?.editeMode = false
                     self.modalView?.loadContentView(name:"createSection")
                     if let topVC = UIApplication.getTopMostViewController() {
                         topVC.view.addSubview(self.modalView!)

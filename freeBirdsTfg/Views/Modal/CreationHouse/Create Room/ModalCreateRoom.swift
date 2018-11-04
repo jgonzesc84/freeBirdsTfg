@@ -18,7 +18,9 @@ class ModalCreateRoom: UIView {
     @IBOutlet weak var acceptButton: Button!
     
     public var roomModel = ModelRoom()
-     var returnDataCreateRoom: ((ModelRoom) -> ())?
+    var returnDataCreateRoom: ((ModelRoom) -> ())?
+    var returnDataEditRoom: ((ModelRoom) -> ())?
+    var editMode : Bool?
     
     var controller : ModalCreateRoomController?
     
@@ -36,7 +38,7 @@ class ModalCreateRoom: UIView {
     }
    
     @IBAction func acceptAction(_ sender: Any) {
-        controller?.acceptButton()
         
+      controller?.acceptButton()
     }
 }

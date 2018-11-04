@@ -18,8 +18,10 @@ class ModalCreateSectionView: UIView {
     @IBOutlet weak var sectiomRoomImage: UIImageView!
     @IBOutlet weak var acceptSectionButton: UIButton!
     
-     var controller : ModalCreateSectionController?
-      var returnDataCreateSection: ((ModelHouseSection) -> ())?
+    var controller : ModalCreateSectionController?
+    var editMode : Bool?
+    var returnDataCreateSection: ((ModelHouseSection) -> ())?
+    var returnDataEditSection: ((ModelHouseSection) -> ())?
     
     override func awakeFromNib() {
         super .awakeFromNib()
@@ -36,8 +38,7 @@ class ModalCreateSectionView: UIView {
     
     
     @IBAction func aceptButton(_ sender: Any) {
-        controller?.acceptButton()
-      
+       controller?.acceptButton()
     }
     
 }
