@@ -179,6 +179,7 @@ class MapSearchHouseController {
     func didSelectRow(tableView: UITableView, indexPath: IndexPath){
         
         let vc = HouseDetailRequestViewController (nibName:"HouseDetailRequestViewController", bundle: nil)
+        vc.house = selectedHouse
         viewMap?.navigationController?.pushViewController(vc, animated: true)
         
     }

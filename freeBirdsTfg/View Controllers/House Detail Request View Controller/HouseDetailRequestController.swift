@@ -20,11 +20,14 @@ class HouseDetailRequestController{
     
     func numberOfItemsInSection(collectionView: UICollectionView ) -> Int{
         
-        let numbOfItems = 0
+        var numbOfItems = 0
         if (collectionView == requestView?.supViewCollection) {
-            
+            numbOfItems = requestView!.house?.listOfRoom?.count ?? 0
         }else{
-            
+            numbOfItems = requestView!.house?.section?.count ?? 0
+            if(numbOfItems == 0){
+                requestView!.infView.isHidden = true
+            }
         }
         
         return numbOfItems
@@ -41,6 +44,29 @@ class HouseDetailRequestController{
         }
         
         return cell
+    }
+    
+    func calculateItemSize(collectionView: UICollectionView){
+        
+        var cellScaling: CGFloat = 0.0
+        let parentSize = collectionView.frame
+        if(collectionView == requestView?.supViewCollection){
+            cellScaling = 0.9
+        }else{
+             cellScaling = 0.9
+            
+        }
+        var cellWidth = floor(parentSize.width * cellScaling)
+        let cellHeight = floor(parentSize.height * cellScaling)
+        if(collectionView == requestView?.infViewCollection){
+            cellWidth = cellWidth / 2
+        }
+        let insetX = (parentSize.width - cellWidth) / 2.0
+       // let insetY  = (parentSize.height - cellHeight) / 2.0
+        let insetY  = 0.00
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        collectionView.contentInset = UIEdgeInsets(top: CGFloat(insetY), left: insetX, bottom: CGFloat(insetY), right: insetX)
     }
     
 }

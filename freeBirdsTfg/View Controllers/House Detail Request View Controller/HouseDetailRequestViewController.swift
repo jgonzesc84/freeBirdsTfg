@@ -24,27 +24,35 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     @IBOutlet weak var requestButton: UIButton!
     
     var controller : HouseDetailRequestController?
-    
+    var house : ModelHouse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         controller = HouseDetailRequestController(requestView:self)
         prepareNav(label: titleLabel, text: "Detalle")
         MainHelper.navStyle(view:navView)
-        
+        initView()
     }
     
     func initView(){
-        
+        initData()
     }
   
     func initData(){
         supViewCollection.delegate  = self
         supViewCollection.dataSource = self
         supViewCollection.register(UINib(nibName:"supViewCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "supCell")
+        if let layout = supViewCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
         infViewCollection.delegate = self
         infViewCollection.dataSource = self
         infViewCollection.register(UINib(nibName:"infViewCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "infCell")
+        if let layout = infViewCollection.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+        }
+        heightForRowAtCollectionView(collectionView: supViewCollection)
+        heightForRowAtCollectionView(collectionView: infViewCollection)
         
     }
 
@@ -56,11 +64,12 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        
-        return UICollectionViewCell()
+        return controller!.cellForItemAt(collectionView: collectionView, indexPath: indexPath)
     }
     
-
-   
+    func heightForRowAtCollectionView(collectionView: UICollectionView){
+        
+        controller!.calculateItemSize(collectionView: collectionView)
+    }   
 
 }
