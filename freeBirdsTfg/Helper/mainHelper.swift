@@ -141,6 +141,11 @@ class MainHelper{
     button.pulseColor = UIColor.AppColor.Gray.greyApp
     }
     
+    static func circleButton(button : UIButton){
+        
+        button.layer.cornerRadius = button.frame.height / 2
+    }
+    
     static func navStyle(view : UIView){
         view.backgroundColor = UIColor .white
         for item in view.subviews {

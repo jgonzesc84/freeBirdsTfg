@@ -19,7 +19,9 @@ extension UIColor {
         }
         
         struct Blue {
+            //#3882BC
             static let blueDinosaur = UIColor().colorFromHex("1d285a")
+            static let blueHouse = UIColor().colorFromHex("#3882BC")
         }
         
         struct Violet {

@@ -13,6 +13,7 @@ class ModalController{
    let modal : ModalMain?
     var modalCreateRoom : ModalCreateRoom?
     var modalCreateSection : ModalCreateSectionView?
+    var modalCompleteHouse : ModalCompleteHouse?
     
     init(ModalView: ModalMain!){
         modal = ModalView
@@ -60,7 +61,12 @@ class ModalController{
             
             break
         case "completeHouse":
-            
+            modalCompleteHouse = Bundle.main.loadNibNamed("ModalCompleteHouse", owner: nil, options: nil)![0] as? ModalCompleteHouse
+            positionAndHeight(mainView: modal!, auxView: modalCompleteHouse!, height: 0.65 , y: 0.9)
+            modalCompleteHouse?.returnDataCompleteHouse = { (text) -> () in
+                self.modal?.returnCompleteHouseData?(text)
+                self.modal?.removeFromSuperview()
+            }
             
             break
         default:

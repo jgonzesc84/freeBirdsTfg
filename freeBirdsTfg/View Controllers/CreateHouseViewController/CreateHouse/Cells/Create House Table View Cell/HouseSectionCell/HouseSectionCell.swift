@@ -11,7 +11,7 @@ import UIKit
 class HouseSectionCell: UITableViewCell, UICollectionViewDelegate ,UICollectionViewDataSource , UICollectionViewDelegateFlowLayout{
    
     public var listOfModelHouseSection = Array<ModelHouseSection>()
-     public var showModalToParent: ((Any) -> ())?
+    public var showModalToParent: ((Any) -> ())?
    
     public var maxLimit  = 0
     @IBOutlet weak var sectionCollectionView: UICollectionView!

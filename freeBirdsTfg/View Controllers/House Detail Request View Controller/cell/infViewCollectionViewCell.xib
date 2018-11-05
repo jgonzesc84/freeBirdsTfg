@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="infViewCollectionViewCell" customModule="freeBirdsTfg" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="329" height="362"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="329" height="362"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VK8-x2-7n6">
+                        <rect key="frame" x="0.0" y="0.0" width="329" height="362"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_playa " translatesAutoresizingMaskIntoConstraints="NO" id="0Sk-iV-cke">
+                                <rect key="frame" x="0.0" y="0.0" width="329" height="362"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0Sk-iV-cke" secondAttribute="bottom" id="CTa-O6-dpU"/>
+                            <constraint firstItem="0Sk-iV-cke" firstAttribute="leading" secondItem="VK8-x2-7n6" secondAttribute="leading" id="RbW-Sr-Lm5"/>
+                            <constraint firstAttribute="trailing" secondItem="0Sk-iV-cke" secondAttribute="trailing" id="UpU-SR-vZ3"/>
+                            <constraint firstItem="0Sk-iV-cke" firstAttribute="top" secondItem="VK8-x2-7n6" secondAttribute="top" id="hDC-Vk-TVP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="VK8-x2-7n6" secondAttribute="top" id="E2i-1D-J1n"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="VK8-x2-7n6" secondAttribute="bottom" id="HcD-EL-3uP"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="VK8-x2-7n6" secondAttribute="leading" id="QlA-Hr-EJy"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="VK8-x2-7n6" secondAttribute="trailing" id="qXy-iE-sHN"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="329" height="362"/>
+            <point key="canvasLocation" x="-327.19999999999999" y="68.365817091454275"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="steven_playa " width="250" height="220.5"/>
+    </resources>
+</document>

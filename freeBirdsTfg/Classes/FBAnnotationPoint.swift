@@ -14,5 +14,5 @@ class FBAnnotationPoint: MKPointAnnotation{
     
     
     var idHouse : String?
-    
+    var descriptionText : String?
 }

@@ -20,6 +20,7 @@ class MapSearchHouseController {
     var viewMap : MapSearchHouseViewController?
     let locationManager = CLLocationManager()
     var rooms = Array <ModelRoom>()
+    var selectedHouse = ModelHouse()
     
     init(viewMap: MapSearchHouseViewController!){
         self.viewMap = viewMap
@@ -33,6 +34,7 @@ class MapSearchHouseController {
             annotation.idHouse = item.idHouse
             annotation.coordinate = item.direction!.coordinate!
             annotation.title = item.direction!.title
+            annotation.descriptionText = item.completeDescription
             viewMap?.map.addAnnotation(annotation)
 
         }
@@ -79,11 +81,12 @@ class MapSearchHouseController {
         annotation.coordinate = model.direction!.coordinate!
         annotation.title = model.direction!.title
         annotation.idHouse = model.idHouse
+        annotation.descriptionText = model.completeDescription
         self.viewMap?.map.addAnnotation(annotation)
         self.viewMap?.listOfHouses?.append(model)
     }
     
-    func configureAnnotation(mapView: MKMapView, annotation:MKAnnotation) -> MKAnnotationView?{
+    func configureAnnotation(mapView: MKMapView, annotation:FBAnnotationPoint) -> MKAnnotationView?{
         
         let annotationID = "annotationID"
         var annotationView : FBAnnotationView?
@@ -91,11 +94,13 @@ class MapSearchHouseController {
         if let dequeuedAnnotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationID) {
             annotationView = dequeuedAnnotationView as? FBAnnotationView
             annotationView?.annotation = annotation
+            
         }else{
             annotationView = FBAnnotationView(annotation: annotation, reuseIdentifier: annotationID)
         }
         if let annotationView = annotationView {
             annotationView.image = UIImage(named:"houseIcon2")
+            annotationView.descriptionText = annotation.descriptionText ?? "HOLA!!"
         }
         return annotationView
         
@@ -117,8 +122,8 @@ class MapSearchHouseController {
         var array = viewMap?.listOfHouses?.filter({ (ModelHouse) -> Bool in
             return ModelHouse.idHouse == id
         })
-        let house = array![0]
-        rooms = house.listOfRoom!
+        selectedHouse = array![0]
+        rooms = selectedHouse.listOfRoom!
         viewMap!.listOfRoom = rooms
         
         UIView.transition(with:  viewMap!.houseDetailTableView,
@@ -171,7 +176,12 @@ class MapSearchHouseController {
         return cell
     }
 
-    
+    func didSelectRow(tableView: UITableView, indexPath: IndexPath){
+        
+        let vc = HouseDetailRequestViewController (nibName:"HouseDetailRequestViewController", bundle: nil)
+        viewMap?.navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
   
     

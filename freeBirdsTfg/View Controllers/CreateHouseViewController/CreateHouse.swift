@@ -105,13 +105,37 @@ class CreateHouse: BaseViewController {
         }
         
     }
+    
+    func prepareModal(){
+        self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.modalView? .frame = frame
+        MainHelper.theStyle(view: self.modalView!)
+       // self.heardModalView()
+    }
     //TODO insertar id de usario en la casa
     /**
      @function Metodo que envia el modelo Casa a Firebase
     **/
     @IBAction func acceptActionButton(_ sender: Any) {
-        house = ModelHouse(price: price, section: listOfSection, listOfRoom: listOfRoom!, direction: directionModel!)
-        FireBaseManager.createHouse(model: house!)
+        
+        
+        //aqui llamar a la vista modal de completion house
+        prepareModal()
+        modalView?.loadContentView(name: "completeHouse")
+        if let topVC = UIApplication.getTopMostViewController() {
+            
+            topVC.view.addSubview(self.modalView!)
+            self.modalView?.returnCompleteHouseData = { (text) -> () in
+                self.house = ModelHouse(price: self.price, section: self.listOfSection, listOfRoom: self.listOfRoom!, direction: self.directionModel!, completeDescription: text )
+                FireBaseManager.createHouse(model: self.house!)
+            }
+        }
+        
+        /*house = ModelHouse(price: price, section: listOfSection, listOfRoom: listOfRoom!, direction: directionModel!)
+        FireBaseManager.createHouse(model: house!)*/
         
         
     }

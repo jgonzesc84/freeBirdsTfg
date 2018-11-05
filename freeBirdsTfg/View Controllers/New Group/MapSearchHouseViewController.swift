@@ -96,7 +96,8 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
        
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-      return  controller?.configureAnnotation(mapView: mapView, annotation: annotation)
+        let test = annotation as! FBAnnotationPoint
+      return  controller?.configureAnnotation(mapView: mapView, annotation: test)
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -112,18 +113,6 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller?.userScrollMap()
         //metodo que cunado se hay contemplado la animacion vuelva a salir las habitatciones despues de esconderse?
     }*/
-    
-    func delegateGetAllHouseDelegate(model: ModelHouse){
-        
-    }
-    
-    //delegates methods
-    func getHouseArray(array: Array<ModelHouse>?) {
-        //do nothing see change this
-    }
-    
-    
-    
     
     /**
      configuración tableView detalle casas
@@ -144,10 +133,19 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         return (controller?.drawCell(tableView: tableView, indexPath: indexPath))!
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        controller?.didSelectRow(tableView: tableView, indexPath: indexPath)
+    }
+    
     
 }
 
 extension MapSearchHouseViewController : getAllHouseDelegate {
+    func getHouseArray(array: Array<ModelHouse>?) {
+        
+    }
+    
     
     func isActiveSession(active: Bool) {
         

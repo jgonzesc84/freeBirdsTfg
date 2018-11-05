@@ -15,12 +15,19 @@ class ModelHouse{
     var direction : ModelDirection?
     var user : Array<Any>?
     var idHouse : String?
-    init(price: String?, section: Array<ModelHouseSection>? , listOfRoom: Array<ModelRoom>?, direction: ModelDirection? /*, users: Array<Any>? */){
+    var completeDescription : String?
+   
+    init(){
+        
+    }
+    
+    init(price: String?, section: Array<ModelHouseSection>? , listOfRoom: Array<ModelRoom>?, direction: ModelDirection?, completeDescription: String? /*, users: Array<Any>? */){
         
         self.price = price
         self.section = section
         self.listOfRoom = listOfRoom
         self.direction = direction
+        self.completeDescription = completeDescription
       //  self.user = users
         
     }

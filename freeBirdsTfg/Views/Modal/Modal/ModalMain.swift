@@ -20,6 +20,7 @@ class ModalMain: UIView {
     //public var mode = true
     public var returnData: ((Any) -> ())?
     public var returnEditData: ((Any) -> ())?
+    public var returnCompleteHouseData: ((String) -> ())?
    // public var editeMode : Bool!
    
     override func awakeFromNib() {

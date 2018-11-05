@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="supViewCollectionViewCell" customModule="freeBirdsTfg" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="361"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="361"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gk6-lU-9V1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="361"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevenRoom Ico" translatesAutoresizingMaskIntoConstraints="NO" id="Sbh-qZ-YEc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="361"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="0F0-i3-i0W">
+                                <rect key="frame" x="32" y="233.5" width="256" height="108.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="56b-mo-P7J">
+                                <rect key="frame" x="233" y="8" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="56b-mo-P7J" secondAttribute="trailing" constant="23" id="CoV-NB-yr1"/>
+                            <constraint firstItem="56b-mo-P7J" firstAttribute="top" secondItem="Gk6-lU-9V1" secondAttribute="top" constant="8" id="D4z-Ee-9rK"/>
+                            <constraint firstAttribute="trailing" secondItem="Sbh-qZ-YEc" secondAttribute="trailing" id="PFf-Gn-DeL"/>
+                            <constraint firstItem="0F0-i3-i0W" firstAttribute="width" secondItem="Gk6-lU-9V1" secondAttribute="width" multiplier="0.8" id="WYP-HL-HJ2"/>
+                            <constraint firstItem="0F0-i3-i0W" firstAttribute="centerX" secondItem="Gk6-lU-9V1" secondAttribute="centerX" id="anV-ia-7CW"/>
+                            <constraint firstItem="Sbh-qZ-YEc" firstAttribute="height" secondItem="Gk6-lU-9V1" secondAttribute="height" id="bZf-Yc-Mgn"/>
+                            <constraint firstItem="0F0-i3-i0W" firstAttribute="height" secondItem="Gk6-lU-9V1" secondAttribute="height" multiplier="0.3" id="lzR-rQ-G8e"/>
+                            <constraint firstItem="Sbh-qZ-YEc" firstAttribute="top" secondItem="Gk6-lU-9V1" secondAttribute="top" id="tRZ-AW-zNZ"/>
+                            <constraint firstAttribute="bottom" secondItem="0F0-i3-i0W" secondAttribute="bottom" constant="19" id="tix-cK-5v2"/>
+                            <constraint firstItem="56b-mo-P7J" firstAttribute="width" secondItem="Gk6-lU-9V1" secondAttribute="width" multiplier="0.2" id="vqU-5n-WrP"/>
+                            <constraint firstItem="Sbh-qZ-YEc" firstAttribute="leading" secondItem="Gk6-lU-9V1" secondAttribute="leading" id="xlO-Dz-FyV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="Gk6-lU-9V1" secondAttribute="trailing" id="32q-1K-aPh"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="Gk6-lU-9V1" secondAttribute="top" id="Wlb-NI-UrV"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="leading" secondItem="Gk6-lU-9V1" secondAttribute="leading" id="on2-mW-v98"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="Gk6-lU-9V1" secondAttribute="bottom" id="qhL-1C-gNy"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="320" height="361"/>
+            <connections>
+                <outlet property="mainView" destination="Gk6-lU-9V1" id="BVr-Qc-rt5"/>
+                <outlet property="priceLabel" destination="56b-mo-P7J" id="cCm-ji-jfW"/>
+                <outlet property="supImageView" destination="Sbh-qZ-YEc" id="p8l-dl-Ri8"/>
+                <outlet property="supTextView" destination="0F0-i3-i0W" id="inQ-aQ-amE"/>
+            </connections>
+            <point key="canvasLocation" x="-60.799999999999997" y="146.17691154422789"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="stevenRoom Ico" width="100" height="56"/>
+    </resources>
+</document>

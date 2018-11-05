@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +27,7 @@
                         </label>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA4-Ff-xKO">
                             <rect key="frame" x="23" y="65" width="273" height="28"/>
-                            <color key="backgroundColor" red="0.92549019610000005" green="0.72549019609999998" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="28" id="Ea6-0a-mRB"/>
                             </constraints>
@@ -42,13 +42,16 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="300-ue-LO8">
-                            <rect key="frame" x="296" y="69" width="27" height="24"/>
+                            <rect key="frame" x="296" y="66" width="27" height="27"/>
                             <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="27" id="Ghc-gF-S9N"/>
-                                <constraint firstAttribute="height" constant="24" id="Ifd-tw-79Z"/>
+                                <constraint firstAttribute="height" constant="27" id="Ifd-tw-79Z"/>
                             </constraints>
                             <state key="normal" image="ic_close_white"/>
+                            <connections>
+                                <action selector="resetButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="U6M-mH-dPl"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="joH-iE-2Gb" customClass="Button" customModule="Material">
                             <rect key="frame" x="84" y="284" width="151" height="30"/>
@@ -58,6 +61,9 @@
                                     <color key="value" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="acceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="C7q-BP-jfq"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -68,11 +74,11 @@
                         <constraint firstAttribute="trailing" secondItem="300-ue-LO8" secondAttribute="trailing" constant="8" id="Cy5-bH-UH0"/>
                         <constraint firstItem="k6H-Xo-L9v" firstAttribute="trailing" secondItem="VA4-Ff-xKO" secondAttribute="trailing" id="Dm1-6c-kpx"/>
                         <constraint firstItem="b4Y-Qv-V12" firstAttribute="leading" secondItem="68p-8T-cZk" secondAttribute="leading" constant="45" id="JBW-fH-e7n"/>
+                        <constraint firstItem="k6H-Xo-L9v" firstAttribute="bottom" secondItem="VA4-Ff-xKO" secondAttribute="bottom" id="NZr-Np-YaA"/>
                         <constraint firstItem="300-ue-LO8" firstAttribute="leading" secondItem="VA4-Ff-xKO" secondAttribute="trailing" id="RoS-i5-oxW"/>
                         <constraint firstAttribute="trailing" secondItem="VA4-Ff-xKO" secondAttribute="trailing" constant="35" id="UdG-TD-6no"/>
                         <constraint firstItem="VA4-Ff-xKO" firstAttribute="leading" secondItem="68p-8T-cZk" secondAttribute="leading" constant="23" id="Y0S-Pt-eUD"/>
                         <constraint firstItem="VA4-Ff-xKO" firstAttribute="top" secondItem="b4Y-Qv-V12" secondAttribute="bottom" constant="14" id="cgu-8t-jKc"/>
-                        <constraint firstItem="k6H-Xo-L9v" firstAttribute="top" secondItem="VA4-Ff-xKO" secondAttribute="bottom" constant="-1" id="fJM-J5-k8T"/>
                         <constraint firstItem="joH-iE-2Gb" firstAttribute="leading" secondItem="68p-8T-cZk" secondAttribute="leading" constant="84" id="h0y-93-dyl"/>
                         <constraint firstItem="b4Y-Qv-V12" firstAttribute="top" secondItem="68p-8T-cZk" secondAttribute="top" constant="30" id="mWn-VB-Dax"/>
                         <constraint firstAttribute="trailing" secondItem="b4Y-Qv-V12" secondAttribute="trailing" constant="57" id="uqj-Db-mN1"/>
@@ -80,7 +86,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <gestureRecognizers/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="68p-8T-cZk" secondAttribute="trailing" id="JWn-Zp-Uta"/>
@@ -93,6 +99,8 @@
             <connections>
                 <outlet property="acceptButton" destination="joH-iE-2Gb" id="sOG-z6-iwv"/>
                 <outlet property="descritionTextView" destination="VA4-Ff-xKO" id="mgR-tA-XSB"/>
+                <outlet property="heightDescriptionConstraint" destination="Ea6-0a-mRB" id="Ihj-RN-AhN"/>
+                <outlet property="mainView" destination="68p-8T-cZk" id="adh-vx-yr0"/>
                 <outlet property="resetButton" destination="300-ue-LO8" id="nhd-nT-rA1"/>
                 <outlet property="titleLabel" destination="b4Y-Qv-V12" id="iMw-OF-loh"/>
             </connections>

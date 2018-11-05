@@ -66,8 +66,8 @@ class FireBaseManager{
     let idHouse = ref.childByAutoId().key
    
     ref.child("CASA").child(idHouse).child("PRICE").setValue(model.price)
-     ref.child("CASA").child(idHouse).child("IDHOUSE").setValue(idHouse)
-        
+    ref.child("CASA").child(idHouse).child("IDHOUSE").setValue(idHouse)
+    ref.child("CASA").child(idHouse).child("DESCRIPTION").setValue(model.completeDescription)
         if let secciones = model.section {
             var dictioTotal = Dictionary<String, Any>()
             for section in secciones {
@@ -118,7 +118,8 @@ class FireBaseManager{
                 let arrayRoom = self.getRoom(dictio: valores!)
                 let idHouse = valores!["IDHOUSE"] as? String
                 let price = valores!["PRICE"] as? String
-                let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
+                let completeDescription =  valores!["DESCRIPTION"] as? String
+                let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction, completeDescription:completeDescription)
                 fullHouse.idHouse = idHouse
                 collectionHouse.append(fullHouse)
                 cont += 1
@@ -213,6 +214,7 @@ class FireBaseManager{
         var directionOk = false
         var roomOk = false
         var price = ""
+        var completeDescription = ""
         var idHouse = ""
         var direction = ModelDirection()
          var arrayRoom = Array<ModelRoom> ()
@@ -229,6 +231,9 @@ class FireBaseManager{
                         switch key{
                         case "PRICE":
                             price = valores!["PRICE"] as! String
+                            break
+                        case "DESCRIPTION":
+                            completeDescription = valores!["DESCRIPTION"] as! String
                             break
                         case "IDHOUSE":
                             idHouse = valores!["IDHOUSE"] as! String
@@ -250,7 +255,7 @@ class FireBaseManager{
                         }
                     }
                     if(directionOk && roomOk && makeHouse){
-                        let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction)
+                        let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction, completeDescription: completeDescription)
                         fullHouse.idHouse = idHouse
                         self.delegate?.getNewHouse(model: fullHouse)
                         makeHouse = true
