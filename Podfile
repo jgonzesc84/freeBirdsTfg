@@ -13,6 +13,7 @@ target 'freeBirdsTfg' do
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
   pod 'lottie-ios'
+  pod 'FAPaginationLayout'
 
   target 'freeBirdsTfgTests' do
     inherit! :search_paths
