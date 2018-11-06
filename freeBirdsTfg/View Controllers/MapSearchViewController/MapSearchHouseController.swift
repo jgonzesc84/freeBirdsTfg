@@ -180,6 +180,7 @@ class MapSearchHouseController {
         
         let vc = HouseDetailRequestViewController (nibName:"HouseDetailRequestViewController", bundle: nil)
         vc.house = selectedHouse
+        vc.roomSelectAtIndex = indexPath
         viewMap?.navigationController?.pushViewController(vc, animated: true)
         
     }

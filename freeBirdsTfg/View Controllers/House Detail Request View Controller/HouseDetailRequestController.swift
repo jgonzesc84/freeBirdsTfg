@@ -11,25 +11,42 @@ import UIKit
 class HouseDetailRequestController{
     
     let requestView : HouseDetailRequestViewController?
+    var showRoom : Bool?
     
     init(requestView: HouseDetailRequestViewController!){
         
         self.requestView = requestView
-        
+        showRoom = true
     }
     
     func numberOfItemsInSection(collectionView: UICollectionView ) -> Int{
         
         var numbOfItems = 0
-        if (collectionView == requestView?.supViewCollection) {
-            numbOfItems = requestView!.house?.listOfRoom?.count ?? 0
+        if(requestView!.house?.section?.count == 0){
+            requestView!.infView.translatesAutoresizingMaskIntoConstraints = false
+            requestView!.supView.translatesAutoresizingMaskIntoConstraints  = false
+            requestView!.infView.isHidden = true
+            let heightConstraint = NSLayoutConstraint(item: requestView!.infView, attribute: .height, relatedBy: .equal,
+                                                      toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 0)
+            let bottonConstraint = NSLayoutConstraint(item: requestView!.supView, attribute: .bottom, relatedBy: .equal,
+                                                      toItem: requestView!.footerview, attribute: .top, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate( [heightConstraint,bottonConstraint])
+            requestView!.supViewCollection.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            requestView!.view.layoutSubviews()
+        }
+        if(showRoom!){
+            if (collectionView == requestView?.supViewCollection) {
+                numbOfItems = requestView!.house?.listOfRoom?.count ?? 0
+            }else{
+                 numbOfItems = requestView!.house?.section?.count ?? 0
+            }
         }else{
-            numbOfItems = requestView!.house?.section?.count ?? 0
-            if(numbOfItems == 0){
-                requestView!.infView.isHidden = true
+            if (collectionView == requestView?.supViewCollection) {
+                numbOfItems = requestView!.house?.section?.count ?? 0
+            }else{
+                numbOfItems = requestView!.house?.listOfRoom?.count ?? 0
             }
         }
-        
         return numbOfItems
     }
    
@@ -70,6 +87,41 @@ class HouseDetailRequestController{
             let offsetPercentage = offsetX / ((requestView?.view.bounds.width)! * 2.7)
             let scaleX = 1-offsetPercentage
             cell.transform = CGAffineTransform(scaleX: scaleX, y: scaleX)
+        }
+    }
+    
+    func didSelectItemAt(collectionView: UICollectionView, indexPath: IndexPath){
+        
+        if (collectionView == requestView?.supViewCollection) {
+           
+        }else{
+            changeDataView(show: showRoom!)
+        }
+    }
+    
+    func changeDataView(show : Bool){
+        
+        if(show){
+            UIView.transition(with:  (requestView?.infViewCollection)!,
+                              duration: 1,
+                              options: .transitionCurlUp,
+                              animations: {   self.requestView?.infViewCollection.reloadData() })
+            UIView.transition(with:  (requestView?.supViewCollection)!,
+                              duration: 1,
+                              options: .transitionCurlDown,
+                              animations: {   self.requestView?.supViewCollection.reloadData() })
+            showRoom = false
+            
+        }else{
+            UIView.transition(with:  (requestView?.infViewCollection)!,
+                              duration: 1,
+                              options: .transitionFlipFromBottom,
+                              animations: {   self.requestView?.infViewCollection.reloadData() })
+            UIView.transition(with:  (requestView?.supViewCollection)!,
+                              duration: 1,
+                              options: .transitionCurlUp,
+                              animations: {   self.requestView?.supViewCollection.reloadData() })
+            showRoom = true
         }
     }
     

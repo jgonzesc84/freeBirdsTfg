@@ -25,6 +25,7 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     
     var controller : HouseDetailRequestController?
     var house : ModelHouse?
+    var roomSelectAtIndex : IndexPath?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,11 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         prepareNav(label: titleLabel, text: "Detalle")
         MainHelper.navStyle(view:navView)
         initView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+    
+        supViewCollection.scrollToItem(at: roomSelectAtIndex!, at: [.centeredVertically, .centeredHorizontally], animated: true)
     }
     
     func initView(){
@@ -53,6 +59,7 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         }
         supViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
         infViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
+       
     }
     
     override func viewWillLayoutSubviews() {
@@ -85,5 +92,9 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         return controller!.cellForItemAt(collectionView: collectionView, indexPath: indexPath)
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+         controller!.didSelectItemAt(collectionView: collectionView, indexPath: indexPath)
+    }
    
 }
