@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDelegate ,UICollectionViewDataSource  {
+class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDelegate ,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -51,9 +51,27 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         if let layout = infViewCollection.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
         }
-        heightForRowAtCollectionView(collectionView: supViewCollection)
-        heightForRowAtCollectionView(collectionView: infViewCollection)
+        supViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
+        infViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        controller!.updateCellsLayout(collectionView: supViewCollection)
+        controller!.updateCellsLayout(collectionView: infViewCollection)
+    }
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+       
+        return controller!.sizeForItemAt(collectionView: collectionView, collectionViewlayout: collectionViewLayout , indexPath: indexPath)
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
+        if (scrollView == supViewCollection){
+            controller!.updateCellsLayout(collectionView: supViewCollection)
+        }else{
+             controller!.updateCellsLayout(collectionView: infViewCollection)
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -67,9 +85,5 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         return controller!.cellForItemAt(collectionView: collectionView, indexPath: indexPath)
     }
     
-    func heightForRowAtCollectionView(collectionView: UICollectionView){
-        
-        controller!.calculateItemSize(collectionView: collectionView)
-    }   
-
+   
 }

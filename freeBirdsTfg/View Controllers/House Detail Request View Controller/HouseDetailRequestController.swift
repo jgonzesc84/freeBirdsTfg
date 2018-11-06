@@ -46,27 +46,31 @@ class HouseDetailRequestController{
         return cell
     }
     
-    func calculateItemSize(collectionView: UICollectionView){
+    //  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
+    func sizeForItemAt(collectionView: UICollectionView, collectionViewlayout: UICollectionViewLayout , indexPath: IndexPath) -> CGSize{
+        var cellSize: CGSize = collectionView.bounds.size
+        cellSize.width -= collectionView.contentInset.left * 2
+        cellSize.width -= collectionView.contentInset.right * 2
+        cellSize.height = cellSize.width
+
+        return cellSize
+    }
+    
+    func updateCellsLayout(collectionView:UICollectionView)  {
         
-        var cellScaling: CGFloat = 0.0
-        let parentSize = collectionView.frame
-        if(collectionView == requestView?.supViewCollection){
-            cellScaling = 0.9
-        }else{
-             cellScaling = 0.9
-            
+        let centerX = collectionView.contentOffset.x + (collectionView.frame.size.width)/2
+        
+        for cell in collectionView.visibleCells {
+            var offsetX = centerX - cell.center.x
+            if offsetX < 0 {
+                offsetX *= -1
+            }
+            cell.transform = CGAffineTransform.identity
+            let offsetPercentage = offsetX / ((requestView?.view.bounds.width)! * 2.7)
+            let scaleX = 1-offsetPercentage
+            cell.transform = CGAffineTransform(scaleX: scaleX, y: scaleX)
         }
-        var cellWidth = floor(parentSize.width * cellScaling)
-        let cellHeight = floor(parentSize.height * cellScaling)
-        if(collectionView == requestView?.infViewCollection){
-            cellWidth = cellWidth / 2
-        }
-        let insetX = (parentSize.width - cellWidth) / 2.0
-       // let insetY  = (parentSize.height - cellHeight) / 2.0
-        let insetY  = 0.00
-        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        collectionView.contentInset = UIEdgeInsets(top: CGFloat(insetY), left: insetX, bottom: CGFloat(insetY), right: insetX)
     }
     
 }

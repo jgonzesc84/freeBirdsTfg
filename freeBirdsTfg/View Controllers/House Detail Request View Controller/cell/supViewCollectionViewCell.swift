@@ -16,9 +16,15 @@ class supViewCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var supTextView: UITextView!
     @IBOutlet weak var priceLabel: UILabel!
     
+    var room : ModelRoom?
+    var section : ModelHouseSection?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        
     }
 
+    func setupCell(){
+        
+    }
 }
