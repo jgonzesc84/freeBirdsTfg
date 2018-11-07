@@ -51,16 +51,32 @@ class HouseDetailRequestController{
     }
    
     func cellForItemAt(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell{
-        var cell = UICollectionViewCell()
+      
         
         if (collectionView == requestView?.supViewCollection) {
-              cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "supCell", for: indexPath) as! supViewCollectionViewCell
-            
+            let  cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "supCell", for: indexPath) as! supViewCollectionViewCell
+            if(showRoom!){
+                requestView!.supViewLabel.text = "Habitaciones"
+                let model = requestView!.house?.listOfRoom![indexPath.row]
+                cell.setupCell(model: model! )
+                
+            }else{
+                requestView!.supViewLabel.text = "Secciones"
+                let model = requestView!.house?.section![indexPath.row]
+                cell.setupCell(model: model! )
+            }
+            return cell
         }else{
-              cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "infCell", for: indexPath) as! infViewCollectionViewCell
+            let  cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "infCell", for: indexPath) as! infViewCollectionViewCell
+            if(showRoom!){
+                requestView!.infViewLabel.text = "Secciones"
+            }else{
+                 requestView!.infViewLabel.text = "Habitaciones"
+            }
+            return cell
         }
         
-        return cell
+     
     }
     
     //  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

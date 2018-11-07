@@ -94,6 +94,7 @@
 		59F493822190D04400014560 /* supViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59F493802190D04400014560 /* supViewCollectionViewCell.xib */; };
 		59F493852190D05500014560 /* infViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F493832190D05500014560 /* infViewCollectionViewCell.swift */; };
 		59F493862190D05500014560 /* infViewCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59F493842190D05500014560 /* infViewCollectionViewCell.xib */; };
+		59FCE8DD21938A4D008A0673 /* supViewCollectionViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FCE8DC21938A4D008A0673 /* supViewCollectionViewCellController.swift */; };
 		59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */; };
 		59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */; };
 		59FEB808210F8C1C00901D62 /* KGHAPPYSolid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB805210F8C1C00901D62 /* KGHAPPYSolid.ttf */; };
@@ -216,6 +217,7 @@
 		59F493802190D04400014560 /* supViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = supViewCollectionViewCell.xib; sourceTree = "<group>"; };
 		59F493832190D05500014560 /* infViewCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		59F493842190D05500014560 /* infViewCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = infViewCollectionViewCell.xib; sourceTree = "<group>"; };
+		59FCE8DC21938A4D008A0673 /* supViewCollectionViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = supViewCollectionViewCellController.swift; sourceTree = "<group>"; };
 		59FEB803210F8C1B00901D62 /* KGHAPPYShadows.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPYShadows.ttf; sourceTree = "<group>"; };
 		59FEB804210F8C1C00901D62 /* KGHAPPY.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPY.ttf; sourceTree = "<group>"; };
 		59FEB805210F8C1C00901D62 /* KGHAPPYSolid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = KGHAPPYSolid.ttf; sourceTree = "<group>"; };
@@ -705,12 +707,29 @@
 		59F4937E2190D02300014560 /* cell */ = {
 			isa = PBXGroup;
 			children = (
+				59FCE8DF21938A6D008A0673 /* inf View Cell */,
+				59FCE8DE21938A57008A0673 /* sup VIew Cell */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		59FCE8DE21938A57008A0673 /* sup VIew Cell */ = {
+			isa = PBXGroup;
+			children = (
 				59F4937F2190D04400014560 /* supViewCollectionViewCell.swift */,
 				59F493802190D04400014560 /* supViewCollectionViewCell.xib */,
+				59FCE8DC21938A4D008A0673 /* supViewCollectionViewCellController.swift */,
+			);
+			path = "sup VIew Cell";
+			sourceTree = "<group>";
+		};
+		59FCE8DF21938A6D008A0673 /* inf View Cell */ = {
+			isa = PBXGroup;
+			children = (
 				59F493832190D05500014560 /* infViewCollectionViewCell.swift */,
 				59F493842190D05500014560 /* infViewCollectionViewCell.xib */,
 			);
-			path = cell;
+			path = "inf View Cell";
 			sourceTree = "<group>";
 		};
 		59FEB802210F8B9B00901D62 /* Fonts */ = {
@@ -1052,6 +1071,7 @@
 				59F493852190D05500014560 /* infViewCollectionViewCell.swift in Sources */,
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */,
+				59FCE8DD21938A4D008A0673 /* supViewCollectionViewCellController.swift in Sources */,
 				3B692F24216CC9D600DE9A24 /* MapSearchHouseController.swift in Sources */,
 				593526822143C8F0002A53D1 /* roomCell.swift in Sources */,
 				5939CC48218D902F005C67D0 /* ModalCreateRoom.swift in Sources */,

@@ -59,6 +59,10 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         }
         supViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
         infViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
+        
+        MainHelper.theStyle(view: supView)
+        MainHelper.theStyle(view: infView)
+        MainHelper.theStyle(view: footerview)
        
     }
     

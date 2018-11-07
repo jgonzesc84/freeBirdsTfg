@@ -13,6 +13,7 @@ class infViewCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        MainHelper.theStyle(view: self)
     }
 
 }
