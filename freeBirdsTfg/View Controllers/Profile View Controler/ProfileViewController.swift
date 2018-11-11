@@ -10,11 +10,19 @@ import UIKit
 
 class ProfileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
-
+    //navigation View
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    //header View
+    @IBOutlet weak var photoButton: UIButton!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var profileImage: UIImageView!
+    //body View
     @IBOutlet weak var myTable: UITableView!
     
+   
+    
+    var user : ModelUser?
     var controller : ProfileController?
     
     
@@ -24,10 +32,17 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         controller = ProfileController(profileView:self)
         self.prepareNav(label: titleLabel, text: "Creación Perfil")
         MainHelper.navStyle(view :  navView)
-        
+        initView()
+        setupTable()
     }
     
     func initView(){
+        MainHelper.circleButton(button: photoButton)
+        MainHelper.circleView(view : profileImage)
+       // profileImage.layer.cornerRadius = 72
+        profileImage.layer.borderColor = UIColor .black.cgColor
+        profileImage.layer.borderWidth = 3.0
+        profileImage.clipsToBounds = true
         
     }    
     func setupTable(){
@@ -35,6 +50,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         myTable.dataSource = self
         myTable.register(UINib(nibName:"ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "optionCell")
         myTable.separatorStyle = UITableViewCellSeparatorStyle .none
+       
+
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -44,9 +61,13 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        return   UITableViewCell()
+       return (controller?.drawCell(tableView: tableView, indexPath: indexPath))!
+       
     }
     
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return UITableViewAutomaticDimension;
+    }
    
 }

@@ -9,8 +9,9 @@
 import UIKit
 import Lottie
 import Material
+import Firebase
 
-class MainViewController: UIViewController {
+class MainViewController: BaseViewController {
   
 
     @IBOutlet weak var sepratorNavigationView: UIView!
@@ -78,7 +79,7 @@ class MainViewController: UIViewController {
         
     }
  
-    func animationButtons(button:UIView){
+    override func animationButtons(button:UIView){
             UIView.animate(withDuration: 1) {
                 button.center.y -= self.view.bounds.height/16
        
@@ -111,6 +112,15 @@ class MainViewController: UIViewController {
     @IBAction func goToCreateHouse(_ sender: Any) {
         let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    @IBAction func signOutAction(_ sender: Any) {
+       try! Auth.auth().signOut()
+        self.dismiss(animated: false) {
+            
+        }
+        
     }
     
    

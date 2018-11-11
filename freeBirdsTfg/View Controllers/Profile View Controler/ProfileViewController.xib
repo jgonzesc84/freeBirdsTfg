@@ -13,7 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="myTable" destination="ULz-2A-LEF" id="H53-RO-O9A"/>
+                <outlet property="nameTextField" destination="lu7-JY-TyU" id="eCd-89-1sl"/>
                 <outlet property="navView" destination="7OA-0C-Lts" id="c7F-ax-poS"/>
+                <outlet property="photoButton" destination="Kdq-NC-wgX" id="8S4-EV-BF1"/>
+                <outlet property="profileImage" destination="7aL-PO-8u2" id="8V1-DS-59G"/>
                 <outlet property="titleLabel" destination="0mH-0c-h6Z" id="L5k-Sq-gEX"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -60,11 +63,27 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCz-0s-7NW" userLabel="HeaderView">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="240"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kJm-C5-fkY">
+                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lu7-JY-TyU">
+                                            <rect key="frame" x="75" y="176" width="225" height="48"/>
+                                            <nil key="textColor"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </textField>
+                                        <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="kJm-C5-fkY" userLabel="eliminar esta vista lo de dentro no">
                                             <rect key="frame" x="94" y="24" width="187.5" height="144"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_user" translatesAutoresizingMaskIntoConstraints="NO" id="7aL-PO-8u2">
-                                                    <rect key="frame" x="0.0" y="0.0" width="187.5" height="144"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevenRoom Ico" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7aL-PO-8u2">
+                                                    <rect key="frame" x="13.5" y="-8" width="160" height="160"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="160" id="fcs-UA-NIY"/>
+                                                        <constraint firstAttribute="width" constant="160" id="rgf-Yy-XfF"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                                            <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdq-NC-wgX">
                                                     <rect key="frame" x="70.5" y="49" width="46" height="46"/>
@@ -76,24 +95,16 @@
                                                     <state key="normal" image="cm_photo_camera_white"/>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="7aL-PO-8u2" secondAttribute="bottom" id="5Lk-ei-RQ2"/>
-                                                <constraint firstItem="7aL-PO-8u2" firstAttribute="top" secondItem="kJm-C5-fkY" secondAttribute="top" id="GEs-bl-Kv7"/>
+                                                <constraint firstItem="7aL-PO-8u2" firstAttribute="centerX" secondItem="kJm-C5-fkY" secondAttribute="centerX" id="BfN-OT-hCQ"/>
+                                                <constraint firstItem="7aL-PO-8u2" firstAttribute="centerY" secondItem="kJm-C5-fkY" secondAttribute="centerY" id="Y4s-ih-NlF"/>
                                                 <constraint firstItem="Kdq-NC-wgX" firstAttribute="centerY" secondItem="kJm-C5-fkY" secondAttribute="centerY" id="bAw-NO-SrG"/>
                                                 <constraint firstItem="Kdq-NC-wgX" firstAttribute="centerX" secondItem="kJm-C5-fkY" secondAttribute="centerX" id="eb5-KI-v02"/>
-                                                <constraint firstItem="7aL-PO-8u2" firstAttribute="leading" secondItem="kJm-C5-fkY" secondAttribute="leading" id="f9e-29-pMd"/>
-                                                <constraint firstAttribute="trailing" secondItem="7aL-PO-8u2" secondAttribute="trailing" id="sld-1O-EMX"/>
                                             </constraints>
                                         </view>
-                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lu7-JY-TyU">
-                                            <rect key="frame" x="75" y="176" width="225" height="48"/>
-                                            <nil key="textColor"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits"/>
-                                        </textField>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.69803921570000005" green="0.69803921570000005" blue="0.69803921570000005" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="lu7-JY-TyU" firstAttribute="top" secondItem="kJm-C5-fkY" secondAttribute="bottom" constant="8" id="4GW-bf-CTs"/>
                                         <constraint firstItem="lu7-JY-TyU" firstAttribute="height" secondItem="xCz-0s-7NW" secondAttribute="height" multiplier="0.2" id="6dw-eP-dqy"/>
@@ -160,6 +171,6 @@
     </objects>
     <resources>
         <image name="cm_photo_camera_white" width="24" height="24"/>
-        <image name="steven_user" width="76" height="76"/>
+        <image name="stevenRoom Ico" width="100" height="56"/>
     </resources>
 </document>

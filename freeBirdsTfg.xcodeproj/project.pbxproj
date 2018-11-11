@@ -90,6 +90,7 @@
 		5990EB012197749F00627F12 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */; };
 		5990EB03219775C300627F12 /* ProfileCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5990EB02219775C300627F12 /* ProfileCellController.swift */; };
 		59972E842146EAE700001B27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59972E832146EAE700001B27 /* BaseViewController.swift */; };
+		59A32AA9219850D500CBDC77 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A32AA8219850D500CBDC77 /* ModelUser.swift */; };
 		59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */; };
 		59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */; };
 		59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C277EF2143DD09006CDBC4 /* mainHelper.swift */; };
@@ -225,6 +226,7 @@
 		5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		5990EB02219775C300627F12 /* ProfileCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellController.swift; sourceTree = "<group>"; };
 		59972E832146EAE700001B27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		59A32AA8219850D500CBDC77 /* ModelUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
 		59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaViewController.swift; sourceTree = "<group>"; };
 		59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAplhaAnimation.json; sourceTree = "<group>"; };
 		59C277EF2143DD09006CDBC4 /* mainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainHelper.swift; sourceTree = "<group>"; };
@@ -309,16 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				5948EC672185D68C00E787B5 /* LoginController */,
-				3B692F22216CC9A100DE9A24 /* Controllers Map Search House */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		3B692F22216CC9A100DE9A24 /* Controllers Map Search House */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Controllers Map Search House";
 			sourceTree = "<group>";
 		};
 		3BB44E25217DF6B800D610DF /* Modal */ = {
@@ -356,6 +350,7 @@
 				595594582151A41A006490D5 /* Direction.swift */,
 				593B5C5D215ACC470013CBD1 /* ModelHouse.swift */,
 				593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */,
+				59A32AA8219850D500CBDC77 /* ModelUser.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -364,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				5960022920FF99240042CF9F /* LoginViewController.swift */,
+				5948EC682185D6B000E787B5 /* LoginController.swift */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -502,7 +498,6 @@
 		5948EC672185D68C00E787B5 /* LoginController */ = {
 			isa = PBXGroup;
 			children = (
-				5948EC682185D6B000E787B5 /* LoginController.swift */,
 			);
 			path = LoginController;
 			sourceTree = "<group>";
@@ -602,8 +597,8 @@
 			children = (
 				5990EAFD2197747D00627F12 /* cellProfile */,
 				5966257E2197698E00658775 /* ProfileViewController.swift */,
-				5966257F2197698E00658775 /* ProfileViewController.xib */,
 				59662582219769B300658775 /* ProfileController.swift */,
+				5966257F2197698E00658775 /* ProfileViewController.xib */,
 			);
 			path = "Profile View Controler";
 			sourceTree = "<group>";
@@ -1128,6 +1123,7 @@
 				5939CC51218DDA0A005C67D0 /* ModalCreateSectionView.swift in Sources */,
 				5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */,
 				59F493852190D05500014560 /* infViewCollectionViewCell.swift in Sources */,
+				59A32AA9219850D500CBDC77 /* ModelUser.swift in Sources */,
 				596625782196F1A800658775 /* ModalRequestHouse.swift in Sources */,
 				590F20052103A67F003F64A3 /* MainViewController.swift in Sources */,
 				5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */,

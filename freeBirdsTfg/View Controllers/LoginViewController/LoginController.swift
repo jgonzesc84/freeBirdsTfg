@@ -66,7 +66,9 @@ class LoginController{
                 Auth.auth().createUser(withEmail:userText! , password: passwd!) { (user, error) in
                     if user != nil
                     {
-                        self.goHome()
+                        //cambiar ir a pantalla de Profile para completar la creación de usuario
+                       // self.goHome()
+                        self.goProfile()
                     }else{
                         //ERROR IMPLEMETAR ALERTA SI NO SE HA CONSEGUIDO LOGUEAER
                       //  self.showError(error: error!)
@@ -94,6 +96,13 @@ class LoginController{
         let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
         let vc = UINavigationController(rootViewController: Objvc)
         self.viewLogin!.present(vc, animated: true) {
+        }
+    }
+    
+    func goProfile(){
+        let Objvc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+       // let vc = UINavigationController(rootViewController: Objvc)
+        self.viewLogin!.present(Objvc, animated: true) {
         }
     }
     

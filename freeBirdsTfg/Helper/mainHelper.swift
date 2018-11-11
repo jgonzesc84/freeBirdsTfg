@@ -146,6 +146,11 @@ class MainHelper{
         button.layer.cornerRadius = button.frame.height / 2
     }
     
+    static func circleView(view : UIView){
+    view.layer.cornerRadius = view.layer.frame.height / 2
+        
+    }
+    
     static func navStyle(view : UIView){
         view.backgroundColor = UIColor .white
         for item in view.subviews {

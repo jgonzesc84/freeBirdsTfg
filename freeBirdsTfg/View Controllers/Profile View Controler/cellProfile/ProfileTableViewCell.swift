@@ -21,6 +21,8 @@ class ProfileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         MainHelper.theStyle(view: mainView)
+        self.selectionStyle = UITableViewCellSelectionStyle .none
+   
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

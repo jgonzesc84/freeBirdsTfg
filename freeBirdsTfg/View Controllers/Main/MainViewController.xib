@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,7 +38,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primera Pantalla" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0am-8A-XHE">
-                            <rect key="frame" x="30" y="28" width="315" height="31"/>
+                            <rect key="frame" x="37.5" y="28" width="300" height="31"/>
                             <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="26"/>
                             <color key="textColor" red="0.7171035060881793" green="0.85328454565880874" blue="0.82918128406899994" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -54,12 +53,12 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="n0C-eE-Zt4" firstAttribute="leading" secondItem="9VP-wz-rha" secondAttribute="leading" constant="67" id="0nu-B3-BJA"/>
-                        <constraint firstAttribute="trailing" secondItem="0am-8A-XHE" secondAttribute="trailing" constant="30" id="3Y0-aP-Oqb"/>
+                        <constraint firstItem="0am-8A-XHE" firstAttribute="width" secondItem="9VP-wz-rha" secondAttribute="width" multiplier="0.8" id="JGa-E2-ST6"/>
                         <constraint firstItem="0am-8A-XHE" firstAttribute="top" secondItem="9VP-wz-rha" secondAttribute="top" constant="28" id="JIu-2q-Q6n"/>
                         <constraint firstAttribute="height" constant="67" id="RUb-uR-5Rg"/>
+                        <constraint firstItem="0am-8A-XHE" firstAttribute="centerX" secondItem="9VP-wz-rha" secondAttribute="centerX" id="fMN-WO-Kvo"/>
                         <constraint firstAttribute="bottom" secondItem="n0C-eE-Zt4" secondAttribute="bottom" id="n4L-vU-Vgg"/>
                         <constraint firstAttribute="trailing" secondItem="n0C-eE-Zt4" secondAttribute="trailing" constant="68" id="oEg-ez-j9W"/>
-                        <constraint firstItem="0am-8A-XHE" firstAttribute="leading" secondItem="9VP-wz-rha" secondAttribute="leading" constant="30" id="pnN-5C-hoe"/>
                         <constraint firstItem="n0C-eE-Zt4" firstAttribute="top" secondItem="0am-8A-XHE" secondAttribute="bottom" constant="5" id="tda-f7-XJs"/>
                     </constraints>
                 </view>
@@ -87,10 +86,24 @@
                                         <action selector="goToSearchHouse:" destination="-1" eventType="touchUpInside" id="JZ6-sq-AiP"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVe-GS-Wzq">
+                                    <rect key="frame" x="325" y="270" width="30" height="30"/>
+                                    <color key="backgroundColor" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="MRq-gb-nPp"/>
+                                        <constraint firstAttribute="width" constant="30" id="bdi-ck-tX4"/>
+                                    </constraints>
+                                    <state key="normal" image="cm_search_white"/>
+                                    <connections>
+                                        <action selector="signOutAction:" destination="-1" eventType="touchUpInside" id="lsc-Pl-KEa"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="JJa-yz-bFh" firstAttribute="leading" secondItem="tRE-Ml-QBb" secondAttribute="leading" constant="73" id="0IY-AH-q3E"/>
                                 <constraint firstAttribute="bottom" secondItem="JJa-yz-bFh" secondAttribute="bottom" constant="35.5" id="1DO-QX-KVM"/>
+                                <constraint firstAttribute="trailing" secondItem="GVe-GS-Wzq" secondAttribute="trailing" id="47o-8l-e8y"/>
+                                <constraint firstAttribute="bottom" secondItem="GVe-GS-Wzq" secondAttribute="bottom" id="NeG-yT-Xd2"/>
                                 <constraint firstAttribute="trailing" secondItem="JJa-yz-bFh" secondAttribute="trailing" constant="73" id="h0X-XP-awE"/>
                             </constraints>
                         </view>
@@ -148,7 +161,10 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="9VP-wz-rha" secondAttribute="trailing" id="yf0-lk-ydI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="35.5" y="53.5"/>
+            <point key="canvasLocation" x="34.399999999999999" y="52.623688155922046"/>
         </view>
     </objects>
+    <resources>
+        <image name="cm_search_white" width="24" height="24"/>
+    </resources>
 </document>
