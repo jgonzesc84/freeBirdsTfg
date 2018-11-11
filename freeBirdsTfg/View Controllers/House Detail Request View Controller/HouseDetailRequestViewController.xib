@@ -137,6 +137,9 @@
                                                 <constraint firstAttribute="width" constant="46" id="qgf-88-BiY"/>
                                             </constraints>
                                             <state key="normal" backgroundImage="cm_arrow_downward_white"/>
+                                            <connections>
+                                                <action selector="requestAction:" destination="-1" eventType="touchUpInside" id="361-bE-Z1a"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

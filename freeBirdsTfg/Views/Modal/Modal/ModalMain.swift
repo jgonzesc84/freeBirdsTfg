@@ -21,11 +21,17 @@ class ModalMain: UIView {
     public var returnData: ((Any) -> ())?
     public var returnEditData: ((Any) -> ())?
     public var returnCompleteHouseData: ((String) -> ())?
+    public var returnRequestHouseData: ((String) -> ())?
    // public var editeMode : Bool!
    
     override func awakeFromNib() {
         super.awakeFromNib()
         controller = ModalController(ModalView: self)
+        let width = UIScreen.main.bounds.width
+        let height = UIScreen.main.bounds.height
+        let frame = CGRect(x: 0, y: 0, width: width, height: height)
+        self.frame = frame
+        MainHelper.theStyle(view: self)
     }
     
     func loadContentView(name : String){

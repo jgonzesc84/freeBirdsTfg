@@ -10,11 +10,11 @@ import Foundation
 import UIKit
 class ModalController{
     
-   let modal : ModalMain?
+    let modal : ModalMain?
     var modalCreateRoom : ModalCreateRoom?
     var modalCreateSection : ModalCreateSectionView?
     var modalCompleteHouse : ModalCompleteHouse?
-    
+    var modalRequestHouse : ModalRequestHouse?
     init(ModalView: ModalMain!){
         modal = ModalView
     
@@ -68,6 +68,15 @@ class ModalController{
                 self.modal?.removeFromSuperview()
             }
             
+            break
+            
+        case "requestHouse":
+            modalRequestHouse = Bundle.main.loadNibNamed("ModalRequestHouse", owner: nil, options: nil)![0] as? ModalRequestHouse
+            positionAndHeight(mainView: modal!, auxView: modalRequestHouse!, height: 0.65, y: 0.9)
+            modalRequestHouse?.returnDataRequestHouse = { (text) -> () in
+                self.modal?.returnRequestHouseData?(text)
+                self.modal?.removeFromSuperview()
+            }
             break
         default:
             

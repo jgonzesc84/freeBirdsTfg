@@ -25,13 +25,23 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_playa " translatesAutoresizingMaskIntoConstraints="NO" id="0Sk-iV-cke">
                                 <rect key="frame" x="0.0" y="0.0" width="329" height="362"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ws9-Cw-7PN">
+                                <rect key="frame" x="49.5" y="126.5" width="230" height="109"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="0Sk-iV-cke" secondAttribute="bottom" id="CTa-O6-dpU"/>
+                            <constraint firstItem="ws9-Cw-7PN" firstAttribute="centerX" secondItem="VK8-x2-7n6" secondAttribute="centerX" id="EBc-G8-mFi"/>
+                            <constraint firstItem="ws9-Cw-7PN" firstAttribute="height" secondItem="0Sk-iV-cke" secondAttribute="height" multiplier="0.3" id="FKB-nL-BJN"/>
                             <constraint firstItem="0Sk-iV-cke" firstAttribute="leading" secondItem="VK8-x2-7n6" secondAttribute="leading" id="RbW-Sr-Lm5"/>
                             <constraint firstAttribute="trailing" secondItem="0Sk-iV-cke" secondAttribute="trailing" id="UpU-SR-vZ3"/>
                             <constraint firstItem="0Sk-iV-cke" firstAttribute="top" secondItem="VK8-x2-7n6" secondAttribute="top" id="hDC-Vk-TVP"/>
+                            <constraint firstItem="ws9-Cw-7PN" firstAttribute="width" secondItem="0Sk-iV-cke" secondAttribute="width" multiplier="0.7" id="i2y-ha-bXQ"/>
+                            <constraint firstItem="ws9-Cw-7PN" firstAttribute="centerY" secondItem="VK8-x2-7n6" secondAttribute="centerY" id="ktr-j4-nEd"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -44,6 +54,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="329" height="362"/>
+            <connections>
+                <outlet property="infImageView" destination="0Sk-iV-cke" id="eI1-LR-VeU"/>
+                <outlet property="titleLabel" destination="ws9-Cw-7PN" id="W1q-Ev-qoV"/>
+            </connections>
             <point key="canvasLocation" x="-327.19999999999999" y="68.365817091454275"/>
         </collectionViewCell>
     </objects>

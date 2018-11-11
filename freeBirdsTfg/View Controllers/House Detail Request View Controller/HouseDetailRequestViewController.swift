@@ -27,6 +27,8 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     var house : ModelHouse?
     var roomSelectAtIndex : IndexPath?
     
+   public var modalView : ModalMain?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         controller = HouseDetailRequestController(requestView:self)
@@ -42,6 +44,9 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     
     func initView(){
         initData()
+        MainHelper.circleButton(button: requestButton)
+        MainHelper.borderShadowRedonde(view: requestButton)
+        requestButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
     }
   
     func initData(){
@@ -100,5 +105,11 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
 
          controller!.didSelectItemAt(collectionView: collectionView, indexPath: indexPath)
     }
+    
+    
    
+    @IBAction func requestAction(_ sender: Any) {
+        controller!.requestAction()
+        
+    }
 }

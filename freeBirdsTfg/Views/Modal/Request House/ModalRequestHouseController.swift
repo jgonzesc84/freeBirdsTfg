@@ -1,26 +1,30 @@
 //
-//  ModalCompleteHouseController.swift
+//  ModalRequestRoomController.swift
 //  freeBirdsTfg
 //
-//  Created by Javier on 22/10/18.
+//  Created by javier gonzalez escudero on 10/11/2018.
 //  Copyright © 2018 javier gonzalez escudero. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class ModalCompleteHouseController{
+class ModalRequestHouseController{
     
-    var modal : ModalCompleteHouse?
+    var modal : ModalRequestHouse?
     var heightMax : CGFloat!
+   
     
-    init(modalCompleteHouse: ModalCompleteHouse!){
-       modal = modalCompleteHouse
-       heightMax = 0.0
+    init(modalRequestHouse: ModalRequestHouse!){
+        modal = modalRequestHouse
+        heightMax = 0.0
     }
     
+    
+    
+    
     func autoSizeTextView(textView: UITextView){
-      let text = textView.text
+        let text = textView.text
         let limitHeight = (modal?.frame.size.height)! * 0.7
         if(text!.count > 0 ){
             enableAcceptButton()
@@ -42,7 +46,6 @@ class ModalCompleteHouseController{
         }else{
             disableAcceptButton()
         }
-        
     }
     
     func allowmaxCharacter(textView: UITextView, text: String ,range: NSRange) -> Bool{
@@ -60,7 +63,7 @@ class ModalCompleteHouseController{
         modal?.heightDescriptionConstraint.constant = 28
         disableAcceptButton()
     }
-  
+    
     func enableAcceptButton(){
         UIView.animate(withDuration: 0.3) {
             self.modal?.acceptButton.backgroundColor = UIColor .AppColor.Blue.blueDinosaur
@@ -70,16 +73,18 @@ class ModalCompleteHouseController{
     }
     
     func disableAcceptButton(){
-     UIView.animate(withDuration: 0.3) {
-        MainHelper.giveMeStyle(button: self.modal!.acceptButton)
-        self.modal!.acceptButton.backgroundColor = UIColor .white
+        UIView.animate(withDuration: 0.3) {
+            MainHelper.giveMeStyle(button: self.modal!.acceptButton)
+            self.modal!.acceptButton.backgroundColor = UIColor .white
         }
     }
     
-    
     func acceptButton(){
         let text = modal!.descritionTextView.text
-        modal?.returnDataCompleteHouse!(text!)
+        modal?.returnDataRequestHouse!(text!)
         
     }
+    
+    
+    
 }

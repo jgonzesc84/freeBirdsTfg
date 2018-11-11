@@ -12,6 +12,7 @@ class HouseDetailRequestController{
     
     let requestView : HouseDetailRequestViewController?
     var showRoom : Bool?
+   
     
     init(requestView: HouseDetailRequestViewController!){
         
@@ -70,8 +71,12 @@ class HouseDetailRequestController{
             let  cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "infCell", for: indexPath) as! infViewCollectionViewCell
             if(showRoom!){
                 requestView!.infViewLabel.text = "Secciones"
+                let model = requestView!.house?.section![indexPath.row]
+                cell.setupCell(model: model! )
             }else{
-                 requestView!.infViewLabel.text = "Habitaciones"
+                requestView!.infViewLabel.text = "Habitaciones"
+                let model = requestView!.house?.listOfRoom![indexPath.row]
+                cell.setupCell(model: model! )
             }
             return cell
         }
@@ -138,6 +143,21 @@ class HouseDetailRequestController{
                               options: .transitionCurlUp,
                               animations: {   self.requestView?.supViewCollection.reloadData() })
             showRoom = true
+        }
+    }
+    
+    func requestAction(){
+        prepareModal(name:"requestHouse")
+    }
+    
+    func prepareModal(name : String){
+        requestView?.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: nil, options: nil)![0] as? ModalMain
+        requestView!.modalView?.loadContentView(name: name)
+        if let topVC = UIApplication.getTopMostViewController() {
+            topVC.view.addSubview(requestView!.modalView!)
+            requestView!.modalView?.returnRequestHouseData = { (text) -> () in
+               //FIREBASE CREAR REQUEST PARA EL USUARIO HORA DE CREAR LA PANTALLA DE PROFILE
+            }
         }
     }
     
