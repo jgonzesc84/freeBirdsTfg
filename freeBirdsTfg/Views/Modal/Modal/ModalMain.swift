@@ -12,9 +12,11 @@ import Material
 
 class ModalMain: UIView {
     
-   
+    
     @IBOutlet weak var backView: UIView!
-   
+    
+    //MARK: atributes and outlets
+    
     var controller : ModalController?
     
     //public var mode = true
@@ -22,8 +24,10 @@ class ModalMain: UIView {
     public var returnEditData: ((Any) -> ())?
     public var returnCompleteHouseData: ((String) -> ())?
     public var returnRequestHouseData: ((String) -> ())?
-   // public var editeMode : Bool!
-   
+    // public var editeMode : Bool!
+    
+    //MARK: cycle life methods
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         controller = ModalController(ModalView: self)
@@ -34,15 +38,17 @@ class ModalMain: UIView {
         MainHelper.theStyle(view: self)
     }
     
+    //MARK: modal base methods
+    
     func loadContentView(name : String){
-         controller!.chargeViewModal(name : name)
-         dismissViewSetup()
+        controller!.chargeViewModal(name : name)
+        dismissViewSetup()
     }
     
     
     public func fillModal(model:Any){
         controller!.fillModal(model: model)
-
+        
     }
     
     func dismissViewSetup(){
@@ -55,5 +61,5 @@ class ModalMain: UIView {
         removeFromSuperview()
     }
     
-  
+    
 }

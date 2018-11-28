@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 class ModalController{
     
+    //MARK: atributes
+    
     let modal : ModalMain?
     var modalCreateRoom : ModalCreateRoom?
     var modalCreateSection : ModalCreateSectionView?
@@ -17,8 +19,9 @@ class ModalController{
     var modalRequestHouse : ModalRequestHouse?
     init(ModalView: ModalMain!){
         modal = ModalView
-    
+        
     }
+    //MARK: modal base methods
     
     func chargeViewModal(name : String){
         
@@ -28,8 +31,8 @@ class ModalController{
             positionAndHeight(mainView: modal!, auxView: modalCreateRoom!, height: 0.5 , y: 0.8)
             modalCreateRoom!.editMode = false
             modalCreateRoom?.returnDataCreateRoom = { (model) -> () in
-            self.modal?.returnData?(model)
-            self.modal?.removeFromSuperview()
+                self.modal?.returnData?(model)
+                self.modal?.removeFromSuperview()
             }
             break
         case "editRoom":
@@ -46,8 +49,8 @@ class ModalController{
             positionAndHeight(mainView: modal!, auxView: modalCreateSection!, height: 0.65 , y: 0.9)
             modalCreateSection!.editMode = false
             modalCreateSection?.returnDataCreateSection = { (model) -> () in
-            self.modal?.returnData?(model)
-            self.modal?.removeFromSuperview()
+                self.modal?.returnData?(model)
+                self.modal?.removeFromSuperview()
             }
             break
         case "editSection":
@@ -105,6 +108,8 @@ class ModalController{
             break
         }
     }
+    
+    //MARK: private methods
     
     func positionAndHeight(mainView:UIView , auxView:UIView, height : Float , y: Float){
         auxView.translatesAutoresizingMaskIntoConstraints = false

@@ -11,13 +11,7 @@ import Material
 
 class ModalRequestHouse: UIView , UITextViewDelegate{
 
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+   //MARK: atributes and outlets
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -28,13 +22,16 @@ class ModalRequestHouse: UIView , UITextViewDelegate{
     
     var controller : ModalRequestHouseController?
      var returnDataRequestHouse: ((String) -> ())?
+    
+     //MARK: cycle life methods
+    
     override func awakeFromNib() {
         super .awakeFromNib()
         initView()
     }
     
     
-   
+    //MARK: setup view
     
     func initView(){
         controller = ModalRequestHouseController(modalRequestHouse: self)
@@ -46,6 +43,7 @@ class ModalRequestHouse: UIView , UITextViewDelegate{
         descritionTextView.delegate = self
         self.hideKeyboardWhenTappedAround()
     }
+     //MARK: text view delegate methods
     
     func textViewDidChange(_ textView: UITextView) {
         controller?.autoSizeTextView(textView: textView)
@@ -57,6 +55,7 @@ class ModalRequestHouse: UIView , UITextViewDelegate{
         return (controller?.allowmaxCharacter(textView:textView, text: text, range: range))!
     }
     
+     //MARK: action buttons methods
     
     @IBAction func resetButton(_ sender: Any) {
         

@@ -11,13 +11,19 @@ import UIKit
 
 class ModalCompleteHouseController{
     
+     //MARK: atributes
+    
     var modal : ModalCompleteHouse?
     var heightMax : CGFloat!
+    
+     //MARK: init
     
     init(modalCompleteHouse: ModalCompleteHouse!){
        modal = modalCompleteHouse
        heightMax = 0.0
     }
+    
+     //MARK: text view methods
     
     func autoSizeTextView(textView: UITextView){
       let text = textView.text
@@ -54,13 +60,23 @@ class ModalCompleteHouseController{
         }
     }
     
+    //MARK: action buttons methods
+    
     func resetButton(){
         
         modal?.descritionTextView.text = ""
         modal?.heightDescriptionConstraint.constant = 28
         disableAcceptButton()
     }
+    
+    func acceptButton(){
+        let text = modal!.descritionTextView.text
+        modal?.returnDataCompleteHouse!(text!)
+        
+    }
   
+      //MARK: private methods
+    
     func enableAcceptButton(){
         UIView.animate(withDuration: 0.3) {
             self.modal?.acceptButton.backgroundColor = UIColor .AppColor.Blue.blueDinosaur
@@ -77,9 +93,5 @@ class ModalCompleteHouseController{
     }
     
     
-    func acceptButton(){
-        let text = modal!.descritionTextView.text
-        modal?.returnDataCompleteHouse!(text!)
-        
-    }
+    
 }

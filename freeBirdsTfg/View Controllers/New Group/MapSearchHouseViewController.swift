@@ -11,7 +11,8 @@ import MapKit
 import CoreLocation
 
 class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource {
-   
+    
+    //MARK: atributes and outlets
    
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var viewsearch: UIView!
@@ -29,6 +30,8 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
     let fire = FireBaseManager()
     let locationManager = CLLocationManager()
     
+    //MARK: cycle life methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareNav(label: titleLabel, text: "Busca Casa")
@@ -38,7 +41,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller?.addAnnotation()
         fire.delegate = self
       //fire.updateHouseMap()
-       
+        hearSearchBarMap()
        
     }
    
@@ -57,6 +60,8 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
     override func viewDidDisappear(_ animated: Bool) {
        
     }
+    //MARK: setup view
+    
     func initView(){
         searchMapView = Bundle.main.loadNibNamed("searchMapView", owner: self, options: nil)![0] as? searchMapView
         searchMapView?.mapView = map
@@ -91,10 +96,14 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         }
     }
     
+    //MARK: update localization map
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
        controller?.updateCurrentPosition(manager: manager)
        
     }
+    
+    //MARK: map view delegate methods
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let test = annotation as! FBAnnotationPoint
       return  controller?.configureAnnotation(mapView: mapView, annotation: test)
@@ -109,6 +118,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller?.userScrollMap()
     }
     
+    
    /* func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         controller?.userScrollMap()
         //metodo que cunado se hay contemplado la animacion vuelva a salir las habitatciones despues de esconderse?
@@ -118,6 +128,9 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
      configuración tableView detalle casas
      
      **/
+    
+    //MARK: table view delegate methods
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return (controller?.giveHeightForTable())! ;
@@ -138,10 +151,25 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller?.didSelectRow(tableView: tableView, indexPath: indexPath)
     }
     
+    //MARK: clousure searchBar  view methods
+    
+    func hearSearchBarMap(){
+        
+        self.searchMapView?.getDirection = { (itemLocation) -> () in
+            
+            self.controller?.setupRegion(mapRegion: itemLocation)
+            
+        }
+    }
     
 }
 
+
+
 extension MapSearchHouseViewController : getAllHouseDelegate {
+    
+    //MARK: firebase extension delegate methods
+    
     func getHouseArray(array: Array<ModelHouse>?) {
         
     }

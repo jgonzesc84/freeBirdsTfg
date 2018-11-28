@@ -9,20 +9,22 @@
 import Foundation
 
 class MapSearchHousedetailCellController{
+     //MARK: atributes
     
     var cell : MapSearchHousedetailCell?
-    
+      //MARK: init
     init(cell : MapSearchHousedetailCell ){
         self.cell = cell
     }
     
+    //MARK: setup cell
     func setupCell(model: ModelRoom){
         cell?.priceLabel.text = model.price
-        //IMAGEN
+        //TODO: -imagen
     }
     
     func resetCell(){
         cell?.priceLabel.text = ""
-        //imagen
+         //TODO: -imagen 
     }
 }

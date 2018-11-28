@@ -10,6 +10,8 @@ import UIKit
 
 class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDelegate ,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
 
+     //MARK: atributes and outlets
+    
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var supView: UIView!
@@ -29,6 +31,8 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     
    public var modalView : ModalMain?
     
+    //MARK: cycle life methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         controller = HouseDetailRequestController(requestView:self)
@@ -41,6 +45,8 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     
         supViewCollection.scrollToItem(at: roomSelectAtIndex!, at: [.centeredVertically, .centeredHorizontally], animated: true)
     }
+    
+     //MARK: setup view
     
     func initView(){
         initData()
@@ -76,7 +82,8 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         controller!.updateCellsLayout(collectionView: supViewCollection)
         controller!.updateCellsLayout(collectionView: infViewCollection)
     }
-   
+    //MARK: collection view delegates
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
        
         return controller!.sizeForItemAt(collectionView: collectionView, collectionViewlayout: collectionViewLayout , indexPath: indexPath)
@@ -107,7 +114,8 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     }
     
     
-   
+    //MARK: modal view methods
+    
     @IBAction func requestAction(_ sender: Any) {
         controller!.requestAction()
         

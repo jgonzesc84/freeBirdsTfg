@@ -10,14 +10,46 @@ import Foundation
 import UIKit
 class HouseDetailRequestController{
     
+    //MARK: atributes
+    
     let requestView : HouseDetailRequestViewController?
     var showRoom : Bool?
-   
+    
+    //MARK: init
     
     init(requestView: HouseDetailRequestViewController!){
         
         self.requestView = requestView
         showRoom = true
+    }
+    
+    //MARK: collection view delegates
+    
+    //  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    
+    func sizeForItemAt(collectionView: UICollectionView, collectionViewlayout: UICollectionViewLayout , indexPath: IndexPath) -> CGSize{
+        var cellSize: CGSize = collectionView.bounds.size
+        cellSize.width -= collectionView.contentInset.left * 2
+        cellSize.width -= collectionView.contentInset.right * 2
+        cellSize.height = cellSize.width
+        
+        return cellSize
+    }
+    
+    func updateCellsLayout(collectionView:UICollectionView)  {
+        
+        let centerX = collectionView.contentOffset.x + (collectionView.frame.size.width)/2
+        
+        for cell in collectionView.visibleCells {
+            var offsetX = centerX - cell.center.x
+            if offsetX < 0 {
+                offsetX *= -1
+            }
+            cell.transform = CGAffineTransform.identity
+            let offsetPercentage = offsetX / ((requestView?.view.bounds.width)! * 2.7)
+            let scaleX = 1-offsetPercentage
+            cell.transform = CGAffineTransform(scaleX: scaleX, y: scaleX)
+        }
     }
     
     func numberOfItemsInSection(collectionView: UICollectionView ) -> Int{
@@ -39,7 +71,7 @@ class HouseDetailRequestController{
             if (collectionView == requestView?.supViewCollection) {
                 numbOfItems = requestView!.house?.listOfRoom?.count ?? 0
             }else{
-                 numbOfItems = requestView!.house?.section?.count ?? 0
+                numbOfItems = requestView!.house?.section?.count ?? 0
             }
         }else{
             if (collectionView == requestView?.supViewCollection) {
@@ -50,9 +82,9 @@ class HouseDetailRequestController{
         }
         return numbOfItems
     }
-   
+    
     func cellForItemAt(collectionView: UICollectionView, indexPath: IndexPath) -> UICollectionViewCell{
-      
+        
         
         if (collectionView == requestView?.supViewCollection) {
             let  cell  = collectionView.dequeueReusableCell(withReuseIdentifier: "supCell", for: indexPath) as! supViewCollectionViewCell
@@ -81,45 +113,41 @@ class HouseDetailRequestController{
             return cell
         }
         
-     
-    }
-    
-    //  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    
-    func sizeForItemAt(collectionView: UICollectionView, collectionViewlayout: UICollectionViewLayout , indexPath: IndexPath) -> CGSize{
-        var cellSize: CGSize = collectionView.bounds.size
-        cellSize.width -= collectionView.contentInset.left * 2
-        cellSize.width -= collectionView.contentInset.right * 2
-        cellSize.height = cellSize.width
-
-        return cellSize
-    }
-    
-    func updateCellsLayout(collectionView:UICollectionView)  {
         
-        let centerX = collectionView.contentOffset.x + (collectionView.frame.size.width)/2
-        
-        for cell in collectionView.visibleCells {
-            var offsetX = centerX - cell.center.x
-            if offsetX < 0 {
-                offsetX *= -1
-            }
-            cell.transform = CGAffineTransform.identity
-            let offsetPercentage = offsetX / ((requestView?.view.bounds.width)! * 2.7)
-            let scaleX = 1-offsetPercentage
-            cell.transform = CGAffineTransform(scaleX: scaleX, y: scaleX)
-        }
     }
+    
+    
+    
     
     func didSelectItemAt(collectionView: UICollectionView, indexPath: IndexPath){
         
         if (collectionView == requestView?.supViewCollection) {
-           
+            
         }else{
             changeDataView(show: showRoom!)
         }
     }
     
+    
+    
+    //MARK: modal view methods
+    
+    func requestAction(){
+        prepareModal(name:"requestHouse")
+    }
+    
+    func prepareModal(name : String){
+        requestView?.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: nil, options: nil)![0] as? ModalMain
+        requestView!.modalView?.loadContentView(name: name)
+        if let topVC = UIApplication.getTopMostViewController() {
+            topVC.view.addSubview(requestView!.modalView!)
+            requestView!.modalView?.returnRequestHouseData = { (text) -> () in
+                //TODO:-Firebase crear request y registro del model usuario
+            }
+        }
+    }
+    
+    //MARK: private methods
     func changeDataView(show : Bool){
         
         if(show){
@@ -145,20 +173,4 @@ class HouseDetailRequestController{
             showRoom = true
         }
     }
-    
-    func requestAction(){
-        prepareModal(name:"requestHouse")
-    }
-    
-    func prepareModal(name : String){
-        requestView?.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: nil, options: nil)![0] as? ModalMain
-        requestView!.modalView?.loadContentView(name: name)
-        if let topVC = UIApplication.getTopMostViewController() {
-            topVC.view.addSubview(requestView!.modalView!)
-            requestView!.modalView?.returnRequestHouseData = { (text) -> () in
-               //FIREBASE CREAR REQUEST PARA EL USUARIO HORA DE CREAR LA PANTALLA DE PROFILE
-            }
-        }
-    }
-    
 }

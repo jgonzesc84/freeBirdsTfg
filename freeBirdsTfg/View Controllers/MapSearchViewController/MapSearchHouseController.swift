@@ -12,6 +12,8 @@ import MapKit
 
 class MapSearchHouseController {
     
+    //MARK: atributes
+    
     var description: String?
     var tableIsVisible = false
     var userInteraction = false
@@ -22,33 +24,21 @@ class MapSearchHouseController {
     var rooms = Array <ModelRoom>()
     var selectedHouse = ModelHouse()
     
+    //MARK: init
+    
     init(viewMap: MapSearchHouseViewController!){
         self.viewMap = viewMap
-       
-    }
-    
-    func addAnnotation(){
-        let list = viewMap?.listOfHouses
-        for item in list! {
-            let annotation = FBAnnotationPoint()
-            annotation.idHouse = item.idHouse
-            annotation.coordinate = item.direction!.coordinate!
-            annotation.title = item.direction!.title
-            annotation.descriptionText = item.completeDescription
-            viewMap?.map.addAnnotation(annotation)
-
-        }
-    }
-    
-    func userScrollMap(){
         
-        if(userInteraction){
-            userInteraction = false
-        }else{
-            
-            sizeTable(show : false)
-        }
     }
+    
+    //MARK: setup view
+    func setupTableViewDetails(){
+        viewMap!.houseDetailTableView.separatorStyle = UITableViewCellSeparatorStyle .none
+        viewMap?.houseDetailTableView.register(UINib(nibName:"MapSearchHousedetailCell", bundle: nil), forCellReuseIdentifier: "detailCell")
+    }
+    
+  
+    //MARK: update localization map
     
     func updateCurrentPosition(manager: CLLocationManager){
         guard let location: CLLocationCoordinate2D = manager.location?.coordinate else { return }
@@ -76,15 +66,7 @@ class MapSearchHouseController {
         })
     }
     
-    func updateMap(model: ModelHouse) {
-    let annotation = FBAnnotationPoint()
-        annotation.coordinate = model.direction!.coordinate!
-        annotation.title = model.direction!.title
-        annotation.idHouse = model.idHouse
-        annotation.descriptionText = model.completeDescription
-        self.viewMap?.map.addAnnotation(annotation)
-        self.viewMap?.listOfHouses?.append(model)
-    }
+    //MARK: map view delegate methods
     
     func configureAnnotation(mapView: MKMapView, annotation:FBAnnotationPoint) -> MKAnnotationView?{
         
@@ -107,7 +89,7 @@ class MapSearchHouseController {
     }
     
     func didSelectAnnotation(annotation: FBAnnotationPoint ){
-      
+        
         userInteraction = true
         var MapRect =  self.viewMap?.map.visibleMapRect
         let MapPoint = MKMapPointForCoordinate(annotation.coordinate)
@@ -133,13 +115,83 @@ class MapSearchHouseController {
         sizeTable(show : true)
     }
     
-    func setupTableViewDetails(){
-        viewMap!.houseDetailTableView.separatorStyle = UITableViewCellSeparatorStyle .none
-        viewMap?.houseDetailTableView.register(UINib(nibName:"MapSearchHousedetailCell", bundle: nil), forCellReuseIdentifier: "detailCell")
+    func userScrollMap(){
+        
+        if(userInteraction){
+            userInteraction = false
+        }else{
+            
+            sizeTable(show : false)
+        }
+    }
+    
+    //MARK: table view delegate methods
+    
+    func giveHeightForTable() -> CGFloat{
+        tableViewHeight = (self.viewMap?.map.frame.size.height)! * 0.3
+        return (self.viewMap?.map.frame.size.height)! * 0.35
+        
+    }
+    
+    func drawCell(tableView : UITableView , indexPath: IndexPath) -> (MapSearchHousedetailCell){
+        
+        let cell : MapSearchHousedetailCell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! MapSearchHousedetailCell
+        cell.resetCell()
+        let model = rooms[indexPath.row]
+        cell.configureCell(model: model)
+        return cell
+    }
+    
+    func didSelectRow(tableView: UITableView, indexPath: IndexPath){
+        
+        let vc = HouseDetailRequestViewController (nibName:"HouseDetailRequestViewController", bundle: nil)
+        vc.house = selectedHouse
+        vc.roomSelectAtIndex = indexPath
+        viewMap?.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    //MARK: clousure searchBar  view methods
+    
+    func setupRegion(mapRegion: MKMapItem){
+        
+        let location = mapRegion.placemark.coordinate
+        var region =  MKCoordinateRegion();
+        region.center = location
+        region.span.longitudeDelta = 0.004
+        region.span.latitudeDelta = 0.002
+        viewMap?.map.setRegion(region, animated: true)
+    }
+    
+    //MARK: firebase extension delegate methods
+    
+    func updateMap(model: ModelHouse) {
+        let annotation = FBAnnotationPoint()
+        annotation.coordinate = model.direction!.coordinate!
+        annotation.title = model.direction!.title
+        annotation.idHouse = model.idHouse
+        annotation.descriptionText = model.completeDescription
+        self.viewMap?.map.addAnnotation(annotation)
+        self.viewMap?.listOfHouses?.append(model)
+    }
+    
+    //MARK: private methods
+    
+    func addAnnotation(){
+        let list = viewMap?.listOfHouses
+        for item in list! {
+            let annotation = FBAnnotationPoint()
+            annotation.idHouse = item.idHouse
+            annotation.coordinate = item.direction!.coordinate!
+            annotation.title = item.direction!.title
+            annotation.descriptionText = item.completeDescription
+            viewMap?.map.addAnnotation(annotation)
+            
+        }
     }
     
     func sizeTable(show : Bool){
-      
+        
         if(show ){
             if(!tableIsVisible){
                 UIView.animate(withDuration: 1) {
@@ -161,31 +213,7 @@ class MapSearchHouseController {
         
     }
     
-    func giveHeightForTable() -> CGFloat{
-       tableViewHeight = (self.viewMap?.map.frame.size.height)! * 0.3
-        return (self.viewMap?.map.frame.size.height)! * 0.35
-        
-    }
     
-    func drawCell(tableView : UITableView , indexPath: IndexPath) -> (MapSearchHousedetailCell){
-       
-        let cell : MapSearchHousedetailCell = tableView.dequeueReusableCell(withIdentifier: "detailCell", for: indexPath) as! MapSearchHousedetailCell
-        cell.resetCell()
-        let model = rooms[indexPath.row]
-        cell.configureCell(model: model)
-        return cell
-    }
-
-    func didSelectRow(tableView: UITableView, indexPath: IndexPath){
-        
-        let vc = HouseDetailRequestViewController (nibName:"HouseDetailRequestViewController", bundle: nil)
-        vc.house = selectedHouse
-        vc.roomSelectAtIndex = indexPath
-        viewMap?.navigationController?.pushViewController(vc, animated: true)
-        
-    }
-    
-  
     
 }
 

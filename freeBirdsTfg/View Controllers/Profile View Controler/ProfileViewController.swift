@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
+      //MARK: atributes and outlets
+    
     //navigation View
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -26,7 +28,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     var controller : ProfileController?
     
     
-    
+    //MARK: cycle life methods
     override func viewDidLoad() {
         super.viewDidLoad()
         controller = ProfileController(profileView:self)
@@ -35,6 +37,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         initView()
         setupTable()
     }
+    //MARK: setup view
     
     func initView(){
         MainHelper.circleButton(button: photoButton)
@@ -53,6 +56,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
        
 
     }
+    //MARK: table view delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         

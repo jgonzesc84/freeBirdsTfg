@@ -11,6 +11,7 @@ import Material
 
 class ModalCreateRoom: UIView {
 
+     //MARK: atributes and outlets
     
     @IBOutlet weak var userTextEdit: UITextField!
     @IBOutlet weak var priceTextEdit: UITextField!
@@ -24,11 +25,14 @@ class ModalCreateRoom: UIView {
     
     var controller : ModalCreateRoomController?
     
+    //MARK: cycle life methods
     
     override func awakeFromNib() {
         super .awakeFromNib()
        initView()
     }
+    
+     //MARK:init view
     
     func initView(){
         controller  = ModalCreateRoomController(modalCreateRoom: self)
@@ -37,6 +41,8 @@ class ModalCreateRoom: UIView {
         modalAddRoomView.layer.cornerRadius = modalAddRoomView.frame.height / 32
     }
    
+      //MARK:action button view
+    
     @IBAction func acceptAction(_ sender: Any) {
         
       controller?.acceptButton()

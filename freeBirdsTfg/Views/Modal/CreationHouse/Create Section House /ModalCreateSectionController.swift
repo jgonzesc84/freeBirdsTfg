@@ -10,13 +10,18 @@ import Foundation
 
 class ModalCreateSectionController{
     
-   
+    //MARK: atributes
+    
     var modal : ModalCreateSectionView?
+    
+    //MARK: init
     
     init(modalCreateSection: ModalCreateSectionView!){
         modal = modalCreateSection
         
     }
+    
+    //MARK: action button methods
     
     func acceptButton(){
         if (modal!.editMode!){
@@ -26,8 +31,10 @@ class ModalCreateSectionController{
         }
     }
     
+    //MARK: private methods
+    
     func createAccept(){
-
+        
         let sectionModel = ModelHouseSection()
         sectionModel.title = modal?.titleSectionTextField.text
         sectionModel.description = modal?.descriptionSectionTextField.text

@@ -11,9 +11,11 @@ import UIKit
 
 class ProfileController{
     
-    let profileView : ProfileViewController?
-  
+     //MARK: atributes
     
+    let profileView : ProfileViewController?
+    
+     //MARK: init
     
     init(profileView: ProfileViewController!){
         
@@ -21,6 +23,7 @@ class ProfileController{
      
     }
     
+      //MARK: table view delegate methods
     
     func drawCell(tableView: UITableView, indexPath: IndexPath) -> (UITableViewCell){
     
@@ -29,7 +32,7 @@ class ProfileController{
         return cell
     }
     
-    
+    //MARK: private methods
     func fillCell(row: Int, cell: ProfileTableViewCell){
         
         switch row {

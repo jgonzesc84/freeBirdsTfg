@@ -11,23 +11,30 @@ import Foundation
 
 class ModalCreateRoomController{
     
+    //MARK: atributes
+    
     var modal : ModalCreateRoom?
     var editMode : Bool?
-     var returnDataCreateSection: ((ModelHouseSection) -> ())?
+    var returnDataCreateSection: ((ModelHouseSection) -> ())?
+    
+    //MARK: init view
     
     init(modalCreateRoom: ModalCreateRoom!){
         modal = modalCreateRoom
         
     }
     
+    //MARK:action button view
     
     func acceptButton(){
         if (modal!.editMode!){
             editAccept()
         }else{
-           createAccept()
+            createAccept()
         }
     }
+    //MARK:private methods
+    
     func createAccept(){
         let roomModel = ModelRoom()
         roomModel.price = modal?.priceTextEdit.text!

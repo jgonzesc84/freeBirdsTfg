@@ -11,9 +11,12 @@ import UIKit
 
 class ModalRequestHouseController{
     
+     //MARK: atributes
+    
     var modal : ModalRequestHouse?
     var heightMax : CGFloat!
    
+     //MARK: init
     
     init(modalRequestHouse: ModalRequestHouse!){
         modal = modalRequestHouse
@@ -21,7 +24,7 @@ class ModalRequestHouseController{
     }
     
     
-    
+    //MARK: text view delegate methods
     
     func autoSizeTextView(textView: UITextView){
         let text = textView.text
@@ -57,12 +60,22 @@ class ModalRequestHouseController{
         }
     }
     
+    //MARK: action buttons methods
+    
     func resetButton(){
         
         modal?.descritionTextView.text = ""
         modal?.heightDescriptionConstraint.constant = 28
         disableAcceptButton()
     }
+    
+    func acceptButton(){
+        let text = modal!.descritionTextView.text
+        modal?.returnDataRequestHouse!(text!)
+        
+    }
+    
+    //MARK:private methods
     
     func enableAcceptButton(){
         UIView.animate(withDuration: 0.3) {
@@ -79,11 +92,7 @@ class ModalRequestHouseController{
         }
     }
     
-    func acceptButton(){
-        let text = modal!.descritionTextView.text
-        modal?.returnDataRequestHouse!(text!)
-        
-    }
+   
     
     
     

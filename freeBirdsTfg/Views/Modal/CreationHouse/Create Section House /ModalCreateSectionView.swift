@@ -9,8 +9,9 @@
 import UIKit
 
 class ModalCreateSectionView: UIView {
-
-   
+    
+    //MARK: atributes and outlets
+    
     @IBOutlet weak var modalAddSectionView: UIView!
     @IBOutlet weak var titleSectionTextField: UITextField!
     @IBOutlet weak var descriptionSectionTextField: UITextField!
@@ -23,11 +24,15 @@ class ModalCreateSectionView: UIView {
     var returnDataCreateSection: ((ModelHouseSection) -> ())?
     var returnDataEditSection: ((ModelHouseSection) -> ())?
     
+    //MARK: cycle life methods
+    
     override func awakeFromNib() {
         super .awakeFromNib()
         initView()
         controller = ModalCreateSectionController(modalCreateSection: self)
     }
+    
+    //MARK: setup view methods
     
     func initView(){
         self.hideKeyboardWhenTappedAround()
@@ -36,9 +41,10 @@ class ModalCreateSectionView: UIView {
         modalAddSectionView.layer.cornerRadius = modalAddSectionView.frame.height / 32
     }
     
+    //MARK: action button methods
     
     @IBAction func aceptButton(_ sender: Any) {
-       controller?.acceptButton()
+        controller?.acceptButton()
     }
     
 }

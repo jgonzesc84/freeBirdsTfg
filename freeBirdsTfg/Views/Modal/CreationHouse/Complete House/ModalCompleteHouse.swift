@@ -11,6 +11,7 @@ import Material
 
 class ModalCompleteHouse: UIView , UITextViewDelegate{
     
+    //MARK: atributes and outlets
     
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -22,10 +23,13 @@ class ModalCompleteHouse: UIView , UITextViewDelegate{
     var controller : ModalCompleteHouseController?
     var returnDataCompleteHouse: ((String) -> ())?
     
+    //MARK: cycle life methods
+    
     override func awakeFromNib() {
         super .awakeFromNib()
         initView()
     }
+    //MARK: setup view
     
     func initView(){
         controller = ModalCompleteHouseController(modalCompleteHouse: self)
@@ -38,6 +42,7 @@ class ModalCompleteHouse: UIView , UITextViewDelegate{
         self.hideKeyboardWhenTappedAround()
     }
     
+    //MARK: text view methods
     
     func textViewDidChange(_ textView: UITextView) {
         controller?.autoSizeTextView(textView: textView)
@@ -49,6 +54,7 @@ class ModalCompleteHouse: UIView , UITextViewDelegate{
         return (controller?.allowmaxCharacter(textView:textView, text: text, range: range))!
     }
    
+    //MARK: action buttons methods
     
     @IBAction func resetButton(_ sender: Any) {
         
