@@ -12,9 +12,8 @@ import UIKit
 class ModelUser{
     
     var idUser: String?
-    var account: String?
     var passwd: String?
-    var name : String?
+    var alias : String?
     var telephoneNumber : String?
     var image: UIImage?
     var house : ModelHouse?

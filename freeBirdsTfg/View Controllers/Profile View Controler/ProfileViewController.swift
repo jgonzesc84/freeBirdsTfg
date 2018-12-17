@@ -21,8 +21,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var profileImage: UIImageView!
     //body View
     @IBOutlet weak var myTable: UITableView!
+    @IBOutlet weak var continueButton: UIButton!
     
-   
     
     var user : ModelUser?
     var controller : ProfileController?
@@ -47,6 +47,12 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         profileImage.layer.borderWidth = 3.0
         profileImage.clipsToBounds = true
         
+        continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+        continueButton.titleLabel?.font = UIFont .AppFont.titleFont.titleFont
+        continueButton.tintColor = UIColor .AppColor.Blue.blueDinosaur
+        continueButton.layer.cornerRadius = 10.0
+        continueButton.layer.borderWidth = 1.0
+        continueButton.layer.borderColor = UIColor .AppColor.Green.greenDinosaur .cgColor
     }    
     func setupTable(){
         myTable.delegate = self
@@ -74,4 +80,16 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         return UITableViewAutomaticDimension;
     }
    
+    
+    @IBAction func continueButtonAction(_ sender: Any) {
+        goHome()
+    }
+    func goHome(){
+        let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+        let vc = UINavigationController(rootViewController: Objvc)
+        self.present(vc, animated: true) {
+        }
+        
+    }
+    
 }

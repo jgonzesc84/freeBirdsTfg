@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
+                <outlet property="continueButton" destination="P9k-ON-tjC" id="jW1-S0-RCg"/>
                 <outlet property="myTable" destination="ULz-2A-LEF" id="H53-RO-O9A"/>
                 <outlet property="nameTextField" destination="lu7-JY-TyU" id="eCd-89-1sl"/>
                 <outlet property="navView" destination="7OA-0C-Lts" id="c7F-ax-poS"/>
@@ -120,16 +122,27 @@
                                     <rect key="frame" x="0.0" y="240" width="375" height="360"/>
                                     <subviews>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ULz-2A-LEF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="360"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </tableView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9k-ON-tjC">
+                                            <rect key="frame" x="74.5" y="279" width="225" height="54"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="CONTINUAR"/>
+                                            <connections>
+                                                <action selector="continueButtonAction:" destination="-1" eventType="touchUpInside" id="1Jp-kH-pjG"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
-                                    <color key="backgroundColor" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="ULz-2A-LEF" secondAttribute="bottom" id="HEj-lR-y8h"/>
+                                        <constraint firstItem="P9k-ON-tjC" firstAttribute="height" secondItem="VB0-yk-cbl" secondAttribute="height" multiplier="0.15" id="0In-vc-dqH"/>
+                                        <constraint firstItem="P9k-ON-tjC" firstAttribute="top" secondItem="ULz-2A-LEF" secondAttribute="bottom" constant="19" id="Cdi-ju-hcX"/>
+                                        <constraint firstItem="P9k-ON-tjC" firstAttribute="centerX" secondItem="VB0-yk-cbl" secondAttribute="centerX" id="JBM-Lh-Njz"/>
                                         <constraint firstAttribute="trailing" secondItem="ULz-2A-LEF" secondAttribute="trailing" id="Ldf-iO-3Gl"/>
+                                        <constraint firstItem="P9k-ON-tjC" firstAttribute="width" secondItem="VB0-yk-cbl" secondAttribute="width" multiplier="0.6" id="OHD-Aa-q6C"/>
                                         <constraint firstItem="ULz-2A-LEF" firstAttribute="top" secondItem="VB0-yk-cbl" secondAttribute="top" id="Oqh-uR-Gty"/>
                                         <constraint firstItem="ULz-2A-LEF" firstAttribute="leading" secondItem="VB0-yk-cbl" secondAttribute="leading" id="hgJ-Gz-0br"/>
+                                        <constraint firstAttribute="bottom" secondItem="P9k-ON-tjC" secondAttribute="bottom" constant="27" id="imq-xj-Pva"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -166,7 +179,7 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Qqq-bw-22E" secondAttribute="trailing" id="k5K-yK-Wcu"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
+            <point key="canvasLocation" x="53.5" y="47.5"/>
         </view>
     </objects>
     <resources>
