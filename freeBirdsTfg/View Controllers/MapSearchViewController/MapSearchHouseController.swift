@@ -97,7 +97,7 @@ class MapSearchHouseController {
         MapRect!.origin.x = MapPoint.x - MapRect!.size.width * 0.5
         MapRect!.origin.y = MapPoint.y - MapRect!.size.height * 0.60
         
-        
+        self.viewMap?.searchMapView?.searchDirectionBar.text = annotation.title
         self.viewMap?.map.setVisibleMapRect(MapRect!, animated: true)
         
         let id = annotation.idHouse
@@ -166,13 +166,17 @@ class MapSearchHouseController {
     //MARK: firebase extension delegate methods
     
     func updateMap(model: ModelHouse) {
-        let annotation = FBAnnotationPoint()
-        annotation.coordinate = model.direction!.coordinate!
-        annotation.title = model.direction!.title
-        annotation.idHouse = model.idHouse
-        annotation.descriptionText = model.completeDescription
-        self.viewMap?.map.addAnnotation(annotation)
-        self.viewMap?.listOfHouses?.append(model)
+        //comprobación pq firebase se trae el último objeto aunque no haya cambios...investigar eso!!
+        if(model.idHouse != self.viewMap?.listOfHouses?.last?.idHouse){
+            let annotation = FBAnnotationPoint()
+            annotation.coordinate = model.direction!.coordinate!
+            annotation.title = model.direction!.title
+            annotation.idHouse = model.idHouse
+            annotation.descriptionText = model.completeDescription
+            self.viewMap?.map.addAnnotation(annotation)
+            self.viewMap?.listOfHouses?.append(model)
+        }
+       
     }
     
     //MARK: private methods

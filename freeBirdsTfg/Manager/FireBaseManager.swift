@@ -208,7 +208,7 @@ class FireBaseManager{
      let totalRoom = splitArray?[1]*/
  
  */
-    func getHouseUpdated(completion: @escaping (Bool) -> ()){
+    func getHouseUpdated(completion: @escaping (Bool) -> Void){
           let ref = Database.database().reference()
         var makeHouse = true
         var directionOk = false
