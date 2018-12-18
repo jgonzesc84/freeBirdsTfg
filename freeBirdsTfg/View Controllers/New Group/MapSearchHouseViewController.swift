@@ -39,8 +39,6 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         initView()
         controller = MapSearchHouseController(viewMap:self)
         controller?.addAnnotation()
-        fire.delegate = self
-      //fire.updateHouseMap()
         hearSearchBarMap()
        
     }
@@ -50,10 +48,11 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
           setupSearchView()
           setupDetailHouseTableView()
           setupCurrentLocation()
-         fire.getHouseUpdated { (succes) in
-            if(succes){
-                //seguir estructira poner loader y tal
-            }
+         fire.getHouseUpdated { (succes,mode) in
+           
+            self.controller?.updateMap(model: succes ,mode:mode)
+            
+           
         }
         
     }
@@ -166,20 +165,4 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
 
 
 
-extension MapSearchHouseViewController : getAllHouseDelegate {
-    
-    //MARK: firebase extension delegate methods
-    
-    func getHouseArray(array: Array<ModelHouse>?) {
-        
-    }
-    
-    
-    func isActiveSession(active: Bool) {
-        
-    }
 
-    func getNewHouse(model: ModelHouse) {
-     controller?.updateMap(model: model)
-    }
-}

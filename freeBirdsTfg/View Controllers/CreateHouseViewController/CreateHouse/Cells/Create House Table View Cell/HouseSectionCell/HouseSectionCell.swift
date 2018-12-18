@@ -74,6 +74,8 @@ class HouseSectionCell: UITableViewCell, UICollectionViewDelegate ,UICollectionV
           cell.deleteCell = { (cell) -> () in
           self.listOfModelHouseSection.remove(at: indexPath.row)
             //OPTION A
+            // avisamos a CreateHouseTableView que follón!!!
+            self.showModalToParent?(self.listOfModelHouseSection)
             self.sectionCollectionView.performBatchUpdates({
                 let indexSet = IndexSet(integersIn: 0...0)
                 self.sectionCollectionView.reloadSections(indexSet)

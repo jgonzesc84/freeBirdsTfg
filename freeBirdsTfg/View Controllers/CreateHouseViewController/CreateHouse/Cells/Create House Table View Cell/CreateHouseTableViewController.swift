@@ -4,7 +4,7 @@
 //
 //  Created by javier gonzalez escudero on 5/8/18.
 //  Copyright © 2018 javier gonzalez escudero. All rights reserved.
-//
+//  
 
 import UIKit
 import MapKit
@@ -153,6 +153,10 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                         topVC.view.addSubview(self.modalView!)
                     }
                     break;
+                case is Array<ModelHouseSection>:
+                    let listSection = sender as! Array<ModelHouseSection>
+                    self.showModalParent?(listSection as Any)
+                break;
                 default :
                     break;
                 }
@@ -206,9 +210,6 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 row -= 1
                 editAddRoomRow = row
                 prepareModal(name : "editRoom" )
-              //  modalView?.setupModal(mode: true)
-              //  self.modalView?.editeMode = true
-            // modalView?.loadContentView(name: "editRoom")
                 modalView?.fillModal(model: listOfRoom[row])
                 if let topVC = UIApplication.getTopMostViewController() {
                     topVC.view.addSubview(self.modalView!)
@@ -233,7 +234,6 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 default:
                 break
                 }
-               // vc.annotation = annotation
                 vc.sendLocation = { (dictio) -> () in
                     let obj = dictio["annotation"]
                     if (obj is MKPointAnnotation){
@@ -252,9 +252,6 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 }
                 
             }
-            
-            //diferenciar entre los dos tipos de celda
-          //vamos al map view con la coordenada que hay incrita
         break;
         default:
             

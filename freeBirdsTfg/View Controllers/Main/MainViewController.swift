@@ -107,7 +107,11 @@ class MainViewController: BaseViewController {
     }
     
     @IBAction func goToSearchHouse(_ sender: Any) {
-        fire.getHouse()
+        fire.getHouse{(success) in
+            let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
+            vc.listOfHouses = success
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     @IBAction func goToCreateHouse(_ sender: Any) {
         let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)
@@ -132,14 +136,5 @@ extension  MainViewController : getAllHouseDelegate{
     func isActiveSession(active: Bool) {
         
     }
-    func getHouseArray(array: Array<ModelHouse>?) {
-        let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
-        vc.listOfHouses = array
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    func getNewHouse(model: ModelHouse) {
-        //ver comop quitar est a mierda
-    }
-    
     
 }

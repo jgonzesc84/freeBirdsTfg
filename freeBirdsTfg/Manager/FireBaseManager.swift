@@ -15,8 +15,6 @@ import  CoreLocation
 private let fireManager = FireBaseManager()
 
  protocol getAllHouseDelegate: class {
-     func getHouseArray(array: Array<ModelHouse>?)
-     func getNewHouse(model: ModelHouse)
      func isActiveSession(active: Bool )
 }
 
@@ -53,7 +51,7 @@ class FireBaseManager{
             sessionActive = false
         }else{
             sessionActive = true
-            //aqui guarara el objeto user o auth?¿ en un manager usuario
+            //aqui guardara el objeto user o auth?¿ en un manager usuario
         }
         self.delegate?.isActiveSession(active: sessionActive)
     }
@@ -64,74 +62,117 @@ class FireBaseManager{
     static func  createHouse(model : ModelHouse){
     let ref = Database.database().reference()
     let idHouse = ref.childByAutoId().key
-   
-    ref.child("CASA").child(idHouse).child("PRICE").setValue(model.price)
-    ref.child("CASA").child(idHouse).child("IDHOUSE").setValue(idHouse)
-    ref.child("CASA").child(idHouse).child("DESCRIPTION").setValue(model.completeDescription)
-        if let secciones = model.section {
-            var dictioTotal = Dictionary<String, Any>()
-            for section in secciones {
-                let idSection = ref.childByAutoId().key
-                let dict = ["title":section.title! ,
-                            "description":section.description!,
-                            "image":section.image as Any,
-                            ] as Dictionary
-                dictioTotal[idSection] = dict
-                
-            }
-            ref.child("CASA").child(idHouse).child("SECTIONS").setValue(dictioTotal)
-        } else {
-            
-        }
-    let dict = ["title": model.direction!.title!,
+    let directionDictio = ["title": model.direction!.title!,
                 "latitude":model.direction!.coordinate!.latitude,
                 "longitude":model.direction!.coordinate!.longitude,
                 "idDirection": ref.childByAutoId().key] as Dictionary
         
-        ref.child("CASA").child(idHouse).child("DIRECTION").setValue(dict)
-        var dictioTotal = Dictionary<String, Any>()
+        //ref.child("CASA").child(idHouse).child("DIRECTION").setValue(dict)
+        var roomDictio = Dictionary<String, Any>()
         for item in model.listOfRoom! {
              let idRoom = ref.childByAutoId().key
             let dict = ["user":item.user! ,
                         "image":item.image as Any,
                         "PRICE":item.price!,
                          ] as Dictionary
-            dictioTotal[idRoom] = dict
+            roomDictio[idRoom] = dict
             
         }
-        ref.child("CASA").child(idHouse).child("ROOMS").setValue(dictioTotal)
-        
-    }
-    
-     func getHouse(){
-        var collectionHouse : Array<ModelHouse> = []
-        
-        let ref = Database.database().reference()
-        var cont = 0
-         ref.child("CASA").observeSingleEvent(of: DataEventType.value) { (shot) in
-             let totalHouse = shot.childrenCount
-            if (totalHouse != 0){
-            for item in shot.children.allObjects as! [DataSnapshot]{
-                let valores = item.value as?  [String:AnyObject]
-                let direction = self.getDirection(dictio: valores!)
-                let arraySection = self.getSection(dictio: valores!)
-                let arrayRoom = self.getRoom(dictio: valores!)
-                let idHouse = valores!["IDHOUSE"] as? String
-                let price = valores!["PRICE"] as? String
-                let completeDescription =  valores!["DESCRIPTION"] as? String
-                let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction, completeDescription:completeDescription)
-                fullHouse.idHouse = idHouse
-                collectionHouse.append(fullHouse)
-                cont += 1
-                if(cont == totalHouse){
-                    self.delegate?.getHouseArray(array:  collectionHouse)
-                }
-            }
-            }else{
-                  self.delegate?.getHouseArray(array:  collectionHouse)
+        var sectionDictio = Dictionary<String, Any>()
+        if let secciones = model.section {
+            for section in secciones {
+                let idSection = ref.childByAutoId().key
+                let dict = ["title":section.title! ,
+                            "description":section.description!,
+                            "image":section.image as Any,
+                            ] as Dictionary
+                sectionDictio[idSection] = dict
+                
             }
         }
+        let dictioHouse=[
+            "PRECIO": model.price ?? "0.0",
+            "IDHOUSE": idHouse,
+            "DESCRIPTION": model.completeDescription ?? "text",
+            "DIRECTION" : directionDictio,
+            "ROOMS" : roomDictio,
+            "SECTIONS" : sectionDictio
+        ] as Dictionary
+        ref.child("CASA").child(idHouse).setValue(dictioHouse)
     }
+    
+    func getHouse(completion: @escaping (Array<ModelHouse>) -> Void){
+        var collectionHouse : Array<ModelHouse> = []
+        let ref = Database.database().reference()
+         ref.child("CASA").observeSingleEvent(of: DataEventType.value) { (shot) in
+            for item in shot.children.allObjects as! [DataSnapshot]{
+                 var fullHouse = ModelHouse()
+                if let data = item.value as? NSDictionary {
+                    fullHouse = self.parseHouse(dictioHouse: data)
+                    collectionHouse.append(fullHouse)
+                }
+            }
+            completion(collectionHouse)
+               // self.delegate?.getHouseArray(array:  collectionHouse)
+        }
+    }
+    
+    func getHouseUpdated(completion: @escaping (ModelHouse,Bool) -> Void){
+        let ref = Database.database().reference()
+        ref.child("CASA").queryLimited(toLast: 1).observe(.childAdded, with:{ shot in
+            var fullHouse = ModelHouse()
+            if let data = shot.value as? NSDictionary {
+                fullHouse = self.parseHouse(dictioHouse: data)
+            }
+            completion(fullHouse,true)
+        })
+        ref.child("CASA").observe(.childRemoved, with:{ shot in
+            var fullHouse = ModelHouse()
+            if let data = shot.value as? NSDictionary {
+                fullHouse = self.parseHouse(dictioHouse: data)
+            }
+            completion(fullHouse,false)
+        })
+    }
+   
+    func parseHouse(dictioHouse:NSDictionary) -> ModelHouse{
+        
+        let fullHouse = ModelHouse()
+            let keys = dictioHouse.allKeys as? Array<String>
+            for key in keys!{
+                switch key{
+                case "PRICE":
+                    let price = dictioHouse["PRICE"] as! String
+                    fullHouse.price = price
+                    break
+                case "DESCRIPTION":
+                    let completeDescription = dictioHouse["DESCRIPTION"] as! String
+                    fullHouse.completeDescription = completeDescription
+                    break
+                case "IDHOUSE":
+                    let idHouse = dictioHouse["IDHOUSE"] as! String
+                    fullHouse.idHouse = idHouse
+                    break
+                case "DIRECTION":
+                    let direction = self.getDirection(dictio: dictioHouse as! Dictionary<String, Any>)
+                    fullHouse.direction = direction
+                    break
+                case "ROOMS":
+                    let arrayRoom = self.getRoom(dictio: dictioHouse as! Dictionary<String, Any>)
+                    fullHouse.listOfRoom = arrayRoom
+                    break
+                case "SECTIONS":
+                    let arraySection = self.getSection(dictio: dictioHouse as! Dictionary<String, Any>)
+                    fullHouse.section = arraySection
+                    break
+                default:
+                    break
+                }
+            }
+        
+        return fullHouse;
+    }
+    
     func getDirection(dictio: Dictionary<String, Any>) -> (ModelDirection){
         let testDirection = dictio["DIRECTION"] as? [String:AnyObject]
         let street = testDirection!["title"] as? String
@@ -172,104 +213,12 @@ class FireBaseManager{
             let roomModel = ModelRoom()
             roomModel.user = user!
             roomModel.price = price!
-           
+            
             arrayRoom.append(roomModel)
         }
         return arrayRoom
     }
-   /* func getRoomUpdate(dictio : Dictionary <String, Any>) -> ( Dictionary <String, Any>){
-        let testRoomList = dictio["ROOMS"] as? [String:AnyObject]
-        let dictioRoom = testRoomList?.keys
-        var dictio = Dictionary <String , Any>()
-        let componentRoom = Array(dictioRoom!)
-        for key in componentRoom{
-            let sectionDictio = testRoomList![key]
-            let user = sectionDictio!["user"] as? String
-            let price = sectionDictio!["PRICE"] as? String
-            let freeRooms = sectionDictio!["FreeRooms"] as? String
-            let roomModel = ModelRoom()
-            roomModel.user = user!
-            roomModel.price = price!
-            dictio["model"] = roomModel
-            dictio["order"] = freeRooms
-            
-        }
-        return dictio
-    }*/
     
-    
-    /*
-     dictio["model"] = roomModel
-     dictio["order"] = freeRooms
-     let freeRooms = sectionDictio!["FreeRooms "] as? String
-     //et fullNameArr = fullName.components(separatedBy: " ")
-     /* let splitArray = freeRooms?.components(separatedBy:"-")
-     let order = splitArray?[0]
-     let totalRoom = splitArray?[1]*/
- 
- */
-    func getHouseUpdated(completion: @escaping (Bool) -> Void){
-          let ref = Database.database().reference()
-        var makeHouse = true
-        var directionOk = false
-        var roomOk = false
-        var price = ""
-        var completeDescription = ""
-        var idHouse = ""
-        var direction = ModelDirection()
-         var arrayRoom = Array<ModelRoom> ()
-        var arraySection = Array<ModelHouseSection> ()
-          ref.child("CASA").queryLimited(toLast: 1).observe(DataEventType.value, with: { shot in
-            if let data = shot.value as? NSDictionary {
-                let firstLevel = data as?  [String:AnyObject]
-                let dictioKey = firstLevel?.keys
-                if let key = dictioKey{
-                    var oneKey = Array(key)
-                    let valores = firstLevel![oneKey[0]]
-                    let keys = valores?.allKeys as? Array<String>
-                    for key in keys!{
-                        switch key{
-                        case "PRICE":
-                            price = valores!["PRICE"] as! String
-                            break
-                        case "DESCRIPTION":
-                            completeDescription = valores!["DESCRIPTION"] as! String
-                            break
-                        case "IDHOUSE":
-                            idHouse = valores!["IDHOUSE"] as! String
-                            break
-                        case "DIRECTION":
-                            direction = self.getDirection(dictio: valores as! Dictionary<String, Any>)
-                            directionOk = true
-                            break
-                        case "ROOMS":
-                           arrayRoom = self.getRoom(dictio: valores! as! Dictionary<String, Any>)
-                           roomOk = true
-                            break
-                        case "SECTIONS":
-                            arraySection = self.getSection(dictio: valores as! Dictionary<String, Any>)
-                            break
-                        default:
-                            makeHouse = false
-                            break
-                        }
-                    }
-                    if(directionOk && roomOk && makeHouse){
-                        let fullHouse = ModelHouse(price: price, section: arraySection, listOfRoom: arrayRoom, direction: direction, completeDescription: completeDescription)
-                        fullHouse.idHouse = idHouse
-                        self.delegate?.getNewHouse(model: fullHouse)
-                        makeHouse = true
-                        roomOk = false
-                        directionOk = false
-                    }
-                }
-            }
-        
-            completion(true)
-        })
-    }
-  
-        
       
     }
     

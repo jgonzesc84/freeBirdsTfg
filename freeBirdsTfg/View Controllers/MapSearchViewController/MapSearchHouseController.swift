@@ -165,17 +165,28 @@ class MapSearchHouseController {
     
     //MARK: firebase extension delegate methods
     
-    func updateMap(model: ModelHouse) {
-        //comprobación pq firebase se trae el último objeto aunque no haya cambios...investigar eso!!
-        if(model.idHouse != self.viewMap?.listOfHouses?.last?.idHouse){
-            let annotation = FBAnnotationPoint()
-            annotation.coordinate = model.direction!.coordinate!
-            annotation.title = model.direction!.title
-            annotation.idHouse = model.idHouse
-            annotation.descriptionText = model.completeDescription
-            self.viewMap?.map.addAnnotation(annotation)
-            self.viewMap?.listOfHouses?.append(model)
+    func updateMap(model: ModelHouse ,mode:Bool) {
+        if(mode){
+            if(model.idHouse != self.viewMap?.listOfHouses?.last?.idHouse){
+                let annotation = FBAnnotationPoint()
+                annotation.coordinate = model.direction!.coordinate!
+                annotation.title = model.direction!.title
+                annotation.idHouse = model.idHouse
+                annotation.descriptionText = model.completeDescription
+                self.viewMap?.map.addAnnotation(annotation)
+                self.viewMap?.listOfHouses?.append(model)
+            }
+        }else{
+
+            let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )})
+            self.viewMap?.listOfHouses?.remove(at: index!)
+            let annotation = self.viewMap?.map.annotations as? Array<FBAnnotationPoint>
+            let filtered = annotation?.filter({  $0.idHouse == model.idHouse }).first
+            let object = filtered
+            self.viewMap?.map.removeAnnotation(object!)
+        
         }
+       
        
     }
     

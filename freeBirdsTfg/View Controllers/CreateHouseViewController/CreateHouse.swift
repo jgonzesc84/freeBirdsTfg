@@ -67,12 +67,12 @@ class CreateHouse: BaseViewController {
         createHouseTable.showModalParent = { (sender) -> () in
             
             switch sender {
-            case is Array<ModelRoom>:
-                self.listOfRoom = sender as? Array<ModelRoom>
-                self.prepareButton()
-                break;
             case is Array<ModelHouseSection>:
                 self.listOfSection = sender as? Array<ModelHouseSection>
+                self.prepareButton()
+                break;
+            case is Array<ModelRoom>:
+                self.listOfRoom = sender as? Array<ModelRoom>
                 self.prepareButton()
                 break;
             case is ModelDirection:

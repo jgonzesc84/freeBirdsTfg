@@ -88,6 +88,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
         let vc = UINavigationController(rootViewController: Objvc)
         self.present(vc, animated: true) {
+            
         }
         
     }
