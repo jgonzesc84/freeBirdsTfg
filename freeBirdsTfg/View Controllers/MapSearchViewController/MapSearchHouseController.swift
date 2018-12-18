@@ -177,13 +177,14 @@ class MapSearchHouseController {
                 self.viewMap?.listOfHouses?.append(model)
             }
         }else{
-
-            let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )})
-            self.viewMap?.listOfHouses?.remove(at: index!)
-            let annotation = self.viewMap?.map.annotations as? Array<FBAnnotationPoint>
-            let filtered = annotation?.filter({  $0.idHouse == model.idHouse }).first
-            let object = filtered
-            self.viewMap?.map.removeAnnotation(object!)
+            if  let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )}){
+                self.viewMap?.listOfHouses?.remove(at: index)
+                let annotation = self.viewMap?.map.annotations as? Array<FBAnnotationPoint>
+                let filtered = annotation?.filter({  $0.idHouse == model.idHouse }).first
+                let object = filtered
+                self.viewMap?.map.removeAnnotation(object!)
+            }
+          
         
         }
        

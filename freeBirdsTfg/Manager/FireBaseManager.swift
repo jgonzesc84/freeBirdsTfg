@@ -113,7 +113,6 @@ class FireBaseManager{
                 }
             }
             completion(collectionHouse)
-               // self.delegate?.getHouseArray(array:  collectionHouse)
         }
     }
     
