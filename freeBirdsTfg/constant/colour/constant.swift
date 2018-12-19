@@ -33,7 +33,7 @@ extension UIColor {
         }
         
         struct Orange {
-            
+             static let orangeNeon = UIColor().colorFromHex("F46420")
         }
         
         struct Red {

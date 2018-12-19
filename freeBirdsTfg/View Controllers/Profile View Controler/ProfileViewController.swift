@@ -15,6 +15,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     //navigation View
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    //backGroundView
+    @IBOutlet weak var backGroundView: UIView!
     //header View
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
@@ -34,8 +36,14 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         controller = ProfileController(profileView:self)
         self.prepareNav(label: titleLabel, text: "Creación Perfil")
         MainHelper.navStyle(view :  navView)
+        navView.backgroundColor = UIColor .clear
         initView()
         setupTable()
+        gradientStyle()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        //gradientStyle()
     }
     //MARK: setup view
     
@@ -43,16 +51,23 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         MainHelper.circleButton(button: photoButton)
         MainHelper.circleView(view : profileImage)
        // profileImage.layer.cornerRadius = 72
-        profileImage.layer.borderColor = UIColor .black.cgColor
+        profileImage.layer.borderColor = UIColor .white.cgColor
         profileImage.layer.borderWidth = 3.0
         profileImage.clipsToBounds = true
         
-        continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+        continueButton.backgroundColor = UIColor .AppColor.Gray.greyApp
         continueButton.titleLabel?.font = UIFont .AppFont.titleFont.titleFont
-        continueButton.tintColor = UIColor .AppColor.Blue.blueDinosaur
+        continueButton.tintColor = UIColor .white
         continueButton.layer.cornerRadius = 10.0
         continueButton.layer.borderWidth = 1.0
-        continueButton.layer.borderColor = UIColor .AppColor.Green.greenDinosaur .cgColor
+        continueButton.layer.borderColor = UIColor .white .cgColor
+        
+        nameTextField.font = UIFont .AppFont.middleFont.middlWord
+        nameTextField.textColor = UIColor .AppColor.Blue.blueDinosaur
+        nameTextField.placeholder = "Pón tu nick"
+        nameTextField.delegate = self
+        
+       
     }    
     func setupTable(){
         myTable.delegate = self
@@ -62,11 +77,18 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
        
 
     }
+    
+    func gradientStyle(){
+        let gradient = CAGradientLayer()
+        gradient.frame = UIScreen.main.bounds
+        gradient.colors = [UIColor .AppColor.Green.greenDinosaur.cgColor, UIColor .white.cgColor]
+        backGroundView.layer.insertSublayer(gradient, at: 0)
+    }
     //MARK: table view delegate methods
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 3
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,6 +113,32 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             
         }
         
+    }
+    
+}
+
+extension ProfileViewController: UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if(string == "" && (textField.text?.count)! <= 1){
+            continueButton.isEnabled = false
+            UIView.animate(withDuration: 1) {
+                self.continueButton.backgroundColor = UIColor .AppColor.Gray.greyApp
+                self.continueButton.setTitleColor(UIColor.white, for: .normal)
+                self.continueButton.layer.borderColor = UIColor .white .cgColor
+            }
+        }else{
+            continueButton.isEnabled = true
+            UIView.animate(withDuration: 1) {
+                self.continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+               // self.continueButton.tintColor = UIColor .AppColor.Blue.blueDinosaur
+                self.continueButton.layer.borderColor = UIColor .AppColor.Green.greenDinosaur .cgColor
+                
+            }
+        }
+        
+        
+        return true;
     }
     
 }

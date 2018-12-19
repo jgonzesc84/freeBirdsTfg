@@ -22,12 +22,24 @@ class ProfileTableViewCell: UITableViewCell {
         super.awakeFromNib()
         MainHelper.theStyle(view: mainView)
         self.selectionStyle = UITableViewCellSelectionStyle .none
+        initView()
    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
+        
+    }
+    
+    
+    func initView(){
+        /*
+         userTextField.placeholderActiveColor = UIColor .AppColor.Green.greenDinosaur
+        userTextField.dividerActiveColor = UIColor .AppColor.Green.greenDinosaur
+      */
+        cellTextField.font = UIFont .AppFont.middleFont.middlWord
+        cellTextField.textColor = UIColor .AppColor.Orange.orangeNeon
         
     }
     
