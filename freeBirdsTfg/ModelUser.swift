@@ -12,12 +12,12 @@ import UIKit
 class ModelUser{
     
     var idUser: String?
-    var passwd: String?
     var alias : String?
+    var email : String?
     var telephoneNumber : String?
     var image: UIImage?
+    var houseId : String?
     var house : ModelHouse?
-    
     init(){
         
     }

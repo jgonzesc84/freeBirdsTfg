@@ -113,7 +113,8 @@ class CreateHouse: BaseViewController {
             topVC.view.addSubview(self.modalView!)
             self.modalView?.returnCompleteHouseData = { (text) -> () in
                 self.house = ModelHouse(price: self.price, section: self.listOfSection, listOfRoom: self.listOfRoom!, direction: self.directionModel!, completeDescription: text )
-                FireBaseManager.createHouse(model: self.house!)
+                 FireBaseManager.createHouse(model: self.house!)
+               
             }
         }
     }

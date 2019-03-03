@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ProfileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -107,12 +108,24 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         goHome()
     }
     func goHome(){
+        //creacion Usuario
+       configureUser()
         let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
         let vc = UINavigationController(rootViewController: Objvc)
         self.present(vc, animated: true) {
             
         }
         
+    }
+    
+    func configureUser(){
+         let user = ModelUser()
+        user.alias = nameTextField.text
+        user.email = Auth.auth().currentUser?.email
+        user.houseId = "0"
+        FireBaseManager.createUser(model: user)
+        user.idUser = Auth.auth().currentUser?.uid
+        saveUserDefault(model: user);
     }
     
 }

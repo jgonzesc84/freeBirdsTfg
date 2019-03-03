@@ -90,6 +90,12 @@
 		5990EB012197749F00627F12 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */; };
 		5990EB03219775C300627F12 /* ProfileCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5990EB02219775C300627F12 /* ProfileCellController.swift */; };
 		59972E842146EAE700001B27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59972E832146EAE700001B27 /* BaseViewController.swift */; };
+		59A0DA7D222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
+		59A0DA7E222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
+		59A0DA7F222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
+		59A0DA80222C349C00225133 /* GlobalPositionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A0DA7C222C349C00225133 /* GlobalPositionViewController.xib */; };
+		59A0DA81222C349C00225133 /* GlobalPositionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A0DA7C222C349C00225133 /* GlobalPositionViewController.xib */; };
+		59A0DA82222C349C00225133 /* GlobalPositionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59A0DA7C222C349C00225133 /* GlobalPositionViewController.xib */; };
 		59A32AA9219850D500CBDC77 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A32AA8219850D500CBDC77 /* ModelUser.swift */; };
 		59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */; };
 		59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */; };
@@ -226,10 +232,13 @@
 		5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		5990EB02219775C300627F12 /* ProfileCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellController.swift; sourceTree = "<group>"; };
 		59972E832146EAE700001B27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPositionViewController.swift; sourceTree = "<group>"; };
+		59A0DA7C222C349C00225133 /* GlobalPositionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlobalPositionViewController.xib; sourceTree = "<group>"; };
 		59A32AA8219850D500CBDC77 /* ModelUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
 		59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaViewController.swift; sourceTree = "<group>"; };
 		59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAplhaAnimation.json; sourceTree = "<group>"; };
 		59C277EF2143DD09006CDBC4 /* mainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainHelper.swift; sourceTree = "<group>"; };
+		59DB140F222B271200055F77 /* freeBirdsTfg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = freeBirdsTfg.entitlements; sourceTree = "<group>"; };
 		59E11465219621EA002D325D /* infViewCollectionViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infViewCollectionViewCellController.swift; sourceTree = "<group>"; };
 		59E8125C2100F74C0071B018 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		59F49377219083DA00014560 /* HouseDetailRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseDetailRequestViewController.swift; sourceTree = "<group>"; };
@@ -544,6 +553,7 @@
 		5960022620FF99240042CF9F /* freeBirdsTfg */ = {
 			isa = PBXGroup;
 			children = (
+				59DB140F222B271200055F77 /* freeBirdsTfg.entitlements */,
 				593F85F22173C03F00CBBF5B /* Classes */,
 				3B692F21216CC99100DE9A24 /* Controller */,
 				59118B2B2149846800031AFB /* trash */,
@@ -683,6 +693,15 @@
 			path = cellProfile;
 			sourceTree = "<group>";
 		};
+		59A0DA83222C34A400225133 /* Global Position ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */,
+				59A0DA7C222C349C00225133 /* GlobalPositionViewController.xib */,
+			);
+			path = "Global Position ViewController";
+			sourceTree = "<group>";
+		};
 		59A50A6C21864E9D00ACE75B /* AlphaViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -694,6 +713,7 @@
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				59A0DA83222C34A400225133 /* Global Position ViewController */,
 				5966257D2197697300658775 /* Profile View Controler */,
 				59F4937D2190845B00014560 /* House Detail Request View Controller */,
 				59A50A6C21864E9D00ACE75B /* AlphaViewController */,
@@ -906,6 +926,11 @@
 				TargetAttributes = {
 					5960022320FF99240042CF9F = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					5960023720FF99260042CF9F = {
 						CreatedOnToolsVersion = 9.4.1;
@@ -963,6 +988,7 @@
 				59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */,
 				596625812197698E00658775 /* ProfileViewController.xib in Resources */,
 				5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */,
+				59A0DA80222C349C00225133 /* GlobalPositionViewController.xib in Resources */,
 				59465D832115D9A700106020 /* Navigation.xib in Resources */,
 				5939CC4F218DD8BF005C67D0 /* ModalCreateSectionView.xib in Resources */,
 				5969209B2174769F0075D164 /* MapSearchHousedetailCell.xib in Resources */,
@@ -995,6 +1021,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A0DA81222C349C00225133 /* GlobalPositionViewController.xib in Resources */,
 				59E8125E2100F74C0071B018 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1003,6 +1030,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A0DA82222C349C00225133 /* GlobalPositionViewController.xib in Resources */,
 				59E8125F2100F74C0071B018 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1023,6 +1051,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
 				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/lottie-ios/Lottie.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -1035,6 +1064,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lottie.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -1130,6 +1160,7 @@
 				59FCE8DD21938A4D008A0673 /* supViewCollectionViewCellController.swift in Sources */,
 				3B692F24216CC9D600DE9A24 /* MapSearchHouseController.swift in Sources */,
 				593526822143C8F0002A53D1 /* roomCell.swift in Sources */,
+				59A0DA7D222C349C00225133 /* GlobalPositionViewController.swift in Sources */,
 				5939CC48218D902F005C67D0 /* ModalCreateRoom.swift in Sources */,
 				593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */,
 				5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */,
@@ -1168,6 +1199,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A0DA7E222C349C00225133 /* GlobalPositionViewController.swift in Sources */,
 				5960023D20FF99260042CF9F /* freeBirdsTfgTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1176,6 +1208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				59A0DA7F222C349C00225133 /* GlobalPositionViewController.swift in Sources */,
 				5960024820FF99260042CF9F /* freeBirdsTfgUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1334,6 +1367,8 @@
 			baseConfigurationReference = 10222579C2FE69211807D8AC /* Pods-freeBirdsTfg.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = freeBirdsTfg/freeBirdsTfg.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52R38YZX45;
 				INFOPLIST_FILE = freeBirdsTfg/Info.plist;
@@ -1344,6 +1379,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = javier.gonzalez.escudero.freeBirdsTfg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1354,6 +1390,8 @@
 			baseConfigurationReference = 5F66D7E1BFE49F370227727B /* Pods-freeBirdsTfg.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = freeBirdsTfg/freeBirdsTfg.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52R38YZX45;
 				INFOPLIST_FILE = freeBirdsTfg/Info.plist;
@@ -1364,6 +1402,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = javier.gonzalez.escudero.freeBirdsTfg;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

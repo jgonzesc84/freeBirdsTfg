@@ -11,7 +11,7 @@ import Material
 import FirebaseAuth
 
 
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
 
     @IBOutlet weak var labelPassw: UILabel!
@@ -29,6 +29,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         controller = LoginController(viewLogin:self)
          initView()
+        // //  [self.parentViewController.navigationController.navigationBar setHidden:TRUE];
+        self.navigationController?.navigationBar.isHidden = true
     }
     
    

@@ -15,7 +15,7 @@ import  CoreLocation
 private let fireManager = FireBaseManager()
 
  protocol getAllHouseDelegate: class {
-     func isActiveSession(active: Bool )
+    func isActiveSession(landingPage:String )
 }
 
 class FireBaseManager{
@@ -44,22 +44,65 @@ class FireBaseManager{
     }
     //(completion: @escaping (Bool) -> ())
    func isSessionActive(){
-    var sessionActive = false
     Auth.auth().addStateDidChangeListener {  (auth, user) in
+        var landingPage = ""
         if user == nil
         {
-            sessionActive = false
+            landingPage = "registro"
         }else{
-            sessionActive = true
-            //aqui guardara el objeto user o auth?¿ en un manager usuario
+            if UserDefaults.standard.object(forKey: BaseViewController.ALIAS) as? String != nil{
+                if UserDefaults.standard.object(forKey: BaseViewController.IDHOUSE) as? String != "0"{
+                    landingPage = "tiene casa"
+                }else{
+                    landingPage = "No casa"
+                }
+            }else{
+                landingPage = "terminar Registro"
+            }
         }
-        self.delegate?.isActiveSession(active: sessionActive)
+        self.delegate?.isActiveSession( landingPage:landingPage)
     }
     
     
+    }
+    
+    static func createUser(model: ModelUser){
+        let ref = Database.database().reference()
+        let idUser = Auth.auth().currentUser?.uid
+        let userDictio = ["alias":model.alias!,
+                          "houseId":model.houseId,
+                          "email":Auth.auth().currentUser?.email,
+                          ]
+        ref.child("USUARIO").child(idUser!).setValue(userDictio){
+            (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+            } else {
+                print("Data saved successfully!")
+        }
+        }
+    }
+    
+    
+    static func getUserById(userID: String, completion:@escaping (ModelUser) -> Void){
+        let ref = Database.database().reference()
+        ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let user = ModelUser()
+            user.idUser = userID
+            user.alias = value?["alias"] as? String ?? ""
+            user.email = value?["email"] as? String ?? ""
+            user.houseId = value?["houseId"] as? String ?? ""
+            completion(user)
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+
     }
     // MARK: Creacion casa
-    static func  createHouse(model : ModelHouse){
+    static func  createHouse(model : ModelHouse ){
     let ref = Database.database().reference()
     let idHouse = ref.childByAutoId().key
     let directionDictio = ["title": model.direction!.title!,
@@ -67,7 +110,6 @@ class FireBaseManager{
                 "longitude":model.direction!.coordinate!.longitude,
                 "idDirection": ref.childByAutoId().key] as Dictionary
         
-        //ref.child("CASA").child(idHouse).child("DIRECTION").setValue(dict)
         var roomDictio = Dictionary<String, Any>()
         for item in model.listOfRoom! {
              let idRoom = ref.childByAutoId().key
@@ -90,15 +132,31 @@ class FireBaseManager{
                 
             }
         }
+        var userDictio = Dictionary<String, Any>()
+        for nameUser in model.user!{
+            userDictio = ["userId":nameUser]
+        }
         let dictioHouse=[
             "PRECIO": model.price ?? "0.0",
             "IDHOUSE": idHouse,
             "DESCRIPTION": model.completeDescription ?? "text",
             "DIRECTION" : directionDictio,
             "ROOMS" : roomDictio,
-            "SECTIONS" : sectionDictio
+            "SECTIONS" : sectionDictio,
+            "USER": userDictio
         ] as Dictionary
-        ref.child("CASA").child(idHouse).setValue(dictioHouse)
+        ref.child("CASA").child(idHouse).setValue(dictioHouse){
+            (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+            } else {
+                  UserDefaults.standard.set(idHouse, forKey: BaseViewController.IDHOUSE)
+                let idUser = Auth.auth().currentUser?.uid
+                let refUser = Database.database().reference()
+                refUser.child("USUARIO").child(idUser!).updateChildValues(["houseId": idHouse])
+            }
+     
+    }
     }
     
     func getHouse(completion: @escaping (Array<ModelHouse>) -> Void){

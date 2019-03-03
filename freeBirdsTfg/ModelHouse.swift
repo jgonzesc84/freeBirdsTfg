@@ -13,7 +13,7 @@ class ModelHouse{
     var section : Array<ModelHouseSection>?
     var listOfRoom : Array<ModelRoom>?
     var direction : ModelDirection?
-    var user : Array<Any>?
+    var user : Array<Any>!
     var idHouse : String?
     var completeDescription : String?
    
@@ -28,6 +28,9 @@ class ModelHouse{
         self.listOfRoom = listOfRoom
         self.direction = direction
         self.completeDescription = completeDescription
+        self.user = Array()
+        self.user.append(UserDefaults.standard.object(forKey: BaseViewController.IDUSER)  as! String
+        )
       //  self.user = users
         
     }

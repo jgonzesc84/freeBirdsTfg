@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "310B3750863D911EE167819722C6191A"
+               BlueprintIdentifier = "DCF2F40ABFF3EB34B34BAD3C3427A319"
                BuildableName = "Pods_freeBirdsTfg.framework"
                BlueprintName = "Pods-freeBirdsTfg"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "310B3750863D911EE167819722C6191A"
+            BlueprintIdentifier = "DCF2F40ABFF3EB34B34BAD3C3427A319"
             BuildableName = "Pods_freeBirdsTfg.framework"
             BlueprintName = "Pods-freeBirdsTfg"
             ReferencedContainer = "container:Pods.xcodeproj">

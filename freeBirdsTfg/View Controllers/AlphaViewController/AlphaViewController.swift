@@ -9,6 +9,7 @@
 import UIKit
 import Lottie
 import Firebase
+import FirebaseAuth
 
 class AlphaViewController: UIViewController {
 
@@ -71,24 +72,52 @@ extension AlphaViewController : getAllHouseDelegate {
         
     }
     
-    func isActiveSession(active: Bool) {
-        
-        if(active){
-            let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-            let vc = UINavigationController(rootViewController: Objvc)
-            self.present(vc, animated: true) {
-            }
-            
-        }else{
-            
+    func isActiveSession(landingPage: String) {
+        switch landingPage {
+        case "registro":
             let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-            self.present(homePage, animated: true) {
+                        let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+                        self.present(homePage, animated: true) {
+                        }
+              self.navigationController?.pushViewController(homePage, animated: true)
+            break
+        case "No casa":
+            let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+                        let vc = UINavigationController(rootViewController: Objvc)
+                        self.present(vc, animated: true) {
+                        }
+            break
+        case "terminar Registro":
+            let Objvc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            self.present(Objvc, animated: true) {
             }
+            
+            break
+        case "tiene casa":
+            let Objvc = GlobalPositionViewController(nibName: "GlobalPositionViewController", bundle: nil)
+            self.present(Objvc, animated: true) {
+            }
+            break
+        default:
+            print("error no pas apor ningun del swicth")
+            break
+            
+        }
+//        if(active){
+//            let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+//            let vc = UINavigationController(rootViewController: Objvc)
+//            self.present(vc, animated: true) {
+//            }
+//
+//        }else{
+//
+//            let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+//            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//            self.present(homePage, animated: true) {
+//            }
             //(vc, animated: true)
            //  self.navigationController?.pushViewController(homePage, animated: true)
         }
-    }
     
     
 }

@@ -121,9 +121,12 @@ class MainViewController: BaseViewController {
     
     @IBAction func signOutAction(_ sender: Any) {
        try! Auth.auth().signOut()
-        self.dismiss(animated: false) {
-            
-        }
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
+        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+        self.navigationController?.pushViewController(homePage, animated: true)
+    
         
     }
     
@@ -133,7 +136,7 @@ class MainViewController: BaseViewController {
 
 extension  MainViewController : getAllHouseDelegate{
     
-    func isActiveSession(active: Bool) {
+    func isActiveSession(landingPage: String) {
         
     }
     

@@ -66,12 +66,9 @@ class LoginController{
                 Auth.auth().createUser(withEmail:userText! , password: passwd!) { (user, error) in
                     if user != nil
                     {
-                        //cambiar ir a pantalla de Profile para completar la creación de usuario
-                       // self.goHome()
                         self.goProfile()
                     }else{
-                        //ERROR IMPLEMETAR ALERTA SI NO SE HA CONSEGUIDO LOGUEAER
-                      //  self.showError(error: error!)
+                
                     }
                 }
                 
@@ -79,9 +76,25 @@ class LoginController{
                 Auth.auth().signIn(withEmail: userText!, password:passwd!) { (user, error) in
                     if user != nil
                     {
-                    self.goHome()
+                        let idUser = Auth.auth().currentUser?.uid
+                        FireBaseManager.getUserById(userID:idUser ?? "" ){(model) in
+                            self.viewLogin!.saveUserDefault(model: model)
+                    
+                            if(model.houseId != "0"){
+                                self.goHome(redirection: "no tiene casa")
+                            }else{
+                                self.goHome(redirection: "tiene casa")
+                            }
+                            
+                        }
                     }else{
-                        
+                        /* fire.getHouse{(success) in
+                         let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
+                         vc.listOfHouses = success
+                         self.navigationController?.pushViewController(vc, animated: true)
+                         }
+ 
+ */
                      //   self.showError(error: error!)
                     }
                 }
@@ -92,11 +105,26 @@ class LoginController{
         }
     }
     
-    func goHome(){
-        let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-        let vc = UINavigationController(rootViewController: Objvc)
-        self.viewLogin!.present(vc, animated: true) {
+    func goHome(redirection:String){
+        //cogemos usuario y lo metemos en default
+        switch redirection {
+        case "no tiene casa":
+            let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+            let vc = UINavigationController(rootViewController: Objvc)
+            self.viewLogin!.present(vc, animated: true) {
+
+            }
+            break;
+        case "tiene casa":
+            let Objvc = GlobalPositionViewController(nibName: "GlobalPositionViewController", bundle: nil)
+            self.viewLogin!.present(Objvc, animated: true) {
+                
+            }
+            break
+        default:
+            break
         }
+        
     }
     
     func goProfile(){
