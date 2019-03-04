@@ -64,6 +64,7 @@ class MapSearchHouseController {
                 
             }
         })
+         manager.stopUpdatingLocation()
     }
     
     //MARK: map view delegate methods

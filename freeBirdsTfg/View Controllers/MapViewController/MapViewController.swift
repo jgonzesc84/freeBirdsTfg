@@ -212,6 +212,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
               
             }
         })
+        manager.stopUpdatingLocation()
        
     }
   

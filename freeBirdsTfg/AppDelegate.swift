@@ -20,10 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-     
+       
+       
         let attr = NSDictionary(object: UIFont(name: "SkaterGirlsRock", size: 16.0)!, forKey: NSAttributedStringKey.font as NSCopying)
         UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] , for: .normal)
         FirebaseApp.configure()
+        self.firstLaunch()
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
@@ -64,7 +66,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-   
+    func firstLaunch(){
+        let userDefaults = UserDefaults.standard
+        if userDefaults.bool(forKey: "hasRunBefore") == false {
+            print("The app is launching for the first time. Setting UserDefaults...")
+            
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                
+            }
+            userDefaults.set(true, forKey: "hasRunBefore")
+            userDefaults.synchronize()
+        } else {
+            print("The app has been launched before. Loading UserDefaults...")
+            // Run code here for every other launch but the first
+        }
+    }
 }
 
 extension AppDelegate : MessagingDelegate {
