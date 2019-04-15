@@ -35,7 +35,7 @@ class ModalRequestHouse: UIView , UITextViewDelegate{
     
     func initView(){
         controller = ModalRequestHouseController(modalRequestHouse: self)
-        MainHelper.theStyle(view:mainView)
+        MainHelper.theStyle(view:mainView) 
         titleLabel.textColor = UIColor .AppColor.Green.greenDinosaur
         titleLabel.text = "Mensaje de solicitud"
         MainHelper.circleButton(button: resetButton)

@@ -18,6 +18,7 @@ class NavigationView: UIView {
     @IBOutlet weak var rightButton: Button!
     @IBOutlet weak var separatorView: UIView!
     weak var delegate: backDelegate?
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,11 +36,14 @@ class NavigationView: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleHeight , .flexibleWidth]
         lottieAnimationBack()
+        iniView()
     }
     
     
     func iniView(){
-       
+        if hasTopNotch{
+            topConstraint.constant = 30;
+        }
     }
 
     func lottieAnimationBack(){
@@ -58,6 +62,7 @@ class NavigationView: UIView {
     
     
     
+    
     @IBAction func backAction(_ sender: Any) {
        
      delegate?.goBack()
@@ -68,4 +73,15 @@ class NavigationView: UIView {
 
 protocol backDelegate: class {
     func goBack()
+}
+
+extension NavigationView{
+    var hasTopNotch: Bool {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+           
+            return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 24
+        }
+        return false
+    }
+
 }

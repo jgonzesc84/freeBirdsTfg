@@ -11,15 +11,15 @@ import Lottie
 import Firebase
 import FirebaseAuth
 
-class AlphaViewController: UIViewController {
+class AlphaViewController: BaseViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var loadingImageView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      initView()
-     
+        initView()
+        
         
     }
     
@@ -51,7 +51,6 @@ class AlphaViewController: UIViewController {
         let animationView = LOTAnimationView(name: "loadingAplhaAnimation")
         let frame = loadingImageView.frame
         animationView.frame = CGRect(x:frame.origin.x - 50, y: frame.origin.y - 50, width: frame.size.width, height: frame.size.height )
-       // animationView.center = loadingImageView.center
         animationView.contentMode = .scaleAspectFit
         loadingImageView.addSubview(animationView)
         loadingImageView.sendSubview(toBack:animationView )
@@ -94,7 +93,8 @@ extension AlphaViewController : getAllHouseDelegate {
             
             break
         case "tiene casa":
-            let Objvc = GlobalPositionViewController(nibName: "GlobalPositionViewController", bundle: nil)
+            let Objvc = tabBarView()
+           // let Objvc = PageView()
             self.present(Objvc, animated: true) {
             }
             break
@@ -103,20 +103,7 @@ extension AlphaViewController : getAllHouseDelegate {
             break
             
         }
-//        if(active){
-//            let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-//            let vc = UINavigationController(rootViewController: Objvc)
-//            self.present(vc, animated: true) {
-//            }
-//
-//        }else{
-//
-//            let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-//            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-//            self.present(homePage, animated: true) {
-//            }
-            //(vc, animated: true)
-           //  self.navigationController?.pushViewController(homePage, animated: true)
+
         }
     
     

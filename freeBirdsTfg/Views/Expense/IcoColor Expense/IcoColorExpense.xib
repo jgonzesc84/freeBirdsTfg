@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="KGHAPPY.ttf">
+            <string>KGHAPPY</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IcoColorExpense" customModule="freeBirdsTfg" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="PLf-C3-E3J"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="142"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZVS-EN-8oj" userLabel="IcoColorView">
+                    <rect key="frame" x="0.0" y="0.0" width="430" height="142"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Icono" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGr-zx-51h">
+                            <rect key="frame" x="20" y="15" width="135" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="135" id="hhP-H2-fWR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="17"/>
+                            <color key="textColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vKC-oz-NVx">
+                            <rect key="frame" x="52.5" y="50" width="70" height="70"/>
+                            <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="70" id="5NT-0V-dPf"/>
+                                <constraint firstAttribute="width" secondItem="vKC-oz-NVx" secondAttribute="height" multiplier="1:1" id="QhR-pI-3WO"/>
+                            </constraints>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1s-S8-SqI">
+                            <rect key="frame" x="307.5" y="52" width="70" height="70"/>
+                            <color key="backgroundColor" red="0.81960784310000001" green="0.84705882349999995" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="e1s-S8-SqI" secondAttribute="height" multiplier="1:1" id="pmt-0J-eUo"/>
+                                <constraint firstAttribute="width" constant="70" id="wVW-gN-TRh"/>
+                            </constraints>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pwn-6N-dLV">
+                            <rect key="frame" x="275" y="15" width="135" height="27"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="135" id="HOU-d9-QPp"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="17"/>
+                            <color key="textColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="JGr-zx-51h" firstAttribute="leading" secondItem="ZVS-EN-8oj" secondAttribute="leading" constant="20" id="2f8-rq-Oyb"/>
+                        <constraint firstAttribute="bottom" secondItem="e1s-S8-SqI" secondAttribute="bottom" constant="20" id="Fyt-Og-TnT"/>
+                        <constraint firstItem="JGr-zx-51h" firstAttribute="top" secondItem="ZVS-EN-8oj" secondAttribute="top" constant="15" id="Oe0-On-R5d"/>
+                        <constraint firstAttribute="height" constant="142" id="TUd-qV-tIl"/>
+                        <constraint firstItem="e1s-S8-SqI" firstAttribute="centerX" secondItem="pwn-6N-dLV" secondAttribute="centerX" id="Xc4-kt-Xi8"/>
+                        <constraint firstAttribute="bottom" secondItem="vKC-oz-NVx" secondAttribute="bottom" constant="22" id="bcQ-EQ-ybD"/>
+                        <constraint firstItem="pwn-6N-dLV" firstAttribute="centerY" secondItem="JGr-zx-51h" secondAttribute="centerY" id="ih5-Qd-MWv"/>
+                        <constraint firstAttribute="trailing" secondItem="pwn-6N-dLV" secondAttribute="trailing" constant="20" id="uzT-Iu-Po7"/>
+                        <constraint firstItem="vKC-oz-NVx" firstAttribute="centerX" secondItem="JGr-zx-51h" secondAttribute="centerX" id="zoX-Ky-oJH"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="hei-w9-9rz"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="ZVS-EN-8oj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7fM-IY-uXb"/>
+                <constraint firstItem="ZVS-EN-8oj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="ICr-gi-A8x"/>
+                <constraint firstAttribute="bottom" secondItem="ZVS-EN-8oj" secondAttribute="bottom" id="sCO-vz-ML7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ZVS-EN-8oj" secondAttribute="trailing" id="xbc-OY-W9z"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="182.40000000000001" y="-99.850074962518747"/>
+        </view>
+    </objects>
+</document>

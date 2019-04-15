@@ -16,6 +16,7 @@ class LoginController{
     
     init(viewLogin : LoginViewController?){
         self.viewLogin = viewLogin
+    
     }
     
     func Style(){
@@ -80,10 +81,10 @@ class LoginController{
                         FireBaseManager.getUserById(userID:idUser ?? "" ){(model) in
                             self.viewLogin!.saveUserDefault(model: model)
                     
-                            if(model.houseId != "0"){
-                                self.goHome(redirection: "no tiene casa")
+                            if(model.houseId != nil && model.houseId != "0"){
+                               self.goHome(redirection: "tiene casa")
                             }else{
-                                self.goHome(redirection: "tiene casa")
+                                 self.goHome(redirection: "no tiene casa")
                             }
                             
                         }
@@ -116,7 +117,9 @@ class LoginController{
             }
             break;
         case "tiene casa":
-            let Objvc = GlobalPositionViewController(nibName: "GlobalPositionViewController", bundle: nil)
+            //tabBarView
+            //let Objvc = GlobalPositionViewController(nibName: "GlobalPositionViewController", bundle: nil)
+            let Objvc = tabBarView()
             self.viewLogin!.present(Objvc, animated: true) {
                 
             }

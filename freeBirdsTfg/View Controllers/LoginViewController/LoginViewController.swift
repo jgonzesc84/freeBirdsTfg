@@ -29,6 +29,7 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         controller = LoginController(viewLogin:self)
          initView()
+        self.view.hideKeyboardWhenTappedAround()
         // //  [self.parentViewController.navigationController.navigationBar setHidden:TRUE];
         self.navigationController?.navigationBar.isHidden = true
     }

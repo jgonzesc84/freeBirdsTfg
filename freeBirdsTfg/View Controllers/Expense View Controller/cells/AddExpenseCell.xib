@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="199" id="KGk-i7-Jjw" customClass="AddExpenseCell" customModule="freeBirdsTfg" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="396" height="199"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="396" height="198.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nva-IH-TtD">
+                        <rect key="frame" x="0.0" y="0.0" width="396" height="200.5"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="obw-vA-G4h">
+                                <rect key="frame" x="138" y="40.5" width="120" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="obw-vA-G4h" secondAttribute="height" multiplier="1:1" id="EwO-Ub-gDX"/>
+                                </constraints>
+                                <state key="normal" title="Añadir Gasto" backgroundImage="cm_add_white"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.81960784310000001" green="0.84705882349999995" blue="0.72941176470000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="obw-vA-G4h" firstAttribute="centerX" secondItem="Nva-IH-TtD" secondAttribute="centerX" id="7mi-66-06N"/>
+                            <constraint firstAttribute="height" constant="200" id="DP2-AM-kQN"/>
+                            <constraint firstItem="obw-vA-G4h" firstAttribute="height" secondItem="Nva-IH-TtD" secondAttribute="height" multiplier="0.6" id="Poc-vh-zfl"/>
+                            <constraint firstItem="obw-vA-G4h" firstAttribute="centerY" secondItem="Nva-IH-TtD" secondAttribute="centerY" id="jHM-m1-u72"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Nva-IH-TtD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="0Zz-xr-vgC"/>
+                    <constraint firstAttribute="trailing" secondItem="Nva-IH-TtD" secondAttribute="trailing" id="W9E-AZ-rje"/>
+                    <constraint firstItem="Nva-IH-TtD" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="ftz-9M-UMt"/>
+                    <constraint firstAttribute="bottom" secondItem="Nva-IH-TtD" secondAttribute="bottom" id="gt3-tr-Qtt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <point key="canvasLocation" x="78.260869565217391" y="64.620535714285708"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="cm_add_white" width="24" height="24"/>
+    </resources>
+</document>

@@ -13,7 +13,7 @@ class ProfileController{
     
      //MARK: atributes
     
-    let profileView : ProfileViewController?
+    let profileView : ProfileViewController!
     
      //MARK: init
     

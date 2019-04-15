@@ -25,7 +25,12 @@ class BaseViewController: UIViewController {
         
     }
     
-    
+    enum LandingPages: String {
+        case Register = "registro"
+        case NoHouse = "No casa"
+        case unFinishedRegister = "terminar Registro"
+        case House = "tiene casa"
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -54,7 +59,9 @@ class BaseViewController: UIViewController {
         backButton.frame = CGRect(x: 0, y: 0, width: 10, height: 10)
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem?.customView?.addGestureRecognizer(UITapGestureRecognizer(target:self, action: #selector(goBack)))
-        
+        if (hasTopNotch) {
+            
+        }
         
     }
     func getUserDefault() -> ModelUser{
@@ -94,3 +101,30 @@ class BaseViewController: UIViewController {
     */
 
 }
+
+extension BaseViewController{
+    var hasTopNotch: Bool {
+        if #available(iOS 11.0, tvOS 11.0, *) {
+            
+            return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 24
+        }
+        return false
+    }
+    
+}
+
+
+/*
+ func textFieldShouldReturn(textField: UITextField) -> Bool {
+ 
+ //textField code
+ 
+ textField.resignFirstResponder()  //if desired
+ performAction()
+ return true
+ }
+ 
+ func performAction() {
+ //action events
+ }
+ */

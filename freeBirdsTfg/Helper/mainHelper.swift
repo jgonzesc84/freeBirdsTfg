@@ -168,7 +168,6 @@ class MainHelper{
                  view.addConstraint(NSLayoutConstraint(item: separator!, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 100))
                  view.addConstraint(NSLayoutConstraint(item: separator!, attribute: .leading, relatedBy: .equal, toItem: view, attribute: .leading, multiplier: 1, constant: 67))
                  view.addConstraint(NSLayoutConstraint(item: separator!, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 67))*/
-                
                 break
             case "UILabel":
                 label = item as? UILabel
@@ -242,6 +241,7 @@ extension UIView {
         self.endEditing(true)
     }
 }
+
 /**
  @extension Extension que localiza el topViewController se usa
  para poder añadir las vistas modales por encima de todas las demás
@@ -264,7 +264,7 @@ extension UIApplication {
 }
 
 /**
- @extension Extension que dependiendo del tamaño del string da unaas medidas para el label contenedor
+ @extension Extension que dependiendo del tamaño del string da unas medidas para el label contenedor
  **/
 
 extension String {
