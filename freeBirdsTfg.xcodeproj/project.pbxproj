@@ -135,6 +135,7 @@
 		7A898BA92264D63900D0E87C /* PayGroupCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898BA82264D63900D0E87C /* PayGroupCollectionView.swift */; };
 		7A898BAC2264D6E100D0E87C /* ConfirmExpenseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A898BAB2264D6E100D0E87C /* ConfirmExpenseView.xib */; };
 		7A898BAE2264D6FD00D0E87C /* ConfirmExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898BAD2264D6FD00D0E87C /* ConfirmExpenseView.swift */; };
+		7A898BB02264DB6D00D0E87C /* CheckBoxExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898BAF2264DB6D00D0E87C /* CheckBoxExpenseController.swift */; };
 		7AB1FCA52260B99E00213417 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB1FCA32260B99E00213417 /* PageView.swift */; };
 		7AB1FCA62260B99E00213417 /* PageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7AB1FCA42260B99E00213417 /* PageView.xib */; };
 		7AD9681A22607859007B773E /* tabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AD9681922607859007B773E /* tabBarView.swift */; };
@@ -301,6 +302,7 @@
 		7A898BA82264D63900D0E87C /* PayGroupCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayGroupCollectionView.swift; sourceTree = "<group>"; };
 		7A898BAB2264D6E100D0E87C /* ConfirmExpenseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmExpenseView.xib; sourceTree = "<group>"; };
 		7A898BAD2264D6FD00D0E87C /* ConfirmExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmExpenseView.swift; sourceTree = "<group>"; };
+		7A898BAF2264DB6D00D0E87C /* CheckBoxExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxExpenseController.swift; sourceTree = "<group>"; };
 		7AB1FCA32260B99E00213417 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		7AB1FCA42260B99E00213417 /* PageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PageView.xib; sourceTree = "<group>"; };
 		7AD9681922607859007B773E /* tabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tabBarView.swift; sourceTree = "<group>"; };
@@ -924,6 +926,7 @@
 			children = (
 				7A898B9A2264C3DE00D0E87C /* CheckBoxExpenseView.swift */,
 				7A898B9C2264C46400D0E87C /* CheckBoxExpenseView.xib */,
+				7A898BAF2264DB6D00D0E87C /* CheckBoxExpenseController.swift */,
 			);
 			path = "CheckBox Expense";
 			sourceTree = "<group>";
@@ -1350,6 +1353,7 @@
 				596625802197698E00658775 /* ProfileViewController.swift in Sources */,
 				7A898B962264B55800D0E87C /* QuantifyView.swift in Sources */,
 				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
+				7A898BB02264DB6D00D0E87C /* CheckBoxExpenseController.swift in Sources */,
 				3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */,
 				59F493812190D04400014560 /* supViewCollectionViewCell.swift in Sources */,
 				5939CC51218DDA0A005C67D0 /* ModalCreateSectionView.swift in Sources */,

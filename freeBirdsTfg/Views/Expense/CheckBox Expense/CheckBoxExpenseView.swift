@@ -13,6 +13,7 @@ class CheckBoxExpenseView: UIView {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var fixedCB: UIView!
     @IBOutlet weak var variableCB: UIView!
+    var controller : CheckBoxExpenseController?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -24,8 +25,26 @@ class CheckBoxExpenseView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        controller = CheckBoxExpenseController(view:self)
+        configureActionView()
+    }
+    
+    func configureActionView(){
+        let gestureFixedPay = UITapGestureRecognizer(target: self, action:  #selector(self.selectFixed))
+        self.fixedCB.addGestureRecognizer(gestureFixedPay)
+        let gestureVariabledPay = UITapGestureRecognizer(target: self, action:  #selector(self.selectVariable))
+        self.variableCB.addGestureRecognizer(gestureVariabledPay)
         
     }
     
+    @objc func selectFixed(sender:UITapGestureRecognizer){
+       
+    }
+    
+   @objc func selectVariable(sender:UITapGestureRecognizer){
+    
+    }
+    
+  
     
 }
