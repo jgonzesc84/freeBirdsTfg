@@ -11,6 +11,7 @@ import UIKit
 class IcoColorExpense: UIView {
 
     @IBOutlet var contentView: UIView!
+    var returnAction: (() -> ())?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -23,5 +24,8 @@ class IcoColorExpense: UIView {
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
+    }
+    @IBAction func iconAction(_ sender: Any) {
+        returnAction!()
     }
 }

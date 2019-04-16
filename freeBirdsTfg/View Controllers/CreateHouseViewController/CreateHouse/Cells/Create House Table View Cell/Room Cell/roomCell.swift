@@ -40,7 +40,7 @@ class roomCell: UITableViewCell  {
     }*/
 
     private func commonInit(){
-        self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
         MainHelper.theStyle(view: addView)
         MainHelper.theStyle(view: roomView)
         userImageView.layer.cornerRadius = userImageView.frame.size.height/2

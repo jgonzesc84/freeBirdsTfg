@@ -58,7 +58,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         createTable.register(UINib(nibName:"LocalizationCell",bundle: nil), forCellReuseIdentifier: "LocalizationCell")
         createTable.register(UINib(nibName:"createHouseTableSection", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerSection")
         createTable.register(UINib(nibName:"showLocalizationCell", bundle: nil), forCellReuseIdentifier: "showlocalizationCell")
-        createTable.separatorStyle = UITableViewCellSeparatorStyle .none
+        createTable.separatorStyle = UITableViewCell.SeparatorStyle .none
     }
     
   //  MARK: - Table view data source

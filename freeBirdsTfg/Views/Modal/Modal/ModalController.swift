@@ -17,6 +17,7 @@ class ModalController{
     var modalCreateSection : ModalCreateSectionView?
     var modalCompleteHouse : ModalCompleteHouse?
     var modalRequestHouse : ModalRequestHouse?
+    var modalAddIcoExpense : ModalExpenseIcoCoView?
     init(ModalView: ModalMain!){
         modal = ModalView
         
@@ -80,6 +81,11 @@ class ModalController{
                 self.modal?.returnRequestHouseData?(text)
                 self.modal?.removeFromSuperview()
             }
+            break
+        case "addExpenseIco":
+            modalAddIcoExpense = Bundle.main.loadNibNamed("ModalExpenseIcoCoView", owner: nil, options: nil)![0] as? ModalExpenseIcoCoView
+            positionAndHeight(mainView: modal!, auxView: modalAddIcoExpense!, height: 0.4, y: 0.9)
+
             break
         default:
             

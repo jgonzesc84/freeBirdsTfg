@@ -53,7 +53,7 @@ class AlphaViewController: BaseViewController {
         animationView.frame = CGRect(x:frame.origin.x - 50, y: frame.origin.y - 50, width: frame.size.width, height: frame.size.height )
         animationView.contentMode = .scaleAspectFit
         loadingImageView.addSubview(animationView)
-        loadingImageView.sendSubview(toBack:animationView )
+        loadingImageView.sendSubviewToBack(animationView )
         animationView.backgroundColor = UIColor .white
         animationView.play()
         animationView.loopAnimation = true

@@ -30,7 +30,7 @@ class roomCellTrash: UITableViewCell , UITableViewDelegate , UITableViewDataSour
         roomTableView.delegate = self
         roomTableView.dataSource = self
         roomTableView.register(UINib(nibName:"roomCell", bundle: nil), forCellReuseIdentifier: "roomCell")
-        roomTableView.separatorStyle = UITableViewCellSeparatorStyle .none
+        roomTableView.separatorStyle = UITableViewCell.SeparatorStyle .none
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

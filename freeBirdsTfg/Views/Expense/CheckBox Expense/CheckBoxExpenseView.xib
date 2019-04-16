@@ -17,8 +17,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CheckBoxExpenseView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
+                <outlet property="checkBox" destination="9PW-qf-Wsg" id="cKW-Iv-DU4"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="A98-Al-FRG"/>
                 <outlet property="fixedCB" destination="WTi-LL-f9v" id="SvB-KK-Rsd"/>
+                <outlet property="innerFixed" destination="Pnf-0n-9UX" id="Z9S-RB-Swj"/>
+                <outlet property="innnerVariable" destination="KwS-Ek-XPK" id="1fg-oW-T0b"/>
                 <outlet property="variableCB" destination="nBo-rQ-dz3" id="ePC-u0-gE7"/>
             </connections>
         </placeholder>
@@ -40,23 +43,45 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WTi-LL-f9v">
-                            <rect key="frame" x="99" y="19" width="40" height="40"/>
+                            <rect key="frame" x="99" y="29" width="20" height="20"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pnf-0n-9UX">
+                                    <rect key="frame" x="7.5" y="7.5" width="5" height="5"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="5" id="5no-Tb-h7g"/>
+                                        <constraint firstAttribute="width" constant="5" id="sNn-Al-d9y"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="WTi-LL-f9v" secondAttribute="height" multiplier="1:1" id="41Z-QT-Isw"/>
-                                <constraint firstAttribute="height" constant="40" id="vOX-Q1-DrN"/>
+                                <constraint firstItem="Pnf-0n-9UX" firstAttribute="centerY" secondItem="WTi-LL-f9v" secondAttribute="centerY" id="89Y-Ve-d46"/>
+                                <constraint firstItem="Pnf-0n-9UX" firstAttribute="centerX" secondItem="WTi-LL-f9v" secondAttribute="centerX" id="dUB-B8-FmX"/>
+                                <constraint firstAttribute="height" constant="20" id="vOX-Q1-DrN"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBo-rQ-dz3">
-                            <rect key="frame" x="349" y="19" width="40" height="40"/>
+                            <rect key="frame" x="369" y="29" width="20" height="20"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KwS-Ek-XPK">
+                                    <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                            </subviews>
                             <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="3cJ-o8-JJz"/>
+                                <constraint firstAttribute="height" constant="20" id="3cJ-o8-JJz"/>
+                                <constraint firstItem="KwS-Ek-XPK" firstAttribute="height" secondItem="nBo-rQ-dz3" secondAttribute="height" id="8yd-VS-3CU"/>
+                                <constraint firstItem="KwS-Ek-XPK" firstAttribute="centerX" secondItem="nBo-rQ-dz3" secondAttribute="centerX" id="BUK-8y-VBE"/>
+                                <constraint firstItem="KwS-Ek-XPK" firstAttribute="width" secondItem="nBo-rQ-dz3" secondAttribute="width" id="BfH-gu-cwx"/>
+                                <constraint firstItem="KwS-Ek-XPK" firstAttribute="centerY" secondItem="nBo-rQ-dz3" secondAttribute="centerY" id="o7M-8n-1wb"/>
                                 <constraint firstAttribute="width" secondItem="nBo-rQ-dz3" secondAttribute="height" multiplier="1:1" id="yti-Cd-r8C"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Variable" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDM-Zj-qks">
-                            <rect key="frame" x="245" y="25.5" width="93" height="27"/>
+                            <rect key="frame" x="265" y="25.5" width="93" height="27"/>
                             <constraints>
                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="82" id="P5P-8K-Lap"/>
                             </constraints>

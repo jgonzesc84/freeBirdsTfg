@@ -32,7 +32,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     func setuptable(){
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyle .none
+        self.tableView.separatorStyle = UITableViewCell.SeparatorStyle .none
         self.tableView.register(UINib(nibName:"AddExpenseCell", bundle: nil), forCellReuseIdentifier: "addExpense")
     }
    

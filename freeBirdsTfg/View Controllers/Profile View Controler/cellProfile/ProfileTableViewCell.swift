@@ -21,7 +21,7 @@ class ProfileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         MainHelper.theStyle(view: mainView)
-        self.selectionStyle = UITableViewCellSelectionStyle .none
+        self.selectionStyle = UITableViewCell.SelectionStyle .none
         initView()
    
     }

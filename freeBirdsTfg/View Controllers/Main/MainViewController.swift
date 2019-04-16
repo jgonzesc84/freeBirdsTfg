@@ -59,7 +59,7 @@ class MainViewController: BaseViewController {
         animationView.frame = CGRect(x:frame.width/2 - frame.width/2, y: frame.height/2 - frame.height/2, width: frame.size.width, height: frame.size.height )
         animationView.contentMode = .scaleToFill
         createHouseView.addSubview(animationView)
-        createHouseView.sendSubview(toBack: animationView)
+        createHouseView.sendSubviewToBack(animationView)
         animationView.play()
         animationView.loopAnimation = true
       
@@ -72,7 +72,7 @@ class MainViewController: BaseViewController {
        //  animationView.center = self.searchHouseView.center
         animationView.contentMode = .scaleAspectFit 
         searchHouseView.addSubview(animationView)
-        searchHouseView.sendSubview(toBack:animationView )
+        searchHouseView.sendSubviewToBack(animationView )
         animationView.backgroundColor = UIColor .white
         animationView.play()
         animationView.loopAnimation = true

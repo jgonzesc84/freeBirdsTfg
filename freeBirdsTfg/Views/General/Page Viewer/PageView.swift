@@ -25,9 +25,9 @@ class PageView: UIPageViewController ,UIPageViewControllerDataSource, UIPageView
         configureNav()
     }
     
-    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewControllerNavigationOrientation, options: [String : Any]? = nil) {
-        super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options:nil)
-    }
+//    override init(transitionStyle style: UIPageViewControllerTransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [String : Any]? = nil) {
+//        super.init(transitionStyle: .scroll, navigationOrientation: navigationOrientation, options:nil)
+//    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

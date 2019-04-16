@@ -36,7 +36,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
   
     func initView(){
         directionTable.register(UINib(nibName: "searchMapCell", bundle: nil), forCellReuseIdentifier: "searchMapCell")
-        directionTable.separatorStyle = UITableViewCellSeparatorStyle .none
+        directionTable.separatorStyle = UITableViewCell.SeparatorStyle .none
          searchDirectionBar.delegate = self
         directionTable.delegate = self
         directionTable.dataSource = self
@@ -46,7 +46,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
         searchTextStyle()
         searchDirectionBar.layer.borderColor = UIColor .white .cgColor
         searchDirectionBar.layer.borderWidth = 3.00
-        self.directionTable.rowHeight = UITableViewAutomaticDimension;
+        self.directionTable.rowHeight = UITableView.automaticDimension;
         self.directionTable.estimatedRowHeight = 44.0
     }
    
@@ -98,7 +98,7 @@ class searchMapView: UIView , UITableViewDataSource, UITableViewDelegate ,UISear
             let numbersRange = searchText.rangeOfCharacter(from: .decimalDigits)
             let hasNumbers = (numbersRange != nil)
             if( space || coma || hasNumbers){
-                let request = MKLocalSearchRequest()
+                let request = MKLocalSearch.Request()
                 request.naturalLanguageQuery = searchText
                 request.region = (self.mapView?.region)!
             let search = MKLocalSearch(request: request)

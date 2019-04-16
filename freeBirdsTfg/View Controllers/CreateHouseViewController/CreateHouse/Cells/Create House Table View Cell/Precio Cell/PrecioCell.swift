@@ -29,7 +29,7 @@ class PrecioCell: UITableViewCell , TextFieldDelegate {
 
     func intiView(){
     
-    self.selectionStyle = UITableViewCellSelectionStyle.none
+        self.selectionStyle = UITableViewCell.SelectionStyle.none
     MainHelper.theStyle(view: borderView)
     priceTextEdit.placeholder = " PRECIO "
     priceTextEdit.keyboardType = UIKeyboardType.numberPad

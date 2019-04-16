@@ -14,6 +14,7 @@ class QuantifyView: UIView {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var quantifyTextField: UITextField!
+    @IBOutlet weak var bodyView: UIView!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,6 +26,6 @@ class QuantifyView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        
+        MainHelper.theStyle(view: bodyView)
     }
 }

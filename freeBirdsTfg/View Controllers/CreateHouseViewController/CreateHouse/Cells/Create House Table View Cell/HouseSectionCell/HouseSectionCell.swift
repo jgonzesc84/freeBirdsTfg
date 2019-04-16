@@ -32,7 +32,6 @@ class HouseSectionCell: UITableViewCell, UICollectionViewDelegate ,UICollectionV
     
     func calculatetItemSize(){
         let cellScaling: CGFloat = 0.8
-        
         let parentSize = self.frame
         let cellWidth = floor(parentSize.width * cellScaling)
         let cellHeight = floor(parentSize.height * cellScaling)

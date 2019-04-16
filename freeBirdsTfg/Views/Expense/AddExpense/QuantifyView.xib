@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuantifyView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
+                <outlet property="bodyView" destination="VkC-Kb-AOT" id="G0T-aY-Uxw"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="9Wy-iy-mgw"/>
                 <outlet property="nameTextField" destination="g5P-gl-JhL" id="H7F-wh-vI9"/>
                 <outlet property="quantifyTextField" destination="qWy-UZ-i6T" id="7gb-bm-NLD"/>

@@ -10,9 +10,13 @@ import UIKit
 
 class CheckBoxExpenseView: UIView {
 
+    @IBOutlet weak var checkBox: UIView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var fixedCB: UIView!
+    @IBOutlet weak var innerFixed: UIView!
     @IBOutlet weak var variableCB: UIView!
+    @IBOutlet weak var innnerVariable: UIView!
+    var  variableSelection : Bool = true
     var controller : CheckBoxExpenseController?
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,24 +31,30 @@ class CheckBoxExpenseView: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         controller = CheckBoxExpenseController(view:self)
         configureActionView()
+        MainHelper.theStyle(view: checkBox)
+        setupBox()
     }
-    
-    func configureActionView(){
-        let gestureFixedPay = UITapGestureRecognizer(target: self, action:  #selector(self.selectFixed))
-        self.fixedCB.addGestureRecognizer(gestureFixedPay)
-        let gestureVariabledPay = UITapGestureRecognizer(target: self, action:  #selector(self.selectVariable))
-        self.variableCB.addGestureRecognizer(gestureVariabledPay)
-        
-    }
-    
-    @objc func selectFixed(sender:UITapGestureRecognizer){
+    func setupBox(){
+        MainHelper.circleView(view: fixedCB)
+        MainHelper.circleView(view: innerFixed)
+        MainHelper.borderShadowRedondNotRadius(view: fixedCB)
+        MainHelper.circleView(view: variableCB)
+        MainHelper.borderShadowRedondNotRadius(view: variableCB)
+        MainHelper.circleView(view: innnerVariable)
+        fixedCB.backgroundColor = UIColor .white
+        variableCB.backgroundColor = UIColor .white
+        innnerVariable.backgroundColor = UIColor .AppColor.Green.greenDinosaur
        
     }
-    
-   @objc func selectVariable(sender:UITapGestureRecognizer){
-    
+    func configureActionView(){
+        let gestureBox = UITapGestureRecognizer(target: self, action:  #selector(self.selectBox))
+        self.fixedCB.addGestureRecognizer(gestureBox)
+         let gestureFixBox = UITapGestureRecognizer(target: self, action:  #selector(self.selectBox))
+        self.variableCB.addGestureRecognizer(gestureFixBox)
     }
     
-  
+    @objc func selectBox(sender:UITapGestureRecognizer){
+        controller?.boxtouch()
+    }
     
 }

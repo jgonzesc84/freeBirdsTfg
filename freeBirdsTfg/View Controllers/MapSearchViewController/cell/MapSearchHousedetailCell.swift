@@ -30,7 +30,7 @@ class MapSearchHousedetailCell: UITableViewCell {
         priceLabel.textColor = UIColor .white
         imageRoomView.layer.cornerRadius = imageRoomView.frame.height / 4
         MainHelper.borderShadowRedonde(view: imageRoomView)
-        self.selectionStyle = UITableViewCellSelectionStyle .none
+        self.selectionStyle = UITableViewCell.SelectionStyle .none
     }
     
     //MARK: setup cell

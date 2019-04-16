@@ -68,8 +68,8 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         if let layout = infViewCollection.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.scrollDirection = .horizontal
         }
-        supViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
-        infViewCollection.contentInset = UIEdgeInsetsMake(0, 30, 0, 30)
+        supViewCollection.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        infViewCollection.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         
         MainHelper.theStyle(view: supView)
         MainHelper.theStyle(view: infView)

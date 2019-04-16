@@ -74,7 +74,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         myTable.delegate = self
         myTable.dataSource = self
         myTable.register(UINib(nibName:"ProfileTableViewCell", bundle: nil), forCellReuseIdentifier: "optionCell")
-        myTable.separatorStyle = UITableViewCellSeparatorStyle .none
+        myTable.separatorStyle = UITableViewCell.SeparatorStyle .none
        
 
     }
@@ -100,7 +100,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return UITableViewAutomaticDimension;
+        return UITableView.automaticDimension;
     }
    
     

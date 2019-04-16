@@ -44,6 +44,9 @@
                                 <constraint firstAttribute="width" constant="70" id="5NT-0V-dPf"/>
                                 <constraint firstAttribute="width" secondItem="vKC-oz-NVx" secondAttribute="height" multiplier="1:1" id="QhR-pI-3WO"/>
                             </constraints>
+                            <connections>
+                                <action selector="iconAction:" destination="-1" eventType="touchUpInside" id="NPH-vY-d36"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1s-S8-SqI">
                             <rect key="frame" x="307.5" y="52" width="70" height="70"/>

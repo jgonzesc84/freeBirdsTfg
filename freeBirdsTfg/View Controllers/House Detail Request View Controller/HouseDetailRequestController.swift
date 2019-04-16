@@ -64,7 +64,7 @@ class HouseDetailRequestController{
             let bottonConstraint = NSLayoutConstraint(item: requestView!.supView, attribute: .bottom, relatedBy: .equal,
                                                       toItem: requestView!.footerview, attribute: .top, multiplier: 1, constant: 0)
             NSLayoutConstraint.activate( [heightConstraint,bottonConstraint])
-            requestView!.supViewCollection.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+            requestView!.supViewCollection.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             requestView!.view.layoutSubviews()
         }
         if(showRoom!){

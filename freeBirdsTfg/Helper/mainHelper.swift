@@ -131,7 +131,16 @@ class MainHelper{
         view.layer.shouldRasterize = true
         view.layer.rasterizationScale = UIScreen .main.scale
     }
-    
+    static func borderShadowRedondNotRadius(view : UIView){
+        view.layer.width = 2
+        view.layer.shadowColor = UIColor .black .cgColor
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.layer.shadowRadius = 1
+        view.layer.shadowOpacity = 1
+        view.layer.masksToBounds = false
+        view.layer.shouldRasterize = true
+        view.layer.rasterizationScale = UIScreen .main.scale
+    }
     
     static func acceptButtonStyle(button : Button){
     button.layer.cornerRadius = 3.0
@@ -177,9 +186,9 @@ class MainHelper{
                 label?.translatesAutoresizingMaskIntoConstraints = false
                //view.addConstraint(NSLayoutConstraint(item: label!, attribute: .centerX, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0))
                // view.addConstraint(NSLayoutConstraint(item: label!, attribute: NSLayoutAttribute.centerY, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0))
-                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .leading, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 20))
-                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .trailing, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: NSLayoutAttribute.trailing, multiplier: 1, constant: 20))
-                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .top, relatedBy: NSLayoutRelation.equal, toItem: view, attribute: .top, multiplier: 1, constant: 28))
+                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .leading, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.leading, multiplier: 1, constant: 20))
+                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .trailing, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: NSLayoutConstraint.Attribute.trailing, multiplier: 1, constant: 20))
+                view.addConstraint(NSLayoutConstraint(item: label!, attribute: .top, relatedBy: NSLayoutConstraint.Relation.equal, toItem: view, attribute: .top, multiplier: 1, constant: 28))
                 break
             default:
                 

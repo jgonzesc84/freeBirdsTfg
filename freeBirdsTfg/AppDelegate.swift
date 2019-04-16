@@ -18,12 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        
        
-        let attr = NSDictionary(object: UIFont(name: "SkaterGirlsRock", size: 16.0)!, forKey: NSAttributedStringKey.font as NSCopying)
-        UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] , for: .normal)
+        let attr = NSDictionary(object: UIFont(name: "SkaterGirlsRock", size: 16.0)!, forKey: NSAttributedString.Key.font as NSCopying)
+        UISegmentedControl.appearance().setTitleTextAttributes(attr as [NSObject : AnyObject] as [NSObject : AnyObject] as! [NSAttributedString.Key : Any] , for: .normal)
         FirebaseApp.configure()
         self.firstLaunch()
         Messaging.messaging().delegate = self

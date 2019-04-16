@@ -52,7 +52,7 @@ class NavigationView: UIView {
         animationView.frame = CGRect(x:0, y: 0 , width: frame.size.width, height: frame.size.height )
         animationView.contentMode = .scaleAspectFit
         self.leftButton.addSubview(animationView)
-        self.leftButton.sendSubview(toBack:animationView )
+        self.leftButton.sendSubviewToBack(animationView )
         animationView.backgroundColor = UIColor .white
         animationView.play()
         animationView.loopAnimation = false

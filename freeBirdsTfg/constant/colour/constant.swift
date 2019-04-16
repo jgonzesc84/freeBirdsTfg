@@ -44,8 +44,9 @@ extension UIColor {
             static let greyApp = UIColor().colorFromHex("A49D98")
             static let greyCancel = UIColor().colorFromHex("BBBBC1")
         }
+     
     }
-    
+
     func colorFromHex(_ hex : String ) -> UIColor {
         
         var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()

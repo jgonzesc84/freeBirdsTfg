@@ -33,7 +33,7 @@ class MapSearchHouseController {
     
     //MARK: setup view
     func setupTableViewDetails(){
-        viewMap!.houseDetailTableView.separatorStyle = UITableViewCellSeparatorStyle .none
+        viewMap!.houseDetailTableView.separatorStyle = UITableViewCell.SeparatorStyle .none
         viewMap?.houseDetailTableView.register(UINib(nibName:"MapSearchHousedetailCell", bundle: nil), forCellReuseIdentifier: "detailCell")
     }
     
@@ -93,7 +93,7 @@ class MapSearchHouseController {
         
         userInteraction = true
         var MapRect =  self.viewMap?.map.visibleMapRect
-        let MapPoint = MKMapPointForCoordinate(annotation.coordinate)
+        let MapPoint = MKMapPoint(annotation.coordinate)
         
         MapRect!.origin.x = MapPoint.x - MapRect!.size.width * 0.5
         MapRect!.origin.y = MapPoint.y - MapRect!.size.height * 0.60
