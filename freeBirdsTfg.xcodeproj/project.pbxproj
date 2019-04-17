@@ -125,6 +125,8 @@
 		7A2167DE22649F760074BA1E /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2167DC22649F760074BA1E /* AddExpenseView.swift */; };
 		7A2167DF22649F760074BA1E /* AddExpenseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2167DD22649F760074BA1E /* AddExpenseView.xib */; };
 		7A2167E122649FC70074BA1E /* AddExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2167E022649FC70074BA1E /* AddExpenseController.swift */; };
+		7A387A2D226771C900D50D80 /* UserPayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A387A2B226771C900D50D80 /* UserPayCollectionCell.swift */; };
+		7A387A2E226771C900D50D80 /* UserPayCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A387A2C226771C900D50D80 /* UserPayCollectionCell.xib */; };
 		7A898B962264B55800D0E87C /* QuantifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898B952264B55800D0E87C /* QuantifyView.swift */; };
 		7A898B982264B57200D0E87C /* QuantifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A898B972264B57200D0E87C /* QuantifyView.xib */; };
 		7A898B9B2264C3DE00D0E87C /* CheckBoxExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898B9A2264C3DE00D0E87C /* CheckBoxExpenseView.swift */; };
@@ -299,6 +301,8 @@
 		7A2167DC22649F760074BA1E /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		7A2167DD22649F760074BA1E /* AddExpenseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseView.xib; sourceTree = "<group>"; };
 		7A2167E022649FC70074BA1E /* AddExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseController.swift; sourceTree = "<group>"; };
+		7A387A2B226771C900D50D80 /* UserPayCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPayCollectionCell.swift; sourceTree = "<group>"; };
+		7A387A2C226771C900D50D80 /* UserPayCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPayCollectionCell.xib; sourceTree = "<group>"; };
 		7A898B952264B55800D0E87C /* QuantifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantifyView.swift; sourceTree = "<group>"; };
 		7A898B972264B57200D0E87C /* QuantifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuantifyView.xib; sourceTree = "<group>"; };
 		7A898B9A2264C3DE00D0E87C /* CheckBoxExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxExpenseView.swift; sourceTree = "<group>"; };
@@ -929,6 +933,25 @@
 			path = AddExpense;
 			sourceTree = "<group>";
 		};
+		7A387A2622676D0C00D50D80 /* User Pay Cell */ = {
+			isa = PBXGroup;
+			children = (
+				7A387A2B226771C900D50D80 /* UserPayCollectionCell.swift */,
+				7A387A2C226771C900D50D80 /* UserPayCollectionCell.xib */,
+			);
+			path = "User Pay Cell";
+			sourceTree = "<group>";
+		};
+		7A387A302267740800D50D80 /* Expense Ico Color */ = {
+			isa = PBXGroup;
+			children = (
+				7ACA4F2B2265D0A200C4409E /* ModalExpenseIcoCoView.swift */,
+				7ACA4F2D2265D0BD00C4409E /* ModalExpenseIcoCoView.xib */,
+				7ACA4F2F2265D0EC00C4409E /* ModalExpenseIcoCoController.swift */,
+			);
+			path = "Expense Ico Color";
+			sourceTree = "<group>";
+		};
 		7A898B942264B50800D0E87C /* AddExpense */ = {
 			isa = PBXGroup;
 			children = (
@@ -972,6 +995,7 @@
 		7A898BA42264D56900D0E87C /* UserPay */ = {
 			isa = PBXGroup;
 			children = (
+				7A387A2622676D0C00D50D80 /* User Pay Cell */,
 				7A898BA62264D5BF00D0E87C /* PayGroupCollectionView.xib */,
 				7A898BA82264D63900D0E87C /* PayGroupCollectionView.swift */,
 			);
@@ -1000,9 +1024,7 @@
 			isa = PBXGroup;
 			children = (
 				7ADA21E12265E49C008B2B9C /* Expense Cell Collection */,
-				7ACA4F2B2265D0A200C4409E /* ModalExpenseIcoCoView.swift */,
-				7ACA4F2D2265D0BD00C4409E /* ModalExpenseIcoCoView.xib */,
-				7ACA4F2F2265D0EC00C4409E /* ModalExpenseIcoCoController.swift */,
+				7A387A302267740800D50D80 /* Expense Ico Color */,
 			);
 			path = Expense;
 			sourceTree = "<group>";
@@ -1229,6 +1251,7 @@
 				59FEB807210F8C1C00901D62 /* KGHAPPY.ttf in Resources */,
 				7ACA4F2E2265D0BD00C4409E /* ModalExpenseIcoCoView.xib in Resources */,
 				59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */,
+				7A387A2E226771C900D50D80 /* UserPayCollectionCell.xib in Resources */,
 				5924F5E2214BE9B1004DECCA /* searchMapCell.xib in Resources */,
 				59465D8D21163E0800106020 /* CreateHouse.xib in Resources */,
 				59F493862190D05500014560 /* infViewCollectionViewCell.xib in Resources */,
@@ -1384,6 +1407,7 @@
 				597BCAE0214A7C3D0092309D /* ModelHouseSection.swift in Sources */,
 				5924F5E1214BE9B1004DECCA /* searchMapCell.swift in Sources */,
 				5969209A2174769F0075D164 /* MapSearchHousedetailCell.swift in Sources */,
+				7A387A2D226771C900D50D80 /* UserPayCollectionCell.swift in Sources */,
 				5969209D217478530075D164 /* MapSearchHousedetailCellController.swift in Sources */,
 				7A2167E122649FC70074BA1E /* AddExpenseController.swift in Sources */,
 				3BB44E29217DF71500D610DF /* ModalCompleteHouse.swift in Sources */,

@@ -24,6 +24,7 @@ class ModalMain: UIView {
     public var returnEditData: ((Any) -> ())?
     public var returnCompleteHouseData: ((String) -> ())?
     public var returnRequestHouseData: ((String) -> ())?
+    public var returnExpenseColour: ((Any) -> ())?
     // public var editeMode : Bool!
     
     //MARK: cycle life methods

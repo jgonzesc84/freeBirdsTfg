@@ -24,5 +24,8 @@ class ExpenseIcoCoCell: UICollectionViewCell {
       colorView.backgroundColor = color
     }
     
+    func white(){
+        colorView.backgroundColor = UIColor .white
+    }
 
 }

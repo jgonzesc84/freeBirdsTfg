@@ -21,7 +21,7 @@ class ModalRequestHouse: UIView , UITextViewDelegate{
     @IBOutlet weak var heightDescriptionConstraint: NSLayoutConstraint!
     
     var controller : ModalRequestHouseController?
-     var returnDataRequestHouse: ((String) -> ())?
+    var returnDataRequestHouse: ((Any?) -> ())?
     
      //MARK: cycle life methods
     

@@ -17,7 +17,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PayGroupCollectionView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
+                <outlet property="collection" destination="3ab-9I-7db" id="FZn-ti-1IG"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="gA0-iM-y2P"/>
+                <outlet property="mainView" destination="WH6-kC-IkK" id="Sam-HR-f9D"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -17,7 +17,8 @@ class ModalController{
     var modalCreateSection : ModalCreateSectionView?
     var modalCompleteHouse : ModalCompleteHouse?
     var modalRequestHouse : ModalRequestHouse?
-    var modalAddIcoExpense : ModalExpenseIcoCoView?
+    var modalExpenseIcoCo : ModalExpenseIcoCoView?
+    
     init(ModalView: ModalMain!){
         modal = ModalView
         
@@ -78,14 +79,18 @@ class ModalController{
             modalRequestHouse = Bundle.main.loadNibNamed("ModalRequestHouse", owner: nil, options: nil)![0] as? ModalRequestHouse
             positionAndHeight(mainView: modal!, auxView: modalRequestHouse!, height: 0.65, y: 0.9)
             modalRequestHouse?.returnDataRequestHouse = { (text) -> () in
-                self.modal?.returnRequestHouseData?(text)
+                self.modal?.returnRequestHouseData?(text as! String)
                 self.modal?.removeFromSuperview()
             }
             break
+            
         case "addExpenseIco":
-            modalAddIcoExpense = Bundle.main.loadNibNamed("ModalExpenseIcoCoView", owner: nil, options: nil)![0] as? ModalExpenseIcoCoView
-            positionAndHeight(mainView: modal!, auxView: modalAddIcoExpense!, height: 0.4, y: 0.9)
-
+            modalExpenseIcoCo = Bundle.main.loadNibNamed("ModalExpenseIcoCoView", owner: nil, options: nil)![0] as? ModalExpenseIcoCoView
+            positionAndHeight(mainView: modal!, auxView: modalExpenseIcoCo!, height: 0.6, y: 0.9)
+            modalExpenseIcoCo?.returnDataExpenses = { (data) -> () in
+                self.modal?.returnExpenseColour?(data)
+               
+            }
             break
         default:
             
