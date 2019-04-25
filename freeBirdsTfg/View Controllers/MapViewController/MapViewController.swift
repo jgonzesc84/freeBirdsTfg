@@ -54,7 +54,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
         }
         MainHelper.borderShadow(view: sateliteModeMapButton)
         MainHelper.acceptButtonStyle(button: sateliteModeMapButton)
-       
+      
     }
     
     func initView(){
@@ -70,7 +70,7 @@ class MapViewController: BaseViewController , CLLocationManagerDelegate, MKMapVi
     override func viewDidAppear(_ animated: Bool) {
         setupSearchView()
         confAcceptButton()
-       
+        titleLabel.text = "Localizacion"
     }
     func setupSearchView(){
        

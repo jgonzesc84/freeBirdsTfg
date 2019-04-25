@@ -34,46 +34,50 @@ class IcoColorExpense: UIView {
         
     }
     @IBAction func iconAction(_ sender: Any) {
-       // returnAction!()
-        
+        self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
+        self.modalView?.loadContentView(name: "addExpenseIco")
+        if let topVC = UIApplication.getTopMostViewController() {
+            UIView.transition(with:   topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+                topVC.view.addSubview(self.modalView!)
+            }, completion: nil)
+        }
+        listenerIco()
     }
+        
+    
     
     @IBAction func colorAction(_ sender: Any) {
         self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
-        self.modalView?.loadContentView(name: "addExpenseIco")
+        self.modalView?.loadContentView(name: "addExpenseColor")
         if let topVC = UIApplication.getTopMostViewController() {
             UIView.transition(with:   topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
                topVC.view.addSubview(self.modalView!)
             }, completion: nil)
         }
-          listener()
+          listenerColor()
     }
     
-    func listener(){
+    func listenerColor(){
         modalView?.returnExpenseColour = { (data) -> () in
-            switch data {
-            case is UIColor:
-               self.colorButton.backgroundColor = data as? UIColor
+               self.colorButton.backgroundColor =  UIColor().colorFromHex(data)
                if let topVC = UIApplication.getTopMostViewController() {
                 UIView.transition(with: topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
                     self.modalView!.removeFromSuperview()
                 }, completion: nil)
-//                UIView.transition(with: topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-//                    self.modalView?.backgroundColor = UIColor .clear
-//                }, completion: { (Bool) in
-//                     self.modalView!.removeFromSuperview()
-//                })
                }
-                break;
-            case is UIImage:
-                self.icoButton.imageView?.image = data as? UIImage
-                break;
-            default:
-                
-                break;
-            }
         }
-        
+    }
+    func listenerIco(){
+         modalView?.returnExpenseIco = { (data) -> () in
+        let path = data
+        self.icoButton.setImage(UIImage (named: path), for: UIControl.State .normal)
+        if let topVC = UIApplication.getTopMostViewController() {
+            UIView.transition(with: topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+                self.modalView!.removeFromSuperview()
+            }, completion: nil)
+        }
     }
     
+}
+
 }

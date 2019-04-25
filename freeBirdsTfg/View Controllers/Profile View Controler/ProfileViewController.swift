@@ -125,7 +125,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         user.houseId = "0"
         FireBaseManager.createUser(model: user)
         user.idUser = Auth.auth().currentUser?.uid
-        saveUserDefault(model: user);
+        let baseManager = BaseManager()
+        baseManager.saveUserDefault(model: user);
     }
     
 }

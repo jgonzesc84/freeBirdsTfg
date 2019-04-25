@@ -33,4 +33,27 @@ enum colorExpense : String{
 
 }
 
+enum icoExpense : String{
+    
+    case ico1 = "ico_agua"
+    case ico2 = "ico_bote"
+    case ico3 = "ico_casa"
+    case ico4 = "ico_chewaca"
+    case ico5 = "ico_decoracion"
+    case ico6 = "ico_dinero"
+    case ico7 = "ico_fiesta"
+    case ico8 = "ico_gas"
+    case ico9 = "ico_herramientas"
+    case ico10 = "ico_internet"
+    case ico11 = "ico_jardin"
+    case ico12 = "ico_luz"
+    case ico13 = "ico_mantenimiento"
+    case ico14 = "ico_mobil"
+    case ico15 = "ico_stark"
+    case ico16 = "ico_tele"
+    case ico17 = "ico_viaje"
+    
+}
+
 extension colorExpense: CaseIterable {}
+extension icoExpense : CaseIterable{}

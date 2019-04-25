@@ -13,13 +13,13 @@ class ModalExpenseIcoCoView: UIView , UICollectionViewDataSource, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var contentView: UIView!
     
-    var returnDataExpenses : ((Any) -> ())?
-    var data = Array<UIColor>()
+    var returnDataExpenses : ((String) -> ())?
+    var data = Array<Any>()
     var controller : ModalExpenseIcoCoController?
     
     override func awakeFromNib() {
         
-        fillData()
+       // fillData()
         controller = ModalExpenseIcoCoController(view:self)
         self.layer.cornerRadius = self.frame.size.height / 32
         contentView.layer.cornerRadius = contentView.frame.size.height / 32
@@ -27,14 +27,14 @@ class ModalExpenseIcoCoView: UIView , UICollectionViewDataSource, UICollectionVi
         self.collectionView.delegate = self
         self.collectionView.dataSource = self
         self.collectionView.register(UINib(nibName: "ExpenseIcoCoCell", bundle: nil), forCellWithReuseIdentifier: "cellItem")
+        self.collectionView.register(UINib(nibName: "ExpenseIcoCell", bundle: nil), forCellWithReuseIdentifier: "cellIcoItem")
         collectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
        
     }
     
-    func fillData(){
-        colorExpense.allCases.forEach {
-            data.append(UIColor().colorFromHex($0.rawValue))
-        }
+    func fillData(colorMode: Bool){
+        controller?.modeChange(mode:colorMode)
+       
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -50,26 +50,10 @@ class ModalExpenseIcoCoView: UIView , UICollectionViewDataSource, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
       //  controller!.giveColor(collection: collectionView, indexPath: indexPath)
-        let cell = collectionView.cellForItem(at: indexPath) as! ExpenseIcoCoCell
-        let color = cell.colorView.backgroundColor
-        clearAllColor(color:color!)
+       
+        controller?.touchCell(collection: collectionView, indexPath: indexPath)
         
     }
     
-    func clearAllColor(color:UIColor){
-       let allCell = collectionView.visibleCells
-       // allCell.compactMap{$0 as! ExpenseIcoCoCell}.forEach{$0.white() }
-        for case let cell as ExpenseIcoCoCell in allCell  {
-            UIView.animate(withDuration: 0.25
-                , animations: {
-                    cell.white()
-                    self.collectionView.layoutIfNeeded()
-            }) { (finished: Bool) in
-                
-               self.returnDataExpenses?(color)
-            }
-        }
-       
-//
-    }
+  
 }

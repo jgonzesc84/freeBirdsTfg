@@ -64,23 +64,23 @@ class BaseViewController: UIViewController {
         }
         
     }
-    func getUserDefault() -> ModelUser{
-        let user = ModelUser()
-        user.idUser = UserDefaults.standard.object(forKey: BaseViewController.IDUSER) as? String
-        user.alias = UserDefaults.standard.object(forKey: BaseViewController.ALIAS) as? String
-         user.email = UserDefaults.standard.object(forKey: BaseViewController.EMAIL) as? String
-        if  (UserDefaults.standard.object(forKey: BaseViewController.IDHOUSE)) as? String != nil{
-            user.houseId = UserDefaults.standard.object(forKey: BaseViewController.IDHOUSE) as? String
-        }
-        return user
-    }
-    func saveUserDefault(model: ModelUser){
-        let userDefault = UserDefaults.standard
-        userDefault.set(model.idUser, forKey: BaseViewController.IDUSER)
-        userDefault.set(model.houseId, forKey:BaseViewController.IDHOUSE)
-        userDefault.set(model.alias, forKey:BaseViewController.ALIAS)
-        userDefault.set(model.email, forKey:BaseViewController.EMAIL)
-    }
+//    func getUserDefault() -> ModelUser{ de esto se encarga el manager REFACTORY
+//        let user = ModelUser()
+//        user.idUser = UserDefaults.standard.object(forKey: BaseViewController.IDUSER) as? String
+//        user.alias = UserDefaults.standard.object(forKey: BaseViewController.ALIAS) as? String
+//         user.email = UserDefaults.standard.object(forKey: BaseViewController.EMAIL) as? String
+//        if  (UserDefaults.standard.object(forKey: BaseViewController.IDHOUSE)) as? String != nil{
+//            user.houseId = UserDefaults.standard.object(forKey: BaseViewController.IDHOUSE) as? String
+//        }
+//        return user
+//    }
+//    func saveUserDefault(model: ModelUser){
+//        let userDefault = UserDefaults.standard
+//        userDefault.set(model.idUser, forKey: BaseViewController.IDUSER)
+//        userDefault.set(model.houseId, forKey:BaseViewController.IDHOUSE)
+//        userDefault.set(model.alias, forKey:BaseViewController.ALIAS)
+//        userDefault.set(model.email, forKey:BaseViewController.EMAIL)
+//    }
     
     @objc func goBack(){
         

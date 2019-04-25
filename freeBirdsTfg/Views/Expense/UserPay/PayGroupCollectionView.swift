@@ -15,7 +15,7 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
     
     @IBOutlet weak var mainView: UIView!
     var modalView : ModalMain?
-    
+    var users : Array<ModelUser>?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commoninit()
@@ -28,7 +28,11 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
          MainHelper.theStyle(view: mainView)
+        
+        users = HouseManager.sharedInstance.user
+        
         setupCollection()
+       
     }
     
     func setupCollection(){
@@ -39,19 +43,21 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        return users!.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+         let cell = collectionView.cellForItem(at: indexPath) as! UserPayCollectionCell
+         cell.touchCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItem", for: indexPath) as! UserPayCollectionCell
+        cell.setupCell(model: users![indexPath.row])
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 100, height: 100)
+        return CGSize(width: 125, height: 125)
     }
 }

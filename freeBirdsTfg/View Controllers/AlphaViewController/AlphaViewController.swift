@@ -93,6 +93,9 @@ extension AlphaViewController : getAllHouseDelegate {
             
             break
         case "tiene casa":
+            //Setear singleton con la información de la casa usuarios TODOS, TODO gastos solo los que son del usuario.
+          
+            HouseManager.sharedInstance.setupData()
             let Objvc = tabBarView()
            // let Objvc = PageView()
             self.present(Objvc, animated: true) {

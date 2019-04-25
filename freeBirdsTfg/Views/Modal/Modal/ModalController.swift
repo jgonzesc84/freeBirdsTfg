@@ -84,12 +84,22 @@ class ModalController{
             }
             break
             
-        case "addExpenseIco":
+        case "addExpenseColor":
             modalExpenseIcoCo = Bundle.main.loadNibNamed("ModalExpenseIcoCoView", owner: nil, options: nil)![0] as? ModalExpenseIcoCoView
+            modalExpenseIcoCo?.fillData(colorMode: true)
             positionAndHeight(mainView: modal!, auxView: modalExpenseIcoCo!, height: 0.6, y: 0.9)
             modalExpenseIcoCo?.returnDataExpenses = { (data) -> () in
                 self.modal?.returnExpenseColour?(data)
                
+            }
+            break
+        case "addExpenseIco":
+            modalExpenseIcoCo = Bundle.main.loadNibNamed("ModalExpenseIcoCoView", owner: nil, options: nil)![0] as? ModalExpenseIcoCoView
+            modalExpenseIcoCo?.fillData(colorMode: false)
+            positionAndHeight(mainView: modal!, auxView: modalExpenseIcoCo!, height: 0.6, y: 0.9)
+            modalExpenseIcoCo?.returnDataExpenses = { (data) -> () in
+                self.modal?.returnExpenseIco?(data)
+                
             }
             break
         default:

@@ -79,7 +79,9 @@ class LoginController{
                     {
                         let idUser = Auth.auth().currentUser?.uid
                         FireBaseManager.getUserById(userID:idUser ?? "" ){(model) in
-                            self.viewLogin!.saveUserDefault(model: model)
+                            let baseManager = BaseManager()
+                            baseManager.saveUserDefault(model: model);
+                           // self.viewLogin!.saveUserDefault(model: model)
                     
                             if(model.houseId != nil && model.houseId != "0"){
                                self.goHome(redirection: "tiene casa")

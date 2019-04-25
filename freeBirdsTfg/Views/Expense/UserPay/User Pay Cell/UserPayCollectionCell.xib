@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,24 +23,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="219" height="237"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="add user" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vnx-Jl-XX1">
-                                <rect key="frame" x="25" y="197" width="169" height="21"/>
+                                <rect key="frame" x="25" y="182.5" width="169" height="35.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" image="ic_add_circle_white" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-cf-qbt">
-                                <rect key="frame" x="25" y="19" width="169" height="156"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="steven_user" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-cf-qbt">
+                                <rect key="frame" x="55" y="42" width="109.5" height="118.5"/>
                             </imageView>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9wA-8e-MzP">
+                                <rect key="frame" x="0.0" y="0.0" width="219" height="237"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.58823529409999997" green="0.74901960779999999" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Vnx-Jl-XX1" secondAttribute="bottom" constant="19" id="CSs-5J-ce1"/>
-                            <constraint firstItem="iTC-cf-qbt" firstAttribute="top" secondItem="8Ed-AG-gUQ" secondAttribute="top" constant="19" id="Has-sk-386"/>
-                            <constraint firstItem="iTC-cf-qbt" firstAttribute="leading" secondItem="oKy-wG-Gbu" secondAttribute="leading" constant="25" id="KDq-RG-c8M"/>
-                            <constraint firstItem="oKy-wG-Gbu" firstAttribute="trailing" secondItem="iTC-cf-qbt" secondAttribute="trailing" constant="25" id="bye-5m-ccR"/>
-                            <constraint firstItem="Vnx-Jl-XX1" firstAttribute="leading" secondItem="oKy-wG-Gbu" secondAttribute="leading" constant="25" id="pyw-9e-yNs"/>
+                            <constraint firstAttribute="leading" secondItem="9wA-8e-MzP" secondAttribute="leading" id="LI1-ae-7Zd"/>
+                            <constraint firstItem="iTC-cf-qbt" firstAttribute="height" secondItem="8Ed-AG-gUQ" secondAttribute="height" multiplier="0.5" id="OaK-1j-Ikg"/>
+                            <constraint firstItem="iTC-cf-qbt" firstAttribute="width" secondItem="8Ed-AG-gUQ" secondAttribute="width" multiplier="0.5" id="OxQ-NK-H5v"/>
+                            <constraint firstAttribute="bottom" secondItem="9wA-8e-MzP" secondAttribute="bottom" id="cjC-92-RV3"/>
+                            <constraint firstItem="9wA-8e-MzP" firstAttribute="trailing" secondItem="8Ed-AG-gUQ" secondAttribute="trailing" id="dio-x9-FS5"/>
+                            <constraint firstItem="iTC-cf-qbt" firstAttribute="centerX" secondItem="oKy-wG-Gbu" secondAttribute="centerX" id="mCw-V8-u5d"/>
+                            <constraint firstItem="Vnx-Jl-XX1" firstAttribute="height" secondItem="8Ed-AG-gUQ" secondAttribute="height" multiplier="0.15" id="mbN-pf-MeC"/>
+                            <constraint firstItem="Vnx-Jl-XX1" firstAttribute="leading" secondItem="8Ed-AG-gUQ" secondAttribute="leading" constant="25" id="pyw-9e-yNs"/>
                             <constraint firstItem="Vnx-Jl-XX1" firstAttribute="top" secondItem="iTC-cf-qbt" secondAttribute="bottom" constant="22" id="tYD-fn-FCU"/>
-                            <constraint firstItem="oKy-wG-Gbu" firstAttribute="trailing" secondItem="Vnx-Jl-XX1" secondAttribute="trailing" constant="25" id="yk7-Ti-GZO"/>
+                            <constraint firstAttribute="trailing" secondItem="Vnx-Jl-XX1" secondAttribute="trailing" constant="25" id="yk7-Ti-GZO"/>
+                            <constraint firstItem="9wA-8e-MzP" firstAttribute="top" secondItem="8Ed-AG-gUQ" secondAttribute="top" id="zje-R1-ZAR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="oKy-wG-Gbu"/>
                     </view>
@@ -48,19 +57,26 @@
             </view>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="8Ed-AG-gUQ" secondAttribute="bottom" id="2pR-IW-psk"/>
+                <constraint firstItem="8Ed-AG-gUQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="7nH-Gv-yeg"/>
                 <constraint firstAttribute="trailing" secondItem="8Ed-AG-gUQ" secondAttribute="trailing" id="L8X-Vv-HAq"/>
                 <constraint firstItem="8Ed-AG-gUQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="N36-xZ-oN6"/>
+                <constraint firstAttribute="trailing" secondItem="8Ed-AG-gUQ" secondAttribute="trailing" id="PXu-Ke-3qU"/>
+                <constraint firstItem="8Ed-AG-gUQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="U5L-1S-yCd"/>
                 <constraint firstItem="8Ed-AG-gUQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="ltL-EK-3Kd"/>
+                <constraint firstAttribute="bottom" secondItem="8Ed-AG-gUQ" secondAttribute="bottom" id="rMA-Xs-65D"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="219" height="237"/>
             <connections>
-                <outlet property="mainView" destination="8Ed-AG-gUQ" id="Xl4-lH-moZ"/>
+                <outlet property="backGroundView" destination="9wA-8e-MzP" id="lXk-3O-hBF"/>
+                <outlet property="mainView" destination="8Ed-AG-gUQ" id="zrB-ee-Pyg"/>
+                <outlet property="nameLabel" destination="Vnx-Jl-XX1" id="fIB-Yc-UkD"/>
+                <outlet property="userImageView" destination="iTC-cf-qbt" id="j85-Fu-j3p"/>
             </connections>
             <point key="canvasLocation" x="68.840579710144937" y="86.049107142857139"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="ic_add_circle_white" width="24" height="24"/>
+        <image name="steven_user" width="76" height="76"/>
     </resources>
 </document>

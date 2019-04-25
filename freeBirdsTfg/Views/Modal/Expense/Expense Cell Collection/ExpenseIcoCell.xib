@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ExpenseIcoCell" customModule="freeBirdsTfg" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="291" height="281"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="291" height="281"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5XY-gx-cqR">
+                        <rect key="frame" x="0.0" y="0.0" width="291" height="281"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pc3-kd-Z6c">
+                                <rect key="frame" x="0.0" y="0.0" width="291" height="281"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="pc3-kd-Z6c" firstAttribute="top" secondItem="5XY-gx-cqR" secondAttribute="top" id="FDY-80-5NT"/>
+                            <constraint firstAttribute="bottom" secondItem="pc3-kd-Z6c" secondAttribute="bottom" id="KvE-Cd-O4r"/>
+                            <constraint firstItem="pc3-kd-Z6c" firstAttribute="leading" secondItem="5XY-gx-cqR" secondAttribute="leading" id="LJ9-yT-x1L"/>
+                            <constraint firstAttribute="trailing" secondItem="pc3-kd-Z6c" secondAttribute="trailing" id="goe-zO-EW0"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="5XY-gx-cqR" secondAttribute="trailing" id="UsG-SN-78S"/>
+                <constraint firstItem="5XY-gx-cqR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="fhe-Mz-Q2B"/>
+                <constraint firstItem="5XY-gx-cqR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="uDE-xt-dBs"/>
+                <constraint firstAttribute="bottom" secondItem="5XY-gx-cqR" secondAttribute="bottom" id="zbo-al-zNd"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="291" height="281"/>
+            <connections>
+                <outlet property="imageIcoView" destination="pc3-kd-Z6c" id="3SU-M6-atx"/>
+            </connections>
+            <point key="canvasLocation" x="330.39999999999998" y="67.916041979010501"/>
+        </collectionViewCell>
+    </objects>
+</document>

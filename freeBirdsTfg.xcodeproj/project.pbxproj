@@ -63,6 +63,7 @@
 		5950CAEB21171B7C00A97B49 /* PrecioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5950CAE921171B7C00A97B49 /* PrecioCell.swift */; };
 		5950CAEC21171B7C00A97B49 /* PrecioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAEA21171B7C00A97B49 /* PrecioCell.xib */; };
 		5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAEE211720CA00A97B49 /* checkAnimation.json */; };
+		59524358226C54E300FB0EDF /* HouseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59524357226C54E300FB0EDF /* HouseManager.swift */; };
 		595594592151A41A006490D5 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595594582151A41A006490D5 /* Direction.swift */; };
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
 		5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* LoginViewController.swift */; };
@@ -100,6 +101,9 @@
 		59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */; };
 		59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */; };
 		59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C277EF2143DD09006CDBC4 /* mainHelper.swift */; };
+		59D8C5A622704EF300777C0C /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D8C5A522704EF300777C0C /* BaseManager.swift */; };
+		59D8C5AC2270B95800777C0C /* ExpenseIcoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D8C5AA2270B95800777C0C /* ExpenseIcoCell.swift */; };
+		59D8C5AD2270B95800777C0C /* ExpenseIcoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59D8C5AB2270B95800777C0C /* ExpenseIcoCell.xib */; };
 		59E11466219621EA002D325D /* infViewCollectionViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E11465219621EA002D325D /* infViewCollectionViewCellController.swift */; };
 		59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
 		59E8125E2100F74C0071B018 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59E8125C2100F74C0071B018 /* GoogleService-Info.plist */; };
@@ -236,6 +240,7 @@
 		5950CAE921171B7C00A97B49 /* PrecioCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrecioCell.swift; sourceTree = "<group>"; };
 		5950CAEA21171B7C00A97B49 /* PrecioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrecioCell.xib; sourceTree = "<group>"; };
 		5950CAEE211720CA00A97B49 /* checkAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkAnimation.json; sourceTree = "<group>"; };
+		59524357226C54E300FB0EDF /* HouseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseManager.swift; sourceTree = "<group>"; };
 		595594582151A41A006490D5 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +280,9 @@
 		59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaViewController.swift; sourceTree = "<group>"; };
 		59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAplhaAnimation.json; sourceTree = "<group>"; };
 		59C277EF2143DD09006CDBC4 /* mainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainHelper.swift; sourceTree = "<group>"; };
+		59D8C5A522704EF300777C0C /* BaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
+		59D8C5AA2270B95800777C0C /* ExpenseIcoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseIcoCell.swift; sourceTree = "<group>"; };
+		59D8C5AB2270B95800777C0C /* ExpenseIcoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseIcoCell.xib; sourceTree = "<group>"; };
 		59DB140F222B271200055F77 /* freeBirdsTfg.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = freeBirdsTfg.entitlements; sourceTree = "<group>"; };
 		59E11465219621EA002D325D /* infViewCollectionViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = infViewCollectionViewCellController.swift; sourceTree = "<group>"; };
 		59E8125C2100F74C0071B018 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -831,6 +839,8 @@
 			isa = PBXGroup;
 			children = (
 				3B5BBA5F215B98B0005DD98B /* FireBaseManager.swift */,
+				59524357226C54E300FB0EDF /* HouseManager.swift */,
+				59D8C5A522704EF300777C0C /* BaseManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1074,6 +1084,8 @@
 			children = (
 				7ADA21E22265E4F0008B2B9C /* ExpenseIcoCoCell.swift */,
 				7ADA21E32265E4F0008B2B9C /* ExpenseIcoCoCell.xib */,
+				59D8C5AA2270B95800777C0C /* ExpenseIcoCell.swift */,
+				59D8C5AB2270B95800777C0C /* ExpenseIcoCell.xib */,
 			);
 			path = "Expense Cell Collection";
 			sourceTree = "<group>";
@@ -1262,6 +1274,7 @@
 				5960022F20FF99260042CF9F /* Assets.xcassets in Resources */,
 				59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */,
 				5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */,
+				59D8C5AD2270B95800777C0C /* ExpenseIcoCell.xib in Resources */,
 				3BB44E2B217E097100D610DF /* ModalCompleteHouse.xib in Resources */,
 				5946123B2114F91400903478 /* spirit_geekGray.json in Resources */,
 				7A898B982264B57200D0E87C /* QuantifyView.xib in Resources */,
@@ -1400,6 +1413,7 @@
 				59F49379219083DA00014560 /* HouseDetailRequestViewController.swift in Sources */,
 				7A898B9B2264C3DE00D0E87C /* CheckBoxExpenseView.swift in Sources */,
 				3B5BBA60215B98B0005DD98B /* FireBaseManager.swift in Sources */,
+				59D8C5A622704EF300777C0C /* BaseManager.swift in Sources */,
 				5924F5D9214BE7D3004DECCA /* searchMapView.swift in Sources */,
 				5990EB002197749F00627F12 /* ProfileTableViewCell.swift in Sources */,
 				7AD9682822607BCA007B773E /* HouseManagerController.swift in Sources */,
@@ -1432,6 +1446,7 @@
 				3B692F24216CC9D600DE9A24 /* MapSearchHouseController.swift in Sources */,
 				593526822143C8F0002A53D1 /* roomCell.swift in Sources */,
 				59A0DA7D222C349C00225133 /* GlobalPositionViewController.swift in Sources */,
+				59D8C5AC2270B95800777C0C /* ExpenseIcoCell.swift in Sources */,
 				5939CC48218D902F005C67D0 /* ModalCreateRoom.swift in Sources */,
 				593B5C5E215ACC470013CBD1 /* ModelHouse.swift in Sources */,
 				7AB1FCA52260B99E00213417 /* PageView.swift in Sources */,
@@ -1454,6 +1469,7 @@
 				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
 				3BB44E2F217E0F3D00D610DF /* ModalCompleteHouseController.swift in Sources */,
 				5966257C2196F1CF00658775 /* ModalRequestHouseController.swift in Sources */,
+				59524358226C54E300FB0EDF /* HouseManager.swift in Sources */,
 				593CC71C21446C440026C7F5 /* ModalMain.swift in Sources */,
 				593F85F42173C08000CBBF5B /* FBAnnotationPoint.swift in Sources */,
 				7ACA4F302265D0EC00C4409E /* ModalExpenseIcoCoController.swift in Sources */,

@@ -13,15 +13,16 @@ class ExpenseIcoCoCell: UICollectionViewCell {
     
     
     @IBOutlet weak var colorView: UIView!
+    var pathColor: String?
     override func awakeFromNib() {
         super.awakeFromNib()
        
     }
    
     
-    func setupCell(color:UIColor){
-   
-      colorView.backgroundColor = color
+    func setupCell(path:String){
+      pathColor = path
+      colorView.backgroundColor = UIColor().colorFromHex(path)
     }
     
     func white(){
