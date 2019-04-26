@@ -37,14 +37,14 @@ class tabBarView: UITabBarController {
     }
     
     func setupBar(){
-        let profileView = UINavigationController(rootViewController: ProfileEditView())
+        let profileView = ProfileEditView()
         // profileView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
-        let houseView = UINavigationController(rootViewController: HouseManagerView())
+        let houseView =  HouseManagerView()
         //houseView?.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
-        let  expenseView = UINavigationController(rootViewController: ExpenseView())
+        let  expenseView =  ExpenseView()
         //expenseView!.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
-        viewControllers = [profileView,houseView,expenseView]
-       
+       let viewControllerList = [expenseView,houseView, profileView]
+       viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }
         
 
     }

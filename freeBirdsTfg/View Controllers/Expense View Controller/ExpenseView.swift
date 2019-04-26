@@ -13,6 +13,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var titlelabel: UILabel!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var tableView: UITableView!
+    var navigation = UINavigationController()
     var controller : ExpenseController?
 
     override func viewDidLoad() {
@@ -24,7 +25,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     }
     
     func initView(){
-        prepareNav(label: titlelabel, text: "Gastos")
+        prepareNavRoot(label: titlelabel, text: "Gastos")
         MainHelper.navStyle(view:navView)
        
     }

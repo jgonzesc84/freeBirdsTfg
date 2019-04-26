@@ -23,14 +23,10 @@ class AddExpenseView: BaseViewController {
         super.viewDidLoad()
         initView()
         controller = AddExpenseController(view:self)
-       
     }
     
     func initView(){
         prepareNav(label: titleLabel, text: "Añadir Gastos")
         MainHelper.navStyle(view:navView)
     }
-    
-   
-
 }

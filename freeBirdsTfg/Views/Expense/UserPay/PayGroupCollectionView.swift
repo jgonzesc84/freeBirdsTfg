@@ -27,7 +27,7 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-         MainHelper.theStyle(view: mainView)
+        MainHelper.theStyle(view: mainView)
         
         users = HouseManager.sharedInstance.user
         

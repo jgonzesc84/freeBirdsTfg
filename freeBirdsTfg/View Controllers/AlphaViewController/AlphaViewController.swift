@@ -97,12 +97,12 @@ extension AlphaViewController : getAllHouseDelegate {
           
             HouseManager.sharedInstance.setupData()
             let Objvc = tabBarView()
-           // let Objvc = PageView()
+            self.navigationController?.pushViewController(Objvc, animated: true)
             self.present(Objvc, animated: true) {
             }
             break
         default:
-            print("error no pas apor ningun del swicth")
+            print("error no pasa por ningun del swicth")
             break
             
         }

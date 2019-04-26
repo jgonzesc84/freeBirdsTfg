@@ -64,6 +64,9 @@ class BaseViewController: UIViewController {
         }
         
     }
+    func prepareNavRoot(label : UILabel , text: String){
+        label.text = text
+    }
 //    func getUserDefault() -> ModelUser{ de esto se encarga el manager REFACTORY
 //        let user = ModelUser()
 //        user.idUser = UserDefaults.standard.object(forKey: BaseViewController.IDUSER) as? String

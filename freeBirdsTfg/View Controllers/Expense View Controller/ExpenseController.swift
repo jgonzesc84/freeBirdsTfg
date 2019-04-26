@@ -23,7 +23,6 @@ class ExpenseController {
         let vc = AddExpenseView (nibName:"AddExpenseView", bundle: nil)
         vc.hidesBottomBarWhenPushed = true;
         view?.navigationController?.pushViewController(vc, animated: true)
-      
     }
     
     func drawCell(tableView: UITableView, indexPath: IndexPath)-> UITableViewCell{
