@@ -7,10 +7,15 @@
 //
 
 import UIKit
+protocol confirmProtocol: class{
+    
+    func confirm()
+}
 
 class ConfirmExpenseView: UIView {
 
     @IBOutlet var contentView: UIView!
+    var delegate : confirmProtocol?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -22,6 +27,14 @@ class ConfirmExpenseView: UIView {
         addSubview(contentView)
         contentView.frame = self.bounds
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        MainHelper.theStyle(view: contentView)
         
     }
+    
+    
+    @IBAction func confirmAction(_ sender: Any) {
+        delegate?.confirm()
+    }
+    
+    
 }

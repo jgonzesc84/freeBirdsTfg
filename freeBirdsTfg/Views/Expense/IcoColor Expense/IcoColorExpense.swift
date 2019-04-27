@@ -17,6 +17,10 @@ class IcoColorExpense: UIView {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var icoButton: UIButton!
     @IBOutlet weak var colorButton: UIButton!
+    
+    var colorSelected : String?
+    var icoSelected : String?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commoninit()
@@ -31,6 +35,8 @@ class IcoColorExpense: UIView {
         MainHelper.theStyle(view: mainView)
         MainHelper.circleButton(button: icoButton)
         MainHelper.circleButton(button: colorButton)
+        colorSelected = colorExpense.color1.rawValue
+        icoSelected = icoExpense.ico1.rawValue
         
     }
     @IBAction func iconAction(_ sender: Any) {
@@ -59,24 +65,26 @@ class IcoColorExpense: UIView {
     
     func listenerColor(){
         modalView?.returnExpenseColour = { (data) -> () in
-               self.colorButton.backgroundColor =  UIColor().colorFromHex(data)
-               if let topVC = UIApplication.getTopMostViewController() {
+            self.colorSelected = data
+            self.colorButton.backgroundColor =  UIColor().colorFromHex(data)
+            if let topVC = UIApplication.getTopMostViewController() {
                 UIView.transition(with: topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
                     self.modalView!.removeFromSuperview()
                 }, completion: nil)
-               }
+            }
         }
     }
     func listenerIco(){
-         modalView?.returnExpenseIco = { (data) -> () in
-        let path = data
-        self.icoButton.setImage(UIImage (named: path), for: UIControl.State .normal)
-        if let topVC = UIApplication.getTopMostViewController() {
-            UIView.transition(with: topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
-                self.modalView!.removeFromSuperview()
-            }, completion: nil)
+        modalView?.returnExpenseIco = { (data) -> () in
+            let path = data
+            self.icoSelected = data
+            self.icoButton.setImage(UIImage (named: path), for: UIControl.State .normal)
+            if let topVC = UIApplication.getTopMostViewController() {
+                UIView.transition(with: topVC.view!, duration: 0.25, options: [.transitionCrossDissolve], animations: {
+                    self.modalView!.removeFromSuperview()
+                }, completion: nil)
+            }
         }
-    }
     
 }
 

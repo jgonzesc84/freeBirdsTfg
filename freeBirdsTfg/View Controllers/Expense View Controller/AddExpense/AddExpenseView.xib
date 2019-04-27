@@ -17,8 +17,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddExpenseView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
+                <outlet property="asignationView" destination="xtQ-zi-VPz" id="hu0-fP-9Sl"/>
+                <outlet property="buttonView" destination="o9V-da-wHF" id="AXD-YN-vDW"/>
+                <outlet property="checkBoxView" destination="CEJ-Gb-kuJ" id="JMs-FW-djC"/>
                 <outlet property="icoColor" destination="dZO-7f-aIU" id="Ml7-Ji-TEc"/>
+                <outlet property="icoColorView" destination="dZO-7f-aIU" id="nDn-df-cYs"/>
                 <outlet property="navView" destination="Nti-Pb-Z76" id="s8V-gU-7di"/>
+                <outlet property="textView" destination="gQ5-wd-P1v" id="zhy-rF-v4Z"/>
                 <outlet property="titleLabel" destination="Rte-BE-LNd" id="oSe-Uv-LzM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

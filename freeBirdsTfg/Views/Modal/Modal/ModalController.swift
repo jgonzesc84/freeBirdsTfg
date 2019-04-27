@@ -18,6 +18,7 @@ class ModalController{
     var modalCompleteHouse : ModalCompleteHouse?
     var modalRequestHouse : ModalRequestHouse?
     var modalExpenseIcoCo : ModalExpenseIcoCoView?
+    var modalErrorText : ModalErrorText?
     
     init(ModalView: ModalMain!){
         modal = ModalView
@@ -102,6 +103,11 @@ class ModalController{
                 
             }
             break
+        case "errorText":
+            modalErrorText = Bundle.main.loadNibNamed("ModalErrorText", owner: nil, options: nil)![0] as? ModalErrorText
+            positionAndHeight(mainView: modal!, auxView: modalErrorText!, height: 0.1 , y: 0.7)
+            break
+            
         default:
             
             break
@@ -128,6 +134,10 @@ class ModalController{
         default:
             break
         }
+    }
+    
+    func loadError(text : String){
+        modalErrorText?.setText(text:  text)
     }
     
     //MARK: private methods

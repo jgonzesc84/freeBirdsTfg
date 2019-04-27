@@ -16,6 +16,7 @@ class CheckBoxExpenseView: UIView {
     @IBOutlet weak var innerFixed: UIView!
     @IBOutlet weak var variableCB: UIView!
     @IBOutlet weak var innnerVariable: UIView!
+    
     var  variableSelection : Bool = true
     var controller : CheckBoxExpenseController?
     

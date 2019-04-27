@@ -52,7 +52,9 @@ class ModalMain: UIView {
         controller!.fillModal(model: model)
         
     }
-    
+    func loadError(text: String){
+        controller!.loadError(text : text)
+    }
     func dismissViewSetup(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         backView.addGestureRecognizer(tap)
@@ -62,6 +64,7 @@ class ModalMain: UIView {
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         removeFromSuperview()
     }
+    
     
     
 }

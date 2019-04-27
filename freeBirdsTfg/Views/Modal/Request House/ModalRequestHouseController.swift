@@ -15,7 +15,7 @@ class ModalRequestHouseController{
     
     var modal : ModalRequestHouse?
     var heightMax : CGFloat!
-   
+    
      //MARK: init
     
     init(modalRequestHouse: ModalRequestHouse!){

@@ -12,10 +12,12 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
 
     @IBOutlet weak var collection: UICollectionView!
     @IBOutlet var contentView: UIView!
-    
     @IBOutlet weak var mainView: UIView!
     var modalView : ModalMain?
+    
     var users : Array<ModelUser>?
+    var usersSelected : Array<ModelUser>?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commoninit()
@@ -30,7 +32,8 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         MainHelper.theStyle(view: mainView)
         
         users = HouseManager.sharedInstance.user
-        
+        usersSelected = Array()
+        usersSelected?.append(users![0])
         setupCollection()
        
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuantifyView: UIView {
+class QuantifyView: UIView, UITextFieldDelegate {
 
    
     @IBOutlet weak var contentView: UIView!
@@ -28,4 +28,7 @@ class QuantifyView: UIView {
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         MainHelper.theStyle(view: bodyView)
     }
+    
+
+    
 }
