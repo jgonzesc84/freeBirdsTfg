@@ -124,6 +124,8 @@
 		59FEB813210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB812210FA15C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass.json */; };
 		59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB814210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json */; };
 		59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */ = {isa = PBXBuildFile; fileRef = 59FEB815210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json */; };
+		7A0ECEAD2274D980006756F3 /* ModalErrorText.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A0ECEAC2274D980006756F3 /* ModalErrorText.xib */; };
+		7A0ECEAF2274D993006756F3 /* ModalErrorText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0ECEAE2274D993006756F3 /* ModalErrorText.swift */; };
 		7A2167D4226491BD0074BA1E /* AddExpenseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2167D2226491BD0074BA1E /* AddExpenseCell.swift */; };
 		7A2167D5226491BD0074BA1E /* AddExpenseCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2167D3226491BD0074BA1E /* AddExpenseCell.xib */; };
 		7A2167DE22649F760074BA1E /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2167DC22649F760074BA1E /* AddExpenseView.swift */; };
@@ -304,6 +306,8 @@
 		59FEB815210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "ModernPictogramsForLottie_Home-w800-h800.json"; sourceTree = "<group>"; };
 		5D3A0301A529AF3679A9C332 /* Pods-freeBirdsTfgTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfgTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfgTests/Pods-freeBirdsTfgTests.release.xcconfig"; sourceTree = "<group>"; };
 		5F66D7E1BFE49F370227727B /* Pods-freeBirdsTfg.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-freeBirdsTfg.release.xcconfig"; path = "Pods/Target Support Files/Pods-freeBirdsTfg/Pods-freeBirdsTfg.release.xcconfig"; sourceTree = "<group>"; };
+		7A0ECEAC2274D980006756F3 /* ModalErrorText.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalErrorText.xib; sourceTree = "<group>"; };
+		7A0ECEAE2274D993006756F3 /* ModalErrorText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalErrorText.swift; sourceTree = "<group>"; };
 		7A2167D2226491BD0074BA1E /* AddExpenseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseCell.swift; sourceTree = "<group>"; };
 		7A2167D3226491BD0074BA1E /* AddExpenseCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseCell.xib; sourceTree = "<group>"; };
 		7A2167DC22649F760074BA1E /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
@@ -409,6 +413,7 @@
 		3BB44E25217DF6B800D610DF /* Modal */ = {
 			isa = PBXGroup;
 			children = (
+				7A0ECEAB2274D969006756F3 /* Error */,
 				7ACA4F2A2265D00900C4409E /* Expense */,
 				596625762196F15800658775 /* Request House */,
 				5944648A2144182800545608 /* Modal */,
@@ -924,6 +929,15 @@
 			path = lottie;
 			sourceTree = "<group>";
 		};
+		7A0ECEAB2274D969006756F3 /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				7A0ECEAC2274D980006756F3 /* ModalErrorText.xib */,
+				7A0ECEAE2274D993006756F3 /* ModalErrorText.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		7A2167D1226491A20074BA1E /* cells */ = {
 			isa = PBXGroup;
 			children = (
@@ -1241,6 +1255,7 @@
 				5924F5DB214BE7EB004DECCA /* searchMapView.xib in Resources */,
 				5944648C2144185000545608 /* ModalMainView.xib in Resources */,
 				5975AF40212441E600D0194F /* createHouseTableSection.xib in Resources */,
+				7A0ECEAD2274D980006756F3 /* ModalErrorText.xib in Resources */,
 				59118B2F2149859400031AFB /* HouseSectionCell.xib in Resources */,
 				5950CAE42117083800A97B49 /* CreateHouseTableView.xib in Resources */,
 				59E8125D2100F74C0071B018 /* GoogleService-Info.plist in Resources */,
@@ -1488,6 +1503,7 @@
 				3B303B82215A34380002A7CA /* showLocalizationCell.swift in Sources */,
 				7ADA21EB22662A68008B2B9C /* colorTest.swift in Sources */,
 				7A2167DE22649F760074BA1E /* AddExpenseView.swift in Sources */,
+				7A0ECEAF2274D993006756F3 /* ModalErrorText.swift in Sources */,
 				595594592151A41A006490D5 /* Direction.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
 				7ADA21E42265E4F0008B2B9C /* ExpenseIcoCoCell.swift in Sources */,
