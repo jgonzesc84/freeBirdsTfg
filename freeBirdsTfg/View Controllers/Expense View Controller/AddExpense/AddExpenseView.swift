@@ -30,6 +30,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     //model
     
     //tiene que tener un objeto factura para asignar el gasto
+    var idBill : String?  //-> idFactura para ingresarlo en firabase
     var controller : AddExpenseController?
     var modalView : ModalMain?
     
@@ -74,11 +75,20 @@ class AddExpenseView: BaseViewController, confirmProtocol {
             self.view.addSubview(modalView!)
             return
         }
-    let payment = checkBoxView.variableSelection
-    let color = icoColorView.colorSelected
-    let ico = icoColorView.icoSelected
-    let usersSelected = asignationView.usersSelected
-    print ("hey")
+        let payment = checkBoxView.variableSelection
+        let color = icoColorView.colorSelected
+        let ico = icoColorView.icoSelected
+        let usersSelected = asignationView.usersSelected
+        
+        let expense = ModelExpense()
+        expense.name = name
+        expense.quantify = quantify
+        expense.selection = payment
+        expense.color = color
+        expense.ico = ico
+        expense.users = usersSelected
+        
+        //subida a firebase necesitamos el id de la factura
         
     }
     

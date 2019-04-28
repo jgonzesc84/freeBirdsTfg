@@ -30,4 +30,17 @@ class ExpenseController {
         return cell
       
     }
+    func setupBill(listOfBill:Array<ModelBill>){
+        listOfBill.count == 0 ?   createBill() : compareDate()
+    }
+    //creamos factura sin no hay ninguna
+    func createBill(){
+        
+        
+    }
+    
+    func compareDate(){
+        
+    }
+
 }

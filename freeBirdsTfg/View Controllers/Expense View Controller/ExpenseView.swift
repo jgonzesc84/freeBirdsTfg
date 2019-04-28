@@ -13,8 +13,10 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     @IBOutlet weak var titlelabel: UILabel!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    var navigation = UINavigationController()
+    
+    
     var controller : ExpenseController?
+    var arrayBill : Array<ModelBill>?
 
     override func viewDidLoad() {
         
@@ -27,6 +29,8 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     func initView(){
         prepareNavRoot(label: titlelabel, text: "Gastos")
         MainHelper.navStyle(view:navView)
+         arrayBill=HouseManager.sharedInstance.house?.listOfBill
+        controller?.setupBill(listOfBill:arrayBill!)
        
     }
 

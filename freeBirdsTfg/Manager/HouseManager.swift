@@ -26,10 +26,12 @@ class HouseManager : BaseManager{
     static let sharedInstance = HouseManager()
     private override init (){}
     
-    func setupData(){
+    func setupData( completion:@escaping (Bool) -> Void){
         fillHouse(idHouse: getUserDefault().houseId ?? "default"){(finish) in
             if (finish){
-                self.fillUser()
+                //
+               // self.fillUser()
+                completion(true)
             }
         }
     }

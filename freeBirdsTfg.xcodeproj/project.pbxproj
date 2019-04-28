@@ -72,6 +72,9 @@
 		5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5960023020FF99260042CF9F /* LaunchScreen.storyboard */; };
 		5960023D20FF99260042CF9F /* freeBirdsTfgTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960023C20FF99260042CF9F /* freeBirdsTfgTests.swift */; };
 		5960024820FF99260042CF9F /* freeBirdsTfgUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */; };
+		5963489E2275B17C002AF59B /* ModelBill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5963489D2275B17C002AF59B /* ModelBill.swift */; };
+		596348A02275B1CD002AF59B /* ModelExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5963489F2275B1CD002AF59B /* ModelExpense.swift */; };
+		596348A22275BE69002AF59B /* BillManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596348A12275BE69002AF59B /* BillManager.swift */; };
 		596625782196F1A800658775 /* ModalRequestHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596625772196F1A800658775 /* ModalRequestHouse.swift */; };
 		5966257A2196F1BB00658775 /* ModalRequestHouse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596625792196F1BB00658775 /* ModalRequestHouse.xib */; };
 		5966257C2196F1CF00658775 /* ModalRequestHouseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5966257B2196F1CF00658775 /* ModalRequestHouseController.swift */; };
@@ -257,6 +260,9 @@
 		5960024320FF99260042CF9F /* freeBirdsTfgUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = freeBirdsTfgUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960024720FF99260042CF9F /* freeBirdsTfgUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeBirdsTfgUITests.swift; sourceTree = "<group>"; };
 		5960024920FF99260042CF9F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5963489D2275B17C002AF59B /* ModelBill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelBill.swift; sourceTree = "<group>"; };
+		5963489F2275B1CD002AF59B /* ModelExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExpense.swift; sourceTree = "<group>"; };
+		596348A12275BE69002AF59B /* BillManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BillManager.swift; sourceTree = "<group>"; };
 		596625772196F1A800658775 /* ModalRequestHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalRequestHouse.swift; sourceTree = "<group>"; };
 		596625792196F1BB00658775 /* ModalRequestHouse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalRequestHouse.xib; sourceTree = "<group>"; };
 		5966257B2196F1CF00658775 /* ModalRequestHouseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalRequestHouseController.swift; sourceTree = "<group>"; };
@@ -448,6 +454,8 @@
 				593B5C5D215ACC470013CBD1 /* ModelHouse.swift */,
 				593B5C5F215ACD5B0013CBD1 /* ModelDirection.swift */,
 				59A32AA8219850D500CBDC77 /* ModelUser.swift */,
+				5963489D2275B17C002AF59B /* ModelBill.swift */,
+				5963489F2275B1CD002AF59B /* ModelExpense.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -846,6 +854,7 @@
 				3B5BBA5F215B98B0005DD98B /* FireBaseManager.swift */,
 				59524357226C54E300FB0EDF /* HouseManager.swift */,
 				59D8C5A522704EF300777C0C /* BaseManager.swift */,
+				596348A12275BE69002AF59B /* BillManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1434,6 +1443,7 @@
 				7AD9682822607BCA007B773E /* HouseManagerController.swift in Sources */,
 				7AD9681A22607859007B773E /* tabBarView.swift in Sources */,
 				597BCAE0214A7C3D0092309D /* ModelHouseSection.swift in Sources */,
+				596348A02275B1CD002AF59B /* ModelExpense.swift in Sources */,
 				5924F5E1214BE9B1004DECCA /* searchMapCell.swift in Sources */,
 				5969209A2174769F0075D164 /* MapSearchHousedetailCell.swift in Sources */,
 				7A387A2D226771C900D50D80 /* UserPayCollectionCell.swift in Sources */,
@@ -1451,6 +1461,7 @@
 				59F493812190D04400014560 /* supViewCollectionViewCell.swift in Sources */,
 				5939CC51218DDA0A005C67D0 /* ModalCreateSectionView.swift in Sources */,
 				5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */,
+				596348A22275BE69002AF59B /* BillManager.swift in Sources */,
 				59F493852190D05500014560 /* infViewCollectionViewCell.swift in Sources */,
 				59A32AA9219850D500CBDC77 /* ModelUser.swift in Sources */,
 				596625782196F1A800658775 /* ModalRequestHouse.swift in Sources */,
@@ -1495,6 +1506,7 @@
 				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,
 				7AD9682522607BB8007B773E /* HouseManagerView.swift in Sources */,
 				597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */,
+				5963489E2275B17C002AF59B /* ModelBill.swift in Sources */,
 				59972E842146EAE700001B27 /* BaseViewController.swift in Sources */,
 				5950CAE821170FD200A97B49 /* FontYo.swift in Sources */,
 				59118B2E2149859400031AFB /* HouseSectionCell.swift in Sources */,

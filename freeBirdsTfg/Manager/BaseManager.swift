@@ -8,6 +8,7 @@
 
 import Foundation
 import  CoreLocation
+import FirebaseDatabase
 
 class BaseManager{
     
@@ -64,6 +65,10 @@ class BaseManager{
             case "USER":
                 let arrayUser = self.getUser(dictio: dictioHouse as! Dictionary<String, Any>)
                 fullHouse.user = arrayUser
+                break
+            case "BILL":
+                let arrayBill = self.getBill(dictio: dictioHouse as! Dictionary<String, Any>)
+                fullHouse.listOfBill = arrayBill
                 break
             default:
                 break
@@ -137,6 +142,104 @@ class BaseManager{
             }
         }
         return arrayUser
+    }
+    func getBill(dictio : Dictionary <String, Any>) -> (Array<ModelBill>){
+          var arrayBill : Array<ModelBill> = []
+          let testUserList = dictio["BILL"] as? [String:AnyObject]
+        //llamada para traer un array de cuentas
+        //aqui se tiene que llamar  a los id de los gastos y cargarlos
+        
+        
+        
+        return arrayBill
+    }
+    
+    static func createDictioBill(model: ModelBill) -> (Dictionary<String, Any>){
+        
+        var expenseDictio = Dictionary<String, Any>()
+        for  item in model.expenses!{
+              var usersDictio = Dictionary<String, Any>()
+            for user in item.users!{
+                let dictio = ["idUser": user.idUser]
+                usersDictio["users"] = dictio
+            }
+            
+            let dict = [ "name": item.name!,
+                         "quantify": item.quantify!,
+                         "selection" : item.selection!,
+                         "color" : item.color!,
+                         "ico": item.ico!,
+                         "users" : usersDictio
+                ] as Dictionary
+            expenseDictio[item.idExpense!] = dict
+        }
+        let billDictio = ["billId" : model.billId!,
+                          "Date": model.dateBill!,
+                          "expenses": expenseDictio
+            ] as Dictionary
+        return billDictio
+        
+    }
+    
+     func prepareHouse(model : ModelHouse, idHouse: String)-> (Dictionary<String, Any>){
+        let dictioHouse=[
+            "PRECIO": model.price ?? "0.0",
+            "IDHOUSE": idHouse,
+            "DESCRIPTION": model.completeDescription ?? "text",
+            "DIRECTION" : prepareDirection(model: model),
+            "ROOMS" : prepareRoom(model: model),
+            "SECTIONS" : prepareSection(model: model),
+            "USER": prepareUser(model: model),
+            "BILL" : ""
+            ] as Dictionary
+        return dictioHouse
+    }
+    
+     func prepareDirection(model : ModelHouse) -> (Dictionary<String, Any>){
+        let directionDictio = ["title": model.direction!.title!,
+                               "latitude":model.direction!.coordinate!.latitude,
+                               "longitude":model.direction!.coordinate!.longitude,
+                               "idDirection":Database.database().reference().childByAutoId().key ] as Dictionary
+        return directionDictio
+    }
+    
+     func prepareRoom(model : ModelHouse) -> (Dictionary<String, Any>){
+         var roomDictio = Dictionary<String, Any>()
+        for item in model.listOfRoom! {
+            let idRoom = Database.database().reference().childByAutoId().key
+            let dict = ["user":item.user! ,
+                        "image":item.image as Any,
+                        "PRICE":item.price!,
+                        ] as Dictionary
+            roomDictio[idRoom] = dict
+            
+    }
+        return roomDictio
+    }
+    
+     func prepareSection(model : ModelHouse) -> (Dictionary<String, Any>){
+        var sectionDictio = Dictionary<String, Any>()
+        if let secciones = model.section {
+            for section in secciones {
+                let idSection = Database.database().reference().childByAutoId().key
+                let dict = ["title":section.title! ,
+                            "description":section.description!,
+                            "image":section.image as Any,
+                            ] as Dictionary
+                sectionDictio[idSection] = dict
+                
+            }
+    }
+        return sectionDictio
+    }
+    
+     func prepareUser(model : ModelHouse) -> (Dictionary<String, Any>){
+        var userDictio = Dictionary<String, Any>()
+        for nameUser in model.user!{
+            userDictio = ["userId":nameUser.idUser!]
+        }
+        return userDictio
+        
     }
     
 }

@@ -10,7 +10,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
-import  CoreLocation
+import CoreLocation
 
 private let fireManager = FireBaseManager()
 
@@ -105,47 +105,7 @@ class FireBaseManager : BaseManager{
     static func  createHouse(model : ModelHouse ){
     let ref = Database.database().reference()
     let idHouse = ref.childByAutoId().key
-    let directionDictio = ["title": model.direction!.title!,
-                "latitude":model.direction!.coordinate!.latitude,
-                "longitude":model.direction!.coordinate!.longitude,
-                "idDirection": ref.childByAutoId().key] as Dictionary
-        
-        var roomDictio = Dictionary<String, Any>()
-        for item in model.listOfRoom! {
-             let idRoom = ref.childByAutoId().key
-            let dict = ["user":item.user! ,
-                        "image":item.image as Any,
-                        "PRICE":item.price!,
-                         ] as Dictionary
-            roomDictio[idRoom] = dict
-            
-        }
-        var sectionDictio = Dictionary<String, Any>()
-        if let secciones = model.section {
-            for section in secciones {
-                let idSection = ref.childByAutoId().key
-                let dict = ["title":section.title! ,
-                            "description":section.description!,
-                            "image":section.image as Any,
-                            ] as Dictionary
-                sectionDictio[idSection] = dict
-                
-            }
-        }
-        var userDictio = Dictionary<String, Any>()
-        for nameUser in model.user!{
-            userDictio = ["userId":nameUser]
-        }
-        let dictioHouse=[
-            "PRECIO": model.price ?? "0.0",
-            "IDHOUSE": idHouse,
-            "DESCRIPTION": model.completeDescription ?? "text",
-            "DIRECTION" : directionDictio,
-            "ROOMS" : roomDictio,
-            "SECTIONS" : sectionDictio,
-            "USER": userDictio
-        ] as Dictionary
-        ref.child("CASA").child(idHouse).setValue(dictioHouse){
+        ref.child("CASA").child(idHouse).setValue(BaseManager().prepareHouse(model: model, idHouse: idHouse)){
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
                 print("Data could not be saved: \(error).")
@@ -191,6 +151,20 @@ class FireBaseManager : BaseManager{
             completion(fullHouse,false)
         })
     }
+    
+     static func createBill(model: ModelBill){
+        let ref = Database.database().reference()
+        let idHouse = HouseManager.sharedInstance.house?.idHouse
+        ref.child("CASA").child(idHouse!).setValue(createDictioBill(model:model)){
+            (error:Error?, ref:DatabaseReference)in
+            if let error = error{
+                print("Data could not be saved: \(error).")
+            }else{
+                print("Data saved successfully!")
+            }
+        }
+    }
+    
       
     }
     

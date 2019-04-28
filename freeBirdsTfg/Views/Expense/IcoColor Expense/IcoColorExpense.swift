@@ -37,7 +37,7 @@ class IcoColorExpense: UIView {
         MainHelper.circleButton(button: colorButton)
         colorSelected = colorExpense.color1.rawValue
         icoSelected = icoExpense.ico1.rawValue
-        
+        colorButton.backgroundColor =  UIColor().colorFromHex(colorExpense.color1.rawValue)
     }
     @IBAction func iconAction(_ sender: Any) {
         self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain

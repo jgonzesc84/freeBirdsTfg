@@ -16,7 +16,7 @@ class ModelHouse{
     var user : Array<ModelUser>!
     var idHouse : String?
     var completeDescription : String?
-   
+    var listOfBill : Array<ModelBill>?
     init(){
         
     }
