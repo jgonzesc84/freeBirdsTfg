@@ -11,7 +11,8 @@ import Foundation
 class ModelBill{
     
     var billId: String?
-    var dateBill: String?
+    var dateBill: Date?
+    var total : String?
     var expenses: Array<ModelExpense>?
     init(){
         

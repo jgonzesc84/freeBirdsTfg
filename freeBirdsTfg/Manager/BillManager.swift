@@ -13,5 +13,24 @@ import FirebaseStorage
 
 class BillManager : BaseManager{
     
+    func createDate() -> (Date){
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM.yyyy"
+        let result = formatter.string(from: date)
+        let finishDate = formatter.date(from: result)
+        return finishDate!
+ 
+    }
+    func stringFromDate(date: Date) -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM.yyyy"
+        let result = formatter.string(from: date)
+        return result
+    }
+    
+    func compareDate(){
+        
+    }
     
 }

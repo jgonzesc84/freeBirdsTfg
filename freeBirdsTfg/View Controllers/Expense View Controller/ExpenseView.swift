@@ -22,8 +22,8 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         
         super.viewDidLoad()
          controller = ExpenseController(view:self)
-         setuptable()
          initView()
+         setuptable()
     }
     
     func initView(){
@@ -42,7 +42,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     }
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1;
+        return arrayBill!.count;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       return (controller?.drawCell(tableView: tableView, indexPath: indexPath))!

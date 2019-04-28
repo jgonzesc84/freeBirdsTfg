@@ -27,19 +27,32 @@ class ExpenseController {
     
     func drawCell(tableView: UITableView, indexPath: IndexPath)-> UITableViewCell{
         let cell : AddExpenseCell = tableView.dequeueReusableCell(withIdentifier: "addExpense", for: indexPath) as! AddExpenseCell
+    
         return cell
       
     }
     func setupBill(listOfBill:Array<ModelBill>){
-        listOfBill.count == 0 ?   createBill() : compareDate()
-    }
-    //creamos factura sin no hay ninguna
-    func createBill(){
-        
-        
+        listOfBill.count == 0 ?   createBill() : compareDate(listArray: listOfBill)
     }
     
-    func compareDate(){
+    func createBill(){
+       let model = ModelBill()
+       model.expenses = Array<ModelExpense>()
+       model.dateBill = BillManager().createDate()
+       model.total = "0.0"
+        FireBaseManager.createBill(model: model){ (success) in
+            if(success){
+                self.view?.arrayBill?.append(model)
+                self.view?.tableView.reloadData()
+            }else{
+                //error
+            }
+        }
+        
+    }
+    func compareDate(listArray:Array<ModelBill>){
+        var ready = listArray.sorted(by: { $0.dateBill!.compare($1.dateBill!) == .orderedDescending })
+        print(ready)
         
     }
 

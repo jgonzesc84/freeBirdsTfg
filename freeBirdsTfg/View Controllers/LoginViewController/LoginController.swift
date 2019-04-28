@@ -119,11 +119,12 @@ class LoginController{
             }
             break;
         case "tiene casa":
-            //tabBarView
-            //let Objvc = GlobalPositionViewController(nibName: "GlobalPositionViewController", bundle: nil)
-            let Objvc = tabBarView()
-            self.viewLogin!.present(Objvc, animated: true) {
-                
+            HouseManager.sharedInstance.setupData { (finish) in
+                if(finish){
+                    let Objvc = tabBarView()
+                    self.viewLogin!.present(Objvc, animated: true) {
+                    }
+                }
             }
             break
         default:

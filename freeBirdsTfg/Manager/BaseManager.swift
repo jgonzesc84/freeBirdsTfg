@@ -131,7 +131,7 @@ class BaseManager{
         let testUserList = dictio["USER"] as? [String:AnyObject]
         var arrayUser : Array<ModelUser> = []
         let dictioUser = testUserList?.keys
-         let componentUser = Array(dictioUser!)
+        let componentUser = Array(dictioUser!)
         arrayUser.append(getUserDefault())
          for key in componentUser{
             let userId = testUserList![key] as? String
@@ -145,16 +145,24 @@ class BaseManager{
     }
     func getBill(dictio : Dictionary <String, Any>) -> (Array<ModelBill>){
           var arrayBill : Array<ModelBill> = []
-          let testUserList = dictio["BILL"] as? [String:AnyObject]
+          let testBillList = dictio["BILL"] as? [String:AnyObject]
+        if testBillList != nil {
+            let listBill = Array(testBillList!.keys)
+            for key in listBill{
+                
+                let bill = ModelBill()
+                bill.billId = key
+                arrayBill.append(bill)
+            }
+        }
+        
         //llamada para traer un array de cuentas
         //aqui se tiene que llamar  a los id de los gastos y cargarlos
-        
-        
-        
+
         return arrayBill
     }
     
-    static func createDictioBill(model: ModelBill) -> (Dictionary<String, Any>){
+     func createDictioBill(model: ModelBill) -> (Dictionary<String, Any>){
         
         var expenseDictio = Dictionary<String, Any>()
         for  item in model.expenses!{
@@ -174,8 +182,9 @@ class BaseManager{
             expenseDictio[item.idExpense!] = dict
         }
         let billDictio = ["billId" : model.billId!,
-                          "Date": model.dateBill!,
-                          "expenses": expenseDictio
+                          "Date": BillManager().stringFromDate(date: model.dateBill!),
+                          "expenses": expenseDictio,
+                          "total": model.total!
             ] as Dictionary
         return billDictio
         

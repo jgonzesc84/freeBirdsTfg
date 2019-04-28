@@ -83,24 +83,6 @@ class FireBaseManager : BaseManager{
         }
     }
     
-    
-    static func getUserById(userID: String, completion:@escaping (ModelUser) -> Void){
-        let ref = Database.database().reference()
-        ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let user = ModelUser()
-            user.idUser = userID
-            user.alias = value?["alias"] as? String ?? ""
-            user.email = value?["email"] as? String ?? ""
-            user.houseId = value?["houseId"] as? String ?? ""
-            completion(user)
-            // ...
-        }) { (error) in
-            print(error.localizedDescription)
-        }
-
-    }
     // MARK: Creacion casa
     static func  createHouse(model : ModelHouse ){
     let ref = Database.database().reference()
@@ -129,6 +111,7 @@ class FireBaseManager : BaseManager{
                     fullHouse = self.parseHouse(dictioHouse: data)
                     collectionHouse.append(fullHouse)
                 }
+                
             }
             completion(collectionHouse)
         }
@@ -140,6 +123,7 @@ class FireBaseManager : BaseManager{
             var fullHouse = ModelHouse()
             if let data = shot.value as? NSDictionary {
                 fullHouse = self.parseHouse(dictioHouse: data)
+                
             }
             completion(fullHouse,true)
         })
@@ -152,17 +136,58 @@ class FireBaseManager : BaseManager{
         })
     }
     
-     static func createBill(model: ModelBill){
+   static func inserBill(model: ModelBill,completion:@escaping (Bool) -> Void){
         let ref = Database.database().reference()
-        let idHouse = HouseManager.sharedInstance.house?.idHouse
-        ref.child("CASA").child(idHouse!).setValue(createDictioBill(model:model)){
+        model.billId = ref.childByAutoId().key
+        ref.child("BILL").child(model.billId!).setValue(BaseManager().createDictioBill(model:model)){
             (error:Error?, ref:DatabaseReference)in
             if let error = error{
                 print("Data could not be saved: \(error).")
+                completion(false)
             }else{
                 print("Data saved successfully!")
+                completion(true)
             }
         }
+    }
+      static func createBill(model: ModelBill,completion:@escaping (Bool) -> Void){
+        inserBill(model: model){ (success) in
+            if (success){
+                let ref = Database.database().reference()
+                let idHouse = HouseManager.sharedInstance.house?.idHouse
+                let dictio = ["idBill":model.billId]
+                ref.child("CASA").child(idHouse!).child("BILL").child(model.billId!).setValue(dictio){
+                    (error:Error?, ref:DatabaseReference)in
+                    if let error = error{
+                        print("Data could not be saved: \(error).")
+                    }else{
+                        print("Data saved successfully!")
+                        completion(true)
+                    }
+                }
+
+            }
+            
+        }
+    }
+    
+   
+    static func getUserById(userID: String, completion:@escaping (ModelUser) -> Void){
+        let ref = Database.database().reference()
+        ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            let user = ModelUser()
+            user.idUser = userID
+            user.alias = value?["alias"] as? String ?? ""
+            user.email = value?["email"] as? String ?? ""
+            user.houseId = value?["houseId"] as? String ?? ""
+            completion(user)
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
     }
     
       

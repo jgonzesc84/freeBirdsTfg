@@ -105,7 +105,7 @@ class ModalController{
             break
         case "errorText":
             modalErrorText = Bundle.main.loadNibNamed("ModalErrorText", owner: nil, options: nil)![0] as? ModalErrorText
-            positionAndHeight(mainView: modal!, auxView: modalErrorText!, height: 0.1 , y: 0.7)
+            positionAndHeight(mainView: modal!, auxView: modalErrorText!, height: 0.1 , y: 0.6)
             break
             
         default:
