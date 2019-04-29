@@ -19,18 +19,20 @@ class ExpenseController {
     }
     
     func didSelectRow(tableView: UITableView, indexPath: IndexPath){
-        
+        let billId = self.view?.arrayBill![indexPath.row].billId
         let vc = AddExpenseView (nibName:"AddExpenseView", bundle: nil)
+        vc.idBill = billId
         vc.hidesBottomBarWhenPushed = true;
         view?.navigationController?.pushViewController(vc, animated: true)
     }
     
     func drawCell(tableView: UITableView, indexPath: IndexPath)-> UITableViewCell{
         let cell : AddExpenseCell = tableView.dequeueReusableCell(withIdentifier: "addExpense", for: indexPath) as! AddExpenseCell
-    
+        cell.setupCell(model: (self.view?.arrayBill![indexPath.row])!)
         return cell
       
     }
+    //mal dno se deria poder cambiar el arry original
     func setupBill(listOfBill:Array<ModelBill>){
         listOfBill.count == 0 ?   createBill() : compareDate(listArray: listOfBill)
     }
@@ -51,8 +53,18 @@ class ExpenseController {
         
     }
     func compareDate(listArray:Array<ModelBill>){
-        var ready = listArray.sorted(by: { $0.dateBill!.compare($1.dateBill!) == .orderedDescending })
-        print(ready)
+          //self.view?.arrayBill? = listArray.sorted(by: { $0.dateBill!.compare($1.dateBill!) == .orderedDescending })
+          self.view?.arrayBill? = BillManager().compareDate(listArray:listArray)
+          self.view?.tableView.reloadData()
+        
+    }
+    
+    func  actualize(){
+        if let array = HouseManager.sharedInstance.house!.listOfBill{
+             self.view?.arrayBill! =  BillManager().compareDate(listArray:array)
+             self.view?.tableView.reloadData()
+        }
+       
         
     }
 

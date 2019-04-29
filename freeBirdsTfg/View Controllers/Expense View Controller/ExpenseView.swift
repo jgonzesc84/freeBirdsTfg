@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSource{
+class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSource, RefreshHouseData{
     
     @IBOutlet weak var titlelabel: UILabel!
     @IBOutlet weak var navView: UIView!
@@ -25,7 +25,10 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
          initView()
          setuptable()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+       
+    }
     func initView(){
         prepareNavRoot(label: titlelabel, text: "Gastos")
         MainHelper.navStyle(view:navView)
@@ -54,5 +57,8 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         return 100
+    }
+    func refresh(){
+        controller?.actualize()
     }
 }

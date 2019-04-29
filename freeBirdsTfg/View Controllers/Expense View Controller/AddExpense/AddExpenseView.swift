@@ -10,8 +10,6 @@ import UIKit
 
 class AddExpenseView: BaseViewController, confirmProtocol {
     
-    
-    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var navView: UIView!
     
@@ -87,11 +85,18 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         expense.color = color
         expense.ico = ico
         expense.users = usersSelected
+        expense.idBill = idBill
         
-        //subida a firebase necesitamos el id de la factura
-        
+        FireBaseManager.createExpense(model: expense) { (success) in
+            if(success){
+                print("A VERRR")
+            }else{
+                print("OH NOOOO")
+            }
+        }
     }
     
+   
     func isValid(text: String) -> Bool{
         var comprobation = false
         if(text.count > 0){

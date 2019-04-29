@@ -97,7 +97,6 @@ class FireBaseManager : BaseManager{
                 let refUser = Database.database().reference()
                 refUser.child("USUARIO").child(idUser!).updateChildValues(["houseId": idHouse])
             }
-     
     }
     }
     
@@ -123,7 +122,6 @@ class FireBaseManager : BaseManager{
             var fullHouse = ModelHouse()
             if let data = shot.value as? NSDictionary {
                 fullHouse = self.parseHouse(dictioHouse: data)
-                
             }
             completion(fullHouse,true)
         })
@@ -139,7 +137,7 @@ class FireBaseManager : BaseManager{
    static func inserBill(model: ModelBill,completion:@escaping (Bool) -> Void){
         let ref = Database.database().reference()
         model.billId = ref.childByAutoId().key
-        ref.child("BILL").child(model.billId!).setValue(BaseManager().createDictioBill(model:model)){
+        ref.child("BILL").child(model.billId!).setValue(BaseManager().prepareBill(model:model)){
             (error:Error?, ref:DatabaseReference)in
             if let error = error{
                 print("Data could not be saved: \(error).")
@@ -153,6 +151,7 @@ class FireBaseManager : BaseManager{
       static func createBill(model: ModelBill,completion:@escaping (Bool) -> Void){
         inserBill(model: model){ (success) in
             if (success){
+                
                 let ref = Database.database().reference()
                 let idHouse = HouseManager.sharedInstance.house?.idHouse
                 let dictio = ["idBill":model.billId]
@@ -170,8 +169,38 @@ class FireBaseManager : BaseManager{
             
         }
     }
-    
-   
+    static func createExpense(model: ModelExpense,completion:@escaping(Bool) -> Void){
+        insertExpense(model: model) { (sucess) in
+            if(sucess){
+                let ref = Database.database().reference()
+                let dictio = ["idExpense":model.idExpense]
+                ref.child("BILL").child(model.idBill!).child("expense").child(model.idExpense!).setValue(dictio){
+                    (error:Error?, ref:DatabaseReference)in
+                    if let error = error{
+                        print("Data could not be saved: \(error).")
+                    }else{
+                        print("Data saved successfully!")
+                        completion(true)
+                    }
+                }
+            }
+        }
+    }
+    static func insertExpense(model: ModelExpense,completion:@escaping(Bool) -> Void){
+        let ref = Database.database().reference()
+         var expenseDictio = Dictionary<String, Any>()
+        model.idExpense = ref.childByAutoId().key
+        expenseDictio[model.idExpense!] = BaseManager().prepareExpense(model: model)
+        ref.child("EXPENSE").child(model.idExpense!).setValue(BaseManager().prepareExpense(model: model)){
+            (error:Error?, ref:DatabaseReference)in
+            if let error = error{
+                print("Data could not be saved: \(error).")
+            }else{
+                print("Data saved successfully!")
+                completion(true)
+            }
+        }
+    }
     static func getUserById(userID: String, completion:@escaping (ModelUser) -> Void){
         let ref = Database.database().reference()
         ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in

@@ -9,7 +9,9 @@
 import UIKit
 
 class AddExpenseCell: UITableViewCell {
-
+    
+    var model : ModelBill?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -18,5 +20,8 @@ class AddExpenseCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
+    func setupCell(model: ModelBill){
+        self.model = model
+    }
     
 }

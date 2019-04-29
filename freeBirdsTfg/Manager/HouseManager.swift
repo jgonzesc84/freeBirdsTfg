@@ -13,7 +13,7 @@ import FirebaseStorage
 
 
 
-protocol refreshHouseData: class {
+protocol RefreshHouseData: class {
     func refresh()
 }
 
@@ -21,7 +21,7 @@ class HouseManager : BaseManager{
     //gastos collection
      var user :  Array<ModelUser>?
      var house : ModelHouse?
-     weak var delegate: refreshHouseData?
+     weak var delegate: RefreshHouseData?
     
     static let sharedInstance = HouseManager()
     private override init (){}
@@ -30,8 +30,7 @@ class HouseManager : BaseManager{
       let idHouse = getUserDefault().houseId
         fillHouse(idHouse: idHouse ?? "default"){(finish) in
             if (finish){
-                //
-               // self.fillUser()
+             self.delegate?.refresh()
                 completion(true)
             }
         }
@@ -61,10 +60,21 @@ class HouseManager : BaseManager{
         if list.count > 0{
             for item in list{
                 getBillById(billId: item.billId!) { (model) in
-                    completedList.append(model)
-                    count = count + 1
-                    if(count == list.count){
-                        completion(completedList)
+                    if(model.expenses!.count > 0){
+                        self.getListOfExpense(list: model.expenses!, completion: { (listOfExpense) in
+                            model.expenses = listOfExpense
+                            completedList.append(model)
+                            count = count + 1
+                            if(count == list.count){
+                                completion(completedList)
+                            }
+                        })
+                    }else{
+                        completedList.append(model)
+                        count = count + 1
+                        if(count == list.count){
+                            completion(completedList)
+                        }
                     }
                 }
             }
@@ -77,12 +87,19 @@ class HouseManager : BaseManager{
      func getBillById(billId: String , completion:@escaping(ModelBill)-> Void){
         
         let ref = Database.database().reference()
-        ref.child("BILL").child(billId).observeSingleEvent(of: .value, with: { (snapshot) in
+        ref.child("BILL").child(billId).observe(.value, with: { (snapshot) in
             // Get user value
             let value = snapshot.value as? NSDictionary
             let model = ModelBill()
             model.billId = billId
             model.total = value?["total"] as? String ?? ""
+            //
+            if let dictioExpense = value?["expense"] as? Dictionary<String,Any>{
+                model.expenses = self.getExpense(dictio: dictioExpense)
+            }else{
+                model.expenses = Array()
+            }
+            //
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM.yyyy"
             let date = dateFormatter.date(from: value?["Date"] as? String ?? "")
@@ -93,15 +110,43 @@ class HouseManager : BaseManager{
             print(error.localizedDescription)
         }
     }
-     func getListOfBillTest(idHouse: String){
-        let refTest = Database.database().reference().child("CASA").child("-LdZnG42JSbWvQw_U3-v").child("BILL")
-        //refTest.child("CASA").child("-LdZnG42JSbWvQw_U3-v").child("BILL")
-        refTest.observeSingleEvent(of: .value) { (shot) in
-            let que  = shot.value as? NSDictionary
-            print("hola?")
+    func getListOfExpense(list:Array<ModelExpense>, completion:@escaping(Array<ModelExpense>) -> Void){
+        var completedList = Array<ModelExpense>()
+        var count = 0
+        if list.count > 0{
+            for item in list{
+                getExpenseById(expenseId: item.idExpense!) { (model) in
+                    completedList.append(model)
+                    count = count + 1
+                    if(count == list.count){
+                        completion(completedList)
+                    }
+                }
+            }
+        }else{
+            completion(completedList)
         }
     }
-    
+    func getExpenseById(expenseId: String, completion:@escaping(ModelExpense) -> Void){
+         let ref = Database.database().reference()
+        ref.child("EXPENSE").child(expenseId).observe(.value, with: { (snapshot) in
+            let value = snapshot.value as? NSDictionary
+            let model = ModelExpense()
+            model.idExpense = expenseId
+            model.name = value?["name"] as? String ?? ""
+            model.quantify = value?["quantify"] as? String ?? ""
+            model.selection = value?["selection"] as? Bool
+            model.color = value?["color"] as? String ?? ""
+            model.ico = value?["ico"] as? String ?? ""
+            model.idBill = value?["idBill"] as? String ?? ""
+            //
+            model.users = value?["users"] as? Array
+            //
+            completion(model)
+        }){ (error) in
+            print(error.localizedDescription)
+        }
+    }
     func fillUser(){
         //llamada recursiva para rellenar a todos los usuarios
     }

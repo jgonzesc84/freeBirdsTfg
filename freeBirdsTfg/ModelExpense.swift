@@ -11,6 +11,7 @@ import Foundation
 class ModelExpense{
     
     var idExpense: String?
+    var idBill: String?
     var name: String?
     var quantify: String?
     var selection:Bool?

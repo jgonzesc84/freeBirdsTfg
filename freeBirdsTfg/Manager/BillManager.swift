@@ -29,8 +29,10 @@ class BillManager : BaseManager{
         return result
     }
     
-    func compareDate(){
-        
+    func compareDate(listArray:Array<ModelBill>) -> Array<ModelBill>{
+       let sortedArray = listArray
+        sortedArray.sorted(by: { $0.dateBill!.compare($1.dateBill!) == .orderedDescending })
+        return sortedArray
     }
     
 }
