@@ -27,6 +27,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        refresh()
        
     }
     func initView(){
@@ -41,6 +42,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle .none
+        self.tableView.estimatedRowHeight = 400
         self.tableView.register(UINib(nibName:"AddExpenseCell", bundle: nil), forCellReuseIdentifier: "addExpense")
     }
    
@@ -56,7 +58,9 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 100
+        let bill = arrayBill![indexPath.row]
+        let numberExpense = bill.expenses!.count
+        return CGFloat(30 * numberExpense) + 67
     }
     func refresh(){
         controller?.actualize()

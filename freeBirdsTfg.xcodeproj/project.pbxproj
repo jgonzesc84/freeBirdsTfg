@@ -90,6 +90,8 @@
 		597BCAE0214A7C3D0092309D /* ModelHouseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BCADF214A7C3D0092309D /* ModelHouseSection.swift */; };
 		597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597BCAE1214A86560092309D /* SectionHouseCollectionViewCell.swift */; };
 		597BCAE4214A86560092309D /* SectionHouseCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597BCAE2214A86560092309D /* SectionHouseCollectionViewCell.xib */; };
+		597D5878227A16F20075B4FF /* ExpenseBillCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597D5876227A16F20075B4FF /* ExpenseBillCell.swift */; };
+		597D5879227A16F20075B4FF /* ExpenseBillCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 597D5877227A16F20075B4FF /* ExpenseBillCell.xib */; };
 		5990EB002197749F00627F12 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5990EAFE2197749F00627F12 /* ProfileTableViewCell.swift */; };
 		5990EB012197749F00627F12 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */; };
 		5990EB03219775C300627F12 /* ProfileCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5990EB02219775C300627F12 /* ProfileCellController.swift */; };
@@ -278,6 +280,8 @@
 		597BCADF214A7C3D0092309D /* ModelHouseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelHouseSection.swift; sourceTree = "<group>"; };
 		597BCAE1214A86560092309D /* SectionHouseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHouseCollectionViewCell.swift; sourceTree = "<group>"; };
 		597BCAE2214A86560092309D /* SectionHouseCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHouseCollectionViewCell.xib; sourceTree = "<group>"; };
+		597D5876227A16F20075B4FF /* ExpenseBillCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseBillCell.swift; sourceTree = "<group>"; };
+		597D5877227A16F20075B4FF /* ExpenseBillCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseBillCell.xib; sourceTree = "<group>"; };
 		5990EAFE2197749F00627F12 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		5990EB02219775C300627F12 /* ProfileCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellController.swift; sourceTree = "<group>"; };
@@ -952,6 +956,8 @@
 			children = (
 				7A2167D2226491BD0074BA1E /* AddExpenseCell.swift */,
 				7A2167D3226491BD0074BA1E /* AddExpenseCell.xib */,
+				597D5876227A16F20075B4FF /* ExpenseBillCell.swift */,
+				597D5877227A16F20075B4FF /* ExpenseBillCell.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -1280,6 +1286,7 @@
 				596625812197698E00658775 /* ProfileViewController.xib in Resources */,
 				5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */,
 				59A0DA80222C349C00225133 /* GlobalPositionViewController.xib in Resources */,
+				597D5879227A16F20075B4FF /* ExpenseBillCell.xib in Resources */,
 				59465D832115D9A700106020 /* Navigation.xib in Resources */,
 				5939CC4F218DD8BF005C67D0 /* ModalCreateSectionView.xib in Resources */,
 				5969209B2174769F0075D164 /* MapSearchHousedetailCell.xib in Resources */,
@@ -1460,6 +1467,7 @@
 				3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */,
 				59F493812190D04400014560 /* supViewCollectionViewCell.swift in Sources */,
 				5939CC51218DDA0A005C67D0 /* ModalCreateSectionView.swift in Sources */,
+				597D5878227A16F20075B4FF /* ExpenseBillCell.swift in Sources */,
 				5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */,
 				596348A22275BE69002AF59B /* BillManager.swift in Sources */,
 				59F493852190D05500014560 /* infViewCollectionViewCell.swift in Sources */,
