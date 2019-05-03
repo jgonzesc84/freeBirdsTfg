@@ -28,7 +28,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     //model
     
     //tiene que tener un objeto factura para asignar el gasto
-    var idBill : String?  //-> idFactura para ingresarlo en firabase
+    var bill : ModelBill?  //-> idFactura para ingresarlo en firabase
     var controller : AddExpenseController?
     var modalView : ModalMain?
     
@@ -66,7 +66,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
             return
         }
         
-        guard let quantify = textView.quantifyTextField.text, isValid(text: quantify)else{
+        guard let quantify = textView.quantifyTextField.text, isValid(number: quantify)else{
             self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
             self.modalView?.loadContentView(name: "errorText")
             self.modalView?.loadError(text:"Debe rellenar el campo Cantidad")
@@ -80,18 +80,20 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         
         let expense = ModelExpense()
         expense.name = name
-        expense.quantify = quantify
+        expense.quantify = (quantify as NSString).doubleValue
         expense.selection = payment
         expense.color = color
         expense.ico = ico
         expense.users = usersSelected
-        expense.idBill = idBill
+        expense.idBill = bill?.billId
         
-        FireBaseManager.createExpense(model: expense) { (success) in
+        FireBaseManager.createExpense(model:expense) { (success) in
             if(success){
-                print("A VERRR")
+                
+               self.bill!.total! += expense.quantify!
+              HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!)
             }else{
-                print("OH NOOOO")
+                
             }
         }
     }
@@ -104,7 +106,14 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         }
         return comprobation
     }
+    func isValid(number: String) -> Bool{
+         var comprobation = false
+         let numberDouble = (number as NSString).doubleValue
+            if (numberDouble > 0){
+                comprobation = true
+            }
+         return comprobation
+        }
+    }
     
-    
-    
-}
+

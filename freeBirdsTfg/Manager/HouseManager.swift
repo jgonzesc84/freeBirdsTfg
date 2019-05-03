@@ -92,7 +92,7 @@ class HouseManager : BaseManager{
             let value = snapshot.value as? NSDictionary
             let model = ModelBill()
             model.billId = billId
-            model.total = value?["total"] as? String ?? ""
+            model.total = value?["total"] as? Double ?? 0.0
             //
             if let dictioExpense = value?["expense"] as? Dictionary<String,Any>{
                 model.expenses = self.getExpense(dictio: dictioExpense)
@@ -134,7 +134,7 @@ class HouseManager : BaseManager{
             let model = ModelExpense()
             model.idExpense = expenseId
             model.name = value?["name"] as? String ?? ""
-            model.quantify = value?["quantify"] as? String ?? ""
+            model.quantify = value?["quantify"] as? Double ?? 0.0
             model.selection = value?["selection"] as? Bool
             model.color = value?["color"] as? String ?? ""
             model.ico = value?["ico"] as? String ?? ""
@@ -151,4 +151,45 @@ class HouseManager : BaseManager{
         //llamada recursiva para rellenar a todos los usuarios
     }
     
+    func billSetTotal(total: Double,billId:String){
+         let ref = Database.database().reference()
+        ref.child("BILL").child(billId).child("total").setValue(total){
+            (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+            } else {
+                print("Data saved successfully!")
+            }
+        }
+    }
+    
+    func getBillUpdated(chilId:String,completion: @escaping(ModelBill,Bool) -> Void){
+        let ref = Database.database().reference()
+        ref.child("BILL").child(chilId).observe(.childAdded) { (shot) in
+            var bill = ModelBill()
+            if let data = shot.value as? NSDictionary{
+                //bill = self.parseBill
+            }
+        }
+    }
+    /*
+     func getHouseUpdated(completion: @escaping (ModelHouse,Bool) -> Void){
+     let ref = Database.database().reference()
+     ref.child("CASA").queryLimited(toLast: 1).observe(.childAdded, with:{ shot in
+     var fullHouse = ModelHouse()
+     if let data = shot.value as? NSDictionary {
+     fullHouse = self.parseHouse(dictioHouse: data)
+     }
+     completion(fullHouse,true)
+     })
+     ref.child("CASA").observe(.childRemoved, with:{ shot in
+     var fullHouse = ModelHouse()
+     if let data = shot.value as? NSDictionary {
+     fullHouse = self.parseHouse(dictioHouse: data)
+     }
+     completion(fullHouse,false)
+     })
+     }
+ 
+ */
 }

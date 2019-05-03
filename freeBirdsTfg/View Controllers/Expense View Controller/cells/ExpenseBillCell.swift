@@ -33,10 +33,10 @@ class ExpenseBillCell: UITableViewCell {
         self.model = model
         icoImage.image = UIImage(named: model.ico!)
         titleNameLabel.text = model.name!
-        pricelabel.text = model.quantify!
+        pricelabel.text = String(model.quantify!)
         statView.backgroundColor = UIColor().colorFromHex(model.color!)
          UIView.animate(withDuration: 1) {
-        self.widthPercentageConstraint.constant = 100
+        self.widthPercentageConstraint.constant = 30
         }
     }
     

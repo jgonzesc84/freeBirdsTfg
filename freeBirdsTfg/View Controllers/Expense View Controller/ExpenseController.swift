@@ -19,9 +19,9 @@ class ExpenseController {
     }
     
     func didSelectRow(tableView: UITableView, indexPath: IndexPath){
-        let billId = self.view?.arrayBill![indexPath.row].billId
+       
         let vc = AddExpenseView (nibName:"AddExpenseView", bundle: nil)
-        vc.idBill = billId
+        vc.bill = self.view?.arrayBill![indexPath.row]
         vc.hidesBottomBarWhenPushed = true;
         view?.navigationController?.pushViewController(vc, animated: true)
     }
@@ -41,7 +41,7 @@ class ExpenseController {
        let model = ModelBill()
        model.expenses = Array<ModelExpense>()
        model.dateBill = BillManager().createDate()
-       model.total = "0.0"
+       model.total = 0.0
         FireBaseManager.createBill(model: model){ (success) in
             if(success){
                 self.view?.arrayBill?.append(model)
@@ -60,12 +60,15 @@ class ExpenseController {
     }
     
     func  actualize(){
-        if let array = HouseManager.sharedInstance.house!.listOfBill{
-             self.view?.arrayBill! =  BillManager().compareDate(listArray:array)
-             self.view?.tableView.reloadData()
+        HouseManager.sharedInstance.setupData { (finish) in
+            if(finish){
+                if let array = HouseManager.sharedInstance.house!.listOfBill{
+                    self.view?.arrayBill! =  BillManager().compareDate(listArray:array)
+                    self.view?.tableView.reloadData()
+                }
+                
+            }
         }
-       
-        
     }
 
 }

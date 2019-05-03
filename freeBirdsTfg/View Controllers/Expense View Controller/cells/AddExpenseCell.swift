@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource {
+class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource,RefreshHouseData{
     
     var model : ModelBill?
     var numberItem :Int?
@@ -36,8 +36,13 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     func setupCell(model: ModelBill){
         self.model = model
+        totalLabel.text = String(model.total!)
+        refresh()
     }
-    
+    func refresh() {
+        tableView.reloadData {
+        }
+    }
     func setupTable(){
        
     }
@@ -63,9 +68,9 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        if let test = cell as? ExpenseBillCell{
-//          //  test.animation()
-//        }
+        if let test = cell as? ExpenseBillCell{
+            test.animation()
+        }
     }
         
     @IBAction func addExpense(_ sender: Any) {

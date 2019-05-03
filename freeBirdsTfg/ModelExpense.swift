@@ -13,7 +13,7 @@ class ModelExpense{
     var idExpense: String?
     var idBill: String?
     var name: String?
-    var quantify: String?
+    var quantify: Double?
     var selection:Bool?
     var color: String?
     var ico: String?

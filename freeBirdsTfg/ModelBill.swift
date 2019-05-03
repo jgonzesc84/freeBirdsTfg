@@ -12,7 +12,7 @@ class ModelBill{
     
     var billId: String?
     var dateBill: Date?
-    var total : String?
+    var total : Double?
     var expenses: Array<ModelExpense>?
     init(){
         

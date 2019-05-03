@@ -17,13 +17,14 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     
     var controller : ExpenseController?
     var arrayBill : Array<ModelBill>?
-
+    var firstTime = true
     override func viewDidLoad() {
         
         super.viewDidLoad()
          controller = ExpenseController(view:self)
          initView()
          setuptable()
+        firstTime = true
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -63,6 +64,13 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         return CGFloat(30 * numberExpense) + 67
     }
     func refresh(){
-        controller?.actualize()
-    }
+        if(!firstTime){
+            controller?.actualize()
+        }else{
+            firstTime = false
+        }
+      
+    
+}
+
 }
