@@ -20,6 +20,7 @@ class IcoColorExpense: UIView {
     
     var colorSelected : String?
     var icoSelected : String?
+    var initialColor = colorExpense.color1.rawValue
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -37,8 +38,16 @@ class IcoColorExpense: UIView {
         MainHelper.circleButton(button: colorButton)
         colorSelected = colorExpense.color1.rawValue
         icoSelected = icoExpense.ico1.rawValue
-        colorButton.backgroundColor =  UIColor().colorFromHex(colorExpense.color1.rawValue)
+        colorButton.backgroundColor =  UIColor().colorFromHex(initialColor)
     }
+    
+    func setupEdit(_ color: String, _ ico: String){
+        colorButton.backgroundColor = UIColor().colorFromHex(color)
+        self.colorSelected = color
+        self.icoButton.setImage(UIImage (named: ico), for: UIControl.State .normal)
+        icoSelected = ico
+        }
+    
     @IBAction func iconAction(_ sender: Any) {
         self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
         self.modalView?.loadContentView(name: "addExpenseIco")

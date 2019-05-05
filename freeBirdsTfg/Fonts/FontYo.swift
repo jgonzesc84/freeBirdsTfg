@@ -13,6 +13,7 @@ extension UIFont{
     
     struct AppFont {
         struct titleFont {
+             static let middletitleFont = UIFont (name:"KGHAPPY" , size: 19)
             static let titleFont = UIFont (name:"KGHAPPY" , size: 23)
             static let titleFontShadow = UIFont (name:"KGHAPPYShadows" , size: 23)
             static let titleFontSolid = UIFont (name:"KGHAPPYSolid" , size: 23)
@@ -22,6 +23,7 @@ extension UIFont{
         
         struct middleFont {
             static let middlWord = UIFont( name: "SkaterGirlsRock", size: 17)
+             static let TitleWord = UIFont( name: "SkaterGirlsRock", size: 18)
         }
 }
     

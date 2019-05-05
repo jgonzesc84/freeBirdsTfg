@@ -33,9 +33,9 @@ class CheckBoxExpenseView: UIView {
         controller = CheckBoxExpenseController(view:self)
         configureActionView()
         MainHelper.theStyle(view: checkBox)
-        setupBox()
+        setupBox(variableSelection)
     }
-    func setupBox(){
+    func setupBox(_ selection: Bool){
         MainHelper.circleView(view: fixedCB)
         MainHelper.circleView(view: innerFixed)
         MainHelper.borderShadowRedondNotRadius(view: fixedCB)
@@ -44,8 +44,23 @@ class CheckBoxExpenseView: UIView {
         MainHelper.circleView(view: innnerVariable)
         fixedCB.backgroundColor = UIColor .white
         variableCB.backgroundColor = UIColor .white
-        innnerVariable.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+        if (selection){
+           innnerVariable.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+        }else{
+           innerFixed.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+        }
+        
        
+    }
+    func setupEdit(_ selection : Bool){
+        variableSelection = selection
+        if (selection){
+            innnerVariable.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+             innerFixed.backgroundColor = UIColor .white
+        }else{
+            innerFixed.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+            innnerVariable.backgroundColor = UIColor .white
+        }
     }
     func configureActionView(){
         let gestureBox = UITapGestureRecognizer(target: self, action:  #selector(self.selectBox))

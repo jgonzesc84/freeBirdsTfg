@@ -8,38 +8,65 @@
 
 import UIKit
 
-class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource,RefreshHouseData{
-    
+class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource,RefreshHouseData,RefreshExpense{
+   
+    var refreshCell : (() -> ())?
+    var pushToCellExpense :( () -> ())?
+    var pushToEditCellExpense: ((ModelExpense)->())?
     var model : ModelBill?
     var numberItem :Int?
     
+   
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var totalLabel: UILabel!
+   
     @IBOutlet weak var addButton: UIButton!
    
+    @IBOutlet weak var topViewBackground: UIView!
+    @IBOutlet weak var labelMont: UILabel!
     
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
+        self.selectionStyle = .none
         tableView.estimatedRowHeight = 120
         tableView.delegate = self
         tableView.dataSource = self
         tableView.isScrollEnabled = false
         tableView.register(UINib(nibName: "ExpenseBillCell", bundle: nil), forCellReuseIdentifier: "expenseBillCell")
-//        tableView.reloadData(){
-//             let  index = IndexPath(row: 0, section: 0)
-//            let cell = self.tableView.cellForRow(at: index) as! ExpenseBillCell
-//            cell.animation()
-//            
-//        }
+        tableView.separatorStyle = .none
+        model?.expenses = reOrderList()
+        HouseManager.sharedInstance.delegateRefresh = self
+//        MainHelper.theStyle(view: totalView)
+//        MainHelper.circleView(view: totalView)
+//        MainHelper.borderShadowRedonde(view: totalView)
+        
+   //     totalLabel.font = UIFont .AppFont.middleFont.TitleWord
+        
+        
+        MainHelper.circleView(view: addButton)
+        MainHelper.borderShadowRedonde(view: addButton)
+        addButton.backgroundColor = UIColor .AppColor.Green.mindApp
+       
+        labelMont.textColor = UIColor .AppColor.Gray.greyStrong
+        labelMont.font = UIFont .AppFont.titleFont.middletitleFont
+      
+        MainHelper.borderShadowRedonde(view: mainView)
+       
+        
+
     }
     func setupCell(model: ModelBill){
         self.model = model
-        totalLabel.text = String(model.total!)
+     //   totalLabel.text = String(model.total!)
+        //myDate.asString(style: .medium)
+        let compact = "\(model.dateBill!.asString())  \(String(model.total!))"
+        labelMont.text = compact
         refresh()
     }
     func refresh() {
+        model?.expenses = reOrderList()
         tableView.reloadData {
         }
     }
@@ -49,7 +76,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        
-        return 30
+        return CGFloat(Double(constant.billCellHeight))
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,21 +90,116 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseBillCell", for: indexPath) as! ExpenseBillCell
-        cell.setupCell(model:model!.expenses![indexPath.row], percentage: 0.9)
+        let expense = model!.expenses![indexPath.row]
+        cell.setupCell(model:expense)
+        cell.animation(percentage: givePercentage(item: expense.quantify!))
         return cell
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if let test = cell as? ExpenseBillCell{
-            test.animation()
-        }
-    }
-        
-    @IBAction func addExpense(_ sender: Any) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         let expense = model!.expenses![indexPath.row]
+        self.pushToEditCellExpense!(expense)
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        let expense = model?.expenses![indexPath.row]
+//        if let test = cell as? ExpenseBillCell{
+//            test.animation(percentage:givePercentage(item:expense!.quantify!))
+//
+//        }
+    }
    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .normal,
+                                              title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
+                                               let row = indexPath.row
+                                                let expense = self.model?.expenses![row]
+                                                HouseManager.sharedInstance.deleteExpenseOnBill(billId:self.model!.billId!, expenseId: expense!.idExpense!){
+                                                (result) in
+                                                    let total = self.model?.total
+                                                    self.model?.total = total! - expense!.quantify!
+                                                    HouseManager.sharedInstance.billSetTotal(total: self.model!.total!, billId: self.model!.billId!){ (result) in
+                                                        if result{
+                                                            self.model?.expenses!.remove(at: row)
+                                                            self.refreshCell!()
+                                                            completionHandler(true)
+                                                        }
+                                                    }
+                                               
+                                                }
+                                                
+                                               
+        }
+        let deleteIco = UIImage(named:"trash_ico")
+        deleteAction.image = deleteIco
+        deleteAction.backgroundColor = UIColor .gray
+        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeConfig
+    }
+
+    
+    @IBAction func addExpense(_ sender: Any) {
+        self.pushToCellExpense!()
+        
+    }
+    
+    func reOrderList() -> Array<ModelExpense>{
+        var orderedList = Array<ModelExpense>()
+        let list = model?.expenses
+        if list!.count > 1{
+            orderedList = list!.sorted(by: {Double($0.quantify!) > Double($1.quantify!)})
+        }else{
+            orderedList = list!
+        }
+        
+      return orderedList
+    }
+    
+    func givePercentage(item:Double) -> Int{
+        let total = model?.total
+        let percentage = item / total! * 100
+        let roundPercentage = Int(round(percentage))
+        return roundPercentage
+    }
+    //delegate
+    func refreshExpense(expense: ModelExpense) {
+     
+        let list = self.model?.expenses!
+        if let index = list?.firstIndex(where: { ($0.idExpense == expense.idExpense)}){
+            let oldItem =  self.model?.expenses![index]
+            if oldItem?.quantify != expense.quantify{
+                let oldImport = oldItem?.quantify
+                let newImport = expense.quantify
+                var total =  self.model!.total!
+                total = total - oldImport!
+                total = total + newImport!
+                self.model?.total = total
+                HouseManager.sharedInstance.billSetTotal(total: self.model!.total!, billId: self.model!.billId!){ (result) in
+                    if(result){
+                        
+                        self.model?.expenses![index] = expense
+                        self.refreshTotalLabel()
+                        self.model?.expenses = self.reOrderList()
+                        self.tableView.reloadData {
+                        }
+                    }else{
+                       
+                    }
+                }
+            }
+            self.model?.expenses![index] = expense
+            self.tableView.reloadData {
+                
+            }
+        }
 }
+
+    func refreshTotalLabel(){
+        let compact = "\(model!.dateBill!.asString())  \(String(model!.total!))€"
+        labelMont.text = compact
+    }
+}
+
 
 extension UITableView {
     func reloadData(completion: @escaping ()->()) {
@@ -86,3 +208,12 @@ extension UITableView {
     }
 }
 
+extension Date {
+    func asString() -> String {
+        let dateFormatter1 = DateFormatter()
+        dateFormatter1.dateFormat = "MMMM yyyy";
+        let mydt = dateFormatter1.string(from: self)
+       
+        return mydt
+    }
+}

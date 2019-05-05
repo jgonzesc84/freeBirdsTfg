@@ -186,6 +186,20 @@ class FireBaseManager : BaseManager{
             }
         }
     }
+    
+    static func editExpense(model: ModelExpense,completion:@escaping(Bool) -> Void){
+                let ref = Database.database().reference()
+                let dictio =  BaseManager().prepareExpense(model: model)
+                ref.child("EXPENSE").child(model.idExpense!).setValue(dictio){
+                    (error:Error?, ref:DatabaseReference)in
+                    if let error = error{
+                        print("Data could not be saved: \(error).")
+                    }else{
+                        print("Data saved successfully!")
+                        completion(true)
+                    }
+                }
+            }
     static func insertExpense(model: ModelExpense,completion:@escaping(Bool) -> Void){
         let ref = Database.database().reference()
          var expenseDictio = Dictionary<String, Any>()

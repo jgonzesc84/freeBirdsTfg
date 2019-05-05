@@ -55,13 +55,13 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           controller?.didSelectRow(tableView: tableView, indexPath: indexPath)
+           //controller?.didSelectRow(tableView: tableView, indexPath: indexPath)
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let bill = arrayBill![indexPath.row]
         let numberExpense = bill.expenses!.count
-        return CGFloat(30 * numberExpense) + 67
+        return CGFloat(constant.billCellHeight * Double(numberExpense)) + CGFloat(constant.billheaderHeight) + CGFloat(constant.billPaddingTop)
     }
     func refresh(){
         if(!firstTime){

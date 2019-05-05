@@ -9,8 +9,13 @@
 import Foundation
 import UIKit
 
-
+class constant{
+    static let billCellHeight = 70.0
+    static let billheaderHeight = 80
+    static let billPaddingTop = 40
+}
 extension UIColor {
+    
     
     struct AppColor {
         struct Green {
@@ -19,9 +24,11 @@ extension UIColor {
         }
         
         struct Blue {
-            //#3882BC
+            //#3882BC rgba(191, 246, 248, 0.28)
             static let blueDinosaur = UIColor().colorFromHex("1d285a")
             static let blueHouse = UIColor().colorFromHex("#3882BC")
+            static let bluePastel = UIColor(red: 191, green: 246, blue: 248, alpha:1)
+            static let bluetest = UIColor(red: 192, green: 246, blue: 248, alpha: 0.28)
         }
         
         struct Violet {
@@ -43,6 +50,7 @@ extension UIColor {
         struct Gray {
             static let greyApp = UIColor().colorFromHex("A49D98")
             static let greyCancel = UIColor().colorFromHex("BBBBC1")
+            static let greyStrong = UIColor().colorFromHex("#333333")
         }
      
     }

@@ -96,6 +96,7 @@
 		5990EB012197749F00627F12 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */; };
 		5990EB03219775C300627F12 /* ProfileCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5990EB02219775C300627F12 /* ProfileCellController.swift */; };
 		59972E842146EAE700001B27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59972E832146EAE700001B27 /* BaseViewController.swift */; };
+		599C1EAC227CE7DA00B67107 /* ObserverExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C1EAB227CE7DA00B67107 /* ObserverExpense.swift */; };
 		59A0DA7D222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
 		59A0DA7E222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
 		59A0DA7F222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
@@ -286,6 +287,7 @@
 		5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		5990EB02219775C300627F12 /* ProfileCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellController.swift; sourceTree = "<group>"; };
 		59972E832146EAE700001B27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		599C1EAB227CE7DA00B67107 /* ObserverExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverExpense.swift; sourceTree = "<group>"; };
 		59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPositionViewController.swift; sourceTree = "<group>"; };
 		59A0DA7C222C349C00225133 /* GlobalPositionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlobalPositionViewController.xib; sourceTree = "<group>"; };
 		59A32AA8219850D500CBDC77 /* ModelUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
@@ -796,6 +798,22 @@
 			path = cellProfile;
 			sourceTree = "<group>";
 		};
+		599C1EA9227CE79E00B67107 /* House */ = {
+			isa = PBXGroup;
+			children = (
+				59524357226C54E300FB0EDF /* HouseManager.swift */,
+			);
+			path = House;
+			sourceTree = "<group>";
+		};
+		599C1EAA227CE7C700B67107 /* Expense */ = {
+			isa = PBXGroup;
+			children = (
+				599C1EAB227CE7DA00B67107 /* ObserverExpense.swift */,
+			);
+			path = Expense;
+			sourceTree = "<group>";
+		};
 		59A0DA83222C34A400225133 /* Global Position ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -855,8 +873,9 @@
 		59E802FE20FFA3B7001F014C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				599C1EAA227CE7C700B67107 /* Expense */,
+				599C1EA9227CE79E00B67107 /* House */,
 				3B5BBA5F215B98B0005DD98B /* FireBaseManager.swift */,
-				59524357226C54E300FB0EDF /* HouseManager.swift */,
 				59D8C5A522704EF300777C0C /* BaseManager.swift */,
 				596348A12275BE69002AF59B /* BillManager.swift */,
 			);
@@ -1523,6 +1542,7 @@
 				3B303B82215A34380002A7CA /* showLocalizationCell.swift in Sources */,
 				7ADA21EB22662A68008B2B9C /* colorTest.swift in Sources */,
 				7A2167DE22649F760074BA1E /* AddExpenseView.swift in Sources */,
+				599C1EAC227CE7DA00B67107 /* ObserverExpense.swift in Sources */,
 				7A0ECEAF2274D993006756F3 /* ModalErrorText.swift in Sources */,
 				595594592151A41A006490D5 /* Direction.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,

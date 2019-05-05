@@ -142,7 +142,7 @@ class BaseManager{
         return arrayUser
     }
     
-    func getExpense(dictio: Dictionary <String, Any>) -> (Array<ModelExpense>){
+    func getListOfExpense(dictio: Dictionary <String, Any>) -> (Array<ModelExpense>){
          var arrayModel : Array<ModelExpense> = []
           let keys = dictio.keys
         for item in keys{
@@ -151,6 +151,21 @@ class BaseManager{
             arrayModel.append(model)
         }
         return arrayModel
+    }
+    func getExpense(dictio: NSDictionary,idExpense: String) -> (ModelExpense){
+        let model = ModelExpense()
+        model.idExpense = idExpense
+        model.name = dictio["name"] as? String ?? ""
+        model.quantify = dictio["quantify"] as? Double ?? 0.0
+        model.selection = dictio["selection"] as? Bool
+        model.color = dictio["color"] as? String ?? ""
+        model.ico = dictio["ico"] as? String ?? ""
+        model.idBill = dictio["idBill"] as? String ?? ""
+        //
+        model.users = dictio["users"] as? Array
+        //
+        print("HE SE HA MODIFOCADO ALGO")
+        return model
     }
     
     func getBill(dictio : Dictionary <String, Any>) -> (Array<ModelBill>){
@@ -265,5 +280,7 @@ class BaseManager{
         return userDictio
         
     }
+    
+   
     
 }

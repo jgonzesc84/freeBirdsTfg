@@ -29,8 +29,10 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     
     //tiene que tener un objeto factura para asignar el gasto
     var bill : ModelBill?  //-> idFactura para ingresarlo en firabase
+    var editExpense : ModelExpense?
     var controller : AddExpenseController?
     var modalView : ModalMain?
+    var editMode : Bool?
     
     override func viewDidLoad() {
         
@@ -40,22 +42,31 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     }
     
     func initView(){
-        prepareNav(label: titleLabel, text: "Añadir Gastos")
+        var titleNav = "Añadir Gastos"
         MainHelper.navStyle(view:navView)
         buttonView.delegate = self
+        editMode = editExpense != nil ? true : false
+        if(editMode!){
+            setupEdit(editExpense!)
+            titleNav = "Editar Gastos"
+        }
+        prepareNav(label: titleLabel, text: titleNav)
     }
     
     func confirm() {
         listenSubView()
     }
+    
+    func setupEdit(_ expense : ModelExpense){
+        textView.nameTextField.text = expense.name
+        textView.quantifyTextField.text = "\(expense.quantify!)"
+     //   checkBoxView.variableSelection = expense.selection!
+        checkBoxView.setupEdit(expense.selection!)
+        icoColorView.setupEdit(expense.color!, expense.ico!)
+        
+    }
   
     func listenSubView(){
-        /*
-         self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
-         modalView?.loadContentView(name: name)
-         if let topVC = UIApplication.getTopMostViewController() {
-         topVC.view.addSubview(self.modalView!)
- */
         guard let name = textView.nameTextField.text, isValid(text: name) else{
        
             self.modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
@@ -86,18 +97,33 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         expense.ico = ico
         expense.users = usersSelected
         expense.idBill = bill?.billId
+        expense.idExpense = editExpense?.idExpense ?? ""
+        editMode! ? editExpense(expense) : createExpense(expense)
         
+            }
+    
+    func createExpense( _ expense: ModelExpense){
         FireBaseManager.createExpense(model:expense) { (success) in
             if(success){
-                
-               self.bill!.total! += expense.quantify!
-              HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!)
-            }else{
-                
+                self.bill!.total! += expense.quantify!
+                HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
+                    if(result){
+                        self.navigationController?.popViewController(animated: true)
+                    }else{
+                        
+                    }
+                }
             }
         }
     }
     
+    func editExpense(_ expense: ModelExpense){
+        FireBaseManager.editExpense(model: expense){ (sucess) in
+            if(sucess){
+                self.navigationController?.popViewController(animated: true)
+            }
+            }
+    }
    
     func isValid(text: String) -> Bool{
         var comprobation = false

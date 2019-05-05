@@ -12,7 +12,9 @@ import FirebaseDatabase
 import FirebaseStorage
 
 
-
+protocol RefreshExpense: class{
+    func refreshExpense(expense:ModelExpense)
+}
 protocol RefreshHouseData: class {
     func refresh()
 }
@@ -21,7 +23,9 @@ class HouseManager : BaseManager{
     //gastos collection
      var user :  Array<ModelUser>?
      var house : ModelHouse?
+    
      weak var delegate: RefreshHouseData?
+    weak var delegateRefresh: RefreshExpense?
     
     static let sharedInstance = HouseManager()
     private override init (){}
@@ -95,7 +99,7 @@ class HouseManager : BaseManager{
             model.total = value?["total"] as? Double ?? 0.0
             //
             if let dictioExpense = value?["expense"] as? Dictionary<String,Any>{
-                model.expenses = self.getExpense(dictio: dictioExpense)
+                model.expenses = self.getListOfExpense(dictio: dictioExpense)
             }else{
                 model.expenses = Array()
             }
@@ -105,7 +109,7 @@ class HouseManager : BaseManager{
             let date = dateFormatter.date(from: value?["Date"] as? String ?? "")
             model.dateBill = date
             completion(model)
-           
+           print("AQUI PASA ALGO")
         }) { (error) in
             print(error.localizedDescription)
         }
@@ -116,53 +120,73 @@ class HouseManager : BaseManager{
         if list.count > 0{
             for item in list{
                 getExpenseById(expenseId: item.idExpense!) { (model) in
-                    completedList.append(model)
-                    count = count + 1
-                    if(count == list.count){
-                        completion(completedList)
+                    if(count < list.count){
+                        completedList.append(model)
+                        count = count + 1
+                        if(count == list.count){
+                            completion(completedList)
+                        }
+                    }else{
+                        //se ha editado un campo ya existente
+                        self.delegateRefresh?.refreshExpense(expense: model)
                     }
+                    
                 }
             }
         }else{
             completion(completedList)
         }
     }
+    
+   
+    
+    
     func getExpenseById(expenseId: String, completion:@escaping(ModelExpense) -> Void){
          let ref = Database.database().reference()
-        ref.child("EXPENSE").child(expenseId).observe(.value, with: { (snapshot) in
-            let value = snapshot.value as? NSDictionary
-            let model = ModelExpense()
-            model.idExpense = expenseId
-            model.name = value?["name"] as? String ?? ""
-            model.quantify = value?["quantify"] as? Double ?? 0.0
-            model.selection = value?["selection"] as? Bool
-            model.color = value?["color"] as? String ?? ""
-            model.ico = value?["ico"] as? String ?? ""
-            model.idBill = value?["idBill"] as? String ?? ""
-            //
-            model.users = value?["users"] as? Array
-            //
-            completion(model)
-        }){ (error) in
-            print(error.localizedDescription)
+        ref.child("EXPENSE").child(expenseId).observe( .value, with: { (shot) in
+            let value = shot.value as? NSDictionary
+            guard let dictio = value, value != nil else{
+                return
+            }
+            completion(self.getExpense(dictio:dictio,idExpense:expenseId))
+        } , withCancel: { (error) in
+    
+    })
+            
         }
-    }
+    
     func fillUser(){
         //llamada recursiva para rellenar a todos los usuarios
     }
     
-    func billSetTotal(total: Double,billId:String){
+    func billSetTotal(total: Double,billId:String, completion:@escaping(Bool) -> Void){
          let ref = Database.database().reference()
         ref.child("BILL").child(billId).child("total").setValue(total){
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
                 print("Data could not be saved: \(error).")
+                completion(false)
             } else {
-                print("Data saved successfully!")
+               completion(true)
             }
         }
     }
-    
+    func deleteExpenseOnBill(billId: String, expenseId: String, completion:@escaping(Bool) -> Void){
+          let ref = Database.database().reference()
+        ref.child("BILL").child(billId).child("expense").child(expenseId).removeValue { (error, ref) in
+            if error != nil{
+                completion(false)
+            }else{
+                ref.child("EXPENSE").child(expenseId).removeValue{ (error, ref) in
+                    if error != nil{
+                        completion(false)
+                    }else{
+                        completion(true)
+                    }
+            }
+            
+        }
+    }
     func getBillUpdated(chilId:String,completion: @escaping(ModelBill,Bool) -> Void){
         let ref = Database.database().reference()
         ref.child("BILL").child(chilId).observe(.childAdded) { (shot) in
@@ -192,4 +216,5 @@ class HouseManager : BaseManager{
      }
  
  */
+}
 }

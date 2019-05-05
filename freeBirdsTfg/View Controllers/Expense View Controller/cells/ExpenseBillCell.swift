@@ -13,12 +13,27 @@ class ExpenseBillCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
     
+     @IBOutlet weak var icoVoew: UIView!
+    
+    @IBOutlet weak var midView: UIView!
+    @IBOutlet weak var statView: UIView!
+    @IBOutlet weak var statBackgroundView: UIView!
+    
+   
+    @IBOutlet weak var percentageView: UIView!
+    @IBOutlet weak var percentageLabel: UILabel!
+    @IBOutlet weak var leftView: UIView!
+    
+    @IBOutlet weak var innerLeftView: UIView!
+    
     @IBOutlet weak var icoImage: UIImageView!
     @IBOutlet weak var titleNameLabel: UILabel!
-    @IBOutlet weak var statView: UIView!
+    
+    
+    
     @IBOutlet weak var widthPercentageConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var percenatgeLabel: UILabel!
+   
     @IBOutlet weak var pricelabel: UILabel!
     
     
@@ -26,26 +41,45 @@ class ExpenseBillCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-       
+        self.selectionStyle = .none
+        statView.layer.cornerRadius = 10.0
+        statBackgroundView.layer.cornerRadius = 10.0
+        statBackgroundView.alpha = 0.5
+        
+        MainHelper.theStyle(view: icoVoew)
+        MainHelper.theStyle(view: midView)
+        MainHelper.theStyle(view: innerLeftView)
+        MainHelper.theStyle(view: percentageView)
+        MainHelper.circleView(view: innerLeftView)
+        MainHelper.borderShadowRedonde(view: innerLeftView)
+        MainHelper.circleView(view: icoImage)
+        MainHelper.borderShadowRedonde(view: icoImage)
+        percentageLabel.textColor = UIColor .black
     }
 
-    func setupCell(model: ModelExpense, percentage:CGFloat){
+    func setupCell(model: ModelExpense){
         self.model = model
         icoImage.image = UIImage(named: model.ico!)
         titleNameLabel.text = model.name!
-        pricelabel.text = String(model.quantify!)
+        pricelabel.text = "\(model.quantify!)€"
+        
         statView.backgroundColor = UIColor().colorFromHex(model.color!)
-         UIView.animate(withDuration: 1) {
-        self.widthPercentageConstraint.constant = 30
-        }
+        statBackgroundView.backgroundColor = UIColor().colorFromHex(model.color!)
+        
+       
     }
     
-    func animation(){
-        DispatchQueue.main.async { [weak self] in
-            UIView.animate(withDuration: 20) {
-                self!.widthPercentageConstraint.constant = 100
-            }
-        }
+    
+
+    func animation(percentage:Int){
+//        DispatchQueue.main.async { [weak self] in
+//            UIView.animate(withDuration: 3) {
+                percentageLabel.text = "\(percentage)%"
+                  let widtTotal = midView.frame.width
+                let totalConstant =  Float (percentage) * Float(widtTotal) / 100
+                widthPercentageConstraint.constant = CGFloat(totalConstant)
+//            }
+//        }
        
     }
     

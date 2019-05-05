@@ -18,16 +18,9 @@ class ExpenseController {
         self.view = view;
     }
     
-    func didSelectRow(tableView: UITableView, indexPath: IndexPath){
-       
-        let vc = AddExpenseView (nibName:"AddExpenseView", bundle: nil)
-        vc.bill = self.view?.arrayBill![indexPath.row]
-        vc.hidesBottomBarWhenPushed = true;
-        view?.navigationController?.pushViewController(vc, animated: true)
-    }
-    
     func drawCell(tableView: UITableView, indexPath: IndexPath)-> UITableViewCell{
         let cell : AddExpenseCell = tableView.dequeueReusableCell(withIdentifier: "addExpense", for: indexPath) as! AddExpenseCell
+        cellListener(cell, indexPath: indexPath)
         cell.setupCell(model: (self.view?.arrayBill![indexPath.row])!)
         return cell
       
@@ -69,6 +62,31 @@ class ExpenseController {
                 
             }
         }
+    }
+    
+    func cellListener(_ cell : AddExpenseCell, indexPath: IndexPath){
+        cell.refreshCell = {() -> () in
+            UIView.transition(with: self.view!.tableView!,
+                              duration: 0.35,
+                              options: .transitionCrossDissolve,
+                              animations: {self.view!.tableView!.reloadData() })
+        }
+        cell.pushToCellExpense = { () -> () in
+            let vc = AddExpenseView (nibName:"AddExpenseView", bundle: nil)
+            vc.bill = self.view?.arrayBill![indexPath.row]
+            vc.hidesBottomBarWhenPushed = true;
+            self.view?.navigationController?.pushViewController(vc, animated: true)
+        }
+        cell.pushToEditCellExpense = { (expense) -> () in
+            let vc = AddExpenseView (nibName:"AddExpenseView", bundle: nil)
+            let bill = ModelBill()
+            bill.billId = expense.idBill
+            vc.bill = bill
+            vc.editExpense = expense
+            vc.hidesBottomBarWhenPushed = true;
+            self.view?.navigationController?.pushViewController(vc, animated: true)
+        }
+        
     }
 
 }
