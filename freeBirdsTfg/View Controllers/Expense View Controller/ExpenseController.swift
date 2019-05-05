@@ -77,10 +77,11 @@ class ExpenseController {
             vc.hidesBottomBarWhenPushed = true;
             self.view?.navigationController?.pushViewController(vc, animated: true)
         }
-        cell.pushToEditCellExpense = { (expense) -> () in
+        cell.pushToEditCellExpense = { (expense,total) -> () in
             let vc = AddExpenseView (nibName:"AddExpenseView", bundle: nil)
             let bill = ModelBill()
             bill.billId = expense.idBill
+            bill.total = total
             vc.bill = bill
             vc.editExpense = expense
             vc.hidesBottomBarWhenPushed = true;

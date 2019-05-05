@@ -39,8 +39,10 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         super.viewDidLoad()
         initView()
         controller = AddExpenseController(view:self)
+        hideKeyboardWhenTappedAround()
     }
     
+   
     func initView(){
         var titleNav = "Añadir Gastos"
         MainHelper.navStyle(view:navView)
@@ -84,6 +86,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
             self.view.addSubview(modalView!)
             return
         }
+        
         let payment = checkBoxView.variableSelection
         let color = icoColorView.colorSelected
         let ico = icoColorView.icoSelected
@@ -105,7 +108,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     func createExpense( _ expense: ModelExpense){
         FireBaseManager.createExpense(model:expense) { (success) in
             if(success){
-                self.bill!.total! += expense.quantify!
+                self.bill!.total! = self.refreshBillAdd(expense.quantify!)
                 HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
                     if(result){
                         self.navigationController?.popViewController(animated: true)
@@ -120,10 +123,33 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     func editExpense(_ expense: ModelExpense){
         FireBaseManager.editExpense(model: expense){ (sucess) in
             if(sucess){
-                self.navigationController?.popViewController(animated: true)
+                if (expense.quantify != self.editExpense?.quantify){
+                    self.bill!.total! = self.refreshBillEdit(expense.quantify!, self.editExpense!.quantify!)
+                    HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
+                        if(result){
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    }
+                }else{
+                    self.navigationController?.popViewController(animated: true)
+                }
             }
-            }
+            
+        }
     }
+    
+    func refreshBillAdd(_ e: Double) -> Double{
+        let a = self.bill!.total!
+        let x = e + a
+       return x.rounded(toPlaces: 2)
+    }
+    func refreshBillEdit(_ a: Double, _ b: Double) -> Double{
+        let c = a - b
+        var x = self.bill!.total!
+        x = x + c
+        return x.rounded(toPlaces: 2);
+    }
+    
    
     func isValid(text: String) -> Bool{
         var comprobation = false

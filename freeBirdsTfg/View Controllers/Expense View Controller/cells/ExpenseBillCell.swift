@@ -61,7 +61,7 @@ class ExpenseBillCell: UITableViewCell {
         self.model = model
         icoImage.image = UIImage(named: model.ico!)
         titleNameLabel.text = model.name!
-        pricelabel.text = "\(model.quantify!)€"
+        pricelabel.text = "\(model.quantify!.rounded(toPlaces: 2))€"
         
         statView.backgroundColor = UIColor().colorFromHex(model.color!)
         statBackgroundView.backgroundColor = UIColor().colorFromHex(model.color!)

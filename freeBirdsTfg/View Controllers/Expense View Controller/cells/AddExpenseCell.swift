@@ -12,7 +12,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
    
     var refreshCell : (() -> ())?
     var pushToCellExpense :( () -> ())?
-    var pushToEditCellExpense: ((ModelExpense)->())?
+    var pushToEditCellExpense: ((ModelExpense, Double)->())?
     var model : ModelBill?
     var numberItem :Int?
     
@@ -38,11 +38,6 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         tableView.separatorStyle = .none
         model?.expenses = reOrderList()
         HouseManager.sharedInstance.delegateRefresh = self
-//        MainHelper.theStyle(view: totalView)
-//        MainHelper.circleView(view: totalView)
-//        MainHelper.borderShadowRedonde(view: totalView)
-        
-   //     totalLabel.font = UIFont .AppFont.middleFont.TitleWord
         
         
         MainHelper.circleView(view: addButton)
@@ -51,8 +46,11 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
        
         labelMont.textColor = UIColor .AppColor.Gray.greyStrong
         labelMont.font = UIFont .AppFont.titleFont.middletitleFont
-      
+        let test =  colorExpense.color3.rawValue
+        topViewBackground.backgroundColor = UIColor().colorFromHex(test)
         MainHelper.borderShadowRedonde(view: mainView)
+        
+      
        
         
 
@@ -61,7 +59,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         self.model = model
      //   totalLabel.text = String(model.total!)
         //myDate.asString(style: .medium)
-        let compact = "\(model.dateBill!.asString())  \(String(model.total!))"
+        let compact = "\(model.dateBill!.asString())  \(String(model.total!.rounded(toPlaces: 2)))"
         labelMont.text = compact
         refresh()
     }
@@ -98,15 +96,11 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          let expense = model!.expenses![indexPath.row]
-        self.pushToEditCellExpense!(expense)
+        self.pushToEditCellExpense!(expense, self.model!.total!)
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        let expense = model?.expenses![indexPath.row]
-//        if let test = cell as? ExpenseBillCell{
-//            test.animation(percentage:givePercentage(item:expense!.quantify!))
-//
-//        }
+
     }
    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -117,7 +111,8 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                                                 HouseManager.sharedInstance.deleteExpenseOnBill(billId:self.model!.billId!, expenseId: expense!.idExpense!){
                                                 (result) in
                                                     let total = self.model?.total
-                                                    self.model?.total = total! - expense!.quantify!
+                                                    let x = total! - expense!.quantify!
+                                                    self.model?.total = x.rounded(toPlaces: 2)
                                                     HouseManager.sharedInstance.billSetTotal(total: self.model!.total!, billId: self.model!.billId!){ (result) in
                                                         if result{
                                                             self.model?.expenses!.remove(at: row)
@@ -198,6 +193,8 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         let compact = "\(model!.dateBill!.asString())  \(String(model!.total!))€"
         labelMont.text = compact
     }
+    
+   
 }
 
 

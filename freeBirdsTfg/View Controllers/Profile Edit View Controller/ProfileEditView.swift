@@ -24,9 +24,10 @@ class ProfileEditView: BaseViewController {
 
     func initView(){
         controller = ProfileEditController(view:self)
+        self.hideKeyboardWhenTappedAround()
     }
   
- 
+   
     @IBAction func closeSession(_ sender: Any) {
         try! Auth.auth().signOut()
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)

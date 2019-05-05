@@ -200,6 +200,8 @@ class FireBaseManager : BaseManager{
                     }
                 }
             }
+    
+    
     static func insertExpense(model: ModelExpense,completion:@escaping(Bool) -> Void){
         let ref = Database.database().reference()
          var expenseDictio = Dictionary<String, Any>()
