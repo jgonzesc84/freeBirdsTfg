@@ -72,7 +72,6 @@ class ModalRequestHouseController{
     func acceptButton(){
         let text = modal!.descritionTextView.text
         modal?.returnDataRequestHouse!(text!)
-        
     }
     
     //MARK:private methods

@@ -13,35 +13,68 @@ import FirebaseStorage
 
 class RequestMessageManager{
     let factory = RequestMessageFactory()
-    /*
-     static func insertExpense(model: ModelExpense,completion:@escaping(Bool) -> Void){
-     let ref = Database.database().reference()
-     var expenseDictio = Dictionary<String, Any>()
-     model.idExpense = ref.childByAutoId().key
-     expenseDictio[model.idExpense!] = BaseManager().prepareExpense(model: model)
-     ref.child("EXPENSE").child(model.idExpense!).setValue(BaseManager().prepareExpense(model: model)){
-     (error:Error?, ref:DatabaseReference)in
-     if let error = error{
-     print("Data could not be saved: \(error).")
-     }else{
-     print("Data saved successfully!")
-     completion(true)
-     }
-     }
-     }
-     
- 
- */
-   
+
     func insertRequest(_ model: ModelRequestHouse ,completion:@escaping(Bool) -> Void){
+        
         let ref = Database.database().reference()
         model.idRequest = ref.childByAutoId().key
+        let idMessage =  ref.childByAutoId().key
+        model.listofMessage?[0].idRequestMessage = idMessage
+        
         ref.child("SOLICITUD").child(model.idRequest!).setValue(factory.prepareRequestHouse(model)){
             (error:Error?, ref:DatabaseReference)in
-            if let error = error{
-              
+            if error != nil{
+            completion(false)
             }else{
-               
+                self.setRequestUser(model, completion: { (succes) in
+                    if(succes){
+                        self.setRequestHouse(model, completion: { (succes) in
+                            if(succes){
+                                self.insertMessageFromRequest(model.listofMessage![0], completion: { (succes) in
+                                    if(succes){
+                                        completion(true)
+                                    }
+                                })
+                            }
+                        })
+                    }
+                })
+              
+            }
+        }
+    }
+    func setRequestUser(_ model : ModelRequestHouse, completion:@escaping(Bool) -> Void){
+          let ref = Database.database().reference()
+        ref.child("USUARIO").child(model.idUser!).child("solicitudes").child(model.idRequest!).setValue(model.idRequest!){
+             (error:Error?, ref:DatabaseReference)in
+            if error != nil{
+                completion(false)
+            }else{
+                completion(true)
+            }
+        }
+    }
+    
+    func setRequestHouse(_ model : ModelRequestHouse ,completion:@escaping(Bool) -> Void){
+          let ref = Database.database().reference()
+        ref.child("CASA").child(model.idHouse!).child("SOLICITUD").child(model.idRequest!).setValue(model.idRequest!){
+              (error:Error?, ref:DatabaseReference)in
+            if error != nil{
+                 completion(false)
+            }else{
+                completion(true)
+            }
+        }
+    }
+    
+    func insertMessageFromRequest(_ model: ModelRequestMessageHouse ,completion:@escaping(Bool) -> Void){
+         let ref = Database.database().reference()
+       //  model.idRequestMessage = ref.childByAutoId().key
+        ref.child("MENSAJES").child(model.idRequestMessage!).setValue(factory.prepareMessageRequest(model)){
+             (error:Error?, ref:DatabaseReference)in
+            if error != nil{
+                 completion(false)
+            }else{
                 completion(true)
             }
         }

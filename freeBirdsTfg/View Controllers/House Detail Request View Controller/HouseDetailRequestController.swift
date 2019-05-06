@@ -142,7 +142,15 @@ class HouseDetailRequestController{
         if let topVC = UIApplication.getTopMostViewController() {
             topVC.view.addSubview(requestView!.modalView!)
             requestView!.modalView?.returnRequestHouseData = { (text) -> () in
-                //TODO:-Firebase crear request y registro del model usuario
+                let reqManager = RequestMessageManager()
+                let model = reqManager.factory.createRequest(self.requestView!.house!,text)
+                reqManager.insertRequest(model, completion: { (sucess) in
+                    if(sucess){
+                        self.requestView!.navigationController?.popViewController(animated: true)
+                    }else{
+                        print("fallo")
+                    }
+                })
             }
         }
     }
