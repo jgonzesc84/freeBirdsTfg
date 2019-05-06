@@ -65,6 +65,10 @@ class BaseManager{
                 let arrayUser = self.getUser(dictio: dictioHouse as! Dictionary<String, Any>)
                 fullHouse.user = arrayUser
                 break
+            case "SEARCHMATE":
+                let searchMate = dictioHouse["SEARCHMATE"] as! Bool
+                fullHouse.searchMate = searchMate
+                break
             case "BILL":
                 let arrayBill = self.getBill(dictio: dictioHouse as! Dictionary<String, Any>)
                 fullHouse.listOfBill = arrayBill
@@ -116,10 +120,11 @@ class BaseManager{
             let sectionDictio = testRoomList![key]
             let user = sectionDictio!["user"] as? String
             let price = sectionDictio!["PRICE"] as? String
+            let search = sectionDictio!["search"] as? Bool
             let roomModel = ModelRoom()
             roomModel.user = user!
             roomModel.price = price!
-            
+            roomModel.search = search
             arrayRoom.append(roomModel)
         }
         return arrayRoom
@@ -229,6 +234,7 @@ class BaseManager{
             "ROOMS" : prepareRoom(model: model),
             "SECTIONS" : prepareSection(model: model),
             "USER": prepareUser(model: model),
+            "SEARCHMATE" : model.searchMate!,
             "BILL" : ""
             ] as Dictionary
         return dictioHouse
@@ -249,6 +255,7 @@ class BaseManager{
             let dict = ["user":item.user! ,
                         "image":item.image as Any,
                         "PRICE":item.price!,
+                        "search": item.search!
                         ] as Dictionary
             roomDictio[idRoom] = dict
             

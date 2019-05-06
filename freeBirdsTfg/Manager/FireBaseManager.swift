@@ -103,7 +103,7 @@ class FireBaseManager : BaseManager{
     func getHouse(completion: @escaping (Array<ModelHouse>) -> Void){
         var collectionHouse : Array<ModelHouse> = []
         let ref = Database.database().reference()
-         ref.child("CASA").observeSingleEvent(of: DataEventType.value) { (shot) in
+      ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).observeSingleEvent(of: DataEventType.value) { (shot) in
             for item in shot.children.allObjects as! [DataSnapshot]{
                  var fullHouse = ModelHouse()
                 if let data = item.value as? NSDictionary {
@@ -118,14 +118,17 @@ class FireBaseManager : BaseManager{
     
     func getHouseUpdated(completion: @escaping (ModelHouse,Bool) -> Void){
         let ref = Database.database().reference()
-        ref.child("CASA").queryLimited(toLast: 1).observe(.childAdded, with:{ shot in
+        // ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true)
+        // ref.child("CASA").queryLimited(toLast: 1)
+      ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).queryLimited(toLast: 1).observe(.childAdded, with:{ shot in
             var fullHouse = ModelHouse()
             if let data = shot.value as? NSDictionary {
                 fullHouse = self.parseHouse(dictioHouse: data)
             }
             completion(fullHouse,true)
         })
-        ref.child("CASA").observe(.childRemoved, with:{ shot in
+        //ref.child("CASA")
+        ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).observe(.childRemoved, with:{ shot in
             var fullHouse = ModelHouse()
             if let data = shot.value as? NSDictionary {
                 fullHouse = self.parseHouse(dictioHouse: data)

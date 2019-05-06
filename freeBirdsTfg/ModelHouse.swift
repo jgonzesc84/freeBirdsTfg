@@ -13,10 +13,12 @@ class ModelHouse{
     var section : Array<ModelHouseSection>?
     var listOfRoom : Array<ModelRoom>?
     var direction : ModelDirection?
-    var user : Array<ModelUser>!
+    var user : Array<ModelUser>?
     var idHouse : String?
     var completeDescription : String?
     var listOfBill : Array<ModelBill>?
+    var searchMate : Bool? 
+    
     init(){
         
     }
@@ -28,8 +30,8 @@ class ModelHouse{
         self.listOfRoom = listOfRoom
         self.direction = direction
         self.completeDescription = completeDescription
-        self.user = Array()
-        self.user.append(BaseManager().getUserDefault()) 
+       // self.user = Array()
+       // self.user.append(BaseManager().getUserDefault())
       //  self.user = users
         
     }

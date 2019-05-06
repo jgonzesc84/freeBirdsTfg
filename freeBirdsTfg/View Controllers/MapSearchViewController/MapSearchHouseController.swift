@@ -106,7 +106,9 @@ class MapSearchHouseController {
             return ModelHouse.idHouse == id
         })
         selectedHouse = array![0]
-        rooms = selectedHouse.listOfRoom!
+       
+        rooms = selectedHouse.listOfRoom!.filter{ $0.search == true}
+      
         viewMap!.listOfRoom = rooms
         
         UIView.transition(with:  viewMap!.houseDetailTableView,

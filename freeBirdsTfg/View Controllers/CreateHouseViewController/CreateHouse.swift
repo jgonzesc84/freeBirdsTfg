@@ -116,6 +116,8 @@ class CreateHouse: BaseViewController {
             self.modalView?.returnCompleteHouseData = { (text) -> () in
                 self.house?.completeDescription = text
                  FireBaseManager.createHouse(model: self.house!)
+                
+                //redirigir a tabView
                
             }
         }
@@ -131,12 +133,15 @@ class CreateHouse: BaseViewController {
         self.house?.direction = directionModel
         var user = Array<ModelUser>()
         user.append(BaseManager().getUserDefault())
-        self.house!.user? = user
+        self.house!.user = user
         if  let list = house!.listOfRoom {
             if(showIfAreSeraching(list)){
+                self.house!.searchMate = true
                 prepareModal( name : "completeHouse")
             }else{
-                print("NANAI")
+                 self.house!.searchMate = false
+                  FireBaseManager.createHouse(model: self.house!)
+                //redirigir a tab view
             }
         }else{
            print ("NANAI SIN HABITACIONES")
@@ -145,9 +150,13 @@ class CreateHouse: BaseViewController {
     
     
     func showIfAreSeraching(_ listHouse : Array<ModelRoom>) -> Bool{
-        let found = listHouse.allSatisfy(({$0.search!}))
-        return found
-    }
+        var result = false
+        if listHouse.contains(where: {$0.search == true}){
+            result = true
+          // return result
+        }
+        return result
 
+}
 
 }

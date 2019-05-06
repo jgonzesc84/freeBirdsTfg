@@ -53,6 +53,8 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         MainHelper.circleButton(button: requestButton)
         MainHelper.borderShadowRedonde(view: requestButton)
         requestButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+        let filteredRooms = self.house?.listOfRoom!.filter{$0.search == true}
+        self.house!.listOfRoom! = filteredRooms!
     }
   
     func initData(){
