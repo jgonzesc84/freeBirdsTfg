@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="KGHAPPY.ttf">
+            <string>KGHAPPY</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestView" customModule="freeBirdsTfg" customModuleProvider="target">
+            <connections>
+                <outlet property="navView" destination="Yf4-gJ-Iwa" id="NK0-Hn-i8b"/>
+                <outlet property="table" destination="qLN-03-EPO" id="7yh-lD-Dvi"/>
+                <outlet property="titleLabel" destination="97z-U8-5KX" id="mMd-6c-SQ9"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="376" height="675"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yf4-gJ-Iwa" userLabel="Nav view">
+                    <rect key="frame" x="0.0" y="0.0" width="376" height="67"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primera Pantalla" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="97z-U8-5KX">
+                            <rect key="frame" x="37.5" y="28" width="301" height="41.5"/>
+                            <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="26"/>
+                            <color key="textColor" red="0.71710350609999995" green="0.85328454570000001" blue="0.82918128410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hAc-lS-nz4">
+                            <rect key="frame" x="56.5" y="64" width="263" height="3"/>
+                            <color key="backgroundColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="3" id="fKs-m1-b8s"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="97z-U8-5KX" firstAttribute="centerX" secondItem="Yf4-gJ-Iwa" secondAttribute="centerX" id="3rh-Vb-Q12"/>
+                        <constraint firstItem="97z-U8-5KX" firstAttribute="top" secondItem="Yf4-gJ-Iwa" secondAttribute="top" constant="28" id="8dX-Xh-B0v"/>
+                        <constraint firstAttribute="bottom" secondItem="hAc-lS-nz4" secondAttribute="bottom" id="FNT-7b-59V"/>
+                        <constraint firstAttribute="height" constant="67" id="LXZ-ao-0mK"/>
+                        <constraint firstItem="hAc-lS-nz4" firstAttribute="centerX" secondItem="Yf4-gJ-Iwa" secondAttribute="centerX" id="jYW-lJ-5B0"/>
+                        <constraint firstItem="97z-U8-5KX" firstAttribute="width" secondItem="Yf4-gJ-Iwa" secondAttribute="width" multiplier="0.8" id="kyb-CP-60F"/>
+                        <constraint firstItem="hAc-lS-nz4" firstAttribute="width" secondItem="Yf4-gJ-Iwa" secondAttribute="width" multiplier="0.7" id="rJs-hE-64z"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tzV-hU-MA3" userLabel="mainView">
+                    <rect key="frame" x="0.0" y="67" width="376" height="608"/>
+                    <subviews>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qLN-03-EPO">
+                            <rect key="frame" x="0.0" y="0.0" width="376" height="608"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="qLN-03-EPO" firstAttribute="leading" secondItem="tzV-hU-MA3" secondAttribute="leading" id="3Yv-I1-50c"/>
+                        <constraint firstItem="qLN-03-EPO" firstAttribute="top" secondItem="tzV-hU-MA3" secondAttribute="top" id="CRe-FC-arh"/>
+                        <constraint firstAttribute="trailing" secondItem="qLN-03-EPO" secondAttribute="trailing" id="MLh-GB-o1G"/>
+                        <constraint firstAttribute="bottom" secondItem="qLN-03-EPO" secondAttribute="bottom" id="nBo-0c-27G"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Yf4-gJ-Iwa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="8Iu-aW-9H1"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Yf4-gJ-Iwa" secondAttribute="trailing" id="VF7-HH-7dk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="Yf4-gJ-Iwa" secondAttribute="leading" id="alv-7F-tEs"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tzV-hU-MA3" secondAttribute="trailing" id="gGl-YV-uRL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="tzV-hU-MA3" secondAttribute="bottom" id="gHh-ch-p9G"/>
+                <constraint firstItem="tzV-hU-MA3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kSJ-Z6-DBC"/>
+                <constraint firstItem="tzV-hU-MA3" firstAttribute="top" secondItem="Yf4-gJ-Iwa" secondAttribute="bottom" id="yia-Me-Ny6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="131.19999999999999" y="160.56971514242881"/>
+        </view>
+    </objects>
+</document>

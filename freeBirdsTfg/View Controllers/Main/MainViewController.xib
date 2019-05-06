@@ -22,6 +22,7 @@
             <connections>
                 <outlet property="createHouseButton" destination="9oc-5e-Amm" id="uBE-mZ-qhN"/>
                 <outlet property="createHouseView" destination="LeS-Ps-McA" id="iCa-5h-8pq"/>
+                <outlet property="requestButton" destination="w3b-ep-W8R" id="yQq-QN-TE1"/>
                 <outlet property="searchHouseButton" destination="JJa-yz-bFh" id="CEj-lt-DD5"/>
                 <outlet property="searchHouseView" destination="tRE-Ml-QBb" id="OWD-TA-bML"/>
                 <outlet property="sepratorNavigationView" destination="n0C-eE-Zt4" id="Wgl-kp-br5"/>
@@ -65,53 +66,11 @@
                 <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eLV-gu-CFN" userLabel="Content View">
                     <rect key="frame" x="10" y="67" width="355" height="600"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRE-Ml-QBb" userLabel="SearchView">
-                            <rect key="frame" x="0.0" y="300" width="355" height="300"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJa-yz-bFh" customClass="Button" customModule="Material">
-                                    <rect key="frame" x="73" y="227.5" width="209" height="37"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="24"/>
-                                    <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Busca Casa"/>
-                                    <userDefinedRuntimeAttributes>
-                                        <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
-                                            <color key="value" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </userDefinedRuntimeAttribute>
-                                        <userDefinedRuntimeAttribute type="number" keyPath="pulseOpacity">
-                                            <real key="value" value="3"/>
-                                        </userDefinedRuntimeAttribute>
-                                    </userDefinedRuntimeAttributes>
-                                    <connections>
-                                        <action selector="goToSearchHouse:" destination="-1" eventType="touchUpInside" id="JZ6-sq-AiP"/>
-                                    </connections>
-                                </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVe-GS-Wzq">
-                                    <rect key="frame" x="325" y="270" width="30" height="30"/>
-                                    <color key="backgroundColor" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="30" id="MRq-gb-nPp"/>
-                                        <constraint firstAttribute="width" constant="30" id="bdi-ck-tX4"/>
-                                    </constraints>
-                                    <state key="normal" image="cm_search_white"/>
-                                    <connections>
-                                        <action selector="signOutAction:" destination="-1" eventType="touchUpInside" id="lsc-Pl-KEa"/>
-                                    </connections>
-                                </button>
-                            </subviews>
-                            <constraints>
-                                <constraint firstItem="JJa-yz-bFh" firstAttribute="leading" secondItem="tRE-Ml-QBb" secondAttribute="leading" constant="73" id="0IY-AH-q3E"/>
-                                <constraint firstAttribute="bottom" secondItem="JJa-yz-bFh" secondAttribute="bottom" constant="35.5" id="1DO-QX-KVM"/>
-                                <constraint firstAttribute="trailing" secondItem="GVe-GS-Wzq" secondAttribute="trailing" id="47o-8l-e8y"/>
-                                <constraint firstAttribute="bottom" secondItem="GVe-GS-Wzq" secondAttribute="bottom" id="NeG-yT-Xd2"/>
-                                <constraint firstAttribute="trailing" secondItem="JJa-yz-bFh" secondAttribute="trailing" constant="73" id="h0X-XP-awE"/>
-                            </constraints>
-                        </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LeS-Ps-McA" userLabel="CreateView">
-                            <rect key="frame" x="0.0" y="0.0" width="355" height="300"/>
+                            <rect key="frame" x="0.0" y="0.0" width="355" height="198"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oc-5e-Amm" customClass="Button" customModule="Material">
-                                    <rect key="frame" x="76" y="236" width="198" height="37"/>
+                                    <rect key="frame" x="76" y="134" width="198" height="37"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="24"/>
                                     <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
@@ -137,16 +96,81 @@
                                 <constraint firstAttribute="trailing" secondItem="9oc-5e-Amm" secondAttribute="trailing" constant="81" id="p5I-v2-4GF"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tRE-Ml-QBb" userLabel="SearchView">
+                            <rect key="frame" x="0.0" y="198" width="355" height="198"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JJa-yz-bFh" customClass="Button" customModule="Material">
+                                    <rect key="frame" x="73" y="125.5" width="209" height="37"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="24"/>
+                                    <inset key="titleEdgeInsets" minX="0.0" minY="5" maxX="0.0" maxY="0.0"/>
+                                    <state key="normal" title="Busca Casa"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="pulseColor">
+                                            <color key="value" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="pulseOpacity">
+                                            <real key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="goToSearchHouse:" destination="-1" eventType="touchUpInside" id="JZ6-sq-AiP"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GVe-GS-Wzq">
+                                    <rect key="frame" x="325" y="168" width="30" height="30"/>
+                                    <color key="backgroundColor" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="MRq-gb-nPp"/>
+                                        <constraint firstAttribute="width" constant="30" id="bdi-ck-tX4"/>
+                                    </constraints>
+                                    <state key="normal" image="cm_search_white"/>
+                                    <connections>
+                                        <action selector="signOutAction:" destination="-1" eventType="touchUpInside" id="lsc-Pl-KEa"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="JJa-yz-bFh" firstAttribute="leading" secondItem="tRE-Ml-QBb" secondAttribute="leading" constant="73" id="0IY-AH-q3E"/>
+                                <constraint firstAttribute="bottom" secondItem="JJa-yz-bFh" secondAttribute="bottom" constant="35.5" id="1DO-QX-KVM"/>
+                                <constraint firstAttribute="trailing" secondItem="GVe-GS-Wzq" secondAttribute="trailing" id="47o-8l-e8y"/>
+                                <constraint firstAttribute="bottom" secondItem="GVe-GS-Wzq" secondAttribute="bottom" id="NeG-yT-Xd2"/>
+                                <constraint firstAttribute="trailing" secondItem="JJa-yz-bFh" secondAttribute="trailing" constant="73" id="h0X-XP-awE"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GUV-sC-3TY">
+                            <rect key="frame" x="0.0" y="396" width="355" height="204"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w3b-ep-W8R" customClass="Button" customModule="Material">
+                                    <rect key="frame" x="73" y="147" width="209" height="37"/>
+                                    <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="24"/>
+                                    <state key="normal" title="Solicitud"/>
+                                    <connections>
+                                        <action selector="goToRequestView:" destination="-1" eventType="touchUpInside" id="Mu2-2Q-O25"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="w3b-ep-W8R" firstAttribute="leading" secondItem="GUV-sC-3TY" secondAttribute="leading" constant="73" id="51p-Kl-lG1"/>
+                                <constraint firstAttribute="trailing" secondItem="w3b-ep-W8R" secondAttribute="trailing" constant="73" id="5Od-bS-g4Z"/>
+                                <constraint firstAttribute="bottom" secondItem="w3b-ep-W8R" secondAttribute="bottom" constant="20" id="G9L-yV-hHu"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
+                        <constraint firstItem="GUV-sC-3TY" firstAttribute="leading" secondItem="eLV-gu-CFN" secondAttribute="leading" id="1lJ-n4-SaK"/>
                         <constraint firstAttribute="trailing" secondItem="tRE-Ml-QBb" secondAttribute="trailing" id="2Pz-cJ-Twl"/>
+                        <constraint firstItem="LeS-Ps-McA" firstAttribute="top" secondItem="eLV-gu-CFN" secondAttribute="top" id="4JG-EL-Fb5"/>
+                        <constraint firstAttribute="bottom" secondItem="GUV-sC-3TY" secondAttribute="bottom" id="6Oa-T5-ja4"/>
                         <constraint firstItem="tRE-Ml-QBb" firstAttribute="leading" secondItem="eLV-gu-CFN" secondAttribute="leading" id="B0l-ky-44D"/>
-                        <constraint firstItem="tRE-Ml-QBb" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.5" id="Hcd-4n-ehQ"/>
-                        <constraint firstItem="LeS-Ps-McA" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.5" id="Lri-re-dog"/>
+                        <constraint firstItem="tRE-Ml-QBb" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.33" id="Hcd-4n-ehQ"/>
+                        <constraint firstItem="LeS-Ps-McA" firstAttribute="height" secondItem="eLV-gu-CFN" secondAttribute="height" multiplier="0.33" id="Lri-re-dog"/>
                         <constraint firstItem="tRE-Ml-QBb" firstAttribute="top" secondItem="LeS-Ps-McA" secondAttribute="bottom" id="M4P-ty-9xj"/>
                         <constraint firstAttribute="trailing" secondItem="LeS-Ps-McA" secondAttribute="trailing" id="rF7-Ej-Vlb"/>
-                        <constraint firstAttribute="bottom" secondItem="tRE-Ml-QBb" secondAttribute="bottom" id="trp-Gd-VDd"/>
                         <constraint firstItem="LeS-Ps-McA" firstAttribute="leading" secondItem="eLV-gu-CFN" secondAttribute="leading" id="uO9-j0-clG"/>
+                        <constraint firstAttribute="trailing" secondItem="GUV-sC-3TY" secondAttribute="trailing" id="vDl-3f-9ke"/>
+                        <constraint firstItem="GUV-sC-3TY" firstAttribute="top" secondItem="tRE-Ml-QBb" secondAttribute="bottom" id="vmD-Yl-UQS"/>
                     </constraints>
                 </view>
             </subviews>

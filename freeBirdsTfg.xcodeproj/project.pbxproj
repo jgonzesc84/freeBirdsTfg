@@ -139,6 +139,18 @@
 		7A2167E122649FC70074BA1E /* AddExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2167E022649FC70074BA1E /* AddExpenseController.swift */; };
 		7A387A2D226771C900D50D80 /* UserPayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A387A2B226771C900D50D80 /* UserPayCollectionCell.swift */; };
 		7A387A2E226771C900D50D80 /* UserPayCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A387A2C226771C900D50D80 /* UserPayCollectionCell.xib */; };
+		7A3AE24B22805D23008B9913 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE24922805D23008B9913 /* RequestView.swift */; };
+		7A3AE24C22805D23008B9913 /* RequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3AE24A22805D23008B9913 /* RequestView.xib */; };
+		7A3AE24F22805E83008B9913 /* RequestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE24D22805E83008B9913 /* RequestCell.swift */; };
+		7A3AE25022805E83008B9913 /* RequestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3AE24E22805E83008B9913 /* RequestCell.xib */; };
+		7A3AE25222806072008B9913 /* ModelRequestHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE25122806072008B9913 /* ModelRequestHouse.swift */; };
+		7A3AE2542280609C008B9913 /* ModelRequestMessageHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE2532280609C008B9913 /* ModelRequestMessageHouse.swift */; };
+		7A3AE25822806F71008B9913 /* MessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE25622806F71008B9913 /* MessageView.swift */; };
+		7A3AE25922806F71008B9913 /* MessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3AE25722806F71008B9913 /* MessageView.xib */; };
+		7A3AE25C228075B7008B9913 /* MessageViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE25A228075B7008B9913 /* MessageViewCell.swift */; };
+		7A3AE25D228075B7008B9913 /* MessageViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A3AE25B228075B7008B9913 /* MessageViewCell.xib */; };
+		7A3AE260228082BB008B9913 /* RequestMessageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE25F228082BB008B9913 /* RequestMessageManager.swift */; };
+		7A3AE26222808479008B9913 /* RequestMessageFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE26122808479008B9913 /* RequestMessageFactory.swift */; };
 		7A898B962264B55800D0E87C /* QuantifyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898B952264B55800D0E87C /* QuantifyView.swift */; };
 		7A898B982264B57200D0E87C /* QuantifyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A898B972264B57200D0E87C /* QuantifyView.xib */; };
 		7A898B9B2264C3DE00D0E87C /* CheckBoxExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A898B9A2264C3DE00D0E87C /* CheckBoxExpenseView.swift */; };
@@ -327,6 +339,18 @@
 		7A2167E022649FC70074BA1E /* AddExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseController.swift; sourceTree = "<group>"; };
 		7A387A2B226771C900D50D80 /* UserPayCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPayCollectionCell.swift; sourceTree = "<group>"; };
 		7A387A2C226771C900D50D80 /* UserPayCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPayCollectionCell.xib; sourceTree = "<group>"; };
+		7A3AE24922805D23008B9913 /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
+		7A3AE24A22805D23008B9913 /* RequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestView.xib; sourceTree = "<group>"; };
+		7A3AE24D22805E83008B9913 /* RequestCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCell.swift; sourceTree = "<group>"; };
+		7A3AE24E22805E83008B9913 /* RequestCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RequestCell.xib; sourceTree = "<group>"; };
+		7A3AE25122806072008B9913 /* ModelRequestHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRequestHouse.swift; sourceTree = "<group>"; };
+		7A3AE2532280609C008B9913 /* ModelRequestMessageHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRequestMessageHouse.swift; sourceTree = "<group>"; };
+		7A3AE25622806F71008B9913 /* MessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageView.swift; sourceTree = "<group>"; };
+		7A3AE25722806F71008B9913 /* MessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageView.xib; sourceTree = "<group>"; };
+		7A3AE25A228075B7008B9913 /* MessageViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewCell.swift; sourceTree = "<group>"; };
+		7A3AE25B228075B7008B9913 /* MessageViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewCell.xib; sourceTree = "<group>"; };
+		7A3AE25F228082BB008B9913 /* RequestMessageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessageManager.swift; sourceTree = "<group>"; };
+		7A3AE26122808479008B9913 /* RequestMessageFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestMessageFactory.swift; sourceTree = "<group>"; };
 		7A898B952264B55800D0E87C /* QuantifyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantifyView.swift; sourceTree = "<group>"; };
 		7A898B972264B57200D0E87C /* QuantifyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuantifyView.xib; sourceTree = "<group>"; };
 		7A898B9A2264C3DE00D0E87C /* CheckBoxExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBoxExpenseView.swift; sourceTree = "<group>"; };
@@ -462,6 +486,8 @@
 				59A32AA8219850D500CBDC77 /* ModelUser.swift */,
 				5963489D2275B17C002AF59B /* ModelBill.swift */,
 				5963489F2275B1CD002AF59B /* ModelExpense.swift */,
+				7A3AE25122806072008B9913 /* ModelRequestHouse.swift */,
+				7A3AE2532280609C008B9913 /* ModelRequestMessageHouse.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -834,6 +860,8 @@
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7A3AE25522806F3B008B9913 /* Message View controller */,
+				7A3AE24822805CE6008B9913 /* Request View Controller */,
 				7AD9682922607C02007B773E /* Profile Edit View Controller */,
 				7AD9682222607B85007B773E /* House Manager View Controller */,
 				7AD9681B226079A5007B773E /* Expense View Controller */,
@@ -873,6 +901,7 @@
 		59E802FE20FFA3B7001F014C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				7A3AE25E22808299008B9913 /* Request Message */,
 				599C1EAA227CE7C700B67107 /* Expense */,
 				599C1EA9227CE79E00B67107 /* House */,
 				3B5BBA5F215B98B0005DD98B /* FireBaseManager.swift */,
@@ -1008,6 +1037,37 @@
 				7ACA4F2F2265D0EC00C4409E /* ModalExpenseIcoCoController.swift */,
 			);
 			path = "Expense Ico Color";
+			sourceTree = "<group>";
+		};
+		7A3AE24822805CE6008B9913 /* Request View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A3AE24922805D23008B9913 /* RequestView.swift */,
+				7A3AE24A22805D23008B9913 /* RequestView.xib */,
+				7A3AE24D22805E83008B9913 /* RequestCell.swift */,
+				7A3AE24E22805E83008B9913 /* RequestCell.xib */,
+			);
+			path = "Request View Controller";
+			sourceTree = "<group>";
+		};
+		7A3AE25522806F3B008B9913 /* Message View controller */ = {
+			isa = PBXGroup;
+			children = (
+				7A3AE25622806F71008B9913 /* MessageView.swift */,
+				7A3AE25722806F71008B9913 /* MessageView.xib */,
+				7A3AE25A228075B7008B9913 /* MessageViewCell.swift */,
+				7A3AE25B228075B7008B9913 /* MessageViewCell.xib */,
+			);
+			path = "Message View controller";
+			sourceTree = "<group>";
+		};
+		7A3AE25E22808299008B9913 /* Request Message */ = {
+			isa = PBXGroup;
+			children = (
+				7A3AE25F228082BB008B9913 /* RequestMessageManager.swift */,
+				7A3AE26122808479008B9913 /* RequestMessageFactory.swift */,
+			);
+			path = "Request Message";
 			sourceTree = "<group>";
 		};
 		7A898B942264B50800D0E87C /* AddExpense */ = {
@@ -1274,8 +1334,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A3AE25D228075B7008B9913 /* MessageViewCell.xib in Resources */,
 				5960023220FF99260042CF9F /* LaunchScreen.storyboard in Resources */,
 				5990EB012197749F00627F12 /* ProfileTableViewCell.xib in Resources */,
+				7A3AE25922806F71008B9913 /* MessageView.xib in Resources */,
 				7ADA21E52265E4F0008B2B9C /* ExpenseIcoCoCell.xib in Resources */,
 				7A898B9D2264C46400D0E87C /* CheckBoxExpenseView.xib in Resources */,
 				7AD9682D22607C2A007B773E /* ProfileEditView.xib in Resources */,
@@ -1305,6 +1367,7 @@
 				596625812197698E00658775 /* ProfileViewController.xib in Resources */,
 				5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */,
 				59A0DA80222C349C00225133 /* GlobalPositionViewController.xib in Resources */,
+				7A3AE24C22805D23008B9913 /* RequestView.xib in Resources */,
 				597D5879227A16F20075B4FF /* ExpenseBillCell.xib in Resources */,
 				59465D832115D9A700106020 /* Navigation.xib in Resources */,
 				5939CC4F218DD8BF005C67D0 /* ModalCreateSectionView.xib in Resources */,
@@ -1338,6 +1401,7 @@
 				594612352114D18300903478 /* spirit_geek.json in Resources */,
 				7A898BA32264C74000D0E87C /* IcoColorExpense.xib in Resources */,
 				5960022D20FF99240042CF9F /* Login.storyboard in Resources */,
+				7A3AE25022805E83008B9913 /* RequestCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1461,6 +1525,7 @@
 			files = (
 				7A898BA12264C72A00D0E87C /* IcoColorExpense.swift in Sources */,
 				59F49379219083DA00014560 /* HouseDetailRequestViewController.swift in Sources */,
+				7A3AE25C228075B7008B9913 /* MessageViewCell.swift in Sources */,
 				7A898B9B2264C3DE00D0E87C /* CheckBoxExpenseView.swift in Sources */,
 				3B5BBA60215B98B0005DD98B /* FireBaseManager.swift in Sources */,
 				59D8C5A622704EF300777C0C /* BaseManager.swift in Sources */,
@@ -1483,11 +1548,13 @@
 				7A898B962264B55800D0E87C /* QuantifyView.swift in Sources */,
 				59465D8C21163E0800106020 /* CreateHouse.swift in Sources */,
 				7A898BB02264DB6D00D0E87C /* CheckBoxExpenseController.swift in Sources */,
+				7A3AE25822806F71008B9913 /* MessageView.swift in Sources */,
 				3B692F1E216CC5E200DE9A24 /* MapSearchHouseViewController.swift in Sources */,
 				59F493812190D04400014560 /* supViewCollectionViewCell.swift in Sources */,
 				5939CC51218DDA0A005C67D0 /* ModalCreateSectionView.swift in Sources */,
 				597D5878227A16F20075B4FF /* ExpenseBillCell.swift in Sources */,
 				5942142A217C877A001EB275 /* FBAnnotationView.swift in Sources */,
+				7A3AE260228082BB008B9913 /* RequestMessageManager.swift in Sources */,
 				596348A22275BE69002AF59B /* BillManager.swift in Sources */,
 				59F493852190D05500014560 /* infViewCollectionViewCell.swift in Sources */,
 				59A32AA9219850D500CBDC77 /* ModelUser.swift in Sources */,
@@ -1509,11 +1576,13 @@
 				5939CC4A218D9044005C67D0 /* ModalCreateRoomController.swift in Sources */,
 				59118B292149546D00031AFB /* ModelRoom.swift in Sources */,
 				5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */,
+				7A3AE24B22805D23008B9913 /* RequestView.swift in Sources */,
 				593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */,
 				5990EB03219775C300627F12 /* ProfileCellController.swift in Sources */,
 				7A898BAE2264D6FD00D0E87C /* ConfirmExpenseView.swift in Sources */,
 				7AD9682C22607C2A007B773E /* ProfileEditView.swift in Sources */,
 				7A2167D4226491BD0074BA1E /* AddExpenseCell.swift in Sources */,
+				7A3AE25222806072008B9913 /* ModelRequestHouse.swift in Sources */,
 				594612392114E64E00903478 /* constant.swift in Sources */,
 				59662583219769B300658775 /* ProfileController.swift in Sources */,
 				593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */,
@@ -1522,6 +1591,7 @@
 				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
 				3BB44E2F217E0F3D00D610DF /* ModalCompleteHouseController.swift in Sources */,
 				5966257C2196F1CF00658775 /* ModalRequestHouseController.swift in Sources */,
+				7A3AE24F22805E83008B9913 /* RequestCell.swift in Sources */,
 				59524358226C54E300FB0EDF /* HouseManager.swift in Sources */,
 				593CC71C21446C440026C7F5 /* ModalMain.swift in Sources */,
 				593F85F42173C08000CBBF5B /* FBAnnotationPoint.swift in Sources */,
@@ -1533,8 +1603,10 @@
 				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,
 				7AD9682522607BB8007B773E /* HouseManagerView.swift in Sources */,
 				597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */,
+				7A3AE2542280609C008B9913 /* ModelRequestMessageHouse.swift in Sources */,
 				5963489E2275B17C002AF59B /* ModelBill.swift in Sources */,
 				59972E842146EAE700001B27 /* BaseViewController.swift in Sources */,
+				7A3AE26222808479008B9913 /* RequestMessageFactory.swift in Sources */,
 				5950CAE821170FD200A97B49 /* FontYo.swift in Sources */,
 				59118B2E2149859400031AFB /* HouseSectionCell.swift in Sources */,
 				59E11466219621EA002D325D /* infViewCollectionViewCellController.swift in Sources */,

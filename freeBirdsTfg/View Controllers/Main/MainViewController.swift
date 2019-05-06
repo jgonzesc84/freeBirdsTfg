@@ -21,6 +21,7 @@ class MainViewController: BaseViewController {
     @IBOutlet weak var searchHouseView: UIView!
     @IBOutlet weak var createHouseView: UIView!
    
+    @IBOutlet weak var requestButton: Button!
     let fire = FireBaseManager()
     
     override func viewDidLoad() {
@@ -51,6 +52,7 @@ class MainViewController: BaseViewController {
         self.createHouseButton.alpha = 0
         self.giveSomeStyle(button: self.searchHouseButton)
         self.giveSomeStyle(button: self.createHouseButton)
+        self.giveSomeStyle(button: self.requestButton)
         fire.delegate = self
     }
     func lottieAnimationHouse(){
@@ -130,7 +132,12 @@ class MainViewController: BaseViewController {
         
     }
     
-   
+    @IBAction func goToRequestView(_ sender: Any) {
+        //cargamos las solicitudes si tiene ponemos enabled este botón
+        let vc = RequestView(nibName:"RequestView", bundle:nil)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
    
 }
 

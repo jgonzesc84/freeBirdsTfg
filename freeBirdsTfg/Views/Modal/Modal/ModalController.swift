@@ -78,7 +78,7 @@ class ModalController{
             
         case "requestHouse":
             modalRequestHouse = Bundle.main.loadNibNamed("ModalRequestHouse", owner: nil, options: nil)![0] as? ModalRequestHouse
-            positionAndHeight(mainView: modal!, auxView: modalRequestHouse!, height: 0.65, y: 0.9)
+            positionAndHeight(mainView: modal!, auxView: modalRequestHouse!, height: 0.4, y: 0.9)
             modalRequestHouse?.returnDataRequestHouse = { (text) -> () in
                 self.modal?.returnRequestHouseData?(text as! String)
                 self.modal?.removeFromSuperview()

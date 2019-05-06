@@ -28,7 +28,7 @@ class ModalRequestHouseController{
     
     func autoSizeTextView(textView: UITextView){
         let text = textView.text
-        let limitHeight = (modal?.frame.size.height)! * 0.7
+        let limitHeight = (modal?.frame.size.height)! * 0.4
         if(text!.count > 0 ){
             enableAcceptButton()
             let fixedWidht = textView.frame.size.width
@@ -52,7 +52,7 @@ class ModalRequestHouseController{
     }
     
     func allowmaxCharacter(textView: UITextView, text: String ,range: NSRange) -> Bool{
-        let maxCharacters = textView.text.count + (text.count - range.length) <= 800
+        let maxCharacters = textView.text.count + (text.count - range.length) <= 300
         if (maxCharacters){
             return true
         }else{
