@@ -27,11 +27,8 @@ class ModalCreateRoomController{
     //MARK:action button view
     
     func acceptButton(){
-        if (modal!.editMode!){
-            editAccept()
-        }else{
-            createAccept()
-        }
+        
+        modal!.editMode! ? editAccept() : createAccept()
     }
     //MARK:private methods
     
@@ -39,6 +36,7 @@ class ModalCreateRoomController{
         let roomModel = ModelRoom()
         roomModel.price = modal?.priceTextEdit.text!
         roomModel.user = modal?.userTextEdit.text!
+        roomModel.search = modal?.searchSelection!
         modal?.returnDataCreateRoom?(roomModel)
     }
     
@@ -46,6 +44,7 @@ class ModalCreateRoomController{
         let roomModel = ModelRoom()
         roomModel.price = modal?.priceTextEdit.text!
         roomModel.user = modal?.userTextEdit.text!
+        roomModel.search = modal?.searchSelection!
         modal?.returnDataEditRoom?(roomModel)
     }
     

@@ -35,10 +35,6 @@ class CreateHouse: BaseViewController {
         
     }
     func initView(){
-        labelHeder.font = UIFont.AppFont.middleFont.middlWord
-        labelHeder.layer.borderColor = UIColor.AppColor.Green.mindApp .cgColor
-        labelHeder.text = "Como es tu casa? describela!!"
-        labelHeder.layer.borderWidth = 3
         heardCell()
         MainHelper.acceptButtonStyle(button: buttonAccept)
         MainHelper.borderShadow(view: buttonAccept)
@@ -85,6 +81,12 @@ class CreateHouse: BaseViewController {
                 self.price = price
                 self.prepareButton()
                 break;
+            case is ModelRoom:
+                let model = sender as? ModelRoom
+               let index = self.listOfRoom?.firstIndex(where: {($0 === model)})
+                self.listOfRoom?.remove(at: index!)
+                  self.prepareButton()
+                break;
             default:
                 break;
             }
@@ -112,7 +114,7 @@ class CreateHouse: BaseViewController {
         if let topVC = UIApplication.getTopMostViewController() {
             topVC.view.addSubview(self.modalView!)
             self.modalView?.returnCompleteHouseData = { (text) -> () in
-                self.house = ModelHouse(price: self.price, section: self.listOfSection, listOfRoom: self.listOfRoom!, direction: self.directionModel!, completeDescription: text )
+                self.house?.completeDescription = text
                  FireBaseManager.createHouse(model: self.house!)
                
             }
@@ -123,14 +125,28 @@ class CreateHouse: BaseViewController {
      @function Metodo que envia el modelo Casa a Firebase
     **/
     @IBAction func acceptActionButton(_ sender: Any) {
-        //aqui llamar a la vista modal de completion house
-        prepareModal( name : "completeHouse")
-        
-        
-        /*house = ModelHouse(price: price, section: listOfSection, listOfRoom: listOfRoom!, direction: directionModel!)
-        FireBaseManager.createHouse(model: house!)*/
-        
-        
+        self.house = ModelHouse()
+        self.house!.section = listOfSection
+        self.house!.listOfRoom = listOfRoom
+        self.house?.direction = directionModel
+        var user = Array<ModelUser>()
+        user.append(BaseManager().getUserDefault())
+        self.house!.user? = user
+        if  let list = house!.listOfRoom {
+            if(showIfAreSeraching(list)){
+                prepareModal( name : "completeHouse")
+            }else{
+                print("NANAI")
+            }
+        }else{
+           print ("NANAI SIN HABITACIONES")
+        }
+        }
+    
+    
+    func showIfAreSeraching(_ listHouse : Array<ModelRoom>) -> Bool{
+        let found = listHouse.allSatisfy(({$0.search!}))
+        return found
     }
 
 

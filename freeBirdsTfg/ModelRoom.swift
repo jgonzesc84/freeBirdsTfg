@@ -13,7 +13,8 @@ class ModelRoom{
     
     var user : String?
     var price : String!
-    var image : UIImage? 
+    var image : UIImage?
+    var search : Bool?
     
     
 }

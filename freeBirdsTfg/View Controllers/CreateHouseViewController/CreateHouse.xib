@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,16 +13,12 @@
         <array key="KGHAPPY.ttf">
             <string>KGHAPPY</string>
         </array>
-        <array key="Skater Girls Rock.ttf">
-            <string>SkaterGirlsRock</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreateHouse" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="buttonAccept" destination="EB2-hF-NcT" id="tCp-w8-3gc"/>
                 <outlet property="createHouseTable" destination="CAu-PQ-wA4" id="h9r-gi-imc"/>
-                <outlet property="labelHeder" destination="0f9-RT-CqG" id="8Am-At-gC7"/>
                 <outlet property="titlelabel" destination="cSA-Br-dRj" id="ktt-GM-zi8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -60,26 +56,8 @@
                         <constraint firstAttribute="bottom" secondItem="KcM-1M-Ggy" secondAttribute="bottom" id="mqU-Np-x9m"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tBJ-ur-ng3" userLabel="Header">
-                    <rect key="frame" x="0.0" y="67" width="375" height="100"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="titulo header" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0f9-RT-CqG">
-                            <rect key="frame" x="27" y="26" width="305" height="44.5"/>
-                            <fontDescription key="fontDescription" name="SkaterGirlsRock" family="Skater Girls Rock" pointSize="23"/>
-                            <color key="textColor" red="0.74509803919999995" green="0.91764705879999997" blue="0.87843137250000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="0f9-RT-CqG" secondAttribute="bottom" constant="29.5" id="7zc-JT-J33"/>
-                        <constraint firstItem="0f9-RT-CqG" firstAttribute="top" secondItem="tBJ-ur-ng3" secondAttribute="top" constant="26" id="Bbj-ds-qdf"/>
-                        <constraint firstItem="0f9-RT-CqG" firstAttribute="leading" secondItem="tBJ-ur-ng3" secondAttribute="leading" constant="27" id="Obd-Nh-7x7"/>
-                        <constraint firstAttribute="trailing" secondItem="0f9-RT-CqG" secondAttribute="trailing" constant="43" id="QqO-hF-470"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAu-PQ-wA4" customClass="CreateHouseTableViewController" customModule="freeBirdsTfg" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="167" width="375" height="435"/>
+                    <rect key="frame" x="0.0" y="67" width="375" height="535"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EB2-hF-NcT" customClass="Button" customModule="Material">
@@ -92,19 +70,15 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="CAu-PQ-wA4" firstAttribute="top" secondItem="tBJ-ur-ng3" secondAttribute="bottom" id="0I6-4F-9Ty"/>
-                <constraint firstItem="tBJ-ur-ng3" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.15" id="A7q-y8-SVU"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tBJ-ur-ng3" secondAttribute="trailing" id="COa-vk-s8t"/>
                 <constraint firstItem="EB2-hF-NcT" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="115" id="Hhs-jx-K53"/>
                 <constraint firstAttribute="top" secondItem="S3I-H3-jNA" secondAttribute="top" id="Mea-eZ-PTy"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="CAu-PQ-wA4" secondAttribute="trailing" id="PxP-Te-qXv"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EB2-hF-NcT" secondAttribute="trailing" constant="116" id="TvW-wr-w43"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="CAu-PQ-wA4" secondAttribute="bottom" constant="65" id="Xbq-AX-QH2"/>
-                <constraint firstItem="tBJ-ur-ng3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Y9t-km-jTq"/>
                 <constraint firstItem="S3I-H3-jNA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="YiV-th-dy8"/>
+                <constraint firstItem="CAu-PQ-wA4" firstAttribute="top" secondItem="S3I-H3-jNA" secondAttribute="bottom" id="agp-27-2ne"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="EB2-hF-NcT" secondAttribute="bottom" constant="30" id="e86-kS-P2A"/>
                 <constraint firstItem="CAu-PQ-wA4" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vyb-JM-yrU"/>
-                <constraint firstItem="tBJ-ur-ng3" firstAttribute="top" secondItem="S3I-H3-jNA" secondAttribute="bottom" id="w8b-D4-ioA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="S3I-H3-jNA" secondAttribute="trailing" id="xeD-Yi-Ia8"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

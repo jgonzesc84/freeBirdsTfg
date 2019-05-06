@@ -31,7 +31,7 @@ class ModalController{
         switch name {
         case "createRoom":
             modalCreateRoom = Bundle.main.loadNibNamed("ModalCreateRoom", owner: nil, options: nil)![0] as? ModalCreateRoom
-            positionAndHeight(mainView: modal!, auxView: modalCreateRoom!, height: 0.5 , y: 0.8)
+            positionAndHeight(mainView: modal!, auxView: modalCreateRoom!, height: 0.6 , y: 1)
             modalCreateRoom!.editMode = false
             modalCreateRoom?.returnDataCreateRoom = { (model) -> () in
                 self.modal?.returnData?(model)
@@ -40,7 +40,7 @@ class ModalController{
             break
         case "editRoom":
             modalCreateRoom = Bundle.main.loadNibNamed("ModalCreateRoom", owner: nil, options: nil)![0] as? ModalCreateRoom
-            positionAndHeight(mainView: modal!, auxView: modalCreateRoom!, height: 0.5 , y: 0.8)
+            positionAndHeight(mainView: modal!, auxView: modalCreateRoom!, height: 0.6 , y: 1)
             modalCreateRoom!.editMode = true
             modalCreateRoom?.returnDataEditRoom = { (model) -> () in
                 self.modal?.returnEditData!(model)
@@ -122,6 +122,7 @@ class ModalController{
             let room = model as! ModelRoom
             modalCreateRoom!.userTextEdit.text = room.user
             modalCreateRoom!.priceTextEdit.text = room.price
+            modalCreateRoom!.setupSelection(room.search!)
             //falta img
             break;
         case is ModelHouseSection:

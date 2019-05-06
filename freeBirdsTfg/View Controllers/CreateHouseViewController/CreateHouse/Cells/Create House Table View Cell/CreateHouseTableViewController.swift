@@ -18,7 +18,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     var direction : String?
     var directionModel : ModelDirection?
     var price = ""
-    let titleSection = ["Precio","Habitaciones","Secciones","Localización"]
+    let titleSection = ["Habitaciones","Secciones","Localización"]
     var editAddRoomRow = 0
     var editSectionRow = 0
     
@@ -52,7 +52,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
 
     func initView(){
         
-        createTable.register(UINib(nibName:"PrecioCell", bundle: nil), forCellReuseIdentifier: "PrecioCell")
+        //createTable.register(UINib(nibName:"PrecioCell", bundle: nil), forCellReuseIdentifier: "PrecioCell")
         createTable.register(UINib(nibName:"roomCell", bundle: nil), forCellReuseIdentifier: "roomCell")
         createTable.register(UINib(nibName:"HouseSectionCell", bundle: nil), forCellReuseIdentifier: "HouseSectionCell")
         createTable.register(UINib(nibName:"LocalizationCell",bundle: nil), forCellReuseIdentifier: "LocalizationCell")
@@ -73,10 +73,10 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
        
         switch section {
         case 0 :
-            return 1
+          return listOfRoom.count+1
         case 1 :
-            return listOfRoom.count+1
-        case 3:
+            return 1
+        case 2:
             return 1
         default:
             return 1
@@ -89,8 +89,8 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
        
         let title = titleSection[indexPath.section]
         switch title {
-        case "Precio":
-            return 80
+//        case "Precio":
+//            return 80
         case "Habitaciones":
            return 75
         case "Secciones":
@@ -109,15 +109,15 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let numbSection = indexPath.section
         switch numbSection {
-        case 0:
-            let cell : PrecioCell = tableView.dequeueReusableCell(withIdentifier: "PrecioCell", for: indexPath) as! PrecioCell
-            cell.delegate = self
-            cell.sendInfo = { (priceCell) -> () in
-                 self.showModalParent?(priceCell)
-            }
-            return cell
+//        case 0:
+//            let cell : PrecioCell = tableView.dequeueReusableCell(withIdentifier: "PrecioCell", for: indexPath) as! PrecioCell
+//            cell.delegate = self
+//            cell.sendInfo = { (priceCell) -> () in
+//                 self.showModalParent?(priceCell)
+//            }
+//            return cell
         
-        case 1:
+        case 0:
             
             let cell : roomCell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath) as! roomCell
             cell.prepareForReuse()
@@ -133,7 +133,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             }
         
             return cell
-        case 2:
+        case 1:
             
             cellCollection = tableView.dequeueReusableCell(withIdentifier: "HouseSectionCell", for: indexPath) as? HouseSectionCell
             cellCollection?.showModalToParent = { (sender) -> () in
@@ -163,7 +163,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 
             }
             return cellCollection!
-        case 3:
+        case 2:
             if((self.annotationLocation) != nil || (self.placemarkLocation) != nil){
                 let cell : showLocalizationCell = tableView.dequeueReusableCell(withIdentifier: "showlocalizationCell", for: indexPath) as! showLocalizationCell
                 if(self.annotationLocation != nil){
@@ -274,7 +274,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     }
     //solo se puede borrar las celdas de la seccion Añadir habitacion
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if (indexPath.section == 1 && indexPath.row > 0){
+        if (indexPath.section == 0 && indexPath.row > 0){
             return true
         }
        return false
@@ -283,11 +283,12 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal,
                                         title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
-                                         let row = indexPath.row-1
-                                         self.listOfRoom.remove(at: row)
+                                            let row = indexPath.row-1
+                                            let model = self.listOfRoom[row]
+                                            self.listOfRoom.remove(at: row)
                                             tableView.deleteRows(at: [indexPath], with: .automatic)
                                             completionHandler(true)
-                                            self.showModalParent?(self.listOfRoom)
+                                            self.showModalParent?(model)
         }
         deleteAction.image = UIImage(named: "trash_ico")
         deleteAction.backgroundColor = UIColor .AppColor.Green.mindApp
