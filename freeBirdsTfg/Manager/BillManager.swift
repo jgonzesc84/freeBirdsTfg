@@ -22,9 +22,9 @@ class BillManager : BaseManager{
         return finishDate!
  
     }
-    func stringFromDate(date: Date) -> String{
+    func stringFromDate(date: Date, format: String) -> String{
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM.yyyy"
+        formatter.dateFormat = format
         let result = formatter.string(from: date)
         return result
     }

@@ -16,5 +16,6 @@ class ModelRequestMessageHouse{
     var name : String?
     var date: Date?
     var Image : String?
+    var temporal: Bool?
     
 }

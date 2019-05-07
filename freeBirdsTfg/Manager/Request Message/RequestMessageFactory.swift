@@ -31,15 +31,16 @@ class RequestMessageFactory{
         model.direction = dictio["direction"] as? String ?? ""
         let miliSeconds = dictio["date"] as? Int ?? 0
         model.date = Date(milliseconds: miliSeconds)
-        model.listofMessage = setMessage(dictio["Mensajes"] as! NSDictionary)
+        model.listofMessage = setMessageList(dictio["Mensajes"] as! NSDictionary)
         return model
     }
     
-    func setMessage(_ dictio: NSDictionary) -> (Array<ModelRequestMessageHouse>){
-        let model = ModelRequestMessageHouse()
+    func setMessageList(_ dictio: NSDictionary) -> (Array<ModelRequestMessageHouse>){
+        
         let listCollection = dictio.allKeys
         var listOfMessage = Array<ModelRequestMessageHouse>()
         for idMessage in listCollection{
+            let model = ModelRequestMessageHouse()
             let dictioInner = dictio[idMessage] as! Dictionary<String, Any>
             model.idRequestMessage = idMessage as? String
             model.text = dictioInner["text"] as? String ?? ""
@@ -53,7 +54,18 @@ class RequestMessageFactory{
         return listOfMessage
     }
     
-   
+    func setMessage( _ dictio : NSDictionary) -> (ModelRequestMessageHouse){
+        let model = ModelRequestMessageHouse()
+      //  let dictioInner = dictio[idMessage] as! Dictionary<String, Any>
+        model.idRequestMessage = dictio["idMessage"] as? String ?? ""
+        model.text = dictio["text"] as? String ?? ""
+        model.idUser = dictio["idUser"] as? String ?? ""
+        model.name = (dictio["name"] as! String)
+        //model.image = dictio[""] as? String ?? ""
+        let miliSeconds = dictio["date"] as? Int ?? 0
+        model.date = Date(milliseconds: miliSeconds)
+        return model
+    }
     
     func prepareDictioMessageId(_ message: ModelRequestMessageHouse) -> Dictionary<String, Any>{
         
@@ -76,11 +88,12 @@ class RequestMessageFactory{
     
     func prepareMessageRequest(_ model: ModelRequestMessageHouse) -> Dictionary<String, Any>{
         
-        let dictio = [ "idRequestMessage": model.idRequestMessage!,
+        let dictio = [
+                        "idMessage" : model.idRequestMessage!,
+                       "date": model.date!.millisecondsSince1970,
                        "idUser": model.idUser!,
                        "name" : model.name!,
                        "text" :model.text!,
-                       "date": model.date!.millisecondsSince1970,
                        "image":""
         ]as Dictionary
         return dictio
@@ -107,6 +120,16 @@ class RequestMessageFactory{
         return model
     }
     
-    
+//    func orderMessageAsc( _ request: ModelRequestHouse) -> ModelRequestHouse{
+//       let messages = request.listofMessage
+//        let ordered = messages!.sorted(by:{$0.date!.compare($1.date!) == .orderedAscending})
+//        request.listofMessage = ordered
+//        return request
+//    }
+    func orderMessageAsc( _ list: Array<ModelRequestMessageHouse>) -> Array<ModelRequestMessageHouse>{
+        let messages = list
+        let ordered = messages.sorted(by:{$0.date!.compare($1.date!) == .orderedAscending})
+        return ordered
+    }
    
 }

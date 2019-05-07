@@ -48,7 +48,12 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         let messages = listOfRequest![indexPath.row].listofMessage
         let vc =  MessageView(nibName:"MessageView", bundle: nil)
         vc.listOfMessage = messages
+        vc.request = listOfRequest![indexPath.row]
         self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func listenMessageArriving(){
         
     }
    

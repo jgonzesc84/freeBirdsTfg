@@ -137,7 +137,13 @@ class MainViewController: BaseViewController {
         let requestMng = RequestMessageManager()
         requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (succes) in
             let vc = RequestView(nibName:"RequestView", bundle:nil)
-            vc.listOfRequest = succes
+            let factory = RequestMessageFactory()
+            var listOrderd = Array<ModelRequestHouse>()
+            for request in succes{
+               request.listofMessage = factory.orderMessageAsc(request.listofMessage!)
+                listOrderd.append(request)
+            }
+            vc.listOfRequest = listOrderd
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

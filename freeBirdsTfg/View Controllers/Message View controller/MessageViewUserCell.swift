@@ -1,22 +1,22 @@
 //
-//  MessageViewCell.swift
+//  MessageViewUserCell.swift
 //  freeBirdsTfg
 //
-//  Created by Javier Gonzalez Escudero on 06/05/2019.
+//  Created by javier gonzalez escudero on 07/05/2019.
 //  Copyright © 2019 javier gonzalez escudero. All rights reserved.
 //
 
 import UIKit
 
-class MessageViewCell: UITableViewCell {
+class MessageViewUserCell: UITableViewCell {
+
     
-    
-    @IBOutlet weak var nameLabelUser: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var nameLabelUser: UILabel!
     @IBOutlet weak var textInfoView: UIView!
     @IBOutlet weak var infoLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    var model : ModelRequestMessageHouse?
+     var model : ModelRequestMessageHouse?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,18 +34,17 @@ class MessageViewCell: UITableViewCell {
         MainHelper.giveMeStyle(label: nameLabelUser)
         infoLabel.textColor = UIColor .black
     }
-
+    
     func setupCell( _ model: ModelRequestMessageHouse){
         self.model = model
         nameLabelUser.text = model.name
         infoLabel.text = model.text
-        dateLabel.text = BillManager().stringFromDate(date: model.date!, format: constant.formatMeesageDate)
+        dateLabel.text = BillManager().stringFromDate(date: model.date!, format:constant.formatMeesageDate)
         infoLabel.textColor = UIColor .black
         if(model.temporal ?? false){
-             infoLabel.textColor = UIColor .AppColor.Gray.greyApp
+            infoLabel.textColor = UIColor .AppColor.Gray.greyApp
         }
         
     }
-   
     
 }

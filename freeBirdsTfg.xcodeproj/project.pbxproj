@@ -29,6 +29,8 @@
 		5924F5DB214BE7EB004DECCA /* searchMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5924F5DA214BE7EB004DECCA /* searchMapView.xib */; };
 		5924F5E1214BE9B1004DECCA /* searchMapCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5924F5DF214BE9B1004DECCA /* searchMapCell.swift */; };
 		5924F5E2214BE9B1004DECCA /* searchMapCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5924F5E0214BE9B1004DECCA /* searchMapCell.xib */; };
+		5929DC742282337700E528AF /* MessageViewUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5929DC722282337700E528AF /* MessageViewUserCell.swift */; };
+		5929DC752282337700E528AF /* MessageViewUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5929DC732282337700E528AF /* MessageViewUserCell.xib */; };
 		5935267C2143C3E5002A53D1 /* roomTrashCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5935267B2143C3E5002A53D1 /* roomTrashCell.xib */; };
 		5935267E2143C65E002A53D1 /* roomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5935267D2143C65E002A53D1 /* roomCell.xib */; };
 		593526802143C8BB002A53D1 /* roomCellTrash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5935267F2143C8BB002A53D1 /* roomCellTrash.swift */; };
@@ -226,6 +228,8 @@
 		5924F5DA214BE7EB004DECCA /* searchMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchMapView.xib; sourceTree = "<group>"; };
 		5924F5DF214BE9B1004DECCA /* searchMapCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = searchMapCell.swift; sourceTree = "<group>"; };
 		5924F5E0214BE9B1004DECCA /* searchMapCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = searchMapCell.xib; sourceTree = "<group>"; };
+		5929DC722282337700E528AF /* MessageViewUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewUserCell.swift; sourceTree = "<group>"; };
+		5929DC732282337700E528AF /* MessageViewUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MessageViewUserCell.xib; sourceTree = "<group>"; };
 		5935267B2143C3E5002A53D1 /* roomTrashCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = roomTrashCell.xib; sourceTree = "<group>"; };
 		5935267D2143C65E002A53D1 /* roomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = roomCell.xib; sourceTree = "<group>"; };
 		5935267F2143C8BB002A53D1 /* roomCellTrash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = roomCellTrash.swift; sourceTree = "<group>"; };
@@ -1057,6 +1061,8 @@
 				7A3AE25722806F71008B9913 /* MessageView.xib */,
 				7A3AE25A228075B7008B9913 /* MessageViewCell.swift */,
 				7A3AE25B228075B7008B9913 /* MessageViewCell.xib */,
+				5929DC722282337700E528AF /* MessageViewUserCell.swift */,
+				5929DC732282337700E528AF /* MessageViewUserCell.xib */,
 			);
 			path = "Message View controller";
 			sourceTree = "<group>";
@@ -1388,6 +1394,7 @@
 				59FEB817210FC26C00901D62 /* ModernPictogramsForLottie_Home-w800-h800.json in Resources */,
 				5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */,
 				59D8C5AD2270B95800777C0C /* ExpenseIcoCell.xib in Resources */,
+				5929DC752282337700E528AF /* MessageViewUserCell.xib in Resources */,
 				3BB44E2B217E097100D610DF /* ModalCompleteHouse.xib in Resources */,
 				5946123B2114F91400903478 /* spirit_geekGray.json in Resources */,
 				7A898B982264B57200D0E87C /* QuantifyView.xib in Resources */,
@@ -1572,6 +1579,7 @@
 				7AB1FCA52260B99E00213417 /* PageView.swift in Sources */,
 				5975AF432124426900D0194F /* createHouseTableSection.swift in Sources */,
 				7AD9682122607B30007B773E /* ExpenseController.swift in Sources */,
+				5929DC742282337700E528AF /* MessageViewUserCell.swift in Sources */,
 				7A898BA92264D63900D0E87C /* PayGroupCollectionView.swift in Sources */,
 				5939CC4A218D9044005C67D0 /* ModalCreateRoomController.swift in Sources */,
 				59118B292149546D00031AFB /* ModelRoom.swift in Sources */,

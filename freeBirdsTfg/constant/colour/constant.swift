@@ -13,6 +13,8 @@ class constant{
     static let billCellHeight = 70.0
     static let billheaderHeight = 80
     static let billPaddingTop = 40
+    static let formatBillDate = "MM.yyyy"
+    static let formatMeesageDate = "dd/MM/yyyy HH:mm"
 }
 extension UIColor {
     

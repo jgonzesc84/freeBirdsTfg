@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,8 +18,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="addButton" destination="79V-xH-qJh" id="GPR-A4-t0F"/>
+                <outlet property="addtextButton" destination="79V-xH-qJh" id="yea-rG-16q"/>
                 <outlet property="bottonInputkeyboardView" destination="nkW-zp-TBo" id="JUN-Tq-uvk"/>
-                <outlet property="inputKeyTextEdit" destination="Uv8-EF-CsV" id="cP2-00-vOC"/>
+                <outlet property="bottonTable" destination="x5M-hQ-DgG" id="6gk-WN-Ot6"/>
+                <outlet property="inpuTextView" destination="bNa-LJ-Ogi" id="AYp-GY-KEZ"/>
                 <outlet property="inputKeyboardView" destination="gAz-iB-qTM" id="4m8-T4-Ohw"/>
                 <outlet property="mainView" destination="GvR-5f-YHq" id="gXH-Vx-OOz"/>
                 <outlet property="navView" destination="U5L-jd-BGi" id="dxS-wm-CbN"/>
@@ -62,39 +64,42 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GvR-5f-YHq">
-                    <rect key="frame" x="0.0" y="67" width="366" height="603"/>
+                    <rect key="frame" x="0.0" y="77" width="366" height="593"/>
                     <subviews>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LNK-No-JMC">
-                            <rect key="frame" x="0.0" y="0.0" width="366" height="536"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="0.0" y="0.0" width="366" height="526"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAz-iB-qTM">
-                            <rect key="frame" x="0.0" y="536" width="366" height="67"/>
+                            <rect key="frame" x="0.0" y="526" width="366" height="67"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79V-xH-qJh" customClass="Button" customModule="Material">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="79V-xH-qJh" customClass="Button" customModule="Material">
                                     <rect key="frame" x="296" y="8.5" width="50" height="50"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="50" id="Se0-nt-12I"/>
                                         <constraint firstAttribute="width" constant="50" id="hGA-gU-8OK"/>
                                     </constraints>
-                                    <state key="normal" title="ADD"/>
+                                    <state key="normal" image="cm_add_white"/>
+                                    <connections>
+                                        <action selector="sendMessageAction:" destination="-1" eventType="touchUpInside" id="Hji-qg-hgL"/>
+                                    </connections>
                                 </button>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Escribe el texto ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uv8-EF-CsV">
-                                    <rect key="frame" x="30" y="0.0" width="266" height="67"/>
-                                    <nil key="textColor"/>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bNa-LJ-Ogi">
+                                    <rect key="frame" x="10" y="10" width="286" height="47"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="bNa-LJ-Ogi" firstAttribute="leading" secondItem="gAz-iB-qTM" secondAttribute="leading" constant="10" id="1oN-q9-OHf"/>
                                 <constraint firstAttribute="height" constant="67" id="4g8-uS-KKg"/>
-                                <constraint firstItem="Uv8-EF-CsV" firstAttribute="leading" secondItem="gAz-iB-qTM" secondAttribute="leading" constant="30" id="KUX-is-SJa"/>
-                                <constraint firstItem="Uv8-EF-CsV" firstAttribute="trailing" secondItem="79V-xH-qJh" secondAttribute="leading" id="Qkw-Or-pYH"/>
-                                <constraint firstItem="Uv8-EF-CsV" firstAttribute="top" secondItem="gAz-iB-qTM" secondAttribute="top" id="gC7-Py-hRh"/>
-                                <constraint firstAttribute="bottom" secondItem="Uv8-EF-CsV" secondAttribute="bottom" id="iXy-Uv-kIm"/>
+                                <constraint firstItem="bNa-LJ-Ogi" firstAttribute="top" secondItem="gAz-iB-qTM" secondAttribute="top" constant="10" id="8iD-py-Icz"/>
+                                <constraint firstItem="bNa-LJ-Ogi" firstAttribute="trailing" secondItem="79V-xH-qJh" secondAttribute="leading" id="Uve-kY-qSB"/>
                                 <constraint firstAttribute="trailing" secondItem="79V-xH-qJh" secondAttribute="trailing" constant="20" id="jdB-fL-MmG"/>
                                 <constraint firstItem="79V-xH-qJh" firstAttribute="centerY" secondItem="gAz-iB-qTM" secondAttribute="centerY" id="ove-7M-5sL"/>
+                                <constraint firstAttribute="bottom" secondItem="bNa-LJ-Ogi" secondAttribute="bottom" constant="10" id="wym-wm-b0e"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -118,11 +123,14 @@
                 <constraint firstItem="GvR-5f-YHq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Vcn-NE-pdA"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="leading" secondItem="U5L-jd-BGi" secondAttribute="leading" id="jrg-EK-vne"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GvR-5f-YHq" secondAttribute="trailing" id="kEn-rf-I0j"/>
-                <constraint firstItem="GvR-5f-YHq" firstAttribute="top" secondItem="U5L-jd-BGi" secondAttribute="bottom" id="wnO-Sa-h7m"/>
+                <constraint firstItem="GvR-5f-YHq" firstAttribute="top" secondItem="U5L-jd-BGi" secondAttribute="bottom" constant="10" id="wnO-Sa-h7m"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="46.399999999999999" y="46.776611694152926"/>
         </view>
     </objects>
+    <resources>
+        <image name="cm_add_white" width="24" height="24"/>
+    </resources>
 </document>

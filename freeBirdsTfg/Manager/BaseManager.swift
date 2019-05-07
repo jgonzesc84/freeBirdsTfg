@@ -279,7 +279,7 @@ class BaseManager{
         }
         
         let billDictio = ["billId" : model.billId!,
-                          "Date": BillManager().stringFromDate(date: model.dateBill!),
+                          "Date": BillManager().stringFromDate(date: model.dateBill!,format: constant.formatBillDate),
                           "expenses": testDictio,
                           "total": model.total!
             ] as Dictionary

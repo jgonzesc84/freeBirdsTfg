@@ -71,10 +71,10 @@ class RequestMessageManager{
         }
     }
     
-    func insertMessageFromRequest(_ model: ModelRequestMessageHouse ,completion:@escaping(Bool) -> Void){
+    func insertMessageFromRequest(_ message: ModelRequestMessageHouse, _ request : ModelRequestHouse ,completion:@escaping(Bool) -> Void){
          let ref = Database.database().reference()
-       //  model.idRequestMessage = ref.childByAutoId().key
-        ref.child("MENSAJES").child(model.idRequestMessage!).setValue(factory.prepareMessageRequest(model)){
+        // message.idRequestMessage = ref.childByAutoId().key
+        ref.child("SOLICITUD").child(request.idRequest!).child("Mensajes").child(message.idRequestMessage!).setValue(factory.prepareMessageRequest(message)){
              (error:Error?, ref:DatabaseReference)in
             if error != nil{
                  completion(false)
@@ -128,6 +128,33 @@ class RequestMessageManager{
             
         }
     }
+    
+    //observer
+    func listChangeOnMessages(_ request:ModelRequestHouse, completion: @escaping(ModelRequestMessageHouse) -> Void){
+         let ref = Database.database().reference()
+        ref.child("SOLICITUD").child(request.idRequest!).child("Mensajes").queryLimited(toLast: 1).observe(.childAdded) { (shot) in
+            if let data = shot.value as? NSDictionary{
+                let model = self.factory.setMessage(data)
+                completion(model)
+            }
+        }
+        
+    }
+    
+    func giveMeId() -> String{
+        let ref = Database.database().reference()
+        return ref.childByAutoId().key
+    }
 }
 
+
+
+/*
+ var fullHouse = ModelHouse()
+ if let data = shot.value as? NSDictionary {
+ fullHouse = self.parseHouse(dictioHouse: data)
+ }
+ completion(fullHouse,true)
+ 
+ */
 
