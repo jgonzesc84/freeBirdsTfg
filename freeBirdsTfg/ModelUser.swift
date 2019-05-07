@@ -18,9 +18,8 @@ class ModelUser{
     var image: UIImage?
     var houseId : String?
     var house : ModelHouse?
-    init(){
-        
-    }
+    var request : Array<ModelRequestHouse>?
+    
     
     
 }

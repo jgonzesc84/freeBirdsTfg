@@ -31,11 +31,11 @@ class MainViewController: BaseViewController {
         lottieAnimationSearch()
         self.animationButtons(button: self.searchHouseButton)
         self.animationButtons(button: self.createHouseButton)
-        
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+      
        
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -83,7 +83,7 @@ class MainViewController: BaseViewController {
  
     override func animationButtons(button:UIView){
             UIView.animate(withDuration: 1) {
-                button.center.y -= self.view.bounds.height/16
+                button.center.y -= self.view.bounds.height/32
        
     }
 
@@ -134,8 +134,14 @@ class MainViewController: BaseViewController {
     
     @IBAction func goToRequestView(_ sender: Any) {
         //cargamos las solicitudes si tiene ponemos enabled este botón
-        let vc = RequestView(nibName:"RequestView", bundle:nil)
-        self.navigationController?.pushViewController(vc, animated: true)
+        let requestMng = RequestMessageManager()
+        requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (succes) in
+            let vc = RequestView(nibName:"RequestView", bundle:nil)
+            vc.listOfRequest = succes
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+       
     }
     
    

@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 class BaseManager{
     
-    
+    //////////////DEFAULT////////////////////
     func getUserDefault() -> ModelUser{
         let user = ModelUser()
         user.idUser = UserDefaults.standard.object(forKey: BaseViewController.IDUSER) as? String
@@ -32,6 +32,10 @@ class BaseManager{
         userDefault.set(model.email, forKey:BaseViewController.EMAIL)
     }
     
+    
+    //////////////////HOUSE///////////////////
+    
+    //////SETTER HOUSE//////////
     func parseHouse(dictioHouse:NSDictionary) -> ModelHouse{
         let fullHouse = ModelHouse()
         let keys = dictioHouse.allKeys as? Array<String>
@@ -80,6 +84,8 @@ class BaseManager{
         
         return fullHouse;
     }
+    
+    //////////////GETTER HOUSE////////////////
     
     func getDirection(dictio: Dictionary<String, Any>) -> (ModelDirection){
         let testDirection = dictio["DIRECTION"] as? [String:AnyObject]
@@ -130,100 +136,8 @@ class BaseManager{
         return arrayRoom
     }
     
-    func getUser(dictio : Dictionary <String, Any>) -> (Array<ModelUser>){
-        let testUserList = dictio["USER"] as? [String:AnyObject]
-        var arrayUser : Array<ModelUser> = []
-        let dictioUser = testUserList?.keys
-        let componentUser = Array(dictioUser!)
-        arrayUser.append(getUserDefault())
-         for key in componentUser{
-            let userId = testUserList![key] as? String
-            if (userId != getUserDefault().idUser){
-                let user = ModelUser()
-                user.idUser = userId
-                arrayUser.append(user)
-            }
-        }
-        return arrayUser
-    }
+   
     
-    func getListOfExpense(dictio: Dictionary <String, Any>) -> (Array<ModelExpense>){
-         var arrayModel : Array<ModelExpense> = []
-          let keys = dictio.keys
-        for item in keys{
-            let model = ModelExpense()
-            model.idExpense = item
-            arrayModel.append(model)
-        }
-        return arrayModel
-    }
-    func getExpense(dictio: NSDictionary,idExpense: String) -> (ModelExpense){
-        let model = ModelExpense()
-        model.idExpense = idExpense
-        model.name = dictio["name"] as? String ?? ""
-        model.quantify = dictio["quantify"] as? Double ?? 0.0
-        model.selection = dictio["selection"] as? Bool
-        model.color = dictio["color"] as? String ?? ""
-        model.ico = dictio["ico"] as? String ?? ""
-        model.idBill = dictio["idBill"] as? String ?? ""
-        //
-        model.users = dictio["users"] as? Array
-        //
-        print("HE SE HA MODIFOCADO ALGO")
-        return model
-    }
-    
-    func getBill(dictio : Dictionary <String, Any>) -> (Array<ModelBill>){
-          var arrayBill : Array<ModelBill> = []
-          let testBillList = dictio["BILL"] as? [String:AnyObject]
-        if testBillList != nil {
-            let listBill = Array(testBillList!.keys)
-            for key in listBill{
-                
-                let bill = ModelBill()
-                bill.billId = key
-                arrayBill.append(bill)
-            }
-        }
-        return arrayBill
-    }
-    
-    func prepareExpense(model: ModelExpense) -> (Dictionary<String,Any>){
-        //var expenseDictio = Dictionary<String, Any>()
-        var usersDictio = Dictionary<String, Any>()
-        for user in model.users!{
-            let dictio = ["idUser": user.idUser]
-            usersDictio = dictio as [String : Any]
-        }
-        let dict = [ "name": model.name!,
-                     "idExpense":model.idExpense!,
-                     "quantify": model.quantify!,
-                     "selection" : model.selection!,
-                     "color" : model.color!,
-                     "ico": model.ico!,
-                     "idBill" : model.idBill!,
-                     "users" : usersDictio
-            ] as Dictionary
-        return dict
-    }
-    
-     func prepareBill(model: ModelBill) -> (Dictionary<String, Any>){
-        
-        var expenseDictio = Dictionary<String, Any>()
-        var testDictio = Dictionary<String, Any>()
-        for  item in model.expenses!{
-            expenseDictio[item.idExpense!] = prepareExpense(model: item)
-            testDictio[item.idExpense!] = expenseDictio
-        }
-    
-        let billDictio = ["billId" : model.billId!,
-                          "Date": BillManager().stringFromDate(date: model.dateBill!),
-                          "expenses": testDictio,
-                          "total": model.total!
-            ] as Dictionary
-        return billDictio
-        
-    }
     
      func prepareHouse(model : ModelHouse, idHouse: String)-> (Dictionary<String, Any>){
         let dictioHouse=[
@@ -279,14 +193,149 @@ class BaseManager{
         return sectionDictio
     }
     
-     func prepareUser(model : ModelHouse) -> (Dictionary<String, Any>){
+    
+    
+    /////////////////USER////////
+    
+    func getUser(dictio : Dictionary <String, Any>) -> (Array<ModelUser>){
+        let testUserList = dictio["USER"] as? [String:AnyObject]
+        var arrayUser : Array<ModelUser> = []
+        let dictioUser = testUserList?.keys
+        let componentUser = Array(dictioUser!)
+        arrayUser.append(getUserDefault())
+        for key in componentUser{
+            let userId = testUserList![key] as? String
+            if (userId != getUserDefault().idUser){
+                let user = ModelUser()
+                user.idUser = userId
+                arrayUser.append(user)
+            }
+        }
+        return arrayUser
+    }
+    
+    func prepareUser(model : ModelHouse) -> (Dictionary<String, Any>){
         var userDictio = Dictionary<String, Any>()
         for nameUser in model.user!{
             userDictio = ["userId":nameUser.idUser!]
         }
         return userDictio
+    }
+    
+    func getUserModel(_ dictio : NSDictionary, _ idUser: String, complete: Bool) ->(ModelUser){
+        let model = ModelUser()
+        model.idUser = idUser
+        model.alias = dictio["alias"] as? String ?? ""
+        model.email = dictio["email"] as? String ?? ""
+        model.houseId = dictio["houseId"] as? String ?? ""
+        if (complete){
+            if let valueRequest = dictio["solicitudes"] as? Dictionary<String, Any> {
+                
+                model.request = convertRequestMessageColection(valueRequest as! Array<String>)
+            }
+        }
+       
+      
+        return model
+    }
+    
+    func convertRequestMessageColection(_ list :Array<String>) -> (Array<ModelRequestHouse>){
+        var collectionRequest = Array <ModelRequestHouse>()
+        if (list.count > 0){
+            for item in list{
+                let model = ModelRequestHouse()
+                model.idRequest = item
+                collectionRequest.append(model)
+            }
+        }
+        return collectionRequest
+    }
+    
+    /////////////////BILL///////////////
+    
+    ////GET/////
+    func getBill(dictio : Dictionary <String, Any>) -> (Array<ModelBill>){
+        var arrayBill : Array<ModelBill> = []
+        let testBillList = dictio["BILL"] as? [String:AnyObject]
+        if testBillList != nil {
+            let listBill = Array(testBillList!.keys)
+            for key in listBill{
+                
+                let bill = ModelBill()
+                bill.billId = key
+                arrayBill.append(bill)
+            }
+        }
+        return arrayBill
+    }
+    //////SET////
+    func prepareBill(model: ModelBill) -> (Dictionary<String, Any>){
+        
+        var expenseDictio = Dictionary<String, Any>()
+        var testDictio = Dictionary<String, Any>()
+        for  item in model.expenses!{
+            expenseDictio[item.idExpense!] = prepareExpense(model: item)
+            testDictio[item.idExpense!] = expenseDictio
+        }
+        
+        let billDictio = ["billId" : model.billId!,
+                          "Date": BillManager().stringFromDate(date: model.dateBill!),
+                          "expenses": testDictio,
+                          "total": model.total!
+            ] as Dictionary
+        return billDictio
         
     }
+    ///EXPENSE//
+     //SET//
+    func prepareExpense(model: ModelExpense) -> (Dictionary<String,Any>){
+        //var expenseDictio = Dictionary<String, Any>()
+        var usersDictio = Dictionary<String, Any>()
+        for user in model.users!{
+            let dictio = ["idUser": user.idUser]
+            usersDictio = dictio as [String : Any]
+        }
+        let dict = [ "name": model.name!,
+                     "idExpense":model.idExpense!,
+                     "quantify": model.quantify!,
+                     "selection" : model.selection!,
+                     "color" : model.color!,
+                     "ico": model.ico!,
+                     "idBill" : model.idBill!,
+                     "users" : usersDictio
+            ] as Dictionary
+        return dict
+    }
+    
+    ///GETTER//////
+    func getExpense(dictio: NSDictionary,idExpense: String) -> (ModelExpense){
+        let model = ModelExpense()
+        model.idExpense = idExpense
+        model.name = dictio["name"] as? String ?? ""
+        model.quantify = dictio["quantify"] as? Double ?? 0.0
+        model.selection = dictio["selection"] as? Bool
+        model.color = dictio["color"] as? String ?? ""
+        model.ico = dictio["ico"] as? String ?? ""
+        model.idBill = dictio["idBill"] as? String ?? ""
+        //
+        model.users = dictio["users"] as? Array
+        //
+        print("HE SE HA MODIFOCADO ALGO")
+        return model
+    }
+    
+    func getListOfExpense(dictio: Dictionary <String, Any>) -> (Array<ModelExpense>){
+        var arrayModel : Array<ModelExpense> = []
+        let keys = dictio.keys
+        for item in keys{
+            let model = ModelExpense()
+            model.idExpense = item
+            arrayModel.append(model)
+        }
+        return arrayModel
+    }
+    
+   
     
    
     

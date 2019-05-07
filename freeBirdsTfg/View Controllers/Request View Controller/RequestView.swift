@@ -17,7 +17,6 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
          prepareNav(label: titleLabel, text: "Solicitudes")
         // MainHelper.navStyle(view: navView)
          setuptable()       

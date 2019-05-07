@@ -81,6 +81,7 @@ extension AlphaViewController : getAllHouseDelegate {
               self.navigationController?.pushViewController(homePage, animated: true)
             break
         case "No casa":
+        
             let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
                         let vc = UINavigationController(rootViewController: Objvc)
                         self.present(vc, animated: true) {

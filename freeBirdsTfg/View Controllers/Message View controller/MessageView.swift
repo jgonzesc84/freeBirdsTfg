@@ -31,7 +31,7 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource{
     override func viewDidLoad() {
         super.viewDidLoad()
       
-         prepareNavRoot(label: titleLabel, text: "Solicitudes")
+         prepareNav(label: titleLabel, text: "Chat")
         setuptable()
     }
     
@@ -39,7 +39,8 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource{
         table.delegate = self
         table.dataSource = self
         table.separatorStyle = .none
-        table.register(UINib(nibName: "", bundle: nil), forCellReuseIdentifier: "cellItem")
+        table.register(UINib(nibName: "MessageViewCell", bundle: nil), forCellReuseIdentifier: "cellItem")
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -51,8 +52,8 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem", for: indexPath) as! RequestCell
-       // cell.setupCell(listOfRequest![indexPath.row])
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem", for: indexPath) as! MessageViewCell
+        cell.setupCell(listOfMessage![indexPath.row])
         return cell
     }
     

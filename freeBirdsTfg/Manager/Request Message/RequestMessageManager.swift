@@ -12,6 +12,7 @@ import FirebaseDatabase
 import FirebaseStorage
 
 class RequestMessageManager{
+    
     let factory = RequestMessageFactory()
 
     func insertRequest(_ model: ModelRequestHouse ,completion:@escaping(Bool) -> Void){
@@ -30,11 +31,12 @@ class RequestMessageManager{
                     if(succes){
                         self.setRequestHouse(model, completion: { (succes) in
                             if(succes){
-                                self.insertMessageFromRequest(model.listofMessage![0], completion: { (succes) in
-                                    if(succes){
-                                        completion(true)
-                                    }
-                                })
+//                                self.insertMessageFromRequest(model.listofMessage![0], completion: { (succes) in
+//                                    if(succes){
+//                                        completion(true)
+//                                    }
+//                                })
+                                completion(true)
                             }
                         })
                     }
@@ -57,7 +59,9 @@ class RequestMessageManager{
     
     func setRequestHouse(_ model : ModelRequestHouse ,completion:@escaping(Bool) -> Void){
           let ref = Database.database().reference()
-        ref.child("CASA").child(model.idHouse!).child("SOLICITUD").child(model.idRequest!).setValue(model.idRequest!){
+        let dictio = ["idRequest" : model.idRequest
+        ]as Dictionary
+        ref.child("CASA").child(model.idHouse!).child("SOLICITUD").child(model.idRequest!).setValue(dictio){
               (error:Error?, ref:DatabaseReference)in
             if error != nil{
                  completion(false)
@@ -80,4 +84,50 @@ class RequestMessageManager{
         }
     }
 
+    
+    func getRequestAddedUser( _ idUser: String){
+        let ref = Database.database().reference()
+        ref.child("USUARIO").child(idUser).child("solicitudes").observe(.childAdded, with:{ shot in
+            if let data = shot.value as? NSDictionary{
+                print("mierda")
+            }
+    })
+    }
+    
+        func getAllRequest( _ idUser:String, completion:@escaping(Array<ModelRequestHouse>) -> Void){
+            let ref = Database.database().reference()
+            ref.child("USUARIO").child(idUser).child("solicitudes").observeSingleEvent(of: DataEventType.value) { (shot) in
+                var listOfRequest = Array <ModelRequestHouse>()
+                if let data = shot.value as? NSDictionary {
+                   let listId = data.allKeys
+                    let countMe = listId.count
+                    var test = 0
+                    for idRequest in listId{
+                         test += 1
+                        self.getRequestWithId(idRequest as! String, completion: { (model) in
+                           listOfRequest.append(model)
+                            if(test == countMe){
+                                completion(listOfRequest)
+                            }
+                            
+                        })
+                        
+                    }
+                    
+                }
+            }
+        }
+    
+    func getRequestWithId( _ requestId: String, completion: @escaping(ModelRequestHouse) -> Void){
+        let ref = Database.database().reference()
+        ref.child("SOLICITUD").child(requestId).observeSingleEvent(of: DataEventType.value) { (shot) in
+            if let data = shot.value as? NSDictionary {
+                let model = self.factory.setRequestHouse(data)
+                completion(model)
+            }
+            
+        }
+    }
 }
+
+

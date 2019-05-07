@@ -223,22 +223,36 @@ class FireBaseManager : BaseManager{
     static func getUserById(userID: String, completion:@escaping (ModelUser) -> Void){
         let ref = Database.database().reference()
         ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let user = ModelUser()
-            user.idUser = userID
-            user.alias = value?["alias"] as? String ?? ""
-            user.email = value?["email"] as? String ?? ""
-            user.houseId = value?["houseId"] as? String ?? ""
-            completion(user)
-            // ...
+            if let value = snapshot.value as? NSDictionary{
+                var user = ModelUser()
+                user = BaseManager().getUserModel(value, userID,complete:true)
+                completion(user)
+            }else{
+                completion(ModelUser())
+            }
         }) { (error) in
             print(error.localizedDescription)
         }
         
     }
     
-      
+    static func getUserByIdIncomplete(userID: String, completion:@escaping (ModelUser) -> Void){
+        let ref = Database.database().reference()
+        ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let value = snapshot.value as? NSDictionary{
+                var user = ModelUser()
+                user = BaseManager().getUserModel(value, userID,complete:false)
+                completion(user)
+            }else{
+                completion(ModelUser())
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+        
+    }
+    
+    
     }
     
     
