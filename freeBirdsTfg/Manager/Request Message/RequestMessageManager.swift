@@ -103,9 +103,9 @@ class RequestMessageManager{
                     let countMe = listId.count
                     var test = 0
                     for idRequest in listId{
-                         test += 1
                         self.getRequestWithId(idRequest as! String, completion: { (model) in
                            listOfRequest.append(model)
+                             test += 1
                             if(test == countMe){
                                 completion(listOfRequest)
                             }

@@ -31,7 +31,7 @@ class MessageViewCell: UITableViewCell {
         textInfoView.layer.borderColor = UIColor .black .cgColor
         MainHelper.theStyle(view: textInfoView)
         MainHelper.giveMeStyle(label: dateLabel)
-         MainHelper.giveMeStyle(label: nameLabelUser)
+        MainHelper.giveMeStyle(label: nameLabelUser)
         
     }
 

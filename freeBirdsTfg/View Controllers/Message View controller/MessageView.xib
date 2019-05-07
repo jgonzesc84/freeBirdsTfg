@@ -18,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MessageView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="addButton" destination="79V-xH-qJh" id="GPR-A4-t0F"/>
-                <outlet property="bottonInputkeyboardView" destination="nkW-zp-TBo" id="GVM-tB-4cG"/>
+                <outlet property="bottonInputkeyboardView" destination="nkW-zp-TBo" id="JUN-Tq-uvk"/>
                 <outlet property="inputKeyTextEdit" destination="Uv8-EF-CsV" id="cP2-00-vOC"/>
                 <outlet property="inputKeyboardView" destination="gAz-iB-qTM" id="4m8-T4-Ohw"/>
                 <outlet property="mainView" destination="GvR-5f-YHq" id="gXH-Vx-OOz"/>
@@ -80,7 +80,7 @@
                                     <state key="normal" title="ADD"/>
                                 </button>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Escribe el texto ..." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uv8-EF-CsV">
-                                    <rect key="frame" x="0.0" y="0.0" width="296" height="67"/>
+                                    <rect key="frame" x="30" y="0.0" width="266" height="67"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
@@ -89,7 +89,7 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="67" id="4g8-uS-KKg"/>
-                                <constraint firstItem="Uv8-EF-CsV" firstAttribute="leading" secondItem="gAz-iB-qTM" secondAttribute="leading" id="KUX-is-SJa"/>
+                                <constraint firstItem="Uv8-EF-CsV" firstAttribute="leading" secondItem="gAz-iB-qTM" secondAttribute="leading" constant="30" id="KUX-is-SJa"/>
                                 <constraint firstItem="Uv8-EF-CsV" firstAttribute="trailing" secondItem="79V-xH-qJh" secondAttribute="leading" id="Qkw-Or-pYH"/>
                                 <constraint firstItem="Uv8-EF-CsV" firstAttribute="top" secondItem="gAz-iB-qTM" secondAttribute="top" id="gC7-Py-hRh"/>
                                 <constraint firstAttribute="bottom" secondItem="Uv8-EF-CsV" secondAttribute="bottom" id="iXy-Uv-kIm"/>

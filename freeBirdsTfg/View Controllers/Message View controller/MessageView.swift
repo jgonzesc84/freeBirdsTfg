@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource{
+class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate{
 
     
     @IBOutlet weak var mainView: UIView!
@@ -30,9 +30,13 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-      
+        self.hideKeyboardWhenTappedAround()
          prepareNav(label: titleLabel, text: "Chat")
         setuptable()
+        keyboardSetup()
+        inputKeyTextEdit.font = UIFont .AppFont.middleFont.middlWord
+        inputKeyboardView.layer.borderWidth = 1
+        inputKeyboardView.layer.borderColor = UIColor .black.cgColor
     }
     
     func setuptable(){
@@ -40,6 +44,7 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource{
         table.dataSource = self
         table.separatorStyle = .none
         table.register(UINib(nibName: "MessageViewCell", bundle: nil), forCellReuseIdentifier: "cellItem")
+        table.estimatedRowHeight = 100
         
     }
     
@@ -60,10 +65,42 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
     }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    func keyboardSetup(){
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+       // NotificationCenter.defaultCenter.addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillhide),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
+       
+    }
     
-
+    @objc func keyboardWillShow(_ notification: Notification) {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            let keyboardHeight = keyboardRectangle.height
+           UIView.animate(withDuration: 1) {
+            self.bottonInputkeyboardView.constant = keyboardHeight
+            }
+        }
+    }
     
-
-  
+    @objc func keyboardWillhide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.15) {
+            self.bottonInputkeyboardView.constant = 0
+        }
+        
+        
+    }
 
 }
