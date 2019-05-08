@@ -41,10 +41,13 @@ class MessageViewUserCell: UITableViewCell {
         infoLabel.text = model.text
         dateLabel.text = BillManager().stringFromDate(date: model.date!, format:constant.formatMeesageDate)
         infoLabel.textColor = UIColor .black
+       // infoLabel.sizeToFit()
         if(model.temporal ?? false){
             infoLabel.textColor = UIColor .AppColor.Gray.greyApp
         }
         
     }
+    
+    
     
 }

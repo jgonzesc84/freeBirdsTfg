@@ -138,6 +138,7 @@ class MainViewController: BaseViewController {
         requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,succes) in
             if(succes){
                 let vc = RequestView(nibName:"RequestView", bundle:nil)
+                vc.typeUser = true
                 let factory = RequestMessageFactory()
                 var listOrderd = Array<ModelRequestHouse>()
                 for request in model{

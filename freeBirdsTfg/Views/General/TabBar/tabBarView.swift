@@ -43,7 +43,8 @@ class tabBarView: UITabBarController {
         //houseView?.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)
         let  expenseView =  ExpenseView()
         //expenseView!.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
-       let viewControllerList = [expenseView,houseView, profileView]
+        let request = RequestView()
+       let viewControllerList = [expenseView,houseView,request, profileView]
        viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }
         
 

@@ -120,6 +120,29 @@ class RequestMessageManager{
             }
         }
     
+    func getAllRequestHouse( _ idHouse: String, completion:@escaping(Array<ModelRequestHouse>,Bool) -> Void){
+         let ref = Database.database().reference()
+        ref.child("CASA").child(BaseManager().getUserDefault().houseId!).child("SOLICITUD").observeSingleEvent(of: DataEventType.value) { (shot) in
+              var listOfRequest = Array <ModelRequestHouse>()
+              if let data = shot.value as? NSDictionary {
+                let listId = data.allKeys
+                let countMe = listId.count
+                var test = 0
+                for idRequest in listId{
+                    self.getRequestWithId(idRequest as! String, completion: { (model) in
+                        listOfRequest.append(model)
+                        test += 1
+                        if(test == countMe){
+                            completion(listOfRequest,true)
+                        }
+                    })
+                }
+              }else{
+              completion(listOfRequest,false)
+            }
+        }
+    }
+    
     func getRequestWithId( _ requestId: String, completion: @escaping(ModelRequestHouse) -> Void){
         let ref = Database.database().reference()
         ref.child("SOLICITUD").child(requestId).observeSingleEvent(of: DataEventType.value) { (shot) in

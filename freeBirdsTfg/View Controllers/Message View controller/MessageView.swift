@@ -163,12 +163,15 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
              */
             if let row = self.listOfMessage?.index(where: {$0.idRequestMessage == model.idRequestMessage}){
                 self.listOfMessage?[row] = model
+            }else{
+                  self.listOfMessage?.append(model)
+                
             }
            
             let factory = RequestMessageFactory()
             self.listOfMessage = factory.orderMessageAsc(self.listOfMessage!)
             self.table.reloadData {
-                
+                self.scrollToLastPosition()
             }
         }
     }
