@@ -53,7 +53,7 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
         makePlaceHolderOnTextView(inpuTextView)
         inpuTextView.font = UIFont .AppFont.middleFont.middlWord
         inpuTextView.textColor = UIColor.AppColor.Gray.greyApp
-        addButton.backgroundColor = UIColor .AppColor.Gray.greyCancel
+        addButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
         addButton.layer.cornerRadius = 5
         inputKeyboardView.layer.borderWidth = 1
         inputKeyboardView.layer.borderColor = UIColor .black.cgColor

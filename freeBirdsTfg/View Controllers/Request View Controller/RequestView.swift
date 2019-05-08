@@ -53,6 +53,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem", for: indexPath) as! RequestCell
+        cell.typeUser = typeUser
         cell.setupCell(listOfRequest![indexPath.row])
         return cell
     }
