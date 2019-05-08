@@ -37,6 +37,8 @@ class tabBarView: UITabBarController {
     }
     
     func setupBar(){
+        //self.tintColor = UIColor.white
+        self.tabBar.barTintColor = UIColor.white
         let profileView = ProfileEditView()
         // profileView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         let houseView =  HouseManagerView()
@@ -45,10 +47,24 @@ class tabBarView: UITabBarController {
         //expenseView!.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
         let request = RequestView()
        let viewControllerList = [expenseView,houseView,request, profileView]
+       
        viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }
-        
+        setTabBarItems(row: 0, title: "Gastos", image: "")
+        setTabBarItems(row: 1, title: "Casa", image: "")
+        setTabBarItems(row: 2, title: "Chat", image: "")
+        setTabBarItems(row: 3, title: "Profile", image: "")
 
     }
+    
+    func setTabBarItems(row: Int, title: String, image: String){
+        let myTabBarItem1 = (self.tabBar.items?[row])! as UITabBarItem
+//        myTabBarItem1.image = UIImage(named: "image")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+//        myTabBarItem1.selectedImage = UIImage(named: "image")?.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        myTabBarItem1.title = title
+        myTabBarItem1.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+        
+    }
+    
 
    
 
