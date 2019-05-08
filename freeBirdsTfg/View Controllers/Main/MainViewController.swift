@@ -135,16 +135,20 @@ class MainViewController: BaseViewController {
     @IBAction func goToRequestView(_ sender: Any) {
         //cargamos las solicitudes si tiene ponemos enabled este botón
         let requestMng = RequestMessageManager()
-        requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (succes) in
-            let vc = RequestView(nibName:"RequestView", bundle:nil)
-            let factory = RequestMessageFactory()
-            var listOrderd = Array<ModelRequestHouse>()
-            for request in succes{
-               request.listofMessage = factory.orderMessageAsc(request.listofMessage!)
-                listOrderd.append(request)
+        requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,succes) in
+            if(succes){
+                let vc = RequestView(nibName:"RequestView", bundle:nil)
+                let factory = RequestMessageFactory()
+                var listOrderd = Array<ModelRequestHouse>()
+                for request in model{
+                    request.listofMessage = factory.orderMessageAsc(request.listofMessage!)
+                    listOrderd.append(request)
+                }
+                vc.listOfRequest = listOrderd
+                self.navigationController?.pushViewController(vc, animated: true)
+            }else{
+                print ("no hay solicitiudes")
             }
-            vc.listOfRequest = listOrderd
-            self.navigationController?.pushViewController(vc, animated: true)
         }
         
        

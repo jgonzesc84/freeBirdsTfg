@@ -45,10 +45,11 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidLoad()
          listenFirstTime()
-        table.scrollToBottomRow()
+        scrollToLastPosition()
     }
     func initView(){
         inpuTextView.delegate = self
+        inpuTextView.text = ""
         makePlaceHolderOnTextView(inpuTextView)
         inpuTextView.font = UIFont .AppFont.middleFont.middlWord
         inpuTextView.textColor = UIColor.AppColor.Gray.greyApp
@@ -124,6 +125,7 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
             model.idRequestMessage = requestManager.giveMeId()
             model.text = inpuTextView.text
             inpuTextView.text = ""
+            placeholderLabel.isHidden = !inpuTextView.text.isEmpty
             model.idUser = BaseManager().getUserDefault().idUser
             model.name = BaseManager().getUserDefault().alias
             model.date = Date()
@@ -174,11 +176,7 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
     func putTempMessage(_ message: ModelRequestMessageHouse){
         message.temporal = true
         listOfMessage?.append(message)
-        table.reloadData {
-            let row = self.listOfMessage!.count - 1
-            let indexPath = IndexPath(row: row, section: 0)
-            self.table.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.middle, animated: true)
-        }
+        scrollToLastPosition()
     }
     
     @objc func keyboardWillShow(_ notification: Notification) {
@@ -201,7 +199,8 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
     }
         func textViewDidChange(_ textView: UITextView) {
             placeholderLabel.isHidden = !textView.text.isEmpty
-        }
+             // placeholderLabel.isHidden =  !isEmptyString(text: textView.text)
+       }
    
         func makePlaceHolderOnTextView( _ textView: UITextView){
            // textView.delegate = self
@@ -211,9 +210,26 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
             placeholderLabel.sizeToFit()
             textView.addSubview(placeholderLabel)
             placeholderLabel.frame.origin = CGPoint(x: 5, y: (textView.font?.pointSize)! / 2)
-            placeholderLabel.textColor = UIColor.lightGray
-            placeholderLabel.isHidden = !textView.text.isEmpty
+            placeholderLabel.isHidden =  !isEmptyString(text: textView.text)
+           // placeholderLabel.textColor = UIColor.lightGray
+           placeholderLabel.isHidden = !textView.text.isEmpty
+        }
+    
+    func scrollToLastPosition(){
+        table.reloadData {
+            let row = self.listOfMessage!.count - 1
+            let indexPath = IndexPath(row: row, section: 0)
+            self.table.scrollToRow(at: indexPath, at: UITableView.ScrollPosition.middle, animated: true)
         }
     }
+
+    func isEmptyString (text : String) -> Bool{
+        var result = false
+        if (text.count == 0 || text == ""){
+            result = true
+        }
+        return result
+    }
+}
 
 

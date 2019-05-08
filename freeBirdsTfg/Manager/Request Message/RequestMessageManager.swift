@@ -94,7 +94,7 @@ class RequestMessageManager{
     })
     }
     
-        func getAllRequest( _ idUser:String, completion:@escaping(Array<ModelRequestHouse>) -> Void){
+        func getAllRequest( _ idUser:String, completion:@escaping(Array<ModelRequestHouse>,Bool) -> Void){
             let ref = Database.database().reference()
             ref.child("USUARIO").child(idUser).child("solicitudes").observeSingleEvent(of: DataEventType.value) { (shot) in
                 var listOfRequest = Array <ModelRequestHouse>()
@@ -107,13 +107,15 @@ class RequestMessageManager{
                            listOfRequest.append(model)
                              test += 1
                             if(test == countMe){
-                                completion(listOfRequest)
+                                completion(listOfRequest,true)
                             }
                             
                         })
                         
                     }
                     
+                }else{
+                   completion(listOfRequest,false)
                 }
             }
         }

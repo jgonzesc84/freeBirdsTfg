@@ -72,7 +72,7 @@ class RequestMessageFactory{
         let dictioInner = [ "idUser" : message.idUser!,
                             "text": message.text!,
                             "name": message.name!,
-                            "date":message.date!.timeIntervalSince1970
+                            "date":message.date!.millisecondsSince1970
         ]as Dictionary
         let dictio = [ message.idRequestMessage! : dictioInner
         ]as Dictionary

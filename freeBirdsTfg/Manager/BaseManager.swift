@@ -229,9 +229,9 @@ class BaseManager{
         model.email = dictio["email"] as? String ?? ""
         model.houseId = dictio["houseId"] as? String ?? ""
         if (complete){
-            if let valueRequest = dictio["solicitudes"] as? Dictionary<String, Any> {
-                
-                model.request = convertRequestMessageColection(valueRequest as! Array<String>)
+            if let valueRequest = dictio["solicitudes"] as? NSDictionary {
+                let listId = valueRequest.allKeys
+                model.request = convertRequestMessageColection(listId as! Array<String>)
             }
         }
        
