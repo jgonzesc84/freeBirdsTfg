@@ -88,10 +88,15 @@ class BaseManager{
     //////////////GETTER HOUSE////////////////
     
     func getDirection(dictio: Dictionary<String, Any>) -> (ModelDirection){
-        let testDirection = dictio["DIRECTION"] as? [String:AnyObject]
-        let street = testDirection!["title"] as? String
-        let latitud = testDirection!["latitude"] as? Double
-        let longitude = testDirection!["longitude"] as? Double
+        var value = Dictionary <String, Any>()
+        if let testDirection = dictio["DIRECTION"] as? [String:AnyObject]{
+            value = testDirection
+        }else{
+         value = dictio
+        }
+        let street = value["title"] as? String
+        let latitud = value["latitude"] as? Double
+        let longitude = value["longitude"] as? Double
         let location = CLLocationCoordinate2D(latitude: latitud!, longitude: longitude!)
         let direction = ModelDirection(title:street!, coordinate: location)
         return direction
@@ -144,7 +149,7 @@ class BaseManager{
             "PRECIO": model.price ?? "0.0",
             "IDHOUSE": idHouse,
             "DESCRIPTION": model.completeDescription ?? "text",
-            "DIRECTION" : prepareDirection(model: model),
+            "DIRECTION" : prepareDirection(model: model.direction!,new: true),
             "ROOMS" : prepareRoom(model: model),
             "SECTIONS" : prepareSection(model: model),
             "USER": prepareUser(model: model),
@@ -154,11 +159,12 @@ class BaseManager{
         return dictioHouse
     }
     
-     func prepareDirection(model : ModelHouse) -> (Dictionary<String, Any>){
-        let directionDictio = ["title": model.direction!.title!,
-                               "latitude":model.direction!.coordinate!.latitude,
-                               "longitude":model.direction!.coordinate!.longitude,
-                               "idDirection":Database.database().reference().childByAutoId().key ] as Dictionary
+    func prepareDirection(model : ModelDirection,  new: Bool) -> (Dictionary<String, Any>){
+         let idDirection = new ? Database.database().reference().childByAutoId().key : "N/A "
+        let directionDictio = ["title": model.title!,
+                               "latitude":model.coordinate!.latitude,
+                               "longitude":model.coordinate!.longitude,
+                               "idDirection":idDirection ] as Dictionary
         return directionDictio
     }
     

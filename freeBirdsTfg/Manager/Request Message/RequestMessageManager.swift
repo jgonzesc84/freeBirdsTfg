@@ -31,11 +31,6 @@ class RequestMessageManager{
                     if(succes){
                         self.setRequestHouse(model, completion: { (succes) in
                             if(succes){
-//                                self.insertMessageFromRequest(model.listofMessage![0], completion: { (succes) in
-//                                    if(succes){
-//                                        completion(true)
-//                                    }
-//                                })
                                 completion(true)
                             }
                         })
@@ -73,8 +68,7 @@ class RequestMessageManager{
     
     func insertMessageFromRequest(_ message: ModelRequestMessageHouse, _ request : ModelRequestHouse ,completion:@escaping(Bool) -> Void){
          let ref = Database.database().reference()
-        // message.idRequestMessage = ref.childByAutoId().key
-        ref.child("SOLICITUD").child(request.idRequest!).child("Mensajes").child(message.idRequestMessage!).setValue(factory.prepareMessageRequest(message)){
+    ref.child("SOLICITUD").child(request.idRequest!).child("Mensajes").child(message.idRequestMessage!).setValue(factory.prepareMessageRequest(message)){
              (error:Error?, ref:DatabaseReference)in
             if error != nil{
                  completion(false)
@@ -97,49 +91,46 @@ class RequestMessageManager{
         func getAllRequest( _ idUser:String, completion:@escaping(Array<ModelRequestHouse>,Bool) -> Void){
             let ref = Database.database().reference()
             ref.child("USUARIO").child(idUser).child("solicitudes").observeSingleEvent(of: DataEventType.value) { (shot) in
-                var listOfRequest = Array <ModelRequestHouse>()
+                let listOfRequest = Array <ModelRequestHouse>()
                 if let data = shot.value as? NSDictionary {
-                   let listId = data.allKeys
-                    let countMe = listId.count
-                    var test = 0
-                    for idRequest in listId{
-                        self.getRequestWithId(idRequest as! String, completion: { (model) in
-                           listOfRequest.append(model)
-                             test += 1
-                            if(test == countMe){
-                                completion(listOfRequest,true)
-                            }
-                            
-                        })
-                        
-                    }
-                    
+                    self.dataFromRequestService( dictio: data, completion: { (list, sucess) in
+                        completion(list, true)
+                    })
                 }else{
-                   completion(listOfRequest,false)
+                    completion(listOfRequest,false)
                 }
+
             }
         }
     
     func getAllRequestHouse( _ idHouse: String, completion:@escaping(Array<ModelRequestHouse>,Bool) -> Void){
          let ref = Database.database().reference()
         ref.child("CASA").child(BaseManager().getUserDefault().houseId!).child("SOLICITUD").observeSingleEvent(of: DataEventType.value) { (shot) in
-              var listOfRequest = Array <ModelRequestHouse>()
+              let listOfRequest = Array <ModelRequestHouse>()
               if let data = shot.value as? NSDictionary {
-                let listId = data.allKeys
-                let countMe = listId.count
-                var test = 0
-                for idRequest in listId{
-                    self.getRequestWithId(idRequest as! String, completion: { (model) in
-                        listOfRequest.append(model)
-                        test += 1
-                        if(test == countMe){
-                            completion(listOfRequest,true)
-                        }
-                    })
-                }
+                self.dataFromRequestService( dictio: data, completion: { (list, sucess) in
+                    completion(list, true)
+                })
               }else{
               completion(listOfRequest,false)
             }
+        }
+    }
+    
+    func dataFromRequestService( dictio : NSDictionary, completion:@escaping(Array<ModelRequestHouse>,Bool) -> Void){
+        var listOfRequest = Array <ModelRequestHouse>()
+        
+        let listId = dictio.allKeys
+        let countMe = listId.count
+        var test = 0
+        for idRequest in listId{
+            self.getRequestWithId(idRequest as! String, completion: { (model) in
+                listOfRequest.append(model)
+                test += 1
+                if(test == countMe){
+                    completion(listOfRequest,true)
+                }
+            })
         }
     }
     
@@ -154,6 +145,19 @@ class RequestMessageManager{
         }
     }
     
+   
+    ///////////////////////////////////EDITED
+    func getRequestEdited( _ idRequest:String, completion:@escaping(ModelRequestHouse) -> Void){
+        let ref = Database.database().reference()
+        ref.child("SOLICITUD").child(idRequest).observe(.value , with:{ (shot) in
+            if let data = shot.value as? NSDictionary {
+            let model = self.factory.setRequestHouse(data)
+            completion(model)
+            }
+        })
+    }
+    
+    //MESSAGE
     //observer
     func listChangeOnMessages(_ request:ModelRequestHouse, completion: @escaping(ModelRequestMessageHouse) -> Void){
          let ref = Database.database().reference()

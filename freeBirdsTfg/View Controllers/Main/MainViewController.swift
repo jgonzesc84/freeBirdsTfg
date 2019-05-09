@@ -143,6 +143,7 @@ class MainViewController: BaseViewController {
                 var listOrderd = Array<ModelRequestHouse>()
                 for request in model{
                     request.listofMessage = factory.orderMessageAsc(request.listofMessage!)
+                    //comporbacion owner
                     listOrderd.append(request)
                 }
                 vc.listOfRequest = listOrderd

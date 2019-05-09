@@ -79,6 +79,12 @@ class MainHelper{
         }
     }
     
+    static func cancelButton(_ button: Button){
+        button.layer.cornerRadius = button.frame.size.width / 2
+        //button.backgroundColor = UIColor .AppColor.Red.redCancel
+        button.image = UIImage(named:"ico_delete_classic")!.withRenderingMode(UIImage.RenderingMode.alwaysOriginal)
+        
+    }
    static func giveMeStyle(textField: UITextField){
         textField.font = UIFont.AppFont.middleFont.middlWord
         textField.textColor = UIColor.AppColor.Gray.greyApp
@@ -107,7 +113,14 @@ class MainHelper{
         button.titleColor = UIColor.AppColor.Green.mindApp
         button.pulseColor = UIColor.AppColor.Gray.greyApp
     }
-    
+    static func giveMeStyle(button : Button, _ borderWith: CGFloat, _ cornerRadius: CGFloat){
+        button.layer.cornerRadius = cornerRadius
+        button.layer.borderColor = UIColor.AppColor.Gray.greyApp .cgColor
+        button.layer.borderWidth = borderWith
+        button.titleLabel?.font = UIFont.AppFont.middleFont.middlWord!
+        button.titleColor = UIColor.AppColor.Green.mindApp
+        button.pulseColor = UIColor.AppColor.Gray.greyApp
+    }
     static func giveMeStyle(textView: UITextView){
         textView.font = UIFont.AppFont.middleFont.middlWord
         textView.textColor = UIColor.AppColor.Gray.greyApp

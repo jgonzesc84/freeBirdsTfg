@@ -8,16 +8,17 @@
 
 import Foundation
 
-class RequestMessageFactory{
+class RequestMessageFactory : BaseManager{
     
 // ref.child("BILL").child(model.idBill!).child("expense").child(model.idExpense!).setValue(dictio)
    
     func prepareRequestHouse(_ model: ModelRequestHouse)-> Dictionary<String, Any> {
         let dictio = [ "idRequest": model.idRequest ?? "",
                        "idUser" : model.idUser ?? "",
-                       "direction" : model.direction ?? "",
+                       "direction" : prepareDirection(model: model.direction!, new: false),
                        "date": model.date!.millisecondsSince1970,
-                       "Mensajes" : prepareDictioMessageId(model.listofMessage![0])
+                       "Mensajes" : prepareDictioMessageId(model.listofMessage![0]),
+                       "state": model.state ?? "",
             
         ] as Dictionary
         return dictio
@@ -28,10 +29,11 @@ class RequestMessageFactory{
         let model = ModelRequestHouse()
         model.idRequest = dictio["idRequest"] as? String ?? ""
         model.idUser = dictio["idUser"] as? String ?? ""
-        model.direction = dictio["direction"] as? String ?? ""
+        model.direction = getDirection(dictio:dictio["direction"]  as! Dictionary<String, Any>)
         let miliSeconds = dictio["date"] as? Int ?? 0
         model.date = Date(milliseconds: miliSeconds)
         model.listofMessage = setMessageList(dictio["Mensajes"] as! NSDictionary)
+        model.state = dictio["state"] as? String ?? ""
         return model
     }
     
@@ -105,10 +107,11 @@ class RequestMessageFactory{
         let idUser = BaseManager().getUserDefault().idUser
         let model = ModelRequestHouse()
         model.idHouse = house.idHouse
-        model.direction = house.direction?.title
+        model.direction = house.direction
         model.date = Date()
         model.idUser = idUser
         model.listofMessage = Array()
+        model.state = constant.stateOpendRequest
         
         let message = ModelRequestMessageHouse()
         message.text = text
@@ -132,4 +135,5 @@ class RequestMessageFactory{
         return ordered
     }
    
+    
 }

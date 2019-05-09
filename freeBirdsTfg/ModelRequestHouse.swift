@@ -13,9 +13,11 @@ class ModelRequestHouse {
     var idRequest: String?
     var idUser : String?
     var idHouse : String?
-    var direction: String?
+    var direction: ModelDirection?
     var listofMessage: Array<ModelRequestMessageHouse>?
     var date : Date?
+    var state : String?
+    var owner : Bool?
     
 }
 

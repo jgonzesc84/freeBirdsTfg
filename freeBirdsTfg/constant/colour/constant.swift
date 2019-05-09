@@ -15,6 +15,10 @@ class constant{
     static let billPaddingTop = 40
     static let formatBillDate = "MM.yyyy"
     static let formatMeesageDate = "dd/MM/yyyy HH:mm"
+    
+    static let stateOpendRequest = "abierta"
+    static let stateAcceptRequest = "aceptada"
+    static let statcDeclineRequest = "rechazada"
 }
 extension UIColor {
     
@@ -46,7 +50,7 @@ extension UIColor {
         }
         
         struct Red {
-            
+            static let redCancel = UIColor().colorFromHex("FB989A")
         }
         
         struct Gray {

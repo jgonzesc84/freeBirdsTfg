@@ -18,6 +18,7 @@ class IcoColorExpense: UIView {
     @IBOutlet weak var icoButton: UIButton!
     @IBOutlet weak var colorButton: UIButton!
     
+    
     var colorSelected : String?
     var icoSelected : String?
     var initialColor = colorExpense.color1.rawValue

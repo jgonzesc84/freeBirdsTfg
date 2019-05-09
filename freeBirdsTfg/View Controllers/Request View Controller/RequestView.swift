@@ -27,14 +27,11 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        refreshModel()
+      
     }
-    func refreshModel(){
-        if (typeUser){
-            refresUserRequest()
-        }else{
-            refreshHouseRequest()
-        }
+  
+    override func viewWillAppear(_ animated: Bool) {
+         refreshModel()
     }
     func setuptable(){
         table.delegate = self
@@ -70,51 +67,76 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    func refresUserRequest(){
-        let requestMng = RequestMessageManager()
-        requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,succes) in
-            if(succes){
-                
-                let factory = RequestMessageFactory()
-                var listOrdered = Array<ModelRequestHouse>()
-                for request in model{
-                    request.listofMessage = factory.orderMessageAsc(request.listofMessage!)
-                    listOrdered.append(request)
+    
+    func refreshModel(){
+        if (typeUser){
+            refresUserRequest { (finish) in
+                if finish{
+                    self.listenMessageArriving()
                 }
-                self.listOfRequest = listOrdered
-                self.table.reloadData {
-                    
+            }
+        }else{
+            refreshHouseRequest{ (finish) in
+                if finish{
+                    self.listenMessageArriving()
                 }
-            }else{
-                print ("error")
             }
         }
     }
     
-    func refreshHouseRequest(){
+    func refresUserRequest(completion:@escaping(Bool)-> Void){
         let requestMng = RequestMessageManager()
-        requestMng.getAllRequestHouse(BaseManager().getUserDefault().houseId!){ (model,succes) in
-            if(succes){
-                
-                let factory = RequestMessageFactory()
-                var listOrdered = Array<ModelRequestHouse>()
-                for request in model{
-                    request.listofMessage = factory.orderMessageAsc(request.listofMessage!)
-                    listOrdered.append(request)
-                }
-                self.listOfRequest = listOrdered
-                self.table.reloadData {
-                    
-                }
-            }else{
-                print ("error")
-            }
+        requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,succes) in
+           self.reloadWithDatService(model, succes: succes)
+            completion(true)
         }
     }
-    func listenMessageArriving(){
-        
+    
+    func refreshHouseRequest(completion:@escaping(Bool)-> Void){
+        let requestMng = RequestMessageManager()
+        requestMng.getAllRequestHouse(BaseManager().getUserDefault().houseId!){ (model,succes) in
+           self.reloadWithDatService(model, succes: succes)
+             completion(true)
+        }
     }
-   
- 
+
+    func listenMessageArriving(){
+      
+            for request in self.listOfRequest!{
+                let requestMng = RequestMessageManager()
+                requestMng.getRequestEdited(request.idRequest!) { (model) in
+                    if let row = self.listOfRequest?.index(where: {$0.idRequest == model.idRequest}){
+                        let factory = RequestMessageFactory()
+                        model.listofMessage = factory.orderMessageAsc(model.listofMessage!)
+                        self.listOfRequest?[row] = model
+                        self.table.reloadData {
+                            
+                        }
+                    }
+                }
+                
+            
+        }
+      
+      
+    }
+
+    
+    func reloadWithDatService(_ listOfrequest: Array<ModelRequestHouse>, succes: Bool){
+        if(succes){
+            let factory = RequestMessageFactory()
+            var listOrdered = Array<ModelRequestHouse>()
+            for request in listOfrequest{
+                request.listofMessage = factory.orderMessageAsc(request.listofMessage!)
+                listOrdered.append(request)
+            }
+            self.listOfRequest = listOrdered
+            self.table.reloadData {
+                
+            }
+        }else{
+            print ("error")
+        }
+    }
 
 }
