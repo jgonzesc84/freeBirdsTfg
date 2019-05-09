@@ -23,6 +23,12 @@ class BaseManager{
         }
         return user
     }
+    func userId() -> String{
+        return self.getUserDefault().idUser!
+    }
+    func houseId()-> String{
+        return self.getUserDefault().houseId!
+    }
     
     func saveUserDefault(model: ModelUser){
         let userDefault = UserDefaults.standard

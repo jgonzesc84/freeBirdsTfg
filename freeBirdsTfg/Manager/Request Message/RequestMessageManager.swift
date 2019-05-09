@@ -157,6 +157,85 @@ class RequestMessageManager{
         })
     }
     
+    
+    
+    func requestAddedHouse( idHouse: String,completion:@escaping(ModelRequestHouse) -> Void){
+         let ref = Database.database().reference()
+        ref.child("CASA").child(idHouse).child("SOLICITUD").observe(.childAdded , with:{ (shot) in
+            if let data = shot.value as? NSDictionary {
+               let idRequest = data["idRequest"] as? String ?? ""
+                self.getRequestWithId(idRequest, completion: { (request) in
+                    completion(request)
+                })
+            }
+        })
+        
+    }
+    func requestAddedUser( idUser: String,completion:@escaping(ModelRequestHouse) -> Void){
+        let ref = Database.database().reference()
+        ref.child("CASA").child(idUser).child("solicitudes").observe(.childAdded , with:{ (shot) in
+            if let data = shot.value as? NSDictionary {
+                let idRequest = data.allKeys[0] as! String
+                self.getRequestWithId(idRequest, completion: { (request) in
+                    completion(request)
+                })
+            }
+        })
+        
+    }
+    //// SET STATE
+    func changeStateRequest( _ idRequest:String, state: String,completion:@escaping(Bool) -> Void){
+        let ref = Database.database().reference()
+        ref.child("SOLICITUD").child(idRequest).child("state").setValue(state){
+            (error:Error?, ref:DatabaseReference)in
+        if error != nil{
+            completion(false)
+        }else{
+            completion(true)
+        }
+    }
+    }
+    //DELETE REQUEST
+    func deleteRequestFromHouse(request:ModelRequestHouse,idHouse:String){
+         let ref = Database.database().reference()
+        ref.child("CASA").child(idHouse).child("SOLICITUD").child(request.idRequest!).removeValue(){
+            (error:Error?, ref:DatabaseReference)in
+            if error != nil{
+                
+            }else{
+                if(request.idHouse != nil){
+                    self.deleteRequest(idRequest: request.idRequest!)
+                }
+               
+            }
+        }
+    }
+    
+    func deleteRequestFromUser(request:ModelRequestHouse,idUser:String){
+          let ref = Database.database().reference()
+         ref.child("USUARIO").child(idUser).child("solicitudes").child(request.idRequest!).removeValue(){
+            (error:Error?, ref:DatabaseReference)in
+            if error != nil{
+                
+            }else{
+                if(request.idUser != nil){
+                    self.deleteRequest(idRequest: request.idRequest!)
+                }
+                
+            }
+        }
+    }
+    func deleteRequest(idRequest: String){
+        let ref = Database.database().reference()
+        ref.child("SOLICITUD").child(idRequest).removeValue{
+             (error:Error?, ref:DatabaseReference)in
+            if error != nil{
+               
+            }else{
+               
+            }
+        }
+    }
     //MESSAGE
     //observer
     func listChangeOnMessages(_ request:ModelRequestHouse, completion: @escaping(ModelRequestMessageHouse) -> Void){
@@ -186,4 +265,5 @@ class RequestMessageManager{
  completion(fullHouse,true)
  
  */
+
 

@@ -52,12 +52,20 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
         inpuTextView.text = ""
         makePlaceHolderOnTextView(inpuTextView)
         inpuTextView.font = UIFont .AppFont.middleFont.middlWord
-        inpuTextView.textColor = UIColor.AppColor.Gray.greyApp
+        inpuTextView.textColor = .black
         addButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
         addButton.layer.cornerRadius = 5
         inputKeyboardView.layer.borderWidth = 1
         inputKeyboardView.layer.borderColor = UIColor .black.cgColor
         listenChildAdded()
+        if(request?.state == constant.statcDeclineRequest){
+            inputKeyboardView.backgroundColor = UIColor .AppColor.Gray.greyCancel
+            inpuTextView.backgroundColor = UIColor .AppColor.Gray.greyCancel
+            inpuTextView.isEditable = false
+            placeholderLabel.text = "Fin Conversacion"
+            addButton.isEnabled = false
+            addButton.backgroundColor = UIColor .AppColor.Gray.greyStrong
+        }
     
     }
     func setuptable(){
@@ -164,7 +172,10 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
             if let row = self.listOfMessage?.index(where: {$0.idRequestMessage == model.idRequestMessage}){
                 self.listOfMessage?[row] = model
             }else{
-                  self.listOfMessage?.append(model)
+                if((model.idRequestMessage?.count)! > 0){
+                     self.listOfMessage?.append(model)
+                }
+                
                 
             }
            

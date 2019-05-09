@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -144,10 +144,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="09u-rp-4NQ" customClass="Button" customModule="Material">
-                                        <rect key="frame" x="113" y="15.5" width="100" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="mIh-tt-DkM"/>
-                                        </constraints>
+                                        <rect key="frame" x="136" y="15.5" width="54" height="30"/>
                                         <state key="normal" title="Aceptar"/>
                                         <connections>
                                             <action selector="acceptAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ELa-va-mf8"/>
@@ -166,6 +163,18 @@
                                     <constraint firstItem="iLY-cm-QTa" firstAttribute="leading" secondItem="nRB-dR-HMh" secondAttribute="leading" id="stz-Ox-qb2"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Uv-pN-IRH">
+                                <rect key="frame" x="113" y="90" width="120" height="120"/>
+                                <color key="backgroundColor" red="1" green="0.30980392159999998" blue="0.30588235289999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="PzC-Qm-nyz"/>
+                                    <constraint firstAttribute="width" secondItem="0Uv-pN-IRH" secondAttribute="height" multiplier="1:1" id="fae-KT-1yb"/>
+                                </constraints>
+                                <state key="normal" backgroundImage="ic_close_white"/>
+                                <connections>
+                                    <action selector="deleteRequest:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="KnY-15-lad"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -176,6 +185,7 @@
                             <constraint firstItem="Hh9-yT-qSM" firstAttribute="leading" secondItem="hrv-fa-Rxj" secondAttribute="leading" id="OiV-qx-4da"/>
                             <constraint firstItem="lwH-oS-oGd" firstAttribute="leading" secondItem="hrv-fa-Rxj" secondAttribute="leading" constant="20" id="T8z-rK-GKw"/>
                             <constraint firstAttribute="trailing" secondItem="XkV-iy-BJE" secondAttribute="trailing" id="TBo-vR-QyU"/>
+                            <constraint firstItem="0Uv-pN-IRH" firstAttribute="centerX" secondItem="hrv-fa-Rxj" secondAttribute="centerX" id="VCU-dt-0vE"/>
                             <constraint firstAttribute="trailing" secondItem="Ikt-UR-4ws" secondAttribute="trailing" constant="20" id="bRY-ZU-eC6"/>
                             <constraint firstAttribute="bottom" secondItem="nRB-dR-HMh" secondAttribute="bottom" id="ccy-LM-Za8"/>
                             <constraint firstItem="lwH-oS-oGd" firstAttribute="top" secondItem="XkV-iy-BJE" secondAttribute="bottom" constant="20" id="dA9-Vb-vRx"/>
@@ -185,6 +195,7 @@
                             <constraint firstItem="Z4Y-53-TfN" firstAttribute="centerY" secondItem="Ikt-UR-4ws" secondAttribute="centerY" id="tKN-6Y-LQg"/>
                             <constraint firstItem="Hh9-yT-qSM" firstAttribute="bottom" secondItem="nRB-dR-HMh" secondAttribute="top" id="u4G-5r-wq9"/>
                             <constraint firstAttribute="trailing" secondItem="nRB-dR-HMh" secondAttribute="trailing" constant="10" id="uQd-U1-YDN"/>
+                            <constraint firstItem="0Uv-pN-IRH" firstAttribute="centerY" secondItem="hrv-fa-Rxj" secondAttribute="centerY" id="vr8-jl-Qgg"/>
                             <constraint firstItem="nRB-dR-HMh" firstAttribute="top" secondItem="Ikt-UR-4ws" secondAttribute="bottom" constant="11.5" id="yUg-KH-Qk2"/>
                             <constraint firstItem="nRB-dR-HMh" firstAttribute="leading" secondItem="hrv-fa-Rxj" secondAttribute="leading" constant="10" id="zl0-Pw-Q2g"/>
                         </constraints>
@@ -203,6 +214,7 @@
                 <outlet property="acceptButton" destination="09u-rp-4NQ" id="tIq-iG-RPB"/>
                 <outlet property="dateLabel" destination="Ikt-UR-4ws" id="REP-E8-GeC"/>
                 <outlet property="declineButton" destination="2Rb-10-TYg" id="Dc1-HY-Gw7"/>
+                <outlet property="deleteButton" destination="0Uv-pN-IRH" id="Tsy-eP-tQR"/>
                 <outlet property="descriptionLabel" destination="BD9-iX-dZH" id="02a-aT-FaE"/>
                 <outlet property="directionLabel" destination="M2x-L2-wf7" id="i79-ri-IAu"/>
                 <outlet property="imageUserView" destination="jG3-7v-p9o" id="QSS-TO-slw"/>
@@ -217,6 +229,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="ic_close_white" width="24" height="24"/>
         <image name="miniChat" width="343" height="143"/>
         <image name="steven_playa " width="250" height="220.5"/>
     </resources>

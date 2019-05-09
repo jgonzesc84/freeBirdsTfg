@@ -28,8 +28,9 @@ class RequestCell: UITableViewCell {
     @IBOutlet weak var declineButton: Button!
     @IBOutlet weak var responseLabel: UILabel!
     
-    var model : ModelRequestHouse?
-    var typeUser = false
+    @IBOutlet weak var deleteButton: UIButton!
+    var  model : ModelRequestHouse?
+    var  typeUser = false
     var  houseRequestToUser : Bool?
     var  userRequestToHouse : Bool?
     
@@ -47,9 +48,13 @@ class RequestCell: UITableViewCell {
         MainHelper.circleView(view: mapView)
         MainHelper.circleView(view: imageUserView)
         MainHelper.giveMeStyle(label:directionLabel )
-         MainHelper.giveMeStyle(label:responseLabel )
+        MainHelper.giveMeStyle(label:responseLabel )
         MainHelper.cancelButton(declineButton)
         responseLabel.isHidden = true
+        MainHelper.circleView(view: deleteButton)
+        deleteButton.isHidden = true
+        deleteButton.isEnabled = false
+        
     }
 
     override func layoutSubviews() {
@@ -75,76 +80,75 @@ class RequestCell: UITableViewCell {
         nameLabel.text = message.name
         let stringdate = BillManager().stringFromDate(date: message.date!, format:constant.formatMeesageDate)
         dateLabel.text = stringdate
-        confugureDependState(state:model.state!)
-    }
-    func confugureDependState( state : String){
-        
-        giveMeContext()
-        
-        switch state {
-            
-        case constant.stateAcceptRequest:
-         // 2 cosas esperando usuario o aceptar usuario
-            if houseRequestToUser!{
-                acceptButton.isEnabled = true
-            }
-            
-//            else{
-//                acceptButton.isEnabled = false
-//                acceptButton.isHidden = true
-//                responseLabel.isHidden = false
-//                responseLabel.text = "Esperando Respuesta"
-//            }
-            else if(userRequestToHouse!){
-                testBackgroundView.layer.borderColor = UIColor .AppColor.Green.mindApp.cgColor
-                testBackgroundView.layer.borderWidth = 1.0
-                acceptButton.setTitle("Ingresar en la casa", for: .normal)
-                acceptButton.isEnabled = true
-            }
-            break
-
-        case constant.statcDeclineRequest:
-           //denegada aqui no hay mas
-            acceptButton.isEnabled = false
-            acceptButton.isHidden = true
-            responseLabel.isHidden = false
-            responseLabel.text = "Solicitiud denegada"
-            break
-            
-        case constant.stateOpendRequest:
-            if houseRequestToUser!{
-                acceptButton.isEnabled = true
-             
-            }else{
-                acceptButton.isEnabled = false
-                acceptButton.isHidden = true
-                responseLabel.isHidden = false
-                responseLabel.text = "Esperando Respuesta"
-            }
-            
-          //esperando usuario o aceptarla
-         
-            break
-        default:
-            
-            break
-        }
+         giveMeContext()
     }
     
     func giveMeContext(){
         let iHaveHouse = BaseManager().getUserDefault().houseId != "0"
-        let isFromHouse = (model!.idHouse != nil) ? true : false
-        
-        houseRequestToUser = iHaveHouse || isFromHouse
-        userRequestToHouse = !iHaveHouse || !isFromHouse
-        
+       
+        if (iHaveHouse){
+            let value = model?.idHouse != nil
+            itsRequestMine(value)
+        }else{
+             let value = model?.idUser != nil
+            itsRequestMine(value)
+        }
         
     }
+    
+    func itsRequestMine( _ itMine: Bool){
+        
+        switch(model?.state!){
+            
+        case constant.stateOpendRequest:
+            itMine ? setupResponseLabel(show: true, text: "Esperando confirmación") :  setupAcceptButton(show: true, text: "Aceptar")
+            break
+        case constant.stateAcceptRequest:
+            itMine ?  setupAcceptButton(show: true, text: "Añadir Usuario") :  setupResponseLabel(show: true, text: "Esperando confirmación")
+            break
+        case constant.statcDeclineRequest:
+            setupDecline()
+            break
+        default:
+            break
+        }
+    }
+    func setupResponseLabel( show: Bool, text: String){
+        if(show){
+            acceptButton.isHidden = true
+            responseLabel.isHidden = false
+            responseLabel.text = text
+        }else{
+            responseLabel.isHidden = true
+            acceptButton.isHidden = false
+            
+        }
+    }
+    func setupAcceptButton( show: Bool, text: String){
+        if(show){
+            acceptButton.isHidden = false
+            acceptButton.setTitle(text, for: .normal)
+            responseLabel.isHidden = true
+        }else{
+            responseLabel.isHidden = false
+            acceptButton.isEnabled = false
+            acceptButton.isHidden = true
+        }
+    }
+    func setupDecline(){
+        acceptButton.isEnabled = false
+        acceptButton.isHidden = true
+        responseLabel.isHidden = false
+        responseLabel.text = "Solicitud Denegada"
+        deleteButton.isHidden = false
+        deleteButton.isEnabled = true
+    }
+    
     func setupMap(_ direction: ModelDirection){
         mapView.isUserInteractionEnabled = false
         var region =  MKCoordinateRegion();
         region.center = direction.coordinate!
-       // annotation.title = direction.title
+        // annotation.title = direction.title
         region.span.longitudeDelta = 0.004
         region.span.latitudeDelta = 0.002
         mapView.setRegion(region, animated: true)
@@ -154,12 +158,40 @@ class RequestCell: UITableViewCell {
 
     }
     @IBAction func acceptAction(_ sender: Any) {
-    
+        
+        actionWithText(acceptButton.titleLabel!.text!)
+       
     }
     
+    @IBAction func deleteRequest(_ sender: Any) {
+        
+        //borramos el request del user
+    }
     
     @IBAction func declineAction(_ sender: Any) {
+        let requestMng = RequestMessageManager()
+        requestMng.changeStateRequest(model!.idRequest!, state:constant.statcDeclineRequest){ (succes) in
+            if(succes){
+                let requestMng = RequestMessageManager()
+                let houseId = BaseManager().getUserDefault().houseId
+                 let value =  houseId != "0"
+                 value ? requestMng.deleteRequestFromHouse(request: self.model! ,idHouse:houseId!) : requestMng.deleteRequestFromUser(request:self.model!, idUser: (self.model?.idUser!)!)
+            }
+        }
+    }
+    
+     func actionWithText( _ text: String){
         
+        if (text == "Aceptar"){
+            let requestMng = RequestMessageManager()
+            requestMng.changeStateRequest(model!.idRequest!, state:constant.stateAcceptRequest){ (succes) in
+                if(succes){
+                    
+                }
+            }
+        }else{
+            //Añadir Usuario y gestionar el ingreso del user a la casa avhvakhsvdhjacvdhjkc
+        }
     }
     
 }

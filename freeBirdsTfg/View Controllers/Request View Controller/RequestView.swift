@@ -23,11 +23,12 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }else{
              prepareNavRoot(label:  titleLabel, text: "Solicitudes")
         }
-         setuptable()       
+         setuptable()
+         listAddedRequest()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-      
+     
     }
   
     override func viewWillAppear(_ animated: Bool) {
@@ -67,7 +68,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
+    ///escuchar las ediciones!!!
     func refreshModel(){
         if (typeUser){
             refresUserRequest { (finish) in
@@ -99,9 +100,39 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
              completion(true)
         }
     }
-
+    ///escucahr los insert
+    func listAddedRequest(){
+        typeUser ? requestAddedUser(BaseManager().userId()) : requestAddedHouse(BaseManager().houseId())
+    }
+    
+    func requestAddedHouse( _ idHouse: String){
+        let requestMsg = RequestMessageManager()
+        requestMsg.requestAddedHouse(idHouse: idHouse) { (request) in
+            if(self.listOfRequest == nil){
+                self.listOfRequest = Array<ModelRequestHouse>()
+            }
+            self.listOfRequest?.append(request)
+            self.table.reloadData {
+                
+            }
+        }
+    }
+    func requestAddedUser( _ idUser: String){
+        let requestMsg = RequestMessageManager()
+        requestMsg.requestAddedUser(idUser: idUser) { (request) in
+            if(self.listOfRequest == nil){
+                self.listOfRequest = Array<ModelRequestHouse>()
+            }
+            self.listOfRequest?.append(request)
+            self.table.reloadData {
+                
+            }
+        }
+    }
     func listenMessageArriving(){
-      
+        if (self.listOfRequest == nil){
+            self.listOfRequest = Array<ModelRequestHouse>()
+        }
             for request in self.listOfRequest!{
                 let requestMng = RequestMessageManager()
                 requestMng.getRequestEdited(request.idRequest!) { (model) in
@@ -114,11 +145,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
                         }
                     }
                 }
-                
-            
         }
-      
-      
     }
 
     
