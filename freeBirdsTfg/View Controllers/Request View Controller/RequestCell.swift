@@ -29,6 +29,8 @@ class RequestCell: UITableViewCell {
     @IBOutlet weak var responseLabel: UILabel!
     
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var heightDeleteButton: NSLayoutConstraint!
+    
     var  model : ModelRequestHouse?
     var  typeUser = false
     var  houseRequestToUser : Bool?
@@ -56,7 +58,12 @@ class RequestCell: UITableViewCell {
         deleteButton.isEnabled = false
         
     }
-
+    
+    func  resetCell(){
+    deleteButton.isHidden = true
+    heightDeleteButton.constant = 0.0
+    }
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
@@ -80,7 +87,7 @@ class RequestCell: UITableViewCell {
         nameLabel.text = message.name
         let stringdate = BillManager().stringFromDate(date: message.date!, format:constant.formatMeesageDate)
         dateLabel.text = stringdate
-         giveMeContext()
+        giveMeContext()
     }
     
     func giveMeContext(){
@@ -142,6 +149,7 @@ class RequestCell: UITableViewCell {
         responseLabel.text = "Solicitud Denegada"
         deleteButton.isHidden = false
         deleteButton.isEnabled = true
+        heightDeleteButton.constant = 120.0
     }
     
     func setupMap(_ direction: ModelDirection){
@@ -165,7 +173,7 @@ class RequestCell: UITableViewCell {
     
     @IBAction func deleteRequest(_ sender: Any) {
         
-        //borramos el request del user
+        print("you")
     }
     
     @IBAction func declineAction(_ sender: Any) {
@@ -175,7 +183,20 @@ class RequestCell: UITableViewCell {
                 let requestMng = RequestMessageManager()
                 let houseId = BaseManager().getUserDefault().houseId
                  let value =  houseId != "0"
-                 value ? requestMng.deleteRequestFromHouse(request: self.model! ,idHouse:houseId!) : requestMng.deleteRequestFromUser(request:self.model!, idUser: (self.model?.idUser!)!)
+                self.resfreshViewDeleted(value, request:  self.model!, idHouse: houseId!, manager: requestMng)
+            }
+        }
+    }
+    
+    func resfreshViewDeleted(_ value: Bool, request: ModelRequestHouse, idHouse: String, manager :RequestMessageManager){
+        
+        if (value){
+            manager.deleteRequestFromHouse(request: request, idHouse: idHouse){(succes) in
+              
+            }
+        }else{
+            manager.deleteRequestFromUser(request:request, idUser: (self.model?.idUser!)!){(sucess) in
+                
             }
         }
     }

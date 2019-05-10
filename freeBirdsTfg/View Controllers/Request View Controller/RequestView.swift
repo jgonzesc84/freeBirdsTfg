@@ -25,6 +25,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }
          setuptable()
          listAddedRequest()
+         listDeleteRequest()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,6 +52,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellItem", for: indexPath) as! RequestCell
+        cell.resetCell()
         cell.typeUser = typeUser
         cell.setupCell(listOfRequest![indexPath.row])
         return cell
@@ -78,9 +80,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
             }
         }else{
             refreshHouseRequest{ (finish) in
-                if finish{
-                    self.listenMessageArriving()
-                }
+                 self.listenMessageArriving()
             }
         }
     }
@@ -129,25 +129,56 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
             }
         }
     }
+   
+    func listDeleteRequest(){
+        typeUser ? requestDeletedUser(BaseManager().userId()) : requestDeletedHouse(BaseManager().houseId())
+    }
+    //deletes
+    func requestDeletedHouse( _ idHouse: String){
+        let requestMsg = RequestMessageManager()
+        requestMsg.requestIsDeletedHouse(idHouse: idHouse) { (idRequest) in
+            if let row = self.listOfRequest?.index(where: {$0.idRequest == idRequest}){
+                self.listOfRequest?.remove(at:row )
+                self.table.reloadData {
+                    
+                }
+            }
+        }
+        
+    }
+
+    func requestDeletedUser( _ idUser: String){
+        let requestMsg = RequestMessageManager()
+        requestMsg.requestIsDeletedUser(idUser: idUser) { (idRequest) in
+            if let row = self.listOfRequest?.index(where: {$0.idRequest == idRequest}){
+                self.listOfRequest?.remove(at:row )
+                self.table.reloadData {
+                    
+                }
+            }
+        }
+        
+    }
+
+
     func listenMessageArriving(){
         if (self.listOfRequest == nil){
             self.listOfRequest = Array<ModelRequestHouse>()
         }
-            for request in self.listOfRequest!{
-                let requestMng = RequestMessageManager()
-                requestMng.getRequestEdited(request.idRequest!) { (model) in
-                    if let row = self.listOfRequest?.index(where: {$0.idRequest == model.idRequest}){
-                        let factory = RequestMessageFactory()
-                        model.listofMessage = factory.orderMessageAsc(model.listofMessage!)
-                        self.listOfRequest?[row] = model
-                        self.table.reloadData {
-                            
-                        }
+        for request in self.listOfRequest!{
+            let requestMng = RequestMessageManager()
+            requestMng.getRequestEdited(request.idRequest!) { (model) in
+                if let row = self.listOfRequest?.index(where: {$0.idRequest == model.idRequest}){
+                    let factory = RequestMessageFactory()
+                    model.listofMessage = factory.orderMessageAsc(model.listofMessage!)
+                    self.listOfRequest?[row] = model
+                    self.table.reloadData {
+                        
                     }
                 }
+            }
         }
     }
-
     
     func reloadWithDatService(_ listOfrequest: Array<ModelRequestHouse>, succes: Bool){
         if(succes){
