@@ -40,9 +40,13 @@ class RequestMessageManager{
             }
         }
     }
+    //request de un usuario
     func setRequestUser(_ model : ModelRequestHouse, completion:@escaping(Bool) -> Void){
           let ref = Database.database().reference()
-        ref.child("USUARIO").child(model.idUser!).child("solicitudes").child(model.idRequest!).setValue(model.idRequest!){
+        var path = ""
+       let value = model.aplicantId == BaseManager().userId()
+        path = value ? model.aplicantId! : model.requiredId!
+        ref.child("USUARIO").child(path).child("solicitudes").child(model.idRequest!).setValue(model.idRequest!){
              (error:Error?, ref:DatabaseReference)in
             if error != nil{
                 completion(false)
@@ -51,12 +55,15 @@ class RequestMessageManager{
             }
         }
     }
-    
+    //
     func setRequestHouse(_ model : ModelRequestHouse ,completion:@escaping(Bool) -> Void){
-          let ref = Database.database().reference()
+        let ref = Database.database().reference()
         let dictio = ["idRequest" : model.idRequest
         ]as Dictionary
-        ref.child("CASA").child(model.idHouse!).child("SOLICITUD").child(model.idRequest!).setValue(dictio){
+        var path = ""
+        let value = model.aplicantId == BaseManager().houseId()
+        path = value ? model.aplicantId! : model.requiredId!
+        ref.child("CASA").child(path).child("SOLICITUD").child(model.idRequest!).setValue(dictio){
               (error:Error?, ref:DatabaseReference)in
             if error != nil{
                  completion(false)

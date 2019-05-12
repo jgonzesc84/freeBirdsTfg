@@ -120,7 +120,7 @@ class ModalController{
         case is ModelRoom:
             
             let room = model as! ModelRoom
-            modalCreateRoom!.userTextEdit.text = room.user
+            modalCreateRoom!.userTextEdit.text = room.user?.alias
             modalCreateRoom!.priceTextEdit.text = room.price
             modalCreateRoom!.setupSelection(room.search!)
             //falta img

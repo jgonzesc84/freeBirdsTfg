@@ -53,7 +53,7 @@ class roomCell: UITableViewCell  {
     
    public func setup(room: ModelRoom?){
         if (room != nil){
-        userlabel.text = room?.user
+        userlabel.text = room?.user?.alias
         priceLabel.text = room?.price
         addView.isHidden = true
         roomView.isHidden = false

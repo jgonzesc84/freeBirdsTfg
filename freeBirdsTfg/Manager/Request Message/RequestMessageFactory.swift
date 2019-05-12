@@ -14,11 +14,12 @@ class RequestMessageFactory : BaseManager{
    
     func prepareRequestHouse(_ model: ModelRequestHouse)-> Dictionary<String, Any> {
         let dictio = [ "idRequest": model.idRequest ?? "",
-                       "idUser" : model.idUser ?? "",
+                       "aplicantId" : model.aplicantId ?? "",
                        "direction" : prepareDirection(model: model.direction!, new: false),
                        "date": model.date!.millisecondsSince1970,
                        "Mensajes" : prepareDictioMessageId(model.listofMessage![0]),
                        "state": model.state ?? "",
+                       "requiredId": model.requiredId ?? ""
             
         ] as Dictionary
         return dictio
@@ -28,8 +29,10 @@ class RequestMessageFactory : BaseManager{
     func setRequestHouse(_ dictio: NSDictionary) -> ModelRequestHouse{
         let model = ModelRequestHouse()
         model.idRequest = dictio["idRequest"] as? String ?? ""
-        model.idUser = dictio["idUser"] as? String ?? ""
+        model.aplicantId = dictio["aplicantId"] as? String ?? ""
         model.direction = getDirection(dictio:dictio["direction"]  as! Dictionary<String, Any>)
+        model.requiredId = dictio["required"] as? String ?? ""
+        
         let miliSeconds = dictio["date"] as? Int ?? 0
         model.date = Date(milliseconds: miliSeconds)
         model.listofMessage = setMessageList(dictio["Mensajes"] as! NSDictionary)
@@ -102,14 +105,15 @@ class RequestMessageFactory : BaseManager{
     }
     
     
-    func createRequest(_ house: ModelHouse, _ text: String) -> ModelRequestHouse{
+    func createRequestToHouse(_ house: ModelHouse, _ text: String) -> ModelRequestHouse{
         
         let idUser = BaseManager().getUserDefault().idUser
         let model = ModelRequestHouse()
-        model.idHouse = house.idHouse
+        model.aplicantId = idUser
+        model.requiredId = house.idHouse
         model.direction = house.direction
         model.date = Date()
-        model.idUser = idUser
+       
         model.listofMessage = Array()
         model.state = constant.stateOpendRequest
         

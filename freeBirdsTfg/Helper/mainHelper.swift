@@ -133,6 +133,13 @@ class MainHelper{
         view.layer.shadowOffset = CGSize(width: 0, height: 0)
         view.clipsToBounds = false
     }
+    static func noBorderShadow(view : UIView){
+        view.layer.cornerRadius = 0.0
+        view.layer.shadowRadius = 0
+        view.layer.shadowOpacity = 0
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
+        view.clipsToBounds = false
+    }
     
     static func borderShadowRedonde(view : UIView){
         view.layer.width = 2

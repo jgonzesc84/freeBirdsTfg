@@ -143,7 +143,7 @@ class HouseDetailRequestController{
             topVC.view.addSubview(requestView!.modalView!)
             requestView!.modalView?.returnRequestHouseData = { (text) -> () in
                 let reqManager = RequestMessageManager()
-                let model = reqManager.factory.createRequest(self.requestView!.house!,text)
+                let model = reqManager.factory.createRequestToHouse(self.requestView!.house!,text)
                 reqManager.insertRequest(model, completion: { (sucess) in
                     if(sucess){
                         self.requestView!.navigationController?.popViewController(animated: true)

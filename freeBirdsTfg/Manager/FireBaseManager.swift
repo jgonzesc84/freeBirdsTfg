@@ -225,7 +225,7 @@ class FireBaseManager : BaseManager{
         ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
             if let value = snapshot.value as? NSDictionary{
                 var user = ModelUser()
-                user = BaseManager().getUserModel(value, userID,complete:true)
+                user = BaseManager().getUserModel(value, userID)
                 completion(user)
             }else{
                 completion(ModelUser())
@@ -241,7 +241,7 @@ class FireBaseManager : BaseManager{
         ref.child("USUARIO").child(userID).observeSingleEvent(of: .value, with: { (snapshot) in
             if let value = snapshot.value as? NSDictionary{
                 var user = ModelUser()
-                user = BaseManager().getUserModel(value, userID,complete:false)
+                user = BaseManager().getUserModel(value, userID)
                 completion(user)
             }else{
                 completion(ModelUser())

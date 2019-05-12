@@ -62,6 +62,8 @@ class RequestCell: UITableViewCell {
     func  resetCell(){
     deleteButton.isHidden = true
     heightDeleteButton.constant = 0.0
+    acceptButton.isEnabled = true
+        
     }
     
     override func layoutSubviews() {
@@ -94,10 +96,10 @@ class RequestCell: UITableViewCell {
         let iHaveHouse = BaseManager().getUserDefault().houseId != "0"
        
         if (iHaveHouse){
-            let value = model?.idHouse != nil
+            let value = model?.aplicantId == BaseManager().getUserDefault().houseId
             itsRequestMine(value)
         }else{
-             let value = model?.idUser != nil
+             let value = model?.aplicantId == BaseManager().getUserDefault().idUser
             itsRequestMine(value)
         }
         
@@ -182,7 +184,7 @@ class RequestCell: UITableViewCell {
             if(succes){
                 let requestMng = RequestMessageManager()
                 let houseId = BaseManager().getUserDefault().houseId
-                 let value =  houseId != "0"
+                let value =  houseId != "0"
                 self.resfreshViewDeleted(value, request:  self.model!, idHouse: houseId!, manager: requestMng)
             }
         }
@@ -195,7 +197,7 @@ class RequestCell: UITableViewCell {
               
             }
         }else{
-            manager.deleteRequestFromUser(request:request, idUser: (self.model?.idUser!)!){(sucess) in
+            manager.deleteRequestFromUser(request:request, idUser: (self.model?.aplicantId!)!){(sucess) in
                 
             }
         }
@@ -212,6 +214,7 @@ class RequestCell: UITableViewCell {
             }
         }else{
             //Añadir Usuario y gestionar el ingreso del user a la casa avhvakhsvdhjacvdhjkc
+            print("este el flujo final de aceptacion")
         }
     }
     

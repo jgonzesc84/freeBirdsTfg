@@ -205,6 +205,13 @@ extension UITableView {
     }
 }
 
+extension UICollectionView{
+    func reloadData(completion: @escaping ()->()) {
+        UIView.animate(withDuration: 0, animations: { self.reloadData() })
+        { _ in completion() }
+    }
+}
+
 extension Date {
     func asString() -> String {
         let dateFormatter1 = DateFormatter()

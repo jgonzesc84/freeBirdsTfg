@@ -11,10 +11,10 @@ import UIKit
 
 class ModelRoom{
     
-    var user : String?
+    var user : ModelUser?
     var price : String!
     var image : UIImage?
     var search : Bool?
-    
+    var idRoom : String?
     
 }

@@ -135,11 +135,15 @@ class BaseManager{
         let componentRoom = Array(dictioRoom!)
         for key in componentRoom{
             let sectionDictio = testRoomList![key]
-            let user = sectionDictio!["user"] as? String
+            let roomId = key
+            let userId = sectionDictio!["user"] as? String
             let price = sectionDictio!["PRICE"] as? String
             let search = sectionDictio!["search"] as? Bool
             let roomModel = ModelRoom()
-            roomModel.user = user!
+            let userFull = ModelUser()
+            userFull.idUser = userId
+            roomModel.idRoom = roomId
+            roomModel.user = userFull
             roomModel.price = price!
             roomModel.search = search
             arrayRoom.append(roomModel)
@@ -178,7 +182,7 @@ class BaseManager{
          var roomDictio = Dictionary<String, Any>()
         for item in model.listOfRoom! {
             let idRoom = Database.database().reference().childByAutoId().key
-            let dict = ["user":item.user! ,
+            let dict = ["user":item.user?.idUser! as Any,
                         "image":item.image as Any,
                         "PRICE":item.price!,
                         "search": item.search!
@@ -225,7 +229,15 @@ class BaseManager{
         }
         return arrayUser
     }
-    
+//    func prepareCompleteUser(model : ModelUser) -> (Dictionary<String, Any>){
+//          var userDictio = Dictionary<String, Any>()
+//        userDictio = [ "alias" : model.alias,
+//                       "email" : model.email,
+//                       "houseId"
+// 
+//        ]
+//        return userDictio
+//    }
     func prepareUser(model : ModelHouse) -> (Dictionary<String, Any>){
         var userDictio = Dictionary<String, Any>()
         for nameUser in model.user!{
@@ -234,20 +246,17 @@ class BaseManager{
         return userDictio
     }
     
-    func getUserModel(_ dictio : NSDictionary, _ idUser: String, complete: Bool) ->(ModelUser){
+    func getUserModel(_ dictio : NSDictionary, _ idUser: String) ->(ModelUser){
         let model = ModelUser()
         model.idUser = idUser
         model.alias = dictio["alias"] as? String ?? ""
         model.email = dictio["email"] as? String ?? ""
         model.houseId = dictio["houseId"] as? String ?? ""
-        if (complete){
-            if let valueRequest = dictio["solicitudes"] as? NSDictionary {
-                let listId = valueRequest.allKeys
-                model.request = convertRequestMessageColection(listId as! Array<String>)
-            }
+        if let valueRequest = dictio["solicitudes"] as? NSDictionary {
+            let listId = valueRequest.allKeys
+            model.request = convertRequestMessageColection(listId as! Array<String>)
+            
         }
-       
-      
         return model
     }
     
@@ -349,6 +358,19 @@ class BaseManager{
     
    
     
-   
+   //
+    func fillRoomWithuUser( rooms: Array<ModelRoom>, users: Array<ModelUser>) -> Array<ModelRoom>{
+        for room in rooms{
+            if (room.user?.idUser != nil){
+                for user in users{
+                    if(room.user?.idUser == user.idUser){
+                        room.user = user
+                    }
+                }
+            }
+           
+        }
+        return rooms
+    }
     
 }

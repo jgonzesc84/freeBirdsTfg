@@ -11,8 +11,8 @@ import Foundation
 class ModelRequestHouse {
     
     var idRequest: String?
-    var idUser : String?
-    var idHouse : String?
+    var aplicantId : String?
+    var requiredId : String?
     var direction: ModelDirection?
     var listofMessage: Array<ModelRequestMessageHouse>?
     var date : Date?

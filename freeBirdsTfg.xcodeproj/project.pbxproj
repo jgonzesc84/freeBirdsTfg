@@ -66,6 +66,7 @@
 		5950CAEC21171B7C00A97B49 /* PrecioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAEA21171B7C00A97B49 /* PrecioCell.xib */; };
 		5950CAEF211720CA00A97B49 /* checkAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 5950CAEE211720CA00A97B49 /* checkAnimation.json */; };
 		59524358226C54E300FB0EDF /* HouseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59524357226C54E300FB0EDF /* HouseManager.swift */; };
+		5952EC152287526D00E883BD /* EditRoomUserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5952EC142287526D00E883BD /* EditRoomUserManager.swift */; };
 		595594592151A41A006490D5 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595594582151A41A006490D5 /* Direction.swift */; };
 		5960022820FF99240042CF9F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022720FF99240042CF9F /* AppDelegate.swift */; };
 		5960022A20FF99240042CF9F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5960022920FF99240042CF9F /* LoginViewController.swift */; };
@@ -98,6 +99,8 @@
 		5990EB012197749F00627F12 /* ProfileTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */; };
 		5990EB03219775C300627F12 /* ProfileCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5990EB02219775C300627F12 /* ProfileCellController.swift */; };
 		59972E842146EAE700001B27 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59972E832146EAE700001B27 /* BaseViewController.swift */; };
+		5997D6A92286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5997D6A72286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.swift */; };
+		5997D6AA2286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5997D6A82286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.xib */; };
 		599C1EAC227CE7DA00B67107 /* ObserverExpense.swift in Sources */ = {isa = PBXBuildFile; fileRef = 599C1EAB227CE7DA00B67107 /* ObserverExpense.swift */; };
 		59A0DA7D222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
 		59A0DA7E222C349C00225133 /* GlobalPositionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */; };
@@ -265,6 +268,7 @@
 		5950CAEA21171B7C00A97B49 /* PrecioCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrecioCell.xib; sourceTree = "<group>"; };
 		5950CAEE211720CA00A97B49 /* checkAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = checkAnimation.json; sourceTree = "<group>"; };
 		59524357226C54E300FB0EDF /* HouseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseManager.swift; sourceTree = "<group>"; };
+		5952EC142287526D00E883BD /* EditRoomUserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRoomUserManager.swift; sourceTree = "<group>"; };
 		595594582151A41A006490D5 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
 		5960022420FF99240042CF9F /* freeBirdsTfg.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = freeBirdsTfg.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5960022720FF99240042CF9F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -303,6 +307,8 @@
 		5990EAFF2197749F00627F12 /* ProfileTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileTableViewCell.xib; sourceTree = "<group>"; };
 		5990EB02219775C300627F12 /* ProfileCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCellController.swift; sourceTree = "<group>"; };
 		59972E832146EAE700001B27 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		5997D6A72286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseManagerRoomCollectionCellCollectionViewCell.swift; sourceTree = "<group>"; };
+		5997D6A82286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseManagerRoomCollectionCellCollectionViewCell.xib; sourceTree = "<group>"; };
 		599C1EAB227CE7DA00B67107 /* ObserverExpense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverExpense.swift; sourceTree = "<group>"; };
 		59A0DA7B222C349C00225133 /* GlobalPositionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalPositionViewController.swift; sourceTree = "<group>"; };
 		59A0DA7C222C349C00225133 /* GlobalPositionViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GlobalPositionViewController.xib; sourceTree = "<group>"; };
@@ -832,6 +838,7 @@
 			isa = PBXGroup;
 			children = (
 				59524357226C54E300FB0EDF /* HouseManager.swift */,
+				5952EC142287526D00E883BD /* EditRoomUserManager.swift */,
 			);
 			path = House;
 			sourceTree = "<group>";
@@ -1179,6 +1186,8 @@
 				7AD9682322607BB8007B773E /* HouseManagerView.swift */,
 				7AD9682422607BB8007B773E /* HouseManagerView.xib */,
 				7AD9682722607BCA007B773E /* HouseManagerController.swift */,
+				5997D6A72286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.swift */,
+				5997D6A82286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.xib */,
 			);
 			path = "House Manager View Controller";
 			sourceTree = "<group>";
@@ -1372,6 +1381,7 @@
 				59FEB816210FC26C00901D62 /* ModernPictogramsForLottie_MagnifyingGlass-w800-h800.json in Resources */,
 				596625812197698E00658775 /* ProfileViewController.xib in Resources */,
 				5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */,
+				5997D6AA2286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.xib in Resources */,
 				59A0DA80222C349C00225133 /* GlobalPositionViewController.xib in Resources */,
 				7A3AE24C22805D23008B9913 /* RequestView.xib in Resources */,
 				597D5879227A16F20075B4FF /* ExpenseBillCell.xib in Resources */,
@@ -1598,6 +1608,8 @@
 				59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */,
 				5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */,
 				3BB44E2F217E0F3D00D610DF /* ModalCompleteHouseController.swift in Sources */,
+				5997D6A92286E03100DCCE06 /* HouseManagerRoomCollectionCellCollectionViewCell.swift in Sources */,
+				5952EC152287526D00E883BD /* EditRoomUserManager.swift in Sources */,
 				5966257C2196F1CF00658775 /* ModalRequestHouseController.swift in Sources */,
 				7A3AE24F22805E83008B9913 /* RequestCell.swift in Sources */,
 				59524358226C54E300FB0EDF /* HouseManager.swift in Sources */,

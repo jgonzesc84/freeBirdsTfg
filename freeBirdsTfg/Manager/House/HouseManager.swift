@@ -24,7 +24,7 @@ class HouseManager : BaseManager{
      var user :  Array<ModelUser>?
      var house : ModelHouse?
     
-     weak var delegate: RefreshHouseData?
+    weak var delegate: RefreshHouseData?
     weak var delegateRefresh: RefreshExpense?
     
     static let sharedInstance = HouseManager()
@@ -47,17 +47,18 @@ class HouseManager : BaseManager{
             let value = shot.value as? NSDictionary
             self.house = self.parseHouse(dictioHouse: value!)
             self.user = self.house?.user
-            self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
-                self.house?.listOfBill = listOfSuccess
-                completion(true)
+            self.fillUserHouse(completion: { (listOfUser) in
+                self.house!.user = listOfUser
+                self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
+                self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
+                    self.house?.listOfBill = listOfSuccess
+                    completion(true)
+                })
             })
-            
         }, withCancel: { (error) in
           
         })
     }
-    
-    
      func getListOfBill(list:Array<ModelBill>, completion:@escaping(Array<ModelBill>)-> Void){
         var completedList = Array<ModelBill>()
         var count = 0
@@ -146,7 +147,7 @@ class HouseManager : BaseManager{
         ref.child("EXPENSE").child(expenseId).observe( .value, with: { (shot) in
             let value = shot.value as? NSDictionary
             guard let dictio = value, value != nil else{
-                return
+                return //deveria ser un completion false
             }
             completion(self.getExpense(dictio:dictio,idExpense:expenseId))
         } , withCancel: { (error) in
@@ -187,34 +188,43 @@ class HouseManager : BaseManager{
             
         }
     }
+    }
     func getBillUpdated(chilId:String,completion: @escaping(ModelBill,Bool) -> Void){
         let ref = Database.database().reference()
         ref.child("BILL").child(chilId).observe(.childAdded) { (shot) in
-            var bill = ModelBill()
-            if let data = shot.value as? NSDictionary{
-                //bill = self.parseBill
+//            var bill = ModelBill()
+//            if let data = shot.value as? NSDictionary{
+//                //bill = self.parseBill
+//            }
+        }
+    }
+  
+    func fillUserHouse(completion:@escaping(Array<ModelUser>) -> Void)  {
+        let totalUser = house?.user?.count
+        var count = 0
+        var usersFilled = Array<ModelUser>()
+        for user in house!.user!{
+            getUserById(user.idUser!) { (model) in
+                usersFilled.append(model)
+                count += 1
+                if(count == totalUser){
+                    completion(usersFilled)
+                }
             }
         }
     }
-    /*
-     func getHouseUpdated(completion: @escaping (ModelHouse,Bool) -> Void){
-     let ref = Database.database().reference()
-     ref.child("CASA").queryLimited(toLast: 1).observe(.childAdded, with:{ shot in
-     var fullHouse = ModelHouse()
-     if let data = shot.value as? NSDictionary {
-     fullHouse = self.parseHouse(dictioHouse: data)
-     }
-     completion(fullHouse,true)
-     })
-     ref.child("CASA").observe(.childRemoved, with:{ shot in
-     var fullHouse = ModelHouse()
-     if let data = shot.value as? NSDictionary {
-     fullHouse = self.parseHouse(dictioHouse: data)
-     }
-     completion(fullHouse,false)
-     })
-     }
- 
- */
-}
+
+    func getUserById( _ idUser:String,completion: @escaping (ModelUser) -> Void){
+        let ref = Database.database().reference()
+        ref.child("USUARIO").child(idUser).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let value = snapshot.value as? NSDictionary{
+                var user =   self.getUserModel(value, idUser)
+                completion(user)
+            }else{
+                completion(ModelUser())
+            }
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
 }
