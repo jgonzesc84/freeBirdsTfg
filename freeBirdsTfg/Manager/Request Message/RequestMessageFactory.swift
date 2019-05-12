@@ -31,7 +31,7 @@ class RequestMessageFactory : BaseManager{
         model.idRequest = dictio["idRequest"] as? String ?? ""
         model.aplicantId = dictio["aplicantId"] as? String ?? ""
         model.direction = getDirection(dictio:dictio["direction"]  as! Dictionary<String, Any>)
-        model.requiredId = dictio["required"] as? String ?? ""
+        model.requiredId = dictio["requiredId"] as? String ?? ""
         
         let miliSeconds = dictio["date"] as? Int ?? 0
         model.date = Date(milliseconds: miliSeconds)

@@ -15,7 +15,6 @@ class AlphaViewController: BaseViewController {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var loadingImageView: UIView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -31,11 +30,15 @@ class AlphaViewController: BaseViewController {
        
        
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+         //fireBase.delegate = nil
+    }
     func calculateLandingPage(){
-        let fireBase = FireBaseManager()
+       var fireBase = FireBaseManager()
         fireBase.delegate = self
         fireBase.isSessionActive()
+       
     }
    /* override func viewWillAppear(_ animated: Bool) {
         lottieAnimationLoading()
@@ -95,13 +98,12 @@ extension AlphaViewController : getAllHouseDelegate {
             break
         case "tiene casa":
             //Setear singleton con la información de la casa usuarios TODOS, TODO gastos solo los que son del usuario.
-          
-            HouseManager.sharedInstance.setupData { (finish) in
+            HouseManager.sharedInstance.setupDataBegining { (finish) in
                 if(finish){
                     let Objvc = tabBarView()
-                    self.navigationController?.pushViewController(Objvc, animated: true)
-                    self.present(Objvc, animated: true) {
-                    }
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.window?.rootViewController = Objvc
+                    self.navigationController?.popToRootViewController(animated: true)
                 }else{
                     print("error")
                 }

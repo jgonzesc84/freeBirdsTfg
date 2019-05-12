@@ -21,6 +21,7 @@ private let fireManager = FireBaseManager()
 class FireBaseManager : BaseManager{
     //MARK: propiedades
    //TODO cargarse el delegado y poner un clousure!!
+    var firebaseAuthListener : AuthStateDidChangeListenerHandle?
     public var userAuth: ((Bool) -> ())?
     weak var delegate: getAllHouseDelegate?
     var ref = DatabaseReference()
@@ -44,7 +45,7 @@ class FireBaseManager : BaseManager{
     }
     //(completion: @escaping (Bool) -> ())
    func isSessionActive(){
-    Auth.auth().addStateDidChangeListener {  (auth, user) in
+   firebaseAuthListener = Auth.auth().addStateDidChangeListener {  (auth, user) in
         var landingPage = ""
         if user == nil
         {
@@ -61,10 +62,12 @@ class FireBaseManager : BaseManager{
             }
         }
         self.delegate?.isActiveSession( landingPage:landingPage)
+   // Auth.auth().removeStateDidChangeListener(self.firebaseAuthListener!)
     }
     
     
     }
+    
     
     static func createUser(model: ModelUser){
         let ref = Database.database().reference()

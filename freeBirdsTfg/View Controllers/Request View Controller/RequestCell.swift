@@ -11,6 +11,12 @@ import Material
 import MapKit
 import CoreLocation
 
+protocol CellRequestController{
+    
+    func acceptedInsert(user:Bool,idAccepted: String)
+}
+
+
 class RequestCell: UITableViewCell {
     
     @IBOutlet weak var mainView: UIView!
@@ -35,6 +41,7 @@ class RequestCell: UITableViewCell {
     var  typeUser = false
     var  houseRequestToUser : Bool?
     var  userRequestToHouse : Bool?
+    var delegate : CellRequestController?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -184,7 +191,7 @@ class RequestCell: UITableViewCell {
             if(succes){
                 let requestMng = RequestMessageManager()
                 let houseId = BaseManager().getUserDefault().houseId
-                let value =  houseId != "0"
+                 let value =  houseId != "0"
                 self.resfreshViewDeleted(value, request:  self.model!, idHouse: houseId!, manager: requestMng)
             }
         }
@@ -194,7 +201,8 @@ class RequestCell: UITableViewCell {
         
         if (value){
             manager.deleteRequestFromHouse(request: request, idHouse: idHouse){(succes) in
-              
+             
+             
             }
         }else{
             manager.deleteRequestFromUser(request:request, idUser: (self.model?.aplicantId!)!){(sucess) in
@@ -214,7 +222,21 @@ class RequestCell: UITableViewCell {
             }
         }else{
             //Añadir Usuario y gestionar el ingreso del user a la casa avhvakhsvdhjacvdhjkc
-            print("este el flujo final de aceptacion")
+            if(model?.aplicantId == BaseManager().getUserDefault().houseId){
+                //el aplicant es la casa required user
+                HouseManager.sharedInstance.insertUser(request: model!, userAplicant: false){ (succes) in
+                    if(succes){
+                        //self.delegate?.acceptedInsert( user: true,idAccepted: model?.idRequest!)
+                    }
+                }
+            }else{
+                //el aplicant es el user required la casa
+                HouseManager.sharedInstance.insertUser(request: model!, userAplicant: true){ (succes) in
+                    if(succes){
+                        self.delegate?.acceptedInsert( user: true,idAccepted: self.model!.idRequest!)
+                    }
+                }
+            }
         }
     }
     

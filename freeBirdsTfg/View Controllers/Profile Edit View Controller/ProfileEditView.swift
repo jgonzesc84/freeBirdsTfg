@@ -11,20 +11,29 @@ import Firebase
 
 class ProfileEditView: BaseViewController {
     
+    @IBOutlet weak var leaveHouseButton: UIButton!
     @IBOutlet weak var closeSesscionButton: UIButton!
     var controller : ProfileEditController?
-
+    var listRoom: Array<ModelRoom>?
+    var userId : String?
+    var houseId :String?
+    var user : ModelUser?
     @IBOutlet weak var mainView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
         MainHelper.theStyle(view: mainView)
         MainHelper.circleButton(button: closeSesscionButton)
+        MainHelper.circleButton(button: leaveHouseButton)
     }
 
     func initView(){
         controller = ProfileEditController(view:self)
         self.hideKeyboardWhenTappedAround()
+        listRoom =  HouseManager.sharedInstance.house!.listOfRoom
+        houseId = BaseManager().houseId()
+        userId = BaseManager().userId()
+        user = BaseManager().getUserDefault()
     }
   
    
@@ -36,6 +45,41 @@ class ProfileEditView: BaseViewController {
         let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
         UIApplication.shared.keyWindow?.rootViewController = homePage
        // self.navigationController?.pushViewController(homePage, animated: true)
+    }
+    
+    
+    @IBAction func leaveHouseButton(_ sender: Any) {
+        
+        if let room = listRoom?.first(where: {$0.user?.idUser! == userId}){
+             let manager = EditRoomUserManager()
+            manager.exitUserRoom(idRoom: room.idRoom!,user: user!){
+                (success) in
+                if(success){
+                    self.leaveTheShip()
+                }else{
+                   print("fallo")
+                }
+            }
+        }else{
+             leaveTheShip()
+        }
+       
+    }
+    
+    func leaveTheShip(){
+        HouseManager.sharedInstance.deleteUserFromHouse(idHouse: houseId!, idUser: userId!){
+          (sucess) in
+                  if (sucess){
+                UserDefaults.standard.set("0", forKey: BaseViewController.IDHOUSE)
+                let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
+                let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.window?.rootViewController = alpha
+               self.navigationController?.popToRootViewController(animated: true)
+            }else{
+                print("fallo")
+            }
+        }
     }
     
 }

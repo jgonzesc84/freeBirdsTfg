@@ -13,6 +13,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileEditView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="closeSesscionButton" destination="MEh-hj-hGm" id="940-iA-wSM"/>
+                <outlet property="leaveHouseButton" destination="9qb-3H-PCk" id="kZU-4f-ou8"/>
                 <outlet property="mainView" destination="N04-1g-92B" id="Xu8-4w-XgC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -37,10 +38,26 @@
                                 <action selector="closeSession:" destination="-1" eventType="touchUpInside" id="B48-w9-bfS"/>
                             </connections>
                         </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9qb-3H-PCk">
+                            <rect key="frame" x="137" y="155" width="100" height="100"/>
+                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="lCX-2d-kmG"/>
+                                <constraint firstAttribute="height" constant="100" id="rvV-2c-6OF"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                            <connections>
+                                <action selector="closeSession:" destination="-1" eventType="touchUpInside" id="FwG-0n-OBb"/>
+                                <action selector="leaveHouseButton:" destination="-1" eventType="touchUpInside" id="K9k-EP-xWf"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="9qb-3H-PCk" secondAttribute="trailing" constant="138" id="3v8-ip-Pb5"/>
                         <constraint firstItem="MEh-hj-hGm" firstAttribute="centerY" secondItem="N04-1g-92B" secondAttribute="centerY" id="5NM-Qd-IOS"/>
+                        <constraint firstItem="MEh-hj-hGm" firstAttribute="top" secondItem="9qb-3H-PCk" secondAttribute="bottom" constant="28.5" id="Elb-KQ-LTj"/>
+                        <constraint firstItem="9qb-3H-PCk" firstAttribute="leading" secondItem="N04-1g-92B" secondAttribute="leading" constant="137" id="oGI-Id-EPm"/>
                         <constraint firstItem="MEh-hj-hGm" firstAttribute="centerX" secondItem="N04-1g-92B" secondAttribute="centerX" id="ped-5Q-via"/>
                     </constraints>
                 </view>

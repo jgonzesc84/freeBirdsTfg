@@ -23,13 +23,47 @@ class HouseManager : BaseManager{
     //gastos collection
      var user :  Array<ModelUser>?
      var house : ModelHouse?
-    
+    var  theGreateye :  DatabaseHandle!
+    var theReference : DatabaseReference!
     weak var delegate: RefreshHouseData?
     weak var delegateRefresh: RefreshExpense?
     
     static let sharedInstance = HouseManager()
     private override init (){}
     
+    func setupDataBegining( completion:@escaping (Bool) -> Void){
+        let idHouse = getUserDefault().houseId
+        fillHouseFirstLoad(idHouse: idHouse ?? "default"){(finish) in
+            if (finish){
+               
+                completion(true)
+            }
+        }
+    }
+    
+    func fillHouseFirstLoad(idHouse: String , completion:@escaping (Bool) -> Void){
+       let ref = Database.database().reference()
+        ref.child("CASA").child(idHouse).observeSingleEvent(of: .value, with: { (shot) in
+            self.house = ModelHouse()
+            let value = shot.value as? NSDictionary
+            self.house = self.parseHouse(dictioHouse: value!)
+            self.user = self.house?.user
+            self.fillUserHouse(completion: { (listOfUser) in
+                self.house!.user = listOfUser
+                self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
+                if(self.house?.listOfBill == nil){
+                    let bills = Array<ModelBill>()
+                    self.house!.listOfBill = bills
+                }
+                self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
+                    self.house?.listOfBill = listOfSuccess
+                    completion(true)
+                })
+            })
+        }, withCancel: { (error) in
+            
+        })
+    }
     func setupData( completion:@escaping (Bool) -> Void){
       let idHouse = getUserDefault().houseId
         fillHouse(idHouse: idHouse ?? "default"){(finish) in
@@ -41,8 +75,8 @@ class HouseManager : BaseManager{
     }
     
     func fillHouse(idHouse: String , completion:@escaping (Bool) -> Void){
-        let ref = Database.database().reference()
-        ref.child("CASA").child(idHouse).observe(.value, with: { (shot) in
+         theReference = Database.database().reference()
+      theGreateye = theReference.child("CASA").child(idHouse).observe(.value, with: { (shot) in
             self.house = ModelHouse()
             let value = shot.value as? NSDictionary
             self.house = self.parseHouse(dictioHouse: value!)
@@ -50,6 +84,10 @@ class HouseManager : BaseManager{
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser
                 self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
+                if(self.house?.listOfBill == nil){
+                    let bills = Array<ModelBill>()
+                    self.house!.listOfBill = bills
+                }
                 self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
                     self.house?.listOfBill = listOfSuccess
                     completion(true)
@@ -59,6 +97,7 @@ class HouseManager : BaseManager{
           
         })
     }
+
      func getListOfBill(list:Array<ModelBill>, completion:@escaping(Array<ModelBill>)-> Void){
         var completedList = Array<ModelBill>()
         var count = 0
@@ -204,13 +243,16 @@ class HouseManager : BaseManager{
         var count = 0
         var usersFilled = Array<ModelUser>()
         for user in house!.user!{
-            getUserById(user.idUser!) { (model) in
-                usersFilled.append(model)
-                count += 1
-                if(count == totalUser){
-                    completion(usersFilled)
+            if let id = user.idUser, user.idUser != nil && (user.idUser?.count)! > 0{
+                getUserById(id) { (model) in
+                    usersFilled.append(model)
+                    count += 1
+                    if(count == totalUser){
+                        completion(usersFilled)
+                    }
                 }
             }
+            
         }
     }
 
@@ -218,7 +260,7 @@ class HouseManager : BaseManager{
         let ref = Database.database().reference()
         ref.child("USUARIO").child(idUser).observeSingleEvent(of: .value, with: { (snapshot) in
             if let value = snapshot.value as? NSDictionary{
-                var user =   self.getUserModel(value, idUser)
+                let user =   self.getUserModel(value, idUser)
                 completion(user)
             }else{
                 completion(ModelUser())
@@ -226,5 +268,92 @@ class HouseManager : BaseManager{
         }) { (error) in
             print(error.localizedDescription)
         }
+    }
+    
+    
+    //insertamos usario  en casa
+    func setUserOnHouse(idUser: String, idHouse: String, completion:@escaping(Bool) -> Void){
+           let ref = Database.database().reference()
+        ref.child("USUARIO").child(idUser).child("houseId").setValue(idHouse){
+             (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+    }
+    func insertUser(request: ModelRequestHouse, userAplicant: Bool,completion:@escaping(Bool)-> Void){
+       
+        var dictio  = Dictionary<String,Any>()
+        let ref = Database.database().reference()
+        var idHouse = request.aplicantId
+        var idUser = request.requiredId
+        if(userAplicant){
+            idUser = request.aplicantId!
+            idHouse = request.requiredId!
+        }
+        dictio = self.prepareUserNoHouse(idUser : idUser!)
+        ref.child("CASA").child(idHouse!).child("USER").child(idUser!).setValue(dictio){
+            (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+              completion(false)
+            } else {
+                
+                var idHouse = request.aplicantId
+                var idUser = request.requiredId
+                if(userAplicant){
+                    idUser = request.aplicantId!
+                    idHouse = request.requiredId!
+                }
+                UserDefaults.standard.set(idHouse, forKey: BaseViewController.IDHOUSE)
+                self.setUserOnHouse(idUser: idUser!, idHouse: idHouse!){ (succes) in
+                    if(succes){
+                        completion(true)
+                    }else{
+                         completion(false)
+                    }
+                    }
+              
+            }
+        }
+    }
+    
+    //sacar usuario de casa
+    func deleteUserFromHouse(idHouse: String, idUser: String,completion:@escaping(Bool) -> Void){
+        cancelEye()
+        let ref = Database.database().reference()
+        let userId = idUser
+        ref.child("CASA").child(idHouse).child("USER").child(idUser).removeValue(){
+              (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+               
+            } else {
+                print(userId)
+               // completion(true)
+                self.deleteHouseInUser(idUser: userId){(sucess) in
+                    completion(true)
+                }
+        }
+    }
+    
+    }
+    
+    func deleteHouseInUser( idUser: String,completion:@escaping(Bool)-> Void){
+           let ref = Database.database().reference()
+        ref.child("USUARIO").child(idUser).child("houseId").setValue("0"){
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+    }
+    
+    func cancelEye(){
+      //  theReference.removeObserver(withHandle: theGreateye)
     }
 }

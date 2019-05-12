@@ -24,7 +24,7 @@ class BaseManager{
         return user
     }
     func userId() -> String{
-        return self.getUserDefault().idUser!
+        return self.getUserDefault().idUser ?? ""
     }
     func houseId()-> String{
         return self.getUserDefault().houseId!
@@ -220,8 +220,8 @@ class BaseManager{
         let componentUser = Array(dictioUser!)
         arrayUser.append(getUserDefault())
         for key in componentUser{
-            let userId = testUserList![key] as? String
-            if (userId != getUserDefault().idUser){
+            let userId = key
+            if (userId != getUserDefault().idUser && userId.count > 0){
                 let user = ModelUser()
                 user.idUser = userId
                 arrayUser.append(user)
@@ -229,23 +229,24 @@ class BaseManager{
         }
         return arrayUser
     }
-//    func prepareCompleteUser(model : ModelUser) -> (Dictionary<String, Any>){
-//          var userDictio = Dictionary<String, Any>()
-//        userDictio = [ "alias" : model.alias,
-//                       "email" : model.email,
-//                       "houseId"
-// 
-//        ]
-//        return userDictio
-//    }
+
     func prepareUser(model : ModelHouse) -> (Dictionary<String, Any>){
         var userDictio = Dictionary<String, Any>()
+        var userDictioKey = Dictionary<String, Any>()
+        
         for nameUser in model.user!{
             userDictio = ["userId":nameUser.idUser!]
+            userDictioKey[nameUser.idUser!] = userDictio
         }
+        return userDictioKey
+    }
+    func prepareUserNoHouse(idUser : String) -> (Dictionary<String, Any>){
+        var userDictio = Dictionary<String, Any>()
+       
+            userDictio = ["userId":idUser]
+        
         return userDictio
     }
-    
     func getUserModel(_ dictio : NSDictionary, _ idUser: String) ->(ModelUser){
         let model = ModelUser()
         model.idUser = idUser

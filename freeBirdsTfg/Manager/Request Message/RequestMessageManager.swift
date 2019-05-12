@@ -278,6 +278,41 @@ class RequestMessageManager{
         }
         
     }
+    /*
+     requestMng.changeStateRequest(model!.idRequest!, state:constant.statcDeclineRequest){ (succes) in
+     if(succes){
+     let requestMng = RequestMessageManager()
+     let houseId = BaseManager().getUserDefault().houseId
+     let value =  houseId != "0"
+     self.resfreshViewDeleted(value, request:  self.model!, idHouse: houseId!, manager: requestMng)
+     }
+     }
+     manager.deleteRequestFromUser(request:request, idUser: (self.model?.aplicantId!)!){(sucess) in
+     
+     }
+ */
+    func setCancellAllRequestUser(listOfRequest:Array<ModelRequestHouse>,idAccepted: String){
+        for request in listOfRequest{
+            if(idAccepted != request.idRequest){
+                self.changeStateRequest(request.idRequest!,state: constant.statcDeclineRequest){(sucess) in
+                    if(sucess){
+                        self.deleteRequestFromUser(request: request, idUser:BaseManager().userId()){
+                            (sucess) in
+                        }
+                    }
+                }
+            }else{
+                self.changeStateRequest(request.idRequest!,state: constant.stateFinishedRequest){(sucess) in
+                    if(sucess){
+                        self.deleteRequestFromUser(request: request, idUser:BaseManager().userId()){
+                            (sucess) in
+                        }
+                    }
+                }
+            }
+          
+        }
+    }
     
     func giveMeId() -> String{
         let ref = Database.database().reference()

@@ -8,7 +8,8 @@
 
 import UIKit
 
-class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSource , CellRequestController{
+   
 
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var table: UITableView!
@@ -23,6 +24,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }else{
              prepareNavRoot(label:  titleLabel, text: "Solicitudes")
         }
+        
          setuptable()
          listAddedRequest()
          listDeleteRequest()
@@ -55,6 +57,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         cell.resetCell()
         cell.typeUser = typeUser
         cell.setupCell(listOfRequest![indexPath.row])
+        cell.delegate = self
         return cell
     }
     
@@ -195,6 +198,31 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }else{
             print ("error")
         }
+    }
+    
+    func acceptedInsert(user: Bool,idAccepted:String) {
+        if (user){
+            let manager = RequestMessageManager()
+            manager.setCancellAllRequestUser(listOfRequest: listOfRequest!, idAccepted: idAccepted)
+            let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
+            let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.window?.rootViewController = alpha
+            self.navigationController?.popToRootViewController(animated: true)
+          
+           
+    }
+        /*
+         let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
+         let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
+         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+         appDelegate.window?.rootViewController = alpha
+         self.navigationController?.popToRootViewController(animated: true)
+         let vc = UINavigationController(rootViewController: Objvc)
+         self.present(vc, animated: true) {
+         }
+ 
+ */
     }
 
 }
