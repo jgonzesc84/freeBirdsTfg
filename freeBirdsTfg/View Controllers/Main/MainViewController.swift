@@ -98,6 +98,8 @@ class MainViewController: BaseViewController {
     }
     
     func configureNav(){
+        
+       
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         // Sets shadow (line below the bar) to a blank image
         UINavigationBar.appearance().shadowImage = UIImage()

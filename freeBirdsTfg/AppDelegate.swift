@@ -40,7 +40,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
               
             }
         }
-         application.registerForRemoteNotifications()
+        application.registerForRemoteNotifications()
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        let nav1 = UINavigationController()
+        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let mainView = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+      //  let mainView = LoginViewController(nibName: "LoginViewController", bundle: nil) //ViewController = Name of your controller
+        nav1.viewControllers = [mainView]
+        self.window!.rootViewController = nav1
+        self.window?.makeKeyAndVisible()
         return true
     }
 

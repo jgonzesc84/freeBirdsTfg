@@ -52,6 +52,7 @@ class BaseViewController: UIViewController {
         }
     
     func prepareNav(label : UILabel , text: String){
+        self.navigationController?.navigationBar.isHidden = false
         label.text = text
         let backButton = Button(type : .custom)
         backButton.pulseColor = UIColor.AppColor.Gray.greyApp

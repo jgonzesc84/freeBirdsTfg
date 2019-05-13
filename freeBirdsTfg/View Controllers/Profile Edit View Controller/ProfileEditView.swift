@@ -18,6 +18,7 @@ class ProfileEditView: BaseViewController {
     var userId : String?
     var houseId :String?
     var user : ModelUser?
+    var tabBar : tabBarView?
     @IBOutlet weak var mainView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,12 @@ class ProfileEditView: BaseViewController {
         UserDefaults.standard.synchronize()
         let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
         let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        UIApplication.shared.keyWindow?.rootViewController = homePage
+//        self.viewControllers.removeAll()
+//        UIApplication.shared.keyWindow?.rootViewController = homePage
+        self.navigationController?.initRootViewController(vc: homePage)
+        self.tabBar?.dismiss(animated: false, completion: {
+            
+        })
        // self.navigationController?.pushViewController(homePage, animated: true)
     }
     
@@ -68,13 +74,24 @@ class ProfileEditView: BaseViewController {
     
     func leaveTheShip(){
         HouseManager.sharedInstance.deleteUserFromHouse(idHouse: houseId!, idUser: userId!){
-          (sucess) in
-                  if (sucess){
+            (sucess) in
+            if (sucess){
                 UserDefaults.standard.set("0", forKey: BaseViewController.IDHOUSE)
-                let main =  MainViewController(nibName: "MainViewController", bundle: nil)
-                let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = main
-               self.navigationController?.popToRootViewController(animated: true)
+//                let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
+//                let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
+//               let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+//                self.navigationController?.initRootViewController(vc: Objvc)
+                let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+               
+               // let vc = UINavigationController(rootViewController: Objvc)
+                
+//                self.present(vc, animated: true) {
+//
+//                }
+                  self.navigationController?.initRootViewController(vc: Objvc)
+                self.tabBar?.dismiss(animated: false, completion: {
+                    
+                })
             }else{
                 print("fallo")
             }

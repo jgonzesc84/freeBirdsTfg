@@ -30,7 +30,7 @@ class CreateHouse: BaseViewController {
     public var mapView : MapViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareNav(label: titlelabel, text: "Crea tu Casa")
+         prepareNav(label: titlelabel, text: "Crea tu Casa")
          initView()
         
     }

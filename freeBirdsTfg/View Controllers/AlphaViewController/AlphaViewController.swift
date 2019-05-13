@@ -101,9 +101,10 @@ extension AlphaViewController : getAllHouseDelegate {
             HouseManager.sharedInstance.setupDataBegining { (finish) in
                 if(finish){
                     let Objvc = tabBarView()
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.window?.rootViewController = Objvc
-                    self.navigationController?.popToRootViewController(animated: true)
+//                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                    appDelegate.window?.rootViewController = Objvc
+//                    self.navigationController?.popToRootViewController(animated: true)
+                     self.navigationController?.initRootViewController(vc: Objvc)
                 }else{
                     print("error")
                 }

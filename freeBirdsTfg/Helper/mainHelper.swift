@@ -322,9 +322,9 @@ extension UINavigationController {
      
      - parameter vc: root view controller to set a new
      */
-    func initRootViewController(vc: UIViewController, transitionType type: kCATransitionFade, duration: CFTimeInterval = 0.3) {
+    func initRootViewController(vc: UIViewController,  duration: CFTimeInterval = 0.3) {
     
-        self.addTransition(transitionType: type, duration: duration)
+        self.addTransition( duration: duration)
         self.viewControllers.removeAll()
         self.pushViewController(vc, animated: false)
         self.popToRootViewController(animated: false)
@@ -336,11 +336,12 @@ extension UINavigationController {
      - parameter type: kCATransitionType, it means style of animation
      - parameter duration: CFTimeInterval, duration of animation
      */
-    private func addTransition(transitionType type: kCATransitionFade, duration: CFTimeInterval = 0.3) {
+    private func addTransition( duration: CFTimeInterval = 0.3) {
         let transition = CATransition()
         transition.duration = duration
+       
         transition.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        transition.type = CATransitionType(rawValue: type)
+        transition.type =  CATransitionType.fade
         self.view.layer.add(transition, forKey: nil)
     }
 }

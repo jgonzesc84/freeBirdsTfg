@@ -19,6 +19,7 @@ class constant{
     static let stateOpendRequest = "abierta"
     static let stateAcceptRequest = "aceptada"
     static let statcDeclineRequest = "rechazada"
+    static let stateFinishedRequest = "finalizada"
 }
 extension UIColor {
     

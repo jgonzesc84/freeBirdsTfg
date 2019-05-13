@@ -114,9 +114,12 @@ class LoginController{
         case "no tiene casa":
             let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
             let vc = UINavigationController(rootViewController: Objvc)
-            self.viewLogin!.present(vc, animated: true) {
-
-            }
+ //           self.viewLogin?.navigationController?.pushViewController(vc, animated: true)
+//            self.viewLogin!.present(vc, animated: true) {
+//
+//            }
+        //    self.viewLogin?.navigationController?.initRootViewController(vc: Objvc)
+            self.viewLogin?.navigationController?.pushViewController(Objvc, animated: true)
             break;
         case "tiene casa":
             HouseManager.sharedInstance.setupData { (finish) in

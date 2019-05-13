@@ -206,9 +206,10 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
             manager.setCancellAllRequestUser(listOfRequest: listOfRequest!, idAccepted: idAccepted)
             let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
             let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.window?.rootViewController = alpha
-            self.navigationController?.popToRootViewController(animated: true)
+//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//            appDelegate.window?.rootViewController = alpha
+//            self.navigationController?.popToRootViewController(animated: true)
+            self.navigationController?.initRootViewController(vc: alpha)
           
            
     }
