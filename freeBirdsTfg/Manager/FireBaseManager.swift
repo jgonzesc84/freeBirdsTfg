@@ -46,6 +46,7 @@ class FireBaseManager : BaseManager{
     //(completion: @escaping (Bool) -> ())
    func isSessionActive(){
    firebaseAuthListener = Auth.auth().addStateDidChangeListener {  (auth, user) in
+    
         var landingPage = ""
         if user == nil
         {
@@ -67,7 +68,12 @@ class FireBaseManager : BaseManager{
     
     
     }
-    
+    func requestAuthenticated(){
+       var authData = Auth.auth()
+        if(authData != nil){
+            print("que mierda pasa aqui?")
+        }
+    }
     
     static func createUser(model: ModelUser){
         let ref = Database.database().reference()

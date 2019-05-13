@@ -302,7 +302,7 @@ class RequestMessageManager{
                     }
                 }
             }else{
-                self.changeStateRequest(request.idRequest!,state: constant.stateFinishedRequest){(sucess) in
+                self.changeStateRequest(request.idRequest!,state: constant.stateAcceptRequest){(sucess) in
                     if(sucess){
                         self.deleteRequestFromUser(request: request, idUser:BaseManager().userId()){
                             (sucess) in

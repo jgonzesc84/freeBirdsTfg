@@ -50,7 +50,7 @@ class ProfileEditView: BaseViewController {
     
     @IBAction func leaveHouseButton(_ sender: Any) {
         
-        if let room = listRoom?.first(where: {$0.user?.idUser! == userId}){
+        if let room = listRoom?.first(where: {$0.user?.idUser ?? "" == userId}){
              let manager = EditRoomUserManager()
             manager.exitUserRoom(idRoom: room.idRoom!,user: user!){
                 (success) in
@@ -71,10 +71,9 @@ class ProfileEditView: BaseViewController {
           (sucess) in
                   if (sucess){
                 UserDefaults.standard.set("0", forKey: BaseViewController.IDHOUSE)
-                let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
-                let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
+                let main =  MainViewController(nibName: "MainViewController", bundle: nil)
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                appDelegate.window?.rootViewController = alpha
+                appDelegate.window?.rootViewController = main
                self.navigationController?.popToRootViewController(animated: true)
             }else{
                 print("fallo")
@@ -83,3 +82,4 @@ class ProfileEditView: BaseViewController {
     }
     
 }
+
