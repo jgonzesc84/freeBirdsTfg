@@ -42,14 +42,15 @@ class ProfileEditView: BaseViewController {
         try! Auth.auth().signOut()
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
-        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+//        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+//        let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
 //        self.viewControllers.removeAll()
 //        UIApplication.shared.keyWindow?.rootViewController = homePage
-        self.navigationController?.initRootViewController(vc: homePage)
-        self.tabBar?.dismiss(animated: false, completion: {
-            
-        })
+       self.navigationController?.popViewController(animated:true)
+        
+//        self.tabBar?.dismiss(animated: false, completion: {
+//              self.tabBar?.view.removeFromSuperview()
+//        })
        // self.navigationController?.pushViewController(homePage, animated: true)
     }
     
@@ -81,17 +82,19 @@ class ProfileEditView: BaseViewController {
 //                let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
 //               let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
 //                self.navigationController?.initRootViewController(vc: Objvc)
-                let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
+               // let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
                
                // let vc = UINavigationController(rootViewController: Objvc)
                 
 //                self.present(vc, animated: true) {
 //
 //                }
-                  self.navigationController?.initRootViewController(vc: Objvc)
-                self.tabBar?.dismiss(animated: false, completion: {
-                    
-                })
+//                 self.navigationController?.initRootViewController(vc: Objvc)
+//                self.tabBar?.view.removeFromSuperview()
+//                self.tabBar?.dismiss(animated: false, completion: {
+//
+//                })
+                self.navigationController?.popViewController(animated: true)
             }else{
                 print("fallo")
             }

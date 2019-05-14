@@ -35,6 +35,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
     override func viewDidLoad() {
         super.viewDidLoad()
         prepareNav(label: titleLabel, text: "Busca Casa")
+        
         MainHelper.navStyle(view:navView)
         initView()
         controller = MapSearchHouseController(viewMap:self)
@@ -45,6 +46,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
    
     
     override func viewDidAppear(_ animated: Bool) {
+          self.navigationController?.navigationBar.isHidden = false
           setupSearchView()
           setupDetailHouseTableView()
           setupCurrentLocation()

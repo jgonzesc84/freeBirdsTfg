@@ -30,6 +30,7 @@ class CreateHouse: BaseViewController {
     public var mapView : MapViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
+       
          prepareNav(label: titlelabel, text: "Crea tu Casa")
          initView()
         
@@ -44,7 +45,7 @@ class CreateHouse: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-     
+      self.navigationController?.navigationBar.isHidden = false
         if(alreadyMoved){
             UIView.animate(withDuration: 1) {
               //  self.buttonAccept.center.y -= self.buttonAccept.frame.height
@@ -115,7 +116,12 @@ class CreateHouse: BaseViewController {
             topVC.view.addSubview(self.modalView!)
             self.modalView?.returnCompleteHouseData = { (text) -> () in
                 self.house?.completeDescription = text
-                 FireBaseManager.createHouse(model: self.house!)
+                FireBaseManager.createHouse(model: self.house!){
+                    (sucess)in
+                    if(sucess){
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
                 
                 //redirigir a tabView
                
@@ -140,7 +146,11 @@ class CreateHouse: BaseViewController {
                 prepareModal( name : "completeHouse")
             }else{
                  self.house!.searchMate = false
-                  FireBaseManager.createHouse(model: self.house!)
+                FireBaseManager.createHouse(model: self.house!){(sucess) in
+                    if(sucess){
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                }
                 //redirigir a tab view
             }
         }else{

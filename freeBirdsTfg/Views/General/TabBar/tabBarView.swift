@@ -25,6 +25,7 @@ class tabBarView: UITabBarController {
    
     
     func configureNav(){
+        self.navigationController?.navigationBar.isHidden = true
         UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
         // Sets shadow (line below the bar) to a blank image
         UINavigationBar.appearance().shadowImage = UIImage()

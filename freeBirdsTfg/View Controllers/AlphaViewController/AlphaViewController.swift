@@ -24,7 +24,9 @@ class AlphaViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         lottieAnimationLoading()
+         self.navigationController?.navigationBar.isHidden = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            
             self.calculateLandingPage()
         }
        
@@ -35,7 +37,7 @@ class AlphaViewController: BaseViewController {
          //fireBase.delegate = nil
     }
     func calculateLandingPage(){
-       var fireBase = FireBaseManager()
+       let fireBase = FireBaseManager()
         fireBase.delegate = self
         fireBase.isSessionActive()
        
@@ -45,6 +47,7 @@ class AlphaViewController: BaseViewController {
     }*/
     
     func initView(){
+        self.navigationController?.navigationBar.isHidden = true
         titleLabel.font = UIFont .AppFont.titleFont.startTitleFontSolid
         titleLabel.textColor = UIColor .AppColor.Green.mindApp
         
@@ -79,22 +82,25 @@ extension AlphaViewController : getAllHouseDelegate {
         case "registro":
             let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
                         let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-                        self.present(homePage, animated: true) {
-                        }
-              self.navigationController?.pushViewController(homePage, animated: true)
+//                        self.present(homePage, animated: true) {
+//                        }
+             self.navigationController?.pushViewController(homePage, animated: true)
+         //   self.navigationController?.initRootViewController(vc: homePage)
             break
         case "No casa":
         
             let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-                        let vc = UINavigationController(rootViewController: Objvc)
-                        self.present(vc, animated: true) {
-                        }
+                      //  let vc = UINavigationController(rootViewController: Objvc)
+//                        self.present(vc, animated: true) {
+//                        }
+             self.navigationController?.pushViewController(Objvc, animated: true)
+           //  self.navigationController?.initRootViewController(vc: Objvc)
             break
         case "terminar Registro":
             let Objvc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            self.present(Objvc, animated: true) {
-            }
-            
+//            self.present(Objvc, animated: true) {
+//            }
+              self.navigationController?.pushViewController(Objvc, animated: true)
             break
         case "tiene casa":
             //Setear singleton con la información de la casa usuarios TODOS, TODO gastos solo los que son del usuario.
@@ -104,7 +110,8 @@ extension AlphaViewController : getAllHouseDelegate {
 //                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //                    appDelegate.window?.rootViewController = Objvc
 //                    self.navigationController?.popToRootViewController(animated: true)
-                     self.navigationController?.initRootViewController(vc: Objvc)
+                    self.navigationController?.pushViewController(Objvc, animated: true)
+                   //  self.navigationController?.initRootViewController(vc: Objvc)
                 }else{
                     print("error")
                 }

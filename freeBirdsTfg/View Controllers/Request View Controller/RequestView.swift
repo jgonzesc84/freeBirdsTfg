@@ -19,6 +19,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         if(typeUser){
              prepareNav(label: titleLabel, text: "Solicitudes")
         }else{
@@ -31,7 +32,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func viewDidAppear(_ animated: Bool) {
-     
+       self.navigationController?.navigationBar.isHidden = false
     }
   
     override func viewWillAppear(_ animated: Bool) {
@@ -209,7 +210,8 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
 //            let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //            appDelegate.window?.rootViewController = alpha
 //            self.navigationController?.popToRootViewController(animated: true)
-            self.navigationController?.initRootViewController(vc: alpha)
+       //     self.navigationController?.initRootViewController(vc: alpha)
+            self.navigationController?.popToRootViewController(animated: true)
           
            
     }

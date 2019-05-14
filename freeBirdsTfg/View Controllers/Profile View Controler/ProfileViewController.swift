@@ -111,10 +111,12 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         //creacion Usuario
        configureUser()
         let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-        let vc = UINavigationController(rootViewController: Objvc)
-        self.present(vc, animated: true) {
-            
-        }
+     //   let vc = UINavigationController(rootViewController: Objvc)
+ //       self.navigationController?.initRootViewController(vc: vc)
+//        self.present(vc, animated: true) {
+//
+//        }
+        self.navigationController?.pushViewController(Objvc, animated: true)
         
     }
     
@@ -145,7 +147,7 @@ extension ProfileViewController: UITextFieldDelegate{
             continueButton.isEnabled = true
             UIView.animate(withDuration: 1) {
                 self.continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
-               // self.continueButton.tintColor = UIColor .AppColor.Blue.blueDinosaur
+               //self.continueButton.tintColor = UIColor .AppColor.Blue.blueDinosaur
                 self.continueButton.layer.borderColor = UIColor .AppColor.Green.greenDinosaur .cgColor
                 
             }

@@ -31,11 +31,13 @@ class MainViewController: BaseViewController {
         lottieAnimationSearch()
         self.animationButtons(button: self.searchHouseButton)
         self.animationButtons(button: self.createHouseButton)
+        self.configureNav()
+        
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+         self.navigationController?.navigationBar.isHidden = true
      
        
     }
@@ -49,6 +51,7 @@ class MainViewController: BaseViewController {
     
     func initView(){
         self.configureNav()
+       
         self.searchHouseButton.alpha = 0
         self.createHouseButton.alpha = 0
         self.giveSomeStyle(button: self.searchHouseButton)
@@ -99,14 +102,17 @@ class MainViewController: BaseViewController {
     
     func configureNav(){
         
-       
-        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-        // Sets shadow (line below the bar) to a blank image
-        UINavigationBar.appearance().shadowImage = UIImage()
-        // Sets the translucent background color
-        UINavigationBar.appearance().backgroundColor = .clear
-        // Set translucent. (Default value is already true, so this can be removed if desired.)
-        UINavigationBar.appearance().isTranslucent = true
+  //       self.navigationController?.navigationBar.isHidden = false
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
+//        // Sets shadow (line below the bar) to a blank image
+//        UINavigationBar.appearance().shadowImage = UIImage()
+//        // Sets the translucent background color
+//        UINavigationBar.appearance().backgroundColor = .clear
+//        // Set translucent. (Default value is already true, so this can be removed if desired.)
+//        UINavigationBar.appearance().isTranslucent = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
         sepratorNavigationView.layer.cornerRadius = 5
         
     }

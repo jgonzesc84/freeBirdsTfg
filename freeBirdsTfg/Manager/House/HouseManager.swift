@@ -326,7 +326,7 @@ class HouseManager : BaseManager{
         cancelEye()
         let ref = Database.database().reference()
         let userId = idUser
-        ref.child("CASA").child(idHouse).child("USER").child(idUser).removeValue(){
+        ref.child("CASA").child(idHouse).child("USER").child(idUser).setValue(""){
               (error:Error?, ref:DatabaseReference) in
             if error != nil {
                

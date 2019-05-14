@@ -113,20 +113,22 @@ class LoginController{
         switch redirection {
         case "no tiene casa":
             let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-            let vc = UINavigationController(rootViewController: Objvc)
+   //         let vc = UINavigationController(rootViewController: Objvc)
  //           self.viewLogin?.navigationController?.pushViewController(vc, animated: true)
 //            self.viewLogin!.present(vc, animated: true) {
 //
 //            }
-        //    self.viewLogin?.navigationController?.initRootViewController(vc: Objvc)
+           // self.viewLogin?.navigationController?.initRootViewController(vc: Objvc)
             self.viewLogin?.navigationController?.pushViewController(Objvc, animated: true)
             break;
         case "tiene casa":
             HouseManager.sharedInstance.setupData { (finish) in
                 if(finish){
                     let Objvc = tabBarView()
-                    self.viewLogin!.present(Objvc, animated: true) {
-                    }
+                     self.viewLogin?.navigationController?.pushViewController(Objvc, animated: true)
+ //                   self.viewLogin?.navigationController?.initRootViewController(vc: Objvc)
+//                    self.viewLogin!.present(Objvc, animated: true) {
+//                    }
                 }
             }
             break
@@ -139,8 +141,9 @@ class LoginController{
     func goProfile(){
         let Objvc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
        // let vc = UINavigationController(rootViewController: Objvc)
-        self.viewLogin!.present(Objvc, animated: true) {
-        }
+//        self.viewLogin!.present(Objvc, animated: true) {
+//        }
+        self.viewLogin?.navigationController?.pushViewController(Objvc, animated: true)
     }
     
     
