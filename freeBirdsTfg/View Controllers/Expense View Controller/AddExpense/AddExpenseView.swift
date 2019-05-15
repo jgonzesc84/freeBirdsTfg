@@ -42,6 +42,17 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         hideKeyboardWhenTappedAround()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+         self.navigationController?.navigationBar.isTranslucent = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isTranslucent = true
+    }
    
     func initView(){
         var titleNav = "Añadir Gastos"
@@ -90,7 +101,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         let payment = checkBoxView.variableSelection
         let color = icoColorView.colorSelected
         let ico = icoColorView.icoSelected
-        let usersSelected = asignationView.usersSelected
+        let userSelected = BaseManager().userId()//asignationView.userSelected
         
         let expense = ModelExpense()
         expense.name = name
@@ -98,7 +109,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         expense.selection = payment
         expense.color = color
         expense.ico = ico
-        expense.users = usersSelected
+        expense.idUser = userSelected
         expense.idBill = bill?.billId
         expense.idExpense = editExpense?.idExpense ?? ""
         editMode! ? editExpense(expense) : createExpense(expense)

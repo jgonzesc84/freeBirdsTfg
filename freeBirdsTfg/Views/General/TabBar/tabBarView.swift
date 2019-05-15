@@ -49,8 +49,8 @@ class tabBarView: UITabBarController {
         //expenseView!.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 2)
         let request = RequestView()
        let viewControllerList = [expenseView,houseView,request, profileView]
-       
-       viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }
+       viewControllers = viewControllerList
+      // viewControllers = viewControllerList.map { UINavigationController(rootViewController: $0) }
         setTabBarItems(row: 0, title: "Gastos", image: "")
         setTabBarItems(row: 1, title: "Casa", image: "")
         setTabBarItems(row: 2, title: "Chat", image: "")

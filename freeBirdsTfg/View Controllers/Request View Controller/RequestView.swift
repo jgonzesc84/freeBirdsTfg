@@ -32,7 +32,12 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func viewDidAppear(_ animated: Bool) {
-       self.navigationController?.navigationBar.isHidden = false
+        if(BaseManager().houseId() != "0"){
+              self.navigationController?.navigationBar.isHidden = true
+        }else{
+            self.navigationController?.navigationBar.isHidden = false
+        }
+     
     }
   
     override func viewWillAppear(_ animated: Bool) {

@@ -52,6 +52,10 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
         MainHelper.theStyle(view: editHouseView)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+          self.navigationController?.navigationBar.isHidden = true
+    }
+    
     func setupCollection(){
         collection.delegate = self
         collection.dataSource = self

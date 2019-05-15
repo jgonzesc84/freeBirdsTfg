@@ -91,14 +91,13 @@ class LoginController{
                             
                         }
                     }else{
-                        /* fire.getHouse{(success) in
-                         let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
+                        /* fire.getHouse{(success) inexpenseSearchHouseViewController", bundle: nil)
                          vc.listOfHouses = success
                          self.navigationController?.pushViewController(vc, animated: true)
                          }
  
  */
-                     //   self.showError(error: error!)
+                     print(error)
                     }
                 }
             }
@@ -122,7 +121,7 @@ class LoginController{
             self.viewLogin?.navigationController?.pushViewController(Objvc, animated: true)
             break;
         case "tiene casa":
-            HouseManager.sharedInstance.setupData { (finish) in
+            HouseManager.sharedInstance.setupDataBegining { (finish) in
                 if(finish){
                     let Objvc = tabBarView()
                      self.viewLogin?.navigationController?.pushViewController(Objvc, animated: true)

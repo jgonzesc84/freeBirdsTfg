@@ -25,6 +25,7 @@ class AlphaViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         lottieAnimationLoading()
          self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isTranslucent = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
             
             self.calculateLandingPage()
@@ -110,7 +111,8 @@ extension AlphaViewController : getAllHouseDelegate {
 //                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
 //                    appDelegate.window?.rootViewController = Objvc
 //                    self.navigationController?.popToRootViewController(animated: true)
-                    self.navigationController?.pushViewController(Objvc, animated: true)
+                   // self.navigationController?.initRootViewController(vc: Objvc)
+                   self.navigationController?.pushViewController(Objvc, animated: true)
                    //  self.navigationController?.initRootViewController(vc: Objvc)
                 }else{
                     print("error")

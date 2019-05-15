@@ -134,9 +134,7 @@ class MainViewController: BaseViewController {
        try! Auth.auth().signOut()
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
-        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
-        let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
-        self.navigationController?.pushViewController(homePage, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     
         
     }

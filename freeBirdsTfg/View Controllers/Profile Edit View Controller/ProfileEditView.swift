@@ -39,6 +39,7 @@ class ProfileEditView: BaseViewController {
   
    
     @IBAction func closeSession(_ sender: Any) {
+        FireBaseManager.sharedInstance.ref.removeAllObservers()
         try! Auth.auth().signOut()
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
@@ -46,7 +47,7 @@ class ProfileEditView: BaseViewController {
 //        let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
 //        self.viewControllers.removeAll()
 //        UIApplication.shared.keyWindow?.rootViewController = homePage
-       self.navigationController?.popViewController(animated:true)
+       self.navigationController?.popToRootViewController(animated: true)
         
 //        self.tabBar?.dismiss(animated: false, completion: {
 //              self.tabBar?.view.removeFromSuperview()
@@ -94,7 +95,9 @@ class ProfileEditView: BaseViewController {
 //                self.tabBar?.dismiss(animated: false, completion: {
 //
 //                })
-                self.navigationController?.popViewController(animated: true)
+                 HouseManager.sharedInstance.deleteAllObserver()
+                  self.navigationController?.popToRootViewController(animated: true)
+                 
             }else{
                 print("fallo")
             }
