@@ -52,10 +52,10 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qC1-ER-jxa">
-                                        <rect key="frame" x="0.0" y="24.5" width="38.5" height="30"/>
+                                        <rect key="frame" x="0.0" y="24.5" width="0.0" height="30"/>
                                         <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="38.5" id="Ac6-oM-cXP"/>
+                                            <constraint firstAttribute="width" id="Ac6-oM-cXP"/>
                                             <constraint firstAttribute="height" constant="30" id="Prp-4L-bZu"/>
                                         </constraints>
                                     </view>
@@ -76,7 +76,7 @@
                                 <rect key="frame" x="388" y="0.0" width="50" height="69.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="75%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rD3-Hm-Sp0">
-                                        <rect key="frame" x="-262" y="29" width="33.5" height="21"/>
+                                        <rect key="frame" x="-300.5" y="29" width="33.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

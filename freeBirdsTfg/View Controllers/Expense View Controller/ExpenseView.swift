@@ -25,12 +25,12 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
          initView()
          setuptable()
          firstTime = true
-         refresh()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        
+        refresh()
        
     }
     func initView(){
@@ -66,11 +66,8 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         return CGFloat(constant.billCellHeight * Double(numberExpense)) + CGFloat(constant.billheaderHeight) + CGFloat(constant.billPaddingTop)
     }
     func refresh(){
-        if(!firstTime){
+       
             controller?.actualize()
-        }else{
-            firstTime = false
-        }
       
     
 }

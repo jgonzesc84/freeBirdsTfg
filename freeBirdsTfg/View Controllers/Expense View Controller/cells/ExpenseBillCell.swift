@@ -73,12 +73,12 @@ class ExpenseBillCell: UITableViewCell {
 
     func animation(percentage:Int){
 //        DispatchQueue.main.async { [weak self] in
-//            UIView.animate(withDuration: 3) {
-                percentageLabel.text = "\(percentage)%"
-                  let widtTotal = midView.frame.width
+          UIView.animate(withDuration: 3) {
+                self.percentageLabel.text = "\(percentage)%"
+                  let widtTotal = self.midView.frame.width
                 let totalConstant =  Float (percentage) * Float(widtTotal) / 100
-                widthPercentageConstraint.constant = CGFloat(totalConstant)
-//            }
+                self.widthPercentageConstraint.constant = CGFloat(totalConstant)
+          }
 //        }
        
     }

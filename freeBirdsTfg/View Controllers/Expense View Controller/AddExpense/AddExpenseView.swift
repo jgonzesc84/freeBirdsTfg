@@ -119,14 +119,16 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     func createExpense( _ expense: ModelExpense){
         FireBaseManager.createExpense(model:expense) { (success) in
             if(success){
-                self.bill!.total! = self.refreshBillAdd(expense.quantify!)
-                HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
-                    if(result){
-                        self.navigationController?.popViewController(animated: true)
-                    }else{
-                        
-                    }
-                }
+                //self.bill!.total! = self.refreshBillAdd(expense.quantify!)
+                 self.navigationController?.popViewController(animated: true)
+//                HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
+//                    if(result){
+//                        self.navigationController?.popViewController(animated: true)
+//                    }else{
+//
+//                    }
+//                }
+//            }
             }
         }
     }
@@ -134,18 +136,20 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     func editExpense(_ expense: ModelExpense){
         FireBaseManager.editExpense(model: expense){ (sucess) in
             if(sucess){
-                if (expense.quantify != self.editExpense?.quantify){
-                    self.bill!.total! = self.refreshBillEdit(expense.quantify!, self.editExpense!.quantify!)
-                    HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
-                        if(result){
-                            self.navigationController?.popViewController(animated: true)
-                        }
-                    }
-                }else{
-                    self.navigationController?.popViewController(animated: true)
-                }
+                  self.navigationController?.popViewController(animated: true)
+//                if (expense.quantify != self.editExpense?.quantify){
+                
+//                    self.bill!.total! = self.refreshBillEdit(expense.quantify!, self.editExpense!.quantify!)
+//                    HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
+//                        if(result){
+//                            self.navigationController?.popViewController(animated: true)
+//                        }
+//                    }
+//                }else{
+//                    self.navigationController?.popViewController(animated: true)
+//                }
+//            }
             }
-            
         }
     }
     

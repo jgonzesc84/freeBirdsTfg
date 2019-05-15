@@ -63,7 +63,7 @@ class FireBaseManager : BaseManager{
             }
         }
         self.delegate?.isActiveSession( landingPage:landingPage)
-   // Auth.auth().removeStateDidChangeListener(self.firebaseAuthListener!)
+   Auth.auth().removeStateDidChangeListener(self.firebaseAuthListener!)
     }
     
     

@@ -57,10 +57,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     func setupCell(model: ModelBill){
         self.model = model
-     //   totalLabel.text = String(model.total!)
-        //myDate.asString(style: .medium)
-        let compact = "\(model.dateBill!.asString())  \(String(model.total!.rounded(toPlaces: 2)))"
-        labelMont.text = compact
+        self.refreshTotalLabel()
         refresh()
     }
     func refresh() {
@@ -100,7 +97,14 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-
+       
+       
+        
+    }
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//          let cell = tableView.cellForRow(at: indexPath) as? ExpenseBillCell
+//         cell?.animation(percentage: givePercentage(item: (cell?.model!.quantify)!))
+        
     }
    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
@@ -113,13 +117,9 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                                                     let total = self.model?.total
                                                     let x = total! - expense!.quantify!
                                                     self.model?.total = x.rounded(toPlaces: 2)
-                                                    HouseManager.sharedInstance.billSetTotal(total: self.model!.total!, billId: self.model!.billId!){ (result) in
-                                                        if result{
-                                                            self.model?.expenses!.remove(at: row)
-                                                            self.refreshCell!()
-                                                            completionHandler(true)
-                                                        }
-                                                    }
+                                                 
+                                                    self.refreshCell!()
+                                                    completionHandler(true)
                                                
                                                 }
                                                 
@@ -151,8 +151,8 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func givePercentage(item:Double) -> Int{
-        let total = model?.total
-        let percentage = item / total! * 100
+        let total = calculeTotal()
+        let percentage = item / total * 100
         let roundPercentage = Int(round(percentage))
         return roundPercentage
     }
@@ -163,23 +163,9 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         if let index = list?.firstIndex(where: { ($0.idExpense == expense.idExpense)}){
             let oldItem =  self.model?.expenses![index]
             if oldItem?.quantify != expense.quantify{
-                let oldImport = oldItem?.quantify
-                let newImport = expense.quantify
-                var total =  self.model!.total!
-                total = total - oldImport!
-                total = total + newImport!
-                self.model?.total = total
-                HouseManager.sharedInstance.billSetTotal(total: self.model!.total!, billId: self.model!.billId!){ (result) in
-                    if(result){
-                        
-                        self.model?.expenses![index] = expense
-                        self.refreshTotalLabel()
-                        self.model?.expenses = self.reOrderList()
-                        self.tableView.reloadData {
-                        }
-                    }else{
-                       
-                    }
+                self.refreshTotalLabel()
+                self.model?.expenses = self.reOrderList()
+                self.tableView.reloadData {
                 }
             }
             self.model?.expenses![index] = expense
@@ -190,10 +176,19 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
 }
 
     func refreshTotalLabel(){
-        let compact = "\(model!.dateBill!.asString())  \(String(model!.total!))€"
+        
+        let compact = "\(model!.dateBill!.asString())  \(String(calculeTotal()))€"
         labelMont.text = compact
     }
-    
+    func calculeTotal() -> Double{
+        let expenses = model?.expenses
+         var sum = 0.00
+        for expense in expenses!{
+             sum += Double(expense.quantify!)
+        }
+        return sum.rounded(toPlaces: 2)
+    }
+
    
 }
 

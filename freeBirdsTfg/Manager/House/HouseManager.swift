@@ -101,25 +101,30 @@ class HouseManager : BaseManager{
      func getListOfBill(list:Array<ModelBill>, completion:@escaping(Array<ModelBill>)-> Void){
         var completedList = Array<ModelBill>()
         var count = 0
+        let idUser = BaseManager().userId()
         if list.count > 0{
             for item in list{
                 getBillById(billId: item.billId!) { (model) in
-                    if(model.expenses!.count > 0){
-                        self.getListOfExpense(list: model.expenses!, completion: { (listOfExpense) in
-                            model.expenses = listOfExpense
+                    self.getExpenseUser(idBill: item.billId!, idUser: idUser, completion: { (listExpense) in
+                        if(listExpense.count > 0){
+                            self.getListOfExpense(list: listExpense, completion: { (listOfExpense) in
+                                model.expenses = listOfExpense
+                                completedList.append(model)
+                                count = count + 1
+                                if(count == list.count){
+                                    completion(completedList)
+                                }
+                            })
+                        }else{
+                            model.expenses = listExpense
                             completedList.append(model)
                             count = count + 1
                             if(count == list.count){
                                 completion(completedList)
                             }
-                        })
-                    }else{
-                        completedList.append(model)
-                        count = count + 1
-                        if(count == list.count){
-                            completion(completedList)
                         }
-                    }
+                    })
+                    
                 }
             }
         }else{
@@ -154,6 +159,25 @@ class HouseManager : BaseManager{
             print(error.localizedDescription)
         }
     }
+    func getExpenseUser(idBill:String,idUser:String,completion:@escaping(Array<ModelExpense>) -> Void){
+        let ref = Database.database().reference() //cogemos solo los gasto de usuario
+        ref.child("BILL").child(idBill).child("expense").queryOrdered(byChild:"idUser").queryEqual(toValue: idUser).observe(.value, with:{(shot)in
+            let value = shot.value as? NSDictionary
+            var listExpense = Array<ModelExpense>()
+            if let dictio = value, value != nil {
+               let keys = dictio.allKeys
+                for idExpense in keys{
+                    let model = ModelExpense()
+                    model.idExpense = idExpense as? String
+                    listExpense.append(model)
+                }
+                completion(listExpense)
+            }else{
+               completion(listExpense)
+            }
+    })
+    }
+    
     func getListOfExpense(list:Array<ModelExpense>, completion:@escaping(Array<ModelExpense>) -> Void){
         var completedList = Array<ModelExpense>()
         var count = 0
@@ -199,18 +223,18 @@ class HouseManager : BaseManager{
         //llamada recursiva para rellenar a todos los usuarios
     }
     
-    func billSetTotal(total: Double,billId:String, completion:@escaping(Bool) -> Void){
-         let ref = Database.database().reference()
-        ref.child("BILL").child(billId).child("total").setValue(total){
-            (error:Error?, ref:DatabaseReference) in
-            if let error = error {
-                print("Data could not be saved: \(error).")
-                completion(false)
-            } else {
-               completion(true)
-            }
-        }
-    }
+//    func billSetTotal(total: Double,billId:String, completion:@escaping(Bool) -> Void){
+//         let ref = Database.database().reference()
+//        ref.child("BILL").child(billId).child("total").setValue(total){
+//            (error:Error?, ref:DatabaseReference) in
+//            if let error = error {
+//                print("Data could not be saved: \(error).")
+//                completion(false)
+//            } else {
+//               completion(true)
+//            }
+//        }
+//    }
     func deleteExpenseOnBill(billId: String, expenseId: String, completion:@escaping(Bool) -> Void){
           let ref = Database.database().reference()
         ref.child("BILL").child(billId).child("expense").child(expenseId).removeValue { (error, ref) in

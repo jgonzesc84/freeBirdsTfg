@@ -53,6 +53,10 @@ class ExpenseController {
     }
     
     func  actualize(){
+ //       let idUser = BaseManager().userId()
+//        HouseManager.sharedInstance.getExpenseById(expenseId: "", userId:idUser ){(list) in
+//            print("hello moto")
+//            }
         HouseManager.sharedInstance.setupData { (finish) in
             if(finish){
                 if let array = HouseManager.sharedInstance.house!.listOfBill{
