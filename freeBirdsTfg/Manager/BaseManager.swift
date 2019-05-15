@@ -312,11 +312,11 @@ class BaseManager{
      //SET//
     func prepareExpense(model: ModelExpense) -> (Dictionary<String,Any>){
         //var expenseDictio = Dictionary<String, Any>()
-        var usersDictio = Dictionary<String, Any>()
-        for user in model.users!{
-            let dictio = ["idUser": user.idUser]
-            usersDictio = dictio as [String : Any]
-        }
+  //      var usersDictio = Dictionary<String, Any>()
+//        for user in model.users!{
+//            let dictio = ["idUser": user.idUser]
+//            usersDictio = dictio as [String : Any]
+//        }
         let dict = [ "name": model.name!,
                      "idExpense":model.idExpense!,
                      "quantify": model.quantify!,
@@ -324,7 +324,7 @@ class BaseManager{
                      "color" : model.color!,
                      "ico": model.ico!,
                      "idBill" : model.idBill!,
-                     "users" : usersDictio
+                     "users" : model.idUser!
             ] as Dictionary
         return dict
     }
@@ -340,7 +340,8 @@ class BaseManager{
         model.ico = dictio["ico"] as? String ?? ""
         model.idBill = dictio["idBill"] as? String ?? ""
         //
-        model.users = dictio["users"] as? Array
+        //model.users = dictio["users"] as? Array
+        model.idUser = dictio["users"] as? String ?? ""
         //
         print("HE SE HA MODIFOCADO ALGO")
         return model
@@ -350,8 +351,11 @@ class BaseManager{
         var arrayModel : Array<ModelExpense> = []
         let keys = dictio.keys
         for item in keys{
+            
             let model = ModelExpense()
-            model.idExpense = item
+           let test = dictio[item] as? [String:AnyObject]
+            model.idExpense = test!["idExpense"] as? String ?? ""
+            model.idBill = test!["idUser"] as? String ?? ""
             arrayModel.append(model)
         }
         return arrayModel

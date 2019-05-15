@@ -187,7 +187,9 @@ class FireBaseManager : BaseManager{
         insertExpense(model: model) { (sucess) in
             if(sucess){
                 let ref = Database.database().reference()
-                let dictio = ["idExpense":model.idExpense]
+                let dictio = ["idExpense":model.idExpense,
+                              "idUser":model.idUser
+                ]
                 ref.child("BILL").child(model.idBill!).child("expense").child(model.idExpense!).setValue(dictio){
                     (error:Error?, ref:DatabaseReference)in
                     if let error = error{

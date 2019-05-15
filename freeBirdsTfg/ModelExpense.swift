@@ -18,6 +18,7 @@ class ModelExpense{
     var color: String?
     var ico: String?
     var users: Array<ModelUser>?
+    var idUser: String?
     
     init(){
         

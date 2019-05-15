@@ -95,7 +95,7 @@ class ProfileEditView: BaseViewController {
 //                self.tabBar?.dismiss(animated: false, completion: {
 //
 //                })
-                 HouseManager.sharedInstance.deleteAllObserver()
+                // HouseManager.sharedInstance.deleteAllObserver()
                   self.navigationController?.popToRootViewController(animated: true)
                  
             }else{

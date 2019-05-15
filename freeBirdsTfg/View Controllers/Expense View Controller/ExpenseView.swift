@@ -24,17 +24,19 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
          controller = ExpenseController(view:self)
          initView()
          setuptable()
-        firstTime = true
+         firstTime = true
+         refresh()
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refresh()
+        self.navigationController?.navigationBar.isHidden = true
+        
        
     }
     func initView(){
         prepareNavRoot(label: titlelabel, text: "Gastos")
         MainHelper.navStyle(view:navView)
-         arrayBill=HouseManager.sharedInstance.house?.listOfBill
+        arrayBill=HouseManager.sharedInstance.house?.listOfBill
         controller?.setupBill(listOfBill:arrayBill!)
        
     }
