@@ -31,7 +31,7 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         MainHelper.theStyle(view: mainView)
         
-        users = HouseManager.sharedInstance.user
+        users = HouseManager.sharedInstance.house?.user
         usersSelected = Array()
         usersSelected?.append(users![0])
         setupCollection()

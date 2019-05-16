@@ -24,6 +24,7 @@ class CreateHouse: BaseViewController {
     var directionModel : ModelDirection?
     var listOfSection : Array<ModelHouseSection>?
     var listOfRoom : Array<ModelRoom>?
+    var editedMode = false
     //
     
     public var modalView : ModalMain?
@@ -40,10 +41,30 @@ class CreateHouse: BaseViewController {
         MainHelper.acceptButtonStyle(button: buttonAccept)
         MainHelper.borderShadow(view: buttonAccept)
         MainHelper.dissableButtonCreate(button: buttonAccept)
+        
+        if (editedMode){
+            self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            self.navigationController?.navigationBar.shadowImage = UIImage()
+            self.navigationController?.navigationBar.isTranslucent = true
+            HouseManager.sharedInstance.fillHouseEdited(idHouse: BaseManager().houseId(), completion: { (model, sucess) in
+            if(sucess){
+            self.createHouseTable.house = model
+            self.createHouseTable.refeshPater()
+            }
+            
+            })
+        }
        
         
     }
-    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if (editedMode){
+            self.navigationController?.navigationBar.isHidden = true
+        }
+
+    }
+   
     override func viewDidAppear(_ animated: Bool) {
       self.navigationController?.navigationBar.isHidden = false
         if(alreadyMoved){
@@ -168,5 +189,7 @@ class CreateHouse: BaseViewController {
         return result
 
 }
+    
+  
 
 }

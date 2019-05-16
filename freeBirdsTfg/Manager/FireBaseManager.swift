@@ -27,6 +27,7 @@ class FireBaseManager : BaseManager{
     var ref = DatabaseReference()
     var fullArrayHouse : ((Array<ModelHouse>) -> ())?
     
+    
     //MARK: singleTon
     class var sharedInstance: FireBaseManager {
         
@@ -69,10 +70,10 @@ class FireBaseManager : BaseManager{
     
     }
     func requestAuthenticated(){
-       var authData = Auth.auth()
-        if(authData != nil){
-            print("que mierda pasa aqui?")
-        }
+//       let authData = Auth.auth()
+//        if(authData != nil){
+//            print("que mierda pasa aqui?")
+//        }
     }
     
     static func createUser(model: ModelUser){

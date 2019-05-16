@@ -55,6 +55,7 @@ class HouseManager : BaseManager{
                     let bills = Array<ModelBill>()
                     self.house!.listOfBill = bills
                 }
+              
                 self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
                     self.house?.listOfBill = listOfSuccess
                     completion(true)
@@ -95,6 +96,30 @@ class HouseManager : BaseManager{
             })
         }, withCancel: { (error) in
           
+        })
+    }
+    func fillHouseEdited(idHouse: String , completion:@escaping (ModelHouse,Bool) -> Void){
+        theReference = Database.database().reference()
+        theGreateye = theReference.child("CASA").child(idHouse).observe(.value, with: { (shot) in
+            self.house = ModelHouse()
+            let value = shot.value as? NSDictionary
+            self.house = self.parseHouse(dictioHouse: value!)
+            self.user = self.house?.user
+            self.fillUserHouse(completion: { (listOfUser) in
+                self.house!.user = listOfUser
+                self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
+                if(self.house?.listOfBill == nil){
+                    let bills = Array<ModelBill>()
+                    self.house!.listOfBill = bills
+                }
+                self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
+                    self.house?.listOfBill = listOfSuccess
+                    
+                    completion( self.house!,true)
+                })
+            })
+        }, withCancel: { (error) in
+
         })
     }
 
@@ -160,6 +185,23 @@ class HouseManager : BaseManager{
         }
     }
     func getExpenseUser(idBill:String,idUser:String,completion:@escaping(Array<ModelExpense>) -> Void){
+//        let rof = Database.database().reference()
+//       rof.child("EXPENSE").queryOrdered(byChild: "idBill").queryEqual(toValue:"-Lewwwyyclf-ynXKIjkb").observe(.value) { (shot) in
+//            let value = shot.value as? NSDictionary
+//          var collectionExpense = Array<ModelExpense>()
+//            if let dictio = value, value != nil {
+//                let keys = dictio.allKeys
+//                for key in keys{
+//                    let dictioModel = dictio[key] as! NSDictionary
+//                    let modelExpense = self.getExpense(dictio: dictioModel , idExpense: "")
+//                    if (modelExpense.idUser == idUser){
+//                        collectionExpense.append(modelExpense)
+//                    }
+//                }
+//            }
+//         print(collectionExpense[0].idUser)
+//        }
+//
         let ref = Database.database().reference() //cogemos solo los gasto de usuario
         ref.child("BILL").child(idBill).child("expense").queryOrdered(byChild:"idUser").queryEqual(toValue: idUser).observe(.value, with:{(shot)in
             let value = shot.value as? NSDictionary

@@ -141,7 +141,11 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
     }
     
     @IBAction func editActionButton(_ sender: Any) {
-        //ir a create House en mode edición
+        //ir a create House en mode edición push to  CreateHouse
+        let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)
+        vc.editedMode = true
+        self.navigationController?.pushViewController(vc, animated: true)
+       
     }
     
 }

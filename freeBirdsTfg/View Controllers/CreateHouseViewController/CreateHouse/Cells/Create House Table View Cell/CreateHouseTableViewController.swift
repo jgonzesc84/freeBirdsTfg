@@ -27,6 +27,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     public var showModalParent: ((Any) -> ())?
     public var listOfRoom = Array<ModelRoom>()
     public var modalView : ModalMain?
+    public var house: ModelHouse?
     
  //  MARK: - cicle life
     override init(frame: CGRect) {
@@ -59,6 +60,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         createTable.register(UINib(nibName:"createHouseTableSection", bundle: nil), forHeaderFooterViewReuseIdentifier: "headerSection")
         createTable.register(UINib(nibName:"showLocalizationCell", bundle: nil), forCellReuseIdentifier: "showlocalizationCell")
         createTable.separatorStyle = UITableViewCell.SeparatorStyle .none
+       
     }
     
   //  MARK: - Table view data source
@@ -346,6 +348,29 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
         
     }
     
-   
+    func refeshPater(){
+        if let houseEdited = house, house != nil{
+            listOfRoom = houseEdited.listOfRoom!
+            createTable.reloadData()
+            if let listSection = houseEdited.section, houseEdited.section != nil{
+                self.cellCollection?.listOfModelHouseSection = listSection
+                self.cellCollection?.sectionCollectionView.reloadData()
+            }
+            let direction = houseEdited.direction
+            var region =  MKCoordinateRegion();
+            region.center = direction!.coordinate!
+            // annotation.title = direction.title
+            region.span.longitudeDelta = 0.004
+            region.span.latitudeDelta = 0.002
+            let anno = MKPointAnnotation();
+            anno.coordinate = direction!.coordinate!;
+        
+            self.annotationLocation = anno
+            self.direction = direction?.title
+            createTable.reloadData()
+        }
+    }
 
 }
+
+

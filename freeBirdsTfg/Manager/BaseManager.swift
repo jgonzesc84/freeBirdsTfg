@@ -377,5 +377,30 @@ class BaseManager{
         }
         return rooms
     }
-    
+    func parseUserOnRoom(_ model:ModelHouse) -> Array<ModelRoom>{
+        if var rooms = model.listOfRoom, model.listOfRoom != nil{
+            if let user = model.user, model.user != nil{
+                for room in rooms{
+                    let idUser = room.user?.idUser
+                    if(idUser != ""){
+                        room.user = user.first(where:{$0.idUser == idUser})
+                        if let index = rooms.firstIndex(where: { $0.user!.idUser == idUser } ){
+                            rooms.insert(room, at: index)
+                          }
+                    }
+                }
+            return rooms
+            }
+        }else{
+          return  model.listOfRoom!
+        }
+        return model.listOfRoom!
+    }
 }
+/*
+ if let i = students.firstIndex(where: { $0.hasPrefix("A") }) {
+ print("\(students[i]) starts with 'A'!")
+ }
+ 
+ 
+ */
