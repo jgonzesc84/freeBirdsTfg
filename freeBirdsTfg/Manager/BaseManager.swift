@@ -168,6 +168,20 @@ class BaseManager{
             ] as Dictionary
         return dictioHouse
     }
+    func prepareHouseBill(model : ModelHouse, idHouse: String)-> (Dictionary<String, Any>){
+        let dictioHouse=[
+            "PRECIO": model.price ?? "0.0",
+            "IDHOUSE": idHouse,
+            "DESCRIPTION": model.completeDescription ?? "text",
+            "DIRECTION" : prepareDirection(model: model.direction!,new: true),
+            "ROOMS" : prepareRoom(model: model),
+            "SECTIONS" : prepareSection(model: model),
+            "USER": prepareUser(model: model),
+            "SEARCHMATE" : model.searchMate!,
+            "BILL" : prepareListOfBill(list: model.listOfBill!)
+            ] as Dictionary
+        return dictioHouse
+    }
     
     func prepareDirection(model : ModelDirection,  new: Bool) -> (Dictionary<String, Any>){
          let idDirection = new ? Database.database().reference().childByAutoId().key : "N/A "
@@ -182,7 +196,7 @@ class BaseManager{
          var roomDictio = Dictionary<String, Any>()
         for item in model.listOfRoom! {
             let idRoom = Database.database().reference().childByAutoId().key
-            let dict = ["user":item.user?.idUser! as Any,
+            let dict = ["user":item.user?.idUser  ?? "" ,
                         "image":item.image as Any,
                         "PRICE":item.price!,
                         "search": item.search!
@@ -308,6 +322,27 @@ class BaseManager{
         return billDictio
         
     }
+    
+    /*
+     var userDictio = Dictionary<String, Any>()
+     var userDictioKey = Dictionary<String, Any>()
+     
+     for nameUser in model.user!{
+     userDictio = ["userId":nameUser.idUser!]
+     userDictioKey[nameUser.idUser!] = userDictio
+     }
+     return userDictioKey
+ */
+    func prepareListOfBill(list : Array<ModelBill>) -> (Dictionary<String,Any>){
+        var userDictio = Dictionary<String, Any>()
+        var innerDictio = Dictionary<String, Any>()
+        for model in list{
+            innerDictio = ["userId":model.billId!]
+            userDictio[model.billId!] = innerDictio
+        }
+        return userDictio
+    }
+    
     ///EXPENSE//
      //SET//
     func prepareExpense(model: ModelExpense) -> (Dictionary<String,Any>){

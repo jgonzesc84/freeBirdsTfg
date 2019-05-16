@@ -26,6 +26,7 @@ class roomCell: UITableViewCell  {
     
     
     public var fill : Bool = false
+    var model : ModelRoom?
     //clousure
     public var showModal: ((roomCell) -> ())?
 
@@ -52,6 +53,7 @@ class roomCell: UITableViewCell  {
     }
     
    public func setup(room: ModelRoom?){
+        model = room
         if (room != nil){
         userlabel.text = room?.user?.alias
         priceLabel.text = room?.price

@@ -41,9 +41,12 @@ class ModalCreateRoomController{
     }
     
     func editAccept(){
-        let roomModel = ModelRoom()
+         var roomModel = ModelRoom()
+        if let room = modal!.model, modal!.model != nil{
+            roomModel = room
+        }
         roomModel.price = modal?.priceTextEdit.text!
-        roomModel.user?.idUser = modal?.userTextEdit.text!
+       // roomModel.user?.idUser = modal?.userTextEdit.text!
         roomModel.search = modal?.searchSelection!
         modal?.returnDataEditRoom?(roomModel)
     }

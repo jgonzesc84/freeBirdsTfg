@@ -46,6 +46,18 @@ class MessageView: BaseViewController,UITableViewDelegate,UITableViewDataSource,
         super.viewDidLoad()
          listenFirstTime()
         scrollToLastPosition()
+       
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if(BaseManager().houseId() != "0"){
+            self.navigationController?.navigationBar.isHidden = true
+        }else{
+            self.navigationController?.navigationBar.isHidden = false
+        }
     }
     func initView(){
         inpuTextView.delegate = self

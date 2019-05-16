@@ -287,17 +287,34 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                                         title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: (Bool) -> Void) in
                                             let row = indexPath.row-1
                                             let model = self.listOfRoom[row]
-                                            self.listOfRoom.remove(at: row)
-                                            tableView.deleteRows(at: [indexPath], with: .automatic)
-                                            completionHandler(true)
-                                            self.showModalParent?(model)
+                                            if let userId = model.user?.idUser, model.user?.idUser != nil{
+                                                if(userId.count > 0){
+                                                    if let topVC = UIApplication.getTopMostViewController() {
+                                                        topVC.view.addSubview(self.showError(text:"No se puede eliminar una habitacion con un usuario dentro"))
+                                                        completionHandler(true)
+                                                    }
+                                                }else{
+                                                    self.listOfRoom.remove(at: row)
+                                                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                                                    completionHandler(true)
+                                                    self.showModalParent?(model)
+                                                }
+                                            }else{
+                                                self.listOfRoom.remove(at: row)
+                                                tableView.deleteRows(at: [indexPath], with: .automatic)
+                                                completionHandler(true)
+                                                self.showModalParent?(model)
+                                            }
+                                          
         }
         deleteAction.image = UIImage(named: "trash_ico")
         deleteAction.backgroundColor = UIColor .AppColor.Green.mindApp
          let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
         return swipeConfig
     }
-
+    func haveUser( _ model: ModelRoom){
+    
+    }
     //  MARK: - delegate cell Price
    
     func passPrice(priceString: String?) {
@@ -370,7 +387,12 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
             createTable.reloadData()
         }
     }
-
+    func showError(text: String) -> ModalMain{
+        let modalView = Bundle.main.loadNibNamed("ModalMainView", owner: self, options: nil)![0] as? ModalMain
+        modalView?.loadContentView(name: "errorText")
+        modalView?.loadError(text:text)
+        return modalView!
+    }
 }
 
 

@@ -105,7 +105,7 @@ class ModalController{
             break
         case "errorText":
             modalErrorText = Bundle.main.loadNibNamed("ModalErrorText", owner: nil, options: nil)![0] as? ModalErrorText
-            positionAndHeight(mainView: modal!, auxView: modalErrorText!, height: 0.1 , y: 0.6)
+            positionAndHeight(mainView: modal!, auxView: modalErrorText!, height: 0.15 , y: 0.6)
             
             break
             
@@ -120,6 +120,9 @@ class ModalController{
         case is ModelRoom:
             
             let room = model as! ModelRoom
+            if(room.user != nil){
+              modalCreateRoom?.model = room
+            }
             modalCreateRoom!.userTextEdit.text = room.user?.alias
             modalCreateRoom!.priceTextEdit.text = room.price
             modalCreateRoom!.setupSelection(room.search!)

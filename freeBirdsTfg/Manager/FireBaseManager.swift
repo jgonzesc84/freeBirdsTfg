@@ -111,6 +111,23 @@ class FireBaseManager : BaseManager{
             }
     }
     }
+    static func  editHouse(model : ModelHouse,completion:@escaping(Bool)-> (Void) ){
+        let ref = Database.database().reference()
+        let idHouse = model.idHouse
+        ref.child("CASA").child(idHouse!).setValue(BaseManager().prepareHouseBill(model: model, idHouse: idHouse!)){
+            (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+                completion(false)
+            } else {
+//                UserDefaults.standard.set(idHouse, forKey: BaseViewController.IDHOUSE)
+//                let idUser = Auth.auth().currentUser?.uid
+//                let refUser = Database.database().reference()
+//                refUser.child("USUARIO").child(idUser!).updateChildValues(["houseId": idHouse])
+                completion(true)
+            }
+        }
+    }
     
     func getHouse(completion: @escaping (Array<ModelHouse>) -> Void){
         var collectionHouse : Array<ModelHouse> = []

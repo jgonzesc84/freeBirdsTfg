@@ -31,16 +31,16 @@ class MainViewController: BaseViewController {
         lottieAnimationSearch()
         self.animationButtons(button: self.searchHouseButton)
         self.animationButtons(button: self.createHouseButton)
-        self.configureNav()
         
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-      
+       self.navigationController?.navigationBar.isHidden = true
        
     }
     override func viewDidAppear(_ animated: Bool) {
+     //   self.configureNav()
        
         UIView.animate(withDuration: 1) {
             self.searchHouseButton.alpha = 1

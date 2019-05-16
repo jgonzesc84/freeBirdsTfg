@@ -43,14 +43,21 @@ class CreateHouse: BaseViewController {
         MainHelper.dissableButtonCreate(button: buttonAccept)
         
         if (editedMode){
+            house = ModelHouse()
+            MainHelper.enabledButtonCreate(button: buttonAccept)
+            buttonAccept.setTitle("Editar", for: .normal)
             self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
             self.navigationController?.navigationBar.shadowImage = UIImage()
             self.navigationController?.navigationBar.isTranslucent = true
             HouseManager.sharedInstance.fillHouseEdited(idHouse: BaseManager().houseId(), completion: { (model, sucess) in
-            if(sucess){
-            self.createHouseTable.house = model
-            self.createHouseTable.refeshPater()
-            }
+                if(sucess){
+                    self.house = model
+                    self.listOfSection = model.section
+                    self.listOfRoom = model.listOfRoom
+                    self.directionModel = model.direction
+                    self.createHouseTable.house = model
+                    self.createHouseTable.refeshPater()
+                }
             
             })
         }
@@ -117,16 +124,22 @@ class CreateHouse: BaseViewController {
     }
    
     func prepareButton(){
-        if(self.listOfRoom != nil){
-            let numb = self.listOfRoom?.count
-            if( numb! > 0 && self.directionModel != nil){
-                MainHelper.enabledButtonCreate(button: buttonAccept)
+        if(editedMode){
+            MainHelper.enabledButtonCreate(button: buttonAccept)
+            buttonAccept.setTitle("Editar", for: .normal)
+        }else{
+            if(self.listOfRoom != nil){
+                let numb = self.listOfRoom?.count
+                if( numb! > 0 && self.directionModel != nil){
+                    MainHelper.enabledButtonCreate(button: buttonAccept)
+                }else{
+                    MainHelper.dissableButtonCreate(button: buttonAccept)
+                }
             }else{
                 MainHelper.dissableButtonCreate(button: buttonAccept)
             }
-        }else{
-             MainHelper.dissableButtonCreate(button: buttonAccept)
         }
+       
         
     }
     
@@ -140,7 +153,7 @@ class CreateHouse: BaseViewController {
                 FireBaseManager.createHouse(model: self.house!){
                     (sucess)in
                     if(sucess){
-                        self.navigationController?.popViewController(animated: true)
+                        self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
                 
@@ -154,29 +167,9 @@ class CreateHouse: BaseViewController {
      @function Metodo que envia el modelo Casa a Firebase
     **/
     @IBAction func acceptActionButton(_ sender: Any) {
-        self.house = ModelHouse()
-        self.house!.section = listOfSection
-        self.house!.listOfRoom = listOfRoom
-        self.house?.direction = directionModel
-        var user = Array<ModelUser>()
-        user.append(BaseManager().getUserDefault())
-        self.house!.user = user
-        if  let list = house!.listOfRoom {
-            if(showIfAreSeraching(list)){
-                self.house!.searchMate = true
-                prepareModal( name : "completeHouse")
-            }else{
-                 self.house!.searchMate = false
-                FireBaseManager.createHouse(model: self.house!){(sucess) in
-                    if(sucess){
-                        self.navigationController?.popViewController(animated: true)
-                    }
-                }
-                //redirigir a tab view
-            }
-        }else{
-           print ("NANAI SIN HABITACIONES")
-        }
+        
+        editedMode ? editAction () : createAction()
+        
         }
     
     
@@ -190,6 +183,59 @@ class CreateHouse: BaseViewController {
 
 }
     
+    func createAction(){
+        self.house = ModelHouse()
+        self.house!.section = listOfSection
+        self.house!.listOfRoom = listOfRoom
+        self.house?.direction = directionModel
+        var user = Array<ModelUser>()
+        user.append(BaseManager().getUserDefault())
+        self.house!.user = user
+        if  let list = house!.listOfRoom {
+            if(showIfAreSeraching(list)){
+                self.house!.searchMate = true
+                prepareModal( name : "completeHouse")
+            }else{
+                self.house!.searchMate = false
+                FireBaseManager.createHouse(model: self.house!){(sucess) in
+                    if(sucess){
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
+                //redirigir a tab view
+            }
+        }else{
+            print ("NANAI SIN HABITACIONES")
+        }
+    }
+    
+    func editAction(){
+        
+        if(listOfSection != nil){
+            house!.section = listOfSection
+        }
+        if(listOfRoom != nil){
+             house!.listOfRoom = listOfRoom
+        }
+        if(directionModel != nil){
+            house!.direction = directionModel
+        }
+       
+       let searching = house!.listOfRoom!.contains(where: { ($0.search!) })
+       house!.searchMate = searching
+       FireBaseManager.editHouse(model: house!) { (success)  in
+            if(success){
+              self.navigationController?.popViewController(animated: true)
+            }
+        }
+            
+        }
+    }
+    
+    
+    
+
+    
   
 
-}
+

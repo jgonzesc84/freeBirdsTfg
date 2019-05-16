@@ -29,7 +29,7 @@ class ModalCreateRoom: UIView {
     var editMode : Bool?
     var searchSelection: Bool?
     var controller : ModalCreateRoomController?
-    
+    var model:ModelRoom?
     //MARK: cycle life methods
     
     override func awakeFromNib() {

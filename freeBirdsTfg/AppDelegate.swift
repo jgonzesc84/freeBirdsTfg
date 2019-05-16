@@ -48,6 +48,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       //  let mainView = LoginViewController(nibName: "LoginViewController", bundle: nil) //ViewController = Name of your controller
         nav1.viewControllers = [mainView]
         self.window!.rootViewController = nav1
+        nav1.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        nav1.navigationBar.shadowImage = UIImage()
+        nav1.navigationBar.isTranslucent = true
         self.window?.makeKeyAndVisible()
         return true
     }

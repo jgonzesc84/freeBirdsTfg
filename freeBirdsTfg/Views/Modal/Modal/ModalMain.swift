@@ -60,7 +60,7 @@ class ModalMain: UIView {
         backView.addGestureRecognizer(tap)
         backView.isUserInteractionEnabled = true
     }
-    
+   
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
         removeFromSuperview()
     }
