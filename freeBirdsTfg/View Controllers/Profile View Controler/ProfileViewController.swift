@@ -26,10 +26,11 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     @IBOutlet weak var myTable: UITableView!
     @IBOutlet weak var continueButton: UIButton!
     
+    @IBOutlet weak var closeSessionButton: UIButton!
     
     var user : ModelUser?
     var controller : ProfileController?
-    
+    var register = false
     
     //MARK: cycle life methods
     override func viewDidLoad() {
@@ -39,8 +40,8 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         MainHelper.navStyle(view :  navView)
         navView.backgroundColor = UIColor .clear
         initView()
-        setupTable()
-        gradientStyle()
+       // setupTable()
+       // gradientStyle()
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -55,18 +56,29 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         profileImage.layer.borderColor = UIColor .white.cgColor
         profileImage.layer.borderWidth = 3.0
         profileImage.clipsToBounds = true
-        
-        continueButton.backgroundColor = UIColor .AppColor.Gray.greyApp
-        continueButton.titleLabel?.font = UIFont .AppFont.titleFont.titleFont
-        continueButton.tintColor = UIColor .white
-        continueButton.layer.cornerRadius = 10.0
-        continueButton.layer.borderWidth = 1.0
-        continueButton.layer.borderColor = UIColor .white .cgColor
+       
+        closeSessionButton.setTitle("Cerrar Session", for: .normal)
+        giveStyleProfile(closeSessionButton)
+        closeSessionButton.backgroundColor = UIColor.AppColor.Blue.blueDinosaur
         
         nameTextField.font = UIFont .AppFont.middleFont.middlWord
         nameTextField.textColor = UIColor .AppColor.Blue.blueDinosaur
         nameTextField.placeholder = "Pón tu nick"
         nameTextField.delegate = self
+        
+        if(register){
+            closeSessionButton.isHidden = true
+            closeSessionButton.isEnabled = false
+            continueButton.setTitle("Continuar", for: .normal)
+            giveStyleProfile(continueButton)
+        }else{
+            continueButton.setTitle("Editar", for: .normal)
+            giveStyleProfile(continueButton)
+            continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+            closeSessionButton.isHidden = false
+            closeSessionButton.isEnabled = true
+            nameTextField.text = HouseManager.sharedInstance.mainUser!.alias
+        }
         
        
     }    
@@ -79,10 +91,19 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
 
     }
     
+    func giveStyleProfile( _ button:UIButton){
+        button.backgroundColor = UIColor .AppColor.Gray.greyApp
+        button.titleLabel?.font = UIFont .AppFont.titleFont.titleFont
+        button.tintColor = UIColor .white
+        button.layer.cornerRadius = 10.0
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = UIColor .white .cgColor
+    }
+    
     func gradientStyle(){
         let gradient = CAGradientLayer()
         gradient.frame = UIScreen.main.bounds
-        gradient.colors = [UIColor .AppColor.Green.greenDinosaur.cgColor, UIColor .white.cgColor]
+        gradient.colors = [UIColor .AppColor.Green.mindApp.cgColor, UIColor .white.cgColor]
         backGroundView.layer.insertSublayer(gradient, at: 0)
     }
     //MARK: table view delegate methods
@@ -105,19 +126,27 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
    
     
     @IBAction func continueButtonAction(_ sender: Any) {
-        goHome()
+        if (register){
+             goHome()
+        }else{
+           actualizeUser()
+        }
+        
+       
     }
     func goHome(){
         //creacion Usuario
        configureUser()
         let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-     //   let vc = UINavigationController(rootViewController: Objvc)
- //       self.navigationController?.initRootViewController(vc: vc)
-//        self.present(vc, animated: true) {
-//
-//        }
         self.navigationController?.pushViewController(Objvc, animated: true)
         
+    }
+    func actualizeUser(){
+       let aliasUser = nameTextField.text
+        let model = HouseManager.sharedInstance.mainUser!
+        model.alias = aliasUser
+        FireBaseManager.editeUser(model: model)
+        nameTextField.resignFirstResponder()
     }
     
     func configureUser(){
@@ -131,7 +160,18 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         baseManager.saveUserDefault(model: user);
     }
     
+    
+    @IBAction func closeSessionAction(_ sender: Any) {
+        
+        FireBaseManager.sharedInstance.ref.removeAllObservers()
+        try! Auth.auth().signOut()
+        UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
+        UserDefaults.standard.synchronize()
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
 }
+
 
 extension ProfileViewController: UITextFieldDelegate{
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

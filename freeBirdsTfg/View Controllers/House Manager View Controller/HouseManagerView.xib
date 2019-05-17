@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -133,28 +133,8 @@
                                                                 <action selector="serachUserAction:" destination="-1" eventType="touchUpInside" id="rwn-1r-Izg"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buscar Usuario" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nnU-B4-qqM">
-                                                            <rect key="frame" x="84" y="2.5" width="242" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstItem="NOs-0g-qum" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="7rU-d5-7nt"/>
-                                                        <constraint firstItem="nnU-B4-qqM" firstAttribute="height" secondItem="NOs-0g-qum" secondAttribute="height" id="8ha-M2-7Q0"/>
-                                                        <constraint firstAttribute="trailing" secondItem="nnU-B4-qqM" secondAttribute="trailing" constant="49" id="Okk-Mt-YGb"/>
-                                                        <constraint firstItem="NOs-0g-qum" firstAttribute="leading" secondItem="PxR-Ow-P61" secondAttribute="leading" constant="24" id="Rgz-Cd-IJK"/>
-                                                        <constraint firstItem="nnU-B4-qqM" firstAttribute="centerY" secondItem="NOs-0g-qum" secondAttribute="centerY" id="Wf8-Ho-unh"/>
-                                                        <constraint firstItem="nnU-B4-qqM" firstAttribute="leading" secondItem="NOs-0g-qum" secondAttribute="trailing" constant="20" id="gom-9P-SiZ"/>
-                                                    </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coa-nK-9r8" userLabel="EditHouse">
-                                                    <rect key="frame" x="0.0" y="45" width="375" height="45"/>
-                                                    <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-oB-4C1" customClass="Button" customModule="Material">
-                                                            <rect key="frame" x="24" y="2.5" width="40" height="40"/>
+                                                            <rect key="frame" x="167.5" y="2.5" width="40" height="40"/>
                                                             <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="40" id="4Dx-4R-MRb"/>
@@ -167,22 +147,32 @@
                                                                 <action selector="editActionButton:" destination="-1" eventType="touchUpInside" id="D7Z-I5-G3q"/>
                                                             </connections>
                                                         </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Editar Casa" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F1e-Mo-GpZ">
-                                                            <rect key="frame" x="84" y="2.5" width="242" height="40"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-Nf-OIn" customClass="Button" customModule="Material">
+                                                            <rect key="frame" x="327" y="2" width="40" height="40"/>
+                                                            <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="8Lv-XN-L7L"/>
+                                                                <constraint firstAttribute="height" constant="40" id="IMb-yx-jMj"/>
+                                                            </constraints>
+                                                            <state key="normal">
+                                                                <color key="titleColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="serachUserAction:" destination="-1" eventType="touchUpInside" id="ygR-FP-IME"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="centerY" secondItem="coa-nK-9r8" secondAttribute="centerY" id="1xq-db-icj"/>
-                                                        <constraint firstItem="F1e-Mo-GpZ" firstAttribute="leading" secondItem="eWw-oB-4C1" secondAttribute="trailing" constant="20" id="5PW-iG-g0c"/>
-                                                        <constraint firstItem="F1e-Mo-GpZ" firstAttribute="height" secondItem="eWw-oB-4C1" secondAttribute="height" id="7dy-pM-b74"/>
-                                                        <constraint firstAttribute="trailing" secondItem="F1e-Mo-GpZ" secondAttribute="trailing" constant="49" id="OI0-80-rWx"/>
-                                                        <constraint firstItem="F1e-Mo-GpZ" firstAttribute="centerY" secondItem="eWw-oB-4C1" secondAttribute="centerY" id="VMq-w4-WXy"/>
-                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="leading" secondItem="coa-nK-9r8" secondAttribute="leading" constant="24" id="lj1-rq-hbi"/>
+                                                        <constraint firstItem="NOs-0g-qum" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="7rU-d5-7nt"/>
+                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="centerX" secondItem="PxR-Ow-P61" secondAttribute="centerX" id="AOX-Bi-uRA"/>
+                                                        <constraint firstItem="NOs-0g-qum" firstAttribute="leading" secondItem="PxR-Ow-P61" secondAttribute="leading" constant="24" id="Rgz-Cd-IJK"/>
+                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="RiH-zc-qGz"/>
                                                     </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coa-nK-9r8" userLabel="EditHouse">
+                                                    <rect key="frame" x="0.0" y="45" width="375" height="45"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

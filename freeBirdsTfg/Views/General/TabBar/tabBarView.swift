@@ -40,8 +40,9 @@ class tabBarView: UITabBarController {
     func setupBar(){
         //self.tintColor = UIColor.white
         self.tabBar.barTintColor = UIColor.white
-        let profileView = ProfileEditView()
-        profileView.tabBar = self
+        //let profileView = ProfileEditView()
+        let profileView = ProfileViewController()
+      //  profileView.tabBar = self
         // profileView.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 0)
         let houseView =  HouseManagerView()
         //houseView?.tabBarItem = UITabBarItem(tabBarSystemItem: .search, tag: 1)

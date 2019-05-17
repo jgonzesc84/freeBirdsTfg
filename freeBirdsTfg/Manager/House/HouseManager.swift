@@ -23,6 +23,7 @@ class HouseManager : BaseManager{
     //gastos collection
      var user :  Array<ModelUser>?
      var house : ModelHouse?
+    var mainUser: ModelUser?
     var  theGreateye :  DatabaseHandle!
     var theReference : DatabaseReference!
     weak var delegate: RefreshHouseData?
@@ -45,6 +46,7 @@ class HouseManager : BaseManager{
        let ref = Database.database().reference()
         ref.child("CASA").child(idHouse).observeSingleEvent(of: .value, with: { (shot) in
             self.house = ModelHouse()
+           
             let value = shot.value as? NSDictionary
             self.house = self.parseHouse(dictioHouse: value!)
             self.user = self.house?.user
@@ -55,7 +57,7 @@ class HouseManager : BaseManager{
                     let bills = Array<ModelBill>()
                     self.house!.listOfBill = bills
                 }
-              
+               self.mainUser = self.house?.user?.first(where:{$0.idUser == BaseManager().userId()})
                 self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
                     self.house?.listOfBill = listOfSuccess
                     completion(true)
@@ -85,6 +87,7 @@ class HouseManager : BaseManager{
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser
                 self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
+                self.mainUser = self.house?.user?.first(where:{$0.idUser == BaseManager().userId()})
                 if(self.house?.listOfBill == nil){
                     let bills = Array<ModelBill>()
                     self.house!.listOfBill = bills

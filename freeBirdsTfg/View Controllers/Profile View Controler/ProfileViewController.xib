@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,8 +13,8 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="backGroundView" destination="Qqq-bw-22E" id="MnP-Hv-HYe"/>
+                <outlet property="closeSessionButton" destination="Eh7-Eh-vzY" id="Wbi-VT-B0r"/>
                 <outlet property="continueButton" destination="P9k-ON-tjC" id="jW1-S0-RCg"/>
-                <outlet property="myTable" destination="ULz-2A-LEF" id="H53-RO-O9A"/>
                 <outlet property="nameTextField" destination="lu7-JY-TyU" id="eCd-89-1sl"/>
                 <outlet property="navView" destination="7OA-0C-Lts" id="c7F-ax-poS"/>
                 <outlet property="photoButton" destination="Kdq-NC-wgX" id="8S4-EV-BF1"/>
@@ -64,19 +63,19 @@
                             <rect key="frame" x="0.0" y="67" width="375" height="600"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCz-0s-7NW" userLabel="HeaderView">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="360"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
                                     <subviews>
                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lu7-JY-TyU">
-                                            <rect key="frame" x="75" y="260" width="225" height="54"/>
+                                            <rect key="frame" x="75" y="260" width="225" height="30"/>
                                             <nil key="textColor"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits"/>
                                         </textField>
                                         <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="kJm-C5-fkY" userLabel="eliminar esta vista lo de dentro no">
-                                            <rect key="frame" x="94" y="36" width="187.5" height="216"/>
+                                            <rect key="frame" x="94" y="60" width="187.5" height="180"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevenRoom Ico" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7aL-PO-8u2">
-                                                    <rect key="frame" x="-6.5" y="8" width="200" height="200"/>
+                                                    <rect key="frame" x="-6.5" y="-10" width="200" height="200"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="200" id="fcs-UA-NIY"/>
@@ -89,7 +88,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kdq-NC-wgX">
-                                                    <rect key="frame" x="70.5" y="85" width="46" height="46"/>
+                                                    <rect key="frame" x="70.5" y="67" width="46" height="46"/>
                                                     <color key="backgroundColor" red="0.5450980392" green="0.81960784310000001" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="46" id="PpW-bB-ivc"/>
@@ -108,42 +107,45 @@
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="lu7-JY-TyU" firstAttribute="top" secondItem="kJm-C5-fkY" secondAttribute="bottom" constant="8" id="4GW-bf-CTs"/>
-                                        <constraint firstItem="lu7-JY-TyU" firstAttribute="height" secondItem="xCz-0s-7NW" secondAttribute="height" multiplier="0.15" id="6dw-eP-dqy"/>
+                                        <constraint firstItem="lu7-JY-TyU" firstAttribute="top" secondItem="kJm-C5-fkY" secondAttribute="bottom" constant="20" id="4GW-bf-CTs"/>
+                                        <constraint firstItem="lu7-JY-TyU" firstAttribute="height" secondItem="xCz-0s-7NW" secondAttribute="height" multiplier="0.1" id="6dw-eP-dqy"/>
                                         <constraint firstItem="kJm-C5-fkY" firstAttribute="width" secondItem="xCz-0s-7NW" secondAttribute="width" multiplier="0.5" id="DWS-1F-Xsu"/>
                                         <constraint firstItem="lu7-JY-TyU" firstAttribute="centerX" secondItem="xCz-0s-7NW" secondAttribute="centerX" id="PIL-7G-kAm"/>
                                         <constraint firstItem="kJm-C5-fkY" firstAttribute="centerX" secondItem="xCz-0s-7NW" secondAttribute="centerX" id="QgZ-2l-2ep"/>
-                                        <constraint firstItem="kJm-C5-fkY" firstAttribute="centerY" secondItem="xCz-0s-7NW" secondAttribute="centerY" multiplier="0.8" id="UMF-Pq-wnw"/>
+                                        <constraint firstItem="kJm-C5-fkY" firstAttribute="centerY" secondItem="xCz-0s-7NW" secondAttribute="centerY" id="UMF-Pq-wnw"/>
                                         <constraint firstItem="lu7-JY-TyU" firstAttribute="width" secondItem="xCz-0s-7NW" secondAttribute="width" multiplier="0.6" id="UkG-Xu-oRd"/>
                                         <constraint firstItem="kJm-C5-fkY" firstAttribute="height" secondItem="xCz-0s-7NW" secondAttribute="height" multiplier="0.6" id="Vnp-0T-v1n"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VB0-yk-cbl" userLabel="BodyView">
-                                    <rect key="frame" x="0.0" y="360" width="375" height="240"/>
+                                    <rect key="frame" x="0.0" y="300" width="375" height="300"/>
                                     <subviews>
-                                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ULz-2A-LEF">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="158"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </tableView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9k-ON-tjC">
-                                            <rect key="frame" x="74.5" y="177" width="225" height="36"/>
+                                            <rect key="frame" x="75" y="185" width="225" height="45"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="CONTINUAR"/>
                                             <connections>
                                                 <action selector="continueButtonAction:" destination="-1" eventType="touchUpInside" id="1Jp-kH-pjG"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Eh7-Eh-vzY">
+                                            <rect key="frame" x="75" y="106" width="225" height="30"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" title="CONTINUAR"/>
+                                            <connections>
+                                                <action selector="closeSessionAction:" destination="-1" eventType="touchUpInside" id="F3l-ID-bsQ"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="P9k-ON-tjC" firstAttribute="height" secondItem="VB0-yk-cbl" secondAttribute="height" multiplier="0.15" id="0In-vc-dqH"/>
-                                        <constraint firstItem="P9k-ON-tjC" firstAttribute="top" secondItem="ULz-2A-LEF" secondAttribute="bottom" constant="19" id="Cdi-ju-hcX"/>
+                                        <constraint firstAttribute="trailing" secondItem="Eh7-Eh-vzY" secondAttribute="trailing" constant="75" id="1nY-tK-6Xz"/>
                                         <constraint firstItem="P9k-ON-tjC" firstAttribute="centerX" secondItem="VB0-yk-cbl" secondAttribute="centerX" id="JBM-Lh-Njz"/>
-                                        <constraint firstAttribute="trailing" secondItem="ULz-2A-LEF" secondAttribute="trailing" id="Ldf-iO-3Gl"/>
                                         <constraint firstItem="P9k-ON-tjC" firstAttribute="width" secondItem="VB0-yk-cbl" secondAttribute="width" multiplier="0.6" id="OHD-Aa-q6C"/>
-                                        <constraint firstItem="ULz-2A-LEF" firstAttribute="top" secondItem="VB0-yk-cbl" secondAttribute="top" id="Oqh-uR-Gty"/>
-                                        <constraint firstItem="ULz-2A-LEF" firstAttribute="leading" secondItem="VB0-yk-cbl" secondAttribute="leading" id="hgJ-Gz-0br"/>
-                                        <constraint firstAttribute="bottom" secondItem="P9k-ON-tjC" secondAttribute="bottom" constant="27" id="imq-xj-Pva"/>
+                                        <constraint firstItem="P9k-ON-tjC" firstAttribute="top" secondItem="Eh7-Eh-vzY" secondAttribute="bottom" constant="49" id="bGE-k0-NrJ"/>
+                                        <constraint firstAttribute="bottom" secondItem="P9k-ON-tjC" secondAttribute="bottom" constant="70" id="imq-xj-Pva"/>
+                                        <constraint firstItem="Eh7-Eh-vzY" firstAttribute="leading" secondItem="VB0-yk-cbl" secondAttribute="leading" constant="75" id="j6V-Mg-fKf"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -152,7 +154,7 @@
                                 <constraint firstItem="xCz-0s-7NW" firstAttribute="leading" secondItem="FBj-k4-9Db" secondAttribute="leading" id="3Xy-iL-nXk"/>
                                 <constraint firstItem="VB0-yk-cbl" firstAttribute="leading" secondItem="FBj-k4-9Db" secondAttribute="leading" id="8P2-N8-qg9"/>
                                 <constraint firstItem="VB0-yk-cbl" firstAttribute="top" secondItem="xCz-0s-7NW" secondAttribute="bottom" id="AlR-QM-PE8"/>
-                                <constraint firstItem="xCz-0s-7NW" firstAttribute="height" secondItem="FBj-k4-9Db" secondAttribute="height" multiplier="0.6" id="FSm-el-FaY"/>
+                                <constraint firstItem="xCz-0s-7NW" firstAttribute="height" secondItem="FBj-k4-9Db" secondAttribute="height" multiplier="0.5" id="FSm-el-FaY"/>
                                 <constraint firstAttribute="trailing" secondItem="VB0-yk-cbl" secondAttribute="trailing" id="G87-Dc-cSM"/>
                                 <constraint firstAttribute="bottom" secondItem="VB0-yk-cbl" secondAttribute="bottom" id="Kvi-ci-4wO"/>
                                 <constraint firstItem="xCz-0s-7NW" firstAttribute="top" secondItem="FBj-k4-9Db" secondAttribute="top" id="n41-0G-NCc"/>

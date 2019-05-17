@@ -92,6 +92,22 @@ class FireBaseManager : BaseManager{
         }
         }
     }
+    static func editeUser(model: ModelUser){
+        let ref = Database.database().reference()
+        let idUser = model.idUser
+        let userDictio = ["alias":model.alias!,
+                          "houseId":model.houseId,
+                          "email":Auth.auth().currentUser?.email,
+                          ]
+        ref.child("USUARIO").child(idUser!).setValue(userDictio){
+            (error:Error?, ref:DatabaseReference) in
+            if let error = error {
+                print("Data could not be saved: \(error).")
+            } else {
+                print("Data saved successfully!")
+            }
+        }
+    }
     
     // MARK: Creacion casa
     static func  createHouse(model : ModelHouse,completion:@escaping(Bool)-> (Void) ){
