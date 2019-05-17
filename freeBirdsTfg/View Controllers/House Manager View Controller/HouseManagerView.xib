@@ -18,9 +18,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HouseManagerView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="collection" destination="Itk-d1-GCT" id="I3e-Yl-dwC"/>
-                <outlet property="editHouseView" destination="coa-nK-9r8" id="Bpt-20-sHt"/>
                 <outlet property="editUserButton" destination="eWw-oB-4C1" id="AJN-BR-mBL"/>
                 <outlet property="labelRoom" destination="NfP-dB-d9Q" id="fmU-O0-I57"/>
+                <outlet property="leaveHouseButton" destination="XCE-Nf-OIn" id="8FZ-Hg-Fq6"/>
                 <outlet property="navView" destination="Zn4-9z-dMC" id="L0D-Ph-PZ6"/>
                 <outlet property="rootOptionView" destination="ZmY-Ig-wyc" id="kqq-hb-fgl"/>
                 <outlet property="searchUserButton" destination="NOs-0g-qum" id="QhE-53-ah9"/>
@@ -44,7 +44,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primera Pantalla" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-cm-L3M">
-                                            <rect key="frame" x="37.5" y="28" width="300" height="41.5"/>
+                                            <rect key="frame" x="37.5" y="28" width="300" height="30.5"/>
                                             <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="26"/>
                                             <color key="textColor" red="0.71710350609999995" green="0.85328454570000001" blue="0.82918128410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -147,8 +147,8 @@
                                                                 <action selector="editActionButton:" destination="-1" eventType="touchUpInside" id="D7Z-I5-G3q"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-Nf-OIn" customClass="Button" customModule="Material">
-                                                            <rect key="frame" x="327" y="2" width="40" height="40"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-Nf-OIn" customClass="Button" customModule="Material">
+                                                            <rect key="frame" x="311" y="2.5" width="40" height="40"/>
                                                             <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="40" id="8Lv-XN-L7L"/>
@@ -158,6 +158,7 @@
                                                                 <color key="titleColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
                                                             <connections>
+                                                                <action selector="leaveHouseButton:" destination="-1" eventType="touchUpInside" id="yeO-vb-ikt"/>
                                                                 <action selector="serachUserAction:" destination="-1" eventType="touchUpInside" id="ygR-FP-IME"/>
                                                             </connections>
                                                         </button>
@@ -168,23 +169,18 @@
                                                         <constraint firstItem="eWw-oB-4C1" firstAttribute="centerX" secondItem="PxR-Ow-P61" secondAttribute="centerX" id="AOX-Bi-uRA"/>
                                                         <constraint firstItem="NOs-0g-qum" firstAttribute="leading" secondItem="PxR-Ow-P61" secondAttribute="leading" constant="24" id="Rgz-Cd-IJK"/>
                                                         <constraint firstItem="eWw-oB-4C1" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="RiH-zc-qGz"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XCE-Nf-OIn" secondAttribute="trailing" constant="24" id="VHg-a8-3Dp"/>
+                                                        <constraint firstItem="XCE-Nf-OIn" firstAttribute="top" secondItem="PxR-Ow-P61" secondAttribute="top" constant="2.5" id="ebo-Hw-5ra"/>
+                                                        <constraint firstItem="XCE-Nf-OIn" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="tiE-rZ-TlJ"/>
                                                     </constraints>
-                                                </view>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="coa-nK-9r8" userLabel="EditHouse">
-                                                    <rect key="frame" x="0.0" y="45" width="375" height="45"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </view>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="PxR-Ow-P61" firstAttribute="top" secondItem="ZmY-Ig-wyc" secondAttribute="top" id="21H-EI-4gg"/>
-                                                <constraint firstItem="coa-nK-9r8" firstAttribute="top" secondItem="PxR-Ow-P61" secondAttribute="bottom" id="Khk-Sj-Uvg"/>
-                                                <constraint firstItem="coa-nK-9r8" firstAttribute="leading" secondItem="ZmY-Ig-wyc" secondAttribute="leading" id="Nth-pr-jYv"/>
-                                                <constraint firstAttribute="trailing" secondItem="coa-nK-9r8" secondAttribute="trailing" id="Wp2-Rg-pvf"/>
                                                 <constraint firstItem="PxR-Ow-P61" firstAttribute="leading" secondItem="ZmY-Ig-wyc" secondAttribute="leading" id="fDx-FF-EVs"/>
                                                 <constraint firstAttribute="trailing" secondItem="PxR-Ow-P61" secondAttribute="trailing" id="j14-Jy-Khu"/>
                                                 <constraint firstItem="PxR-Ow-P61" firstAttribute="height" secondItem="ZmY-Ig-wyc" secondAttribute="height" multiplier="0.3" id="mdc-VK-QJH"/>
-                                                <constraint firstItem="coa-nK-9r8" firstAttribute="height" secondItem="ZmY-Ig-wyc" secondAttribute="height" multiplier="0.3" id="wQK-9Q-Bii"/>
                                             </constraints>
                                         </view>
                                     </subviews>

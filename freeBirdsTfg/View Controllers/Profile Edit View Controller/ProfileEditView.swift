@@ -79,23 +79,6 @@ class ProfileEditView: BaseViewController {
             (sucess) in
             if (sucess){
                 UserDefaults.standard.set("0", forKey: BaseViewController.IDHOUSE)
-//                let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
-//                let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
-//               let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-//                self.navigationController?.initRootViewController(vc: Objvc)
-               // let Objvc = MainViewController(nibName: "MainViewController", bundle: nil)
-               
-               // let vc = UINavigationController(rootViewController: Objvc)
-                
-//                self.present(vc, animated: true) {
-//
-//                }
-//                 self.navigationController?.initRootViewController(vc: Objvc)
-//                self.tabBar?.view.removeFromSuperview()
-//                self.tabBar?.dismiss(animated: false, completion: {
-//
-//                })
-                // HouseManager.sharedInstance.deleteAllObserver()
                   self.navigationController?.popToRootViewController(animated: true)
                  
             }else{

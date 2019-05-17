@@ -28,6 +28,7 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
     @IBOutlet weak var editHouseView: UIView!
     @IBOutlet weak var editUserButton: UIButton!
     
+    @IBOutlet weak var leaveHouseButton: Button!
     var roomList: Array<ModelRoom>?
     var userList: Array<ModelUser>?
     var mainUser : ModelUser?
@@ -49,7 +50,7 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
         HouseManager.sharedInstance.delegate = self
         MainHelper.giveMeStyle(label: labelRoom)
         MainHelper.theStyle(view: searchUserView)
-        MainHelper.theStyle(view: editHouseView)
+      //  MainHelper.theStyle(view: editHouseView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -148,4 +149,36 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
        
     }
     
+    @IBAction func leaveHouseButton(_ sender: Any) {
+         let userId = BaseManager().userId()
+        let user = HouseManager.sharedInstance.mainUser
+        if let room = roomList?.first(where: {$0.user?.idUser ?? "" == userId}){
+        let manager = EditRoomUserManager()
+            manager.exitUserRoom(idRoom: room.idRoom!,user: user!){
+                (success) in
+                if(success){
+                    self.leaveTheShip()
+                }else{
+                    print("fallo")
+                }
+            }
+        }else{
+            leaveTheShip()
+        }
+    }
+    
+    func leaveTheShip(){
+        let houseId = BaseManager().houseId()
+        let userId = BaseManager().userId()
+        HouseManager.sharedInstance.deleteUserFromHouse(idHouse: houseId, idUser: userId){
+            (sucess) in
+            if (sucess){
+                UserDefaults.standard.set("0", forKey: BaseViewController.IDHOUSE)
+                self.navigationController?.popToRootViewController(animated: true)
+                
+            }else{
+                print("fallo")
+            }
+        }
+    }
 }
