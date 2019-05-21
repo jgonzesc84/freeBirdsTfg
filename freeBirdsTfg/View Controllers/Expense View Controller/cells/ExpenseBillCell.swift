@@ -29,7 +29,7 @@ class ExpenseBillCell: UITableViewCell {
     @IBOutlet weak var icoImage: UIImageView!
     @IBOutlet weak var titleNameLabel: UILabel!
     
-    
+    var percentage = 0
     
     @IBOutlet weak var widthPercentageConstraint: NSLayoutConstraint!
     
@@ -56,30 +56,46 @@ class ExpenseBillCell: UITableViewCell {
         MainHelper.borderShadowRedonde(view: icoImage)
         percentageLabel.textColor = UIColor .black
     }
-
+    func resetCell(){
+        self.widthPercentageConstraint.constant = 0
+    }
+        
     func setupCell(model: ModelExpense){
         self.model = model
         icoImage.image = UIImage(named: model.ico!)
         titleNameLabel.text = model.name!
         pricelabel.text = "\(model.quantify!.rounded(toPlaces: 2))€"
-        
         statView.backgroundColor = UIColor().colorFromHex(model.color!)
         statBackgroundView.backgroundColor = UIColor().colorFromHex(model.color!)
-        
        
+    }
+    
+    override func layoutSubviews() {
+        let comprobation = self.statBackgroundView.frame.width
+        let comprobation1 = self.midView.frame.width
+          print("el tamaño de backAncho \(comprobation)")
+          print("el tamaño de midAnco \(comprobation1)")
+        self.percentageLabel.text = "\(percentage)%"
+        let widtTotal = self.statBackgroundView.frame.width
+        print("el tamaño de la vista es \(widtTotal)")
+        let totalConstant =  Float (percentage) * Float(widtTotal) / 100
+        print("Antes \(self.widthPercentageConstraint.constant)")
+        self.widthPercentageConstraint.constant = CGFloat(totalConstant)
+        print("Despues \(self.widthPercentageConstraint.constant)")
     }
     
     
 
     func animation(percentage:Int){
-//        DispatchQueue.main.async { [weak self] in
-          UIView.animate(withDuration: 3) {
+
                 self.percentageLabel.text = "\(percentage)%"
                   let widtTotal = self.midView.frame.width
+                print("el tamañoi de la pantalla es \(widtTotal)")
                 let totalConstant =  Float (percentage) * Float(widtTotal) / 100
+                print("Antes \(self.widthPercentageConstraint.constant)")
                 self.widthPercentageConstraint.constant = CGFloat(totalConstant)
-          }
-//        }
+                print("Despues \(self.widthPercentageConstraint.constant)")
+  
        
     }
     

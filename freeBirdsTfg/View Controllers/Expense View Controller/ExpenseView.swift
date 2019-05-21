@@ -18,6 +18,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     var controller : ExpenseController?
     var arrayBill : Array<ModelBill>?
     var firstTime = true
+    var widthScreen : Float?
     override func viewDidLoad() {
         
         super.viewDidLoad()

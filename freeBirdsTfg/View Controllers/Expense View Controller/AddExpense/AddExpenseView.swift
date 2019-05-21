@@ -73,7 +73,6 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     func setupEdit(_ expense : ModelExpense){
         textView.nameTextField.text = expense.name
         textView.quantifyTextField.text = "\(expense.quantify!)"
-     //   checkBoxView.variableSelection = expense.selection!
         checkBoxView.setupEdit(expense.selection!)
         icoColorView.setupEdit(expense.color!, expense.ico!)
         
@@ -119,16 +118,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
     func createExpense( _ expense: ModelExpense){
         FireBaseManager.createExpense(model:expense) { (success) in
             if(success){
-                //self.bill!.total! = self.refreshBillAdd(expense.quantify!)
                  self.navigationController?.popViewController(animated: true)
-//                HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
-//                    if(result){
-//                        self.navigationController?.popViewController(animated: true)
-//                    }else{
-//
-//                    }
-//                }
-//            }
             }
         }
     }
@@ -137,18 +127,6 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         FireBaseManager.editExpense(model: expense){ (sucess) in
             if(sucess){
                   self.navigationController?.popViewController(animated: true)
-//                if (expense.quantify != self.editExpense?.quantify){
-                
-//                    self.bill!.total! = self.refreshBillEdit(expense.quantify!, self.editExpense!.quantify!)
-//                    HouseManager.sharedInstance.billSetTotal(total: self.bill!.total!, billId: self.bill!.billId!){ (result) in
-//                        if(result){
-//                            self.navigationController?.popViewController(animated: true)
-//                        }
-//                    }
-//                }else{
-//                    self.navigationController?.popViewController(animated: true)
-//                }
-//            }
             }
         }
     }

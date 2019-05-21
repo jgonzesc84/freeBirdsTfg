@@ -40,7 +40,7 @@ class ExpenseController {
                 self.view?.arrayBill?.append(model)
                 self.view?.tableView.reloadData()
             }else{
-                //error
+               
             }
         }
         
@@ -53,10 +53,6 @@ class ExpenseController {
     }
     
     func  actualize(){
- //       let idUser = BaseManager().userId()
-//        HouseManager.sharedInstance.getExpenseById(expenseId: "", userId:idUser ){(list) in
-//            print("hello moto")
-//            }
         HouseManager.sharedInstance.setupData { (finish) in
             if(finish){
                 if let array = HouseManager.sharedInstance.house!.listOfBill{

@@ -63,6 +63,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     func refresh() {
         model?.expenses = reOrderList()
         tableView.reloadData {
+            
         }
     }
     func setupTable(){
@@ -85,9 +86,10 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseBillCell", for: indexPath) as! ExpenseBillCell
+        cell.resetCell()
         let expense = model!.expenses![indexPath.row]
         cell.setupCell(model:expense)
-        cell.animation(percentage: givePercentage(item: expense.quantify!))
+        cell.percentage = givePercentage(item: expense.quantify!)
         return cell
     }
     
@@ -97,13 +99,18 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       
-       
+//        UIView.animate(withDuration: 1) {
+//            self.tableView.beginUpdates()
+//            let cell = tableView.cellForRow(at: indexPath) as? ExpenseBillCell
+//            cell?.animation(percentage: self.givePercentage(item: (cell?.model!.quantify)!))
+//            self.tableView.endUpdates()
+//        }
+//    }
         
     }
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//          let cell = tableView.cellForRow(at: indexPath) as? ExpenseBillCell
-//         cell?.animation(percentage: givePercentage(item: (cell?.model!.quantify)!))
+       
+        
         
     }
    
@@ -152,8 +159,12 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     
     func givePercentage(item:Double) -> Int{
         let total = calculeTotal()
-        let percentage = item / total * 100
-        let roundPercentage = Int(round(percentage))
+        var roundPercentage = 0
+        if(total > 0){
+            let percentage = item / total * 100
+             roundPercentage = Int(round(percentage))
+        }
+       
         return roundPercentage
     }
     //delegate

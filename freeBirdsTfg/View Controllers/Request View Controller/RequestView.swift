@@ -14,7 +14,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
-    var listOfRequest : Array<ModelRequestHouse>?
+    var listOfRequest : [ModelRequestHouse]?
     var typeUser = false
     
     override func viewDidLoad() {
@@ -212,25 +212,10 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
             manager.setCancellAllRequestUser(listOfRequest: listOfRequest!, idAccepted: idAccepted)
             let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
             let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
-//            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//            appDelegate.window?.rootViewController = alpha
-//            self.navigationController?.popToRootViewController(animated: true)
-       //     self.navigationController?.initRootViewController(vc: alpha)
             self.navigationController?.popToRootViewController(animated: true)
           
            
     }
-        /*
-         let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
-         let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
-         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-         appDelegate.window?.rootViewController = alpha
-         self.navigationController?.popToRootViewController(animated: true)
-         let vc = UINavigationController(rootViewController: Objvc)
-         self.present(vc, animated: true) {
-         }
- 
- */
     }
 
 }
