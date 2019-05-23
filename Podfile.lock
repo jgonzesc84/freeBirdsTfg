@@ -76,6 +76,7 @@ PODS:
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
   - Protobuf (3.6.1)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.0)
@@ -87,6 +88,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - lottie-ios
   - Material (~> 2.0)
+  - SwiftyJSON
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -108,6 +110,7 @@ SPEC REPOS:
     - Motion
     - nanopb
     - Protobuf
+    - SwiftyJSON
 
 SPEC CHECKSUMS:
   AFNetworking: b6f891fdfaed196b46c7a83cf209e09697b94057
@@ -128,7 +131,8 @@ SPEC CHECKSUMS:
   Motion: 93605fd4dffe44203b56949eb0bc73a9521af7b6
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 69d6f095b438995b140f438c529e29d898cddf44
+PODFILE CHECKSUM: 15e3ccf13a810d8ced8dbae83c6ad8bea8bba7ae
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.1

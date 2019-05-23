@@ -136,10 +136,6 @@ class FireBaseManager : BaseManager{
                 print("Data could not be saved: \(error).")
                 completion(false)
             } else {
-//                UserDefaults.standard.set(idHouse, forKey: BaseViewController.IDHOUSE)
-//                let idUser = Auth.auth().currentUser?.uid
-//                let refUser = Database.database().reference()
-//                refUser.child("USUARIO").child(idUser!).updateChildValues(["houseId": idHouse])
                 completion(true)
             }
         }

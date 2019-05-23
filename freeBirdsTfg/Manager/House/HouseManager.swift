@@ -10,6 +10,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
+import SwiftyJSON
 
 
 protocol RefreshExpense: class{
@@ -41,14 +42,17 @@ class HouseManager : BaseManager{
             }
         }
     }
-    
+    /*
+     let json = JSON(data)
+     let jsonArr = json["ProsaXMLData"]["SPM"]["DAT"]["HPAGS"][0]["HPAG"]["PERS"].arrayValue
+ 
+ */
     func fillHouseFirstLoad(idHouse: String , completion:@escaping (Bool) -> Void){
        let ref = Database.database().reference()
         ref.child("CASA").child(idHouse).observeSingleEvent(of: .value, with: { (shot) in
             self.house = ModelHouse()
-           
-            let value = shot.value as? NSDictionary
-            self.house = self.parseHouse(dictioHouse: value!)
+            let json = JSON(shot.value as Any)
+            self.house = self.parseHouseJson(json: json)
             self.user = self.house?.user
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser
@@ -81,8 +85,10 @@ class HouseManager : BaseManager{
          theReference = Database.database().reference()
       theGreateye = theReference.child("CASA").child(idHouse).observe(.value, with: { (shot) in
             self.house = ModelHouse()
-            let value = shot.value as? NSDictionary
-            self.house = self.parseHouse(dictioHouse: value!)
+              let json = JSON(shot.value as Any)
+              self.house = self.parseHouseJson(json: json)
+//            let value = shot.value as? NSDictionary
+//            self.house = self.parseHouse(dictioHouse: value!)
             self.user = self.house?.user
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser

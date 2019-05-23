@@ -9,6 +9,7 @@
 import Foundation
 import  CoreLocation
 import FirebaseDatabase
+import SwiftyJSON
 
 class BaseManager{
     
@@ -40,6 +41,27 @@ class BaseManager{
     
     
     //////////////////HOUSE///////////////////
+    func parseHouseJson(json: JSON)-> ModelHouse{
+        let house = ModelHouse()
+        house.price = json["Price"].stringValue
+        house.completeDescription = json["DESCRIPTION"].stringValue
+        house.idHouse = json["IDHOUSE"].stringValue
+        house.direction = getDirectionJson(json:json["DIRECTION"])
+        house.listOfRoom = getRoomJson(json: json["ROOMS"])
+        if let _ = json["SECTIONS"].dictionary{
+           house.section = getSectionJson(json:json["SECTIONS"])
+        }else{
+            house.section = [ModelHouseSection]()
+        }
+       house.user = getUserJson(json: json["USER"])
+        house.searchMate = json["SEARCHMATE"].bool
+        if  let _ = json["BILL"].dictionary{
+            house.listOfBill = getBillJson(json: json["BILL"])
+        }else{
+             house.listOfBill = [ModelBill]()
+        }
+        return house
+    }
     
     //////SETTER HOUSE//////////
     func parseHouse(dictioHouse:NSDictionary) -> ModelHouse{
@@ -92,7 +114,68 @@ class BaseManager{
     }
     
     //////////////GETTER HOUSE////////////////
+    func getDirectionJson(json :JSON) -> (ModelDirection){
+        let direction = ModelDirection()
+        direction.title = json["title"].stringValue
+        direction.coordinate = CLLocationCoordinate2D(latitude: json["latitude"].double!, longitude: json["longitude"].double!)
+        return direction
+    }
+    func getSectionJson(json: JSON) -> Array<ModelHouseSection>{
+       var sections = [ModelHouseSection]()
+         _ = json.dictionary?.compactMap { json -> Void in
+            let section = ModelHouseSection()
+            let values = json.value
+            section.title = values["title"].stringValue
+            section.description = values ["description"].string
+            sections.append(section)
+        }
+        
+        return sections
+        
+    }
+    func getRoomJson(json: JSON) -> Array<ModelRoom>{
+        var rooms = [ModelRoom]()
+        _ = json.dictionary?.compactMap{ json -> Void in
+            let room = ModelRoom()
+            room.idRoom = json.key
+            let values = json.value
+            room.price = values["PRICE"].string
+            room.search = values["search"].bool
+            if let userId = values["user"].string{
+                let user = ModelUser()
+                user.idUser = userId
+                room.user = user
+            }
+            rooms.append(room)
+        }
+        return rooms
+    }
+    func getUserJson(json:JSON)-> Array<ModelUser>{
+        var users = [ModelUser]()
+        _ = json.dictionary?.compactMap{ json -> Void in
+            let values = json.value
+            if let userId = values["userId"].string {
+                if (userId.count > 0){
+                    let user = ModelUser()
+                    user.idUser = userId
+                    users.append(user)
+                }
+            }
+        }
+        return users
+    }
     
+    func getBillJson(json:JSON) -> Array<ModelBill>{
+       var bills = [ModelBill]()
+        _ = json.dictionary?.compactMap{ json -> Void in
+            let idBill = json.key
+            let bill = ModelBill()
+            bill.billId = idBill
+            bills.append(bill)
+        }
+        return bills
+        
+    }
     func getDirection(dictio: Dictionary<String, Any>) -> (ModelDirection){
         var value = Dictionary <String, Any>()
         if let testDirection = dictio["DIRECTION"] as? [String:AnyObject]{
@@ -432,10 +515,4 @@ class BaseManager{
         return model.listOfRoom!
     }
 }
-/*
- if let i = students.firstIndex(where: { $0.hasPrefix("A") }) {
- print("\(students[i]) starts with 'A'!")
- }
- 
- 
- */
+

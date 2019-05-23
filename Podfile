@@ -15,6 +15,7 @@ target 'freeBirdsTfg' do
   pod 'Firebase/Messaging'
   pod 'lottie-ios'
   pod 'FAPaginationLayout'
+pod 'SwiftyJSON'
 
   target 'freeBirdsTfgTests' do
     inherit! :search_paths

@@ -13,6 +13,11 @@ import FirebaseStorage
 
 class BillManager : BaseManager{
     
+    
+    
+    
+    
+    
     func createDate() -> (Date){
         let date = Date()
         let formatter = DateFormatter()
@@ -30,9 +35,14 @@ class BillManager : BaseManager{
     }
     
     func compareDate(listArray:Array<ModelBill>) -> Array<ModelBill>{
-       let sortedArray = listArray
-        sortedArray.sorted(by: { $0.dateBill!.compare($1.dateBill!) == .orderedDescending })
+      let sortedArray = listArray.sorted(by: { $0.dateBill!.compare($1.dateBill!) == .orderedDescending })
         return sortedArray
     }
     
+    func oberveBill(){
+         let billRef = Database.database().reference().child("BILL")
+        billRef.child("idBill").child("expense").observe(.value) { (shot) in
+            
+        }
+    }
 }

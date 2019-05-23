@@ -98,21 +98,6 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         self.pushToEditCellExpense!(expense, self.model!.total!)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        UIView.animate(withDuration: 1) {
-//            self.tableView.beginUpdates()
-//            let cell = tableView.cellForRow(at: indexPath) as? ExpenseBillCell
-//            cell?.animation(percentage: self.givePercentage(item: (cell?.model!.quantify)!))
-//            self.tableView.endUpdates()
-//        }
-//    }
-        
-    }
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-       
-        
-        
-    }
    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal,
