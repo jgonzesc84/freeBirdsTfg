@@ -7,7 +7,7 @@
 //
 
 import Foundation
-class ModelHouse{
+class ModelHouse : Encodable{
     
     var price : String?
     var section : Array<ModelHouseSection>?
@@ -17,14 +17,13 @@ class ModelHouse{
     var idHouse : String?
     var completeDescription : String?
     var listOfBill : Array<ModelBill>?
-    var searchMate : Bool? 
-    
+    var searchMate : Bool?
     init(){
-        
+
     }
     
     init(price: String?, section: Array<ModelHouseSection>? , listOfRoom: Array<ModelRoom>?, direction: ModelDirection?, completeDescription: String? /*, users: Array<Any>? */){
-        
+
         self.price = price
         self.section = section
         self.listOfRoom = listOfRoom
@@ -33,9 +32,9 @@ class ModelHouse{
        // self.user = Array()
        // self.user.append(BaseManager().getUserDefault())
       //  self.user = users
-        
+
     }
-    
+
     
     
     

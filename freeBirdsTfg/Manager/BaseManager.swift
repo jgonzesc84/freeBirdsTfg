@@ -63,56 +63,6 @@ class BaseManager{
         return house
     }
     
-    //////SETTER HOUSE//////////
-    func parseHouse(dictioHouse:NSDictionary) -> ModelHouse{
-        let fullHouse = ModelHouse()
-        let keys = dictioHouse.allKeys as? Array<String>
-        for key in keys!{
-            switch key{
-            case "PRICE":
-                let price = dictioHouse["PRICE"] as! String
-                fullHouse.price = price
-                break
-            case "DESCRIPTION":
-                let completeDescription = dictioHouse["DESCRIPTION"] as! String
-                fullHouse.completeDescription = completeDescription
-                break
-            case "IDHOUSE":
-                let idHouse = dictioHouse["IDHOUSE"] as! String
-                fullHouse.idHouse = idHouse
-                break
-            case "DIRECTION":
-                let direction = self.getDirection(dictio: dictioHouse as! Dictionary<String, Any>)
-                fullHouse.direction = direction
-                break
-            case "ROOMS":
-                let arrayRoom = self.getRoom(dictio: dictioHouse as! Dictionary<String, Any>)
-                fullHouse.listOfRoom = arrayRoom
-                break
-            case "SECTIONS":
-                let arraySection = self.getSection(dictio: dictioHouse as! Dictionary<String, Any>)
-                fullHouse.section = arraySection
-                break
-            case "USER":
-                let arrayUser = self.getUser(dictio: dictioHouse as! Dictionary<String, Any>)
-                fullHouse.user = arrayUser
-                break
-            case "SEARCHMATE":
-                let searchMate = dictioHouse["SEARCHMATE"] as! Bool
-                fullHouse.searchMate = searchMate
-                break
-            case "BILL":
-                let arrayBill = self.getBill(dictio: dictioHouse as! Dictionary<String, Any>)
-                fullHouse.listOfBill = arrayBill
-                break
-            default:
-                break
-            }
-        }
-        
-        return fullHouse;
-    }
-    
     //////////////GETTER HOUSE////////////////
     func getDirectionJson(json :JSON) -> (ModelDirection){
         let direction = ModelDirection()
@@ -150,6 +100,7 @@ class BaseManager{
         }
         return rooms
     }
+    
     func getUserJson(json:JSON)-> Array<ModelUser>{
         var users = [ModelUser]()
         _ = json.dictionary?.compactMap{ json -> Void in
@@ -176,12 +127,13 @@ class BaseManager{
         return bills
         
     }
+    
     func getDirection(dictio: Dictionary<String, Any>) -> (ModelDirection){
         var value = Dictionary <String, Any>()
         if let testDirection = dictio["DIRECTION"] as? [String:AnyObject]{
             value = testDirection
         }else{
-         value = dictio
+            value = dictio
         }
         let street = value["title"] as? String
         let latitud = value["latitude"] as? Double
@@ -190,67 +142,30 @@ class BaseManager{
         let direction = ModelDirection(title:street!, coordinate: location)
         return direction
     }
-    
-    
-    func getSection(dictio : Dictionary <String, Any>) -> (Array<ModelHouseSection>){
-        let testSeccionList = dictio["SECTIONS"] as? [String:AnyObject]
-        var arraySection : Array<ModelHouseSection> = []
-        let dictio = testSeccionList?.keys
-        if let somethingDictio = dictio{
-            let componentArray = Array(somethingDictio)
-            for key in componentArray{
-                let sectionDictio = testSeccionList![key]
-                let titleSection = sectionDictio!["title"] as? String
-                let descriptionSection = sectionDictio!["description"] as? String
-                let sectionModel = ModelHouseSection()
-                sectionModel.title = titleSection!
-                sectionModel.description = descriptionSection!
-                arraySection.append(sectionModel)
-            }
-        }
-        return arraySection
-    }
-    
-    func getRoom(dictio : Dictionary <String, Any>) -> (Array<ModelRoom>){
-        let testRoomList = dictio["ROOMS"] as? [String:AnyObject]
-        var arrayRoom : Array<ModelRoom> = []
-        let dictioRoom = testRoomList?.keys
-        let componentRoom = Array(dictioRoom!)
-        for key in componentRoom{
-            let sectionDictio = testRoomList![key]
-            let roomId = key
-            let userId = sectionDictio!["user"] as? String
-            let price = sectionDictio!["PRICE"] as? String
-            let search = sectionDictio!["search"] as? Bool
-            let roomModel = ModelRoom()
-            let userFull = ModelUser()
-            userFull.idUser = userId
-            roomModel.idRoom = roomId
-            roomModel.user = userFull
-            roomModel.price = price!
-            roomModel.search = search
-            arrayRoom.append(roomModel)
-        }
-        return arrayRoom
-    }
-    
-   
-    
-    
+
      func prepareHouse(model : ModelHouse, idHouse: String)-> (Dictionary<String, Any>){
-        let dictioHouse=[
-            "PRECIO": model.price ?? "0.0",
-            "IDHOUSE": idHouse,
-            "DESCRIPTION": model.completeDescription ?? "text",
-            "DIRECTION" : prepareDirection(model: model.direction!,new: true),
-            "ROOMS" : prepareRoom(model: model),
-            "SECTIONS" : prepareSection(model: model),
-            "USER": prepareUser(model: model),
-            "SEARCHMATE" : model.searchMate!,
-            "BILL" : ""
-            ] as Dictionary
-        return dictioHouse
+        model.idHouse = idHouse
+//        let dictioHouse=[
+//            "PRECIO": model.price ?? "0.0",
+//            "IDHOUSE": idHouse,
+//            "DESCRIPTION": model.completeDescription ?? "text",
+//            "DIRECTION" : prepareDirection(model: model.direction!,new: true),
+//            "ROOMS" : prepareRoom(model: model),
+//            "SECTIONS" : prepareSection(model: model),
+//            "USER": prepareUser(model: model),
+//            "SEARCHMATE" : model.searchMate!,
+//            "BILL" : ""
+//            ] as Dictionary
+        
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(model)
+        if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+            dictio = dictionary
+        }
+        return dictio
     }
+    
     func prepareHouseBill(model : ModelHouse, idHouse: String)-> (Dictionary<String, Any>){
         let dictioHouse=[
             "PRECIO": model.price ?? "0.0",
@@ -390,19 +305,13 @@ class BaseManager{
     //////SET////
     func prepareBill(model: ModelBill) -> (Dictionary<String, Any>){
         
-        var expenseDictio = Dictionary<String, Any>()
-        var testDictio = Dictionary<String, Any>()
-        for  item in model.expenses!{
-            expenseDictio[item.idExpense!] = prepareExpense(model: item)
-            testDictio[item.idExpense!] = expenseDictio
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(model)
+        if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+            dictio = dictionary
         }
-        
-        let billDictio = ["billId" : model.billId!,
-                          "Date": BillManager().stringFromDate(date: model.dateBill!,format: constant.formatBillDate),
-                          "expenses": testDictio,
-                          "total": model.total!
-            ] as Dictionary
-        return billDictio
+        return dictio
         
     }
     
@@ -428,23 +337,24 @@ class BaseManager{
     
     ///EXPENSE//
      //SET//
+    func prepareExpenseJson(model: ModelExpense) -> [String : Any]{
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(model)
+        if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+            dictio = dictionary
+        }
+        return dictio
+        
+    }
     func prepareExpense(model: ModelExpense) -> (Dictionary<String,Any>){
-        //var expenseDictio = Dictionary<String, Any>()
-  //      var usersDictio = Dictionary<String, Any>()
-//        for user in model.users!{
-//            let dictio = ["idUser": user.idUser]
-//            usersDictio = dictio as [String : Any]
-//        }
-        let dict = [ "name": model.name!,
-                     "idExpense":model.idExpense!,
-                     "quantify": model.quantify!,
-                     "selection" : model.selection!,
-                     "color" : model.color!,
-                     "ico": model.ico!,
-                     "idBill" : model.idBill!,
-                     "users" : model.idUser!
-            ] as Dictionary
-        return dict
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(model)
+        if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+            dictio = dictionary
+        }
+        return dictio
     }
     
     ///GETTER//////

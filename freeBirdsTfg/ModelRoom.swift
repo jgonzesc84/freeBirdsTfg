@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class ModelRoom{
+class ModelRoom: Encodable{
     
     var user : ModelUser?
     var price : String!
-    var image : UIImage?
+    var image : String?
     var search : Bool?
     var idRoom : String?
     

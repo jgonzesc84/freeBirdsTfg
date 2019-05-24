@@ -111,8 +111,10 @@ class HouseManager : BaseManager{
         theReference = Database.database().reference()
         theGreateye = theReference.child("CASA").child(idHouse).observe(.value, with: { (shot) in
             self.house = ModelHouse()
-            let value = shot.value as? NSDictionary
-            self.house = self.parseHouse(dictioHouse: value!)
+            let json = JSON(shot.value as Any)
+            self.house = self.parseHouseJson(json: json)
+//            let value = shot.value as? NSDictionary
+//            self.house = self.parseHouse(dictioHouse: value!)
             self.user = self.house?.user
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser
@@ -133,6 +135,8 @@ class HouseManager : BaseManager{
     }
 
      func getListOfBill(list:Array<ModelBill>, completion:@escaping(Array<ModelBill>)-> Void){
+
+
         var completedList = Array<ModelBill>()
         var count = 0
         let idUser = BaseManager().userId()
@@ -171,24 +175,10 @@ class HouseManager : BaseManager{
         
         let ref = Database.database().reference()
         ref.child("BILL").child(billId).observe(.value, with: { (snapshot) in
-            // Get user value
-            let value = snapshot.value as? NSDictionary
-            let model = ModelBill()
-            model.billId = billId
-            model.total = value?["total"] as? Double ?? 0.0
-            //
-            if let dictioExpense = value?["expense"] as? Dictionary<String,Any>{
-                model.expenses = self.getListOfExpense(dictio: dictioExpense)
-            }else{
-                model.expenses = Array()
-            }
-            //
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "MM.yyyy"
-            let date = dateFormatter.date(from: value?["Date"] as? String ?? "")
-            model.dateBill = date
-            completion(model)
-           print("AQUI PASA ALGO")
+             let json = JSON(snapshot.value as Any)
+            
+            completion(BillManager().parseBill(json: json))
+         //  print("AQUI PASA ALGO")
         }) { (error) in
             print(error.localizedDescription)
         }

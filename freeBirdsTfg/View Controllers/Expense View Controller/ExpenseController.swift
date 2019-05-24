@@ -33,7 +33,8 @@ class ExpenseController {
     func createBill(){
        let model = ModelBill()
        model.expenses = Array<ModelExpense>()
-       model.dateBill = BillManager().createDate()
+       model.dateBill = Date()
+    //   model.dateBill = BillManager().createDate()
        model.total = 0.0
         FireBaseManager.createBill(model: model){ (success) in
             if(success){

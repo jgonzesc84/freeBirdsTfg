@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ModelRequestMessageHouse{
+class ModelRequestMessageHouse : Encodable{
     
     var idRequestMessage : String?
     var text : String?

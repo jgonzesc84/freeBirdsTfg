@@ -172,9 +172,14 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
 }
 
     func refreshTotalLabel(){
+        if let comp = model?.dateBill{
+            let date = BillManager().stringFromDate(date: comp, format: constant.formatBillDate)
+            let compact = "\(date)  \(String(calculeTotal()))€"
+            labelMont.text = compact
+            
+        }
         
-        let compact = "\(model!.dateBill!.asString())  \(String(calculeTotal()))€"
-        labelMont.text = compact
+       
     }
     func calculeTotal() -> Double{
         let expenses = model?.expenses

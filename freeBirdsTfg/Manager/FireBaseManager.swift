@@ -11,6 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 import CoreLocation
+import SwiftyJSON
 
 private let fireManager = FireBaseManager()
 
@@ -46,8 +47,8 @@ class FireBaseManager : BaseManager{
     }
     //(completion: @escaping (Bool) -> ())
    func isSessionActive(){
-   firebaseAuthListener = Auth.auth().addStateDidChangeListener {  (auth, user) in
-    
+    firebaseAuthListener = Auth.auth().addStateDidChangeListener {  (auth, user) in
+        
         var landingPage = ""
         if user == nil
         {
@@ -64,7 +65,7 @@ class FireBaseManager : BaseManager{
             }
         }
         self.delegate?.isActiveSession( landingPage:landingPage)
-   Auth.auth().removeStateDidChangeListener(self.firebaseAuthListener!)
+        Auth.auth().removeStateDidChangeListener(self.firebaseAuthListener!)
     }
     
     
@@ -140,40 +141,34 @@ class FireBaseManager : BaseManager{
             }
         }
     }
-    
     func getHouse(completion: @escaping (Array<ModelHouse>) -> Void){
         var collectionHouse : Array<ModelHouse> = []
         let ref = Database.database().reference()
-      ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).observeSingleEvent(of: DataEventType.value) { (shot) in
-            for item in shot.children.allObjects as! [DataSnapshot]{
-                 var fullHouse = ModelHouse()
-                if let data = item.value as? NSDictionary {
-                    fullHouse = self.parseHouse(dictioHouse: data)
-                    collectionHouse.append(fullHouse)
-                }
-                
+        ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).observeSingleEvent(of: DataEventType.value) { (shot) in
+            let json = JSON(shot.value as Any)
+            _ = json.dictionary?.compactMap{ json -> Void in
+                var fullHouse = ModelHouse()
+                let values = json.value
+                 fullHouse = self.parseHouseJson(json: values)
+                 collectionHouse.append(fullHouse)
             }
             completion(collectionHouse)
         }
+     
     }
     
     func getHouseUpdated(completion: @escaping (ModelHouse,Bool) -> Void){
         let ref = Database.database().reference()
-        // ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true)
-        // ref.child("CASA").queryLimited(toLast: 1)
-      ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).queryLimited(toLast: 1).observe(.childAdded, with:{ shot in
+        ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).queryLimited(toLast: 1).observe(.childAdded, with:{ shot in
             var fullHouse = ModelHouse()
-            if let data = shot.value as? NSDictionary {
-                fullHouse = self.parseHouse(dictioHouse: data)
-            }
+            let json = JSON(shot.value as Any)
+            fullHouse = self.parseHouseJson(json: json)
             completion(fullHouse,true)
         })
-        //ref.child("CASA")
         ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).observe(.childRemoved, with:{ shot in
             var fullHouse = ModelHouse()
-            if let data = shot.value as? NSDictionary {
-                fullHouse = self.parseHouse(dictioHouse: data)
-            }
+            let json = JSON(shot.value as Any)
+            fullHouse = self.parseHouseJson(json: json)
             completion(fullHouse,false)
         })
     }
@@ -253,7 +248,7 @@ class FireBaseManager : BaseManager{
          var expenseDictio = Dictionary<String, Any>()
         model.idExpense = ref.childByAutoId().key
         expenseDictio[model.idExpense!] = BaseManager().prepareExpense(model: model)
-        ref.child("EXPENSE").child(model.idExpense!).setValue(BaseManager().prepareExpense(model: model)){
+        ref.child("EXPENSE").child(model.idExpense!).setValue(BaseManager().prepareExpenseJson(model: model)){
             (error:Error?, ref:DatabaseReference)in
             if let error = error{
                 print("Data could not be saved: \(error).")

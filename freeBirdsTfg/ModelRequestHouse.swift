@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ModelRequestHouse {
+class ModelRequestHouse :Encodable{
     
     var idRequest: String?
     var aplicantId : String?

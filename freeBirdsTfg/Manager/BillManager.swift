@@ -10,12 +10,35 @@ import Foundation
 import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
-
+import SwiftyJSON
 class BillManager : BaseManager{
     
     
     
-    
+    func parseBill(json:JSON) -> ModelBill{
+        let model = ModelBill()
+        model.billId = json["billId"].string
+        let dateInt = json["dateBill"].intValue
+        model.dateBill = Date(milliseconds: dateInt)
+        model.total = json["total"].double ?? 0.0
+        if let expenseData = json ["expense"].dictionary{
+            var expenses = [ModelExpense]()
+            expenseData.compactMap{ expenseData -> Void in
+                let expense = ModelExpense()
+                 let values = expenseData.value
+                expense.idBill = expenseData.key
+                expense.idExpense = values["idExpense"].string
+                expense.idUser = values["iduser"].string
+                expenses.append(expense)
+        }
+           model.expenses = expenses
+            
+        }else{
+            model.expenses = [ModelExpense]()
+        }
+        
+        return model
+    }
     
     
     func createDate() -> (Date){

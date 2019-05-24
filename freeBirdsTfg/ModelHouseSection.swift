@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class ModelHouseSection{
+class ModelHouseSection: Encodable{
     
     var title : String!
     var description : String!
-    var image : UIImage?
+    var image : String?
     
 }

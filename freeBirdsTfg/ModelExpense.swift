@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ModelExpense{
+class ModelExpense: Encodable{
     
     var idExpense: String?
     var idBill: String?
