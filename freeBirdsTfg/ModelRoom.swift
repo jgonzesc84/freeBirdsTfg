@@ -17,4 +17,22 @@ class ModelRoom: Encodable{
     var search : Bool?
     var idRoom : String?
     
+    enum CodingKeys: String, CodingKey{
+        
+        case user
+        case search
+        case PRICE
+       
+        
+        
+    }
+    
+    func encode(to encoder: Encoder) throws{
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(user, forKey: .user)
+        try container.encode(price, forKey: .PRICE)
+        try container.encode(search, forKey: .search)
+      
+    }
+    
 }

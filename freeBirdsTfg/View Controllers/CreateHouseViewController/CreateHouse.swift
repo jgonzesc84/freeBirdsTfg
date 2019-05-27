@@ -149,7 +149,7 @@ class CreateHouse: BaseViewController {
         if let topVC = UIApplication.getTopMostViewController() {
             topVC.view.addSubview(self.modalView!)
             self.modalView?.returnCompleteHouseData = { (text) -> () in
-                self.house?.completeDescription = text
+                self.house?.description = text
                 FireBaseManager.createHouse(model: self.house!){
                     (sucess)in
                     if(sucess){

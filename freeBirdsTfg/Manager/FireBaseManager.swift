@@ -114,7 +114,8 @@ class FireBaseManager : BaseManager{
     static func  createHouse(model : ModelHouse,completion:@escaping(Bool)-> (Void) ){
     let ref = Database.database().reference()
     let idHouse = ref.childByAutoId().key
-        ref.child("CASA").child(idHouse).setValue(BaseManager().prepareHouse(model: model, idHouse: idHouse)){
+        model.idHouse = idHouse
+        ref.child("CASA").child(idHouse).setValue(BaseManager().prepareHouse(model: model)){
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
                 print("Data could not be saved: \(error).")
@@ -131,7 +132,8 @@ class FireBaseManager : BaseManager{
     static func  editHouse(model : ModelHouse,completion:@escaping(Bool)-> (Void) ){
         let ref = Database.database().reference()
         let idHouse = model.idHouse
-        ref.child("CASA").child(idHouse!).setValue(BaseManager().prepareHouseBill(model: model, idHouse: idHouse!)){
+        model.idHouse = idHouse
+        ref.child("CASA").child(idHouse!).setValue(BaseManager().prepareHouseBill(model: model)){
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
                 print("Data could not be saved: \(error).")

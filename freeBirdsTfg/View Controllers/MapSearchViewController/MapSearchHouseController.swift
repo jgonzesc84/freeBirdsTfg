@@ -175,7 +175,7 @@ class MapSearchHouseController {
                 annotation.coordinate = model.direction!.coordinate!
                 annotation.title = model.direction!.title
                 annotation.idHouse = model.idHouse
-                annotation.descriptionText = model.completeDescription
+                annotation.descriptionText = model.description
                 self.viewMap?.map.addAnnotation(annotation)
                 self.viewMap?.listOfHouses?.append(model)
             }
@@ -203,7 +203,7 @@ class MapSearchHouseController {
             annotation.idHouse = item.idHouse
             annotation.coordinate = item.direction!.coordinate!
             annotation.title = item.direction!.title
-            annotation.descriptionText = item.completeDescription
+            annotation.descriptionText = item.description
             viewMap?.map.addAnnotation(annotation)
             
         }

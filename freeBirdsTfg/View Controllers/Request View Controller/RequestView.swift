@@ -11,24 +11,38 @@ import UIKit
 class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSource , CellRequestController{
    
 
+    @IBOutlet weak var searchUserButton: UIButton!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var table: UITableView!
     @IBOutlet weak var titleLabel: UILabel!
     var listOfRequest : [ModelRequestHouse]?
     var typeUser = false
+    var controller : ControllerRequestView?
+    var controllerUser : ControllerRequestUser?
+    var controllerHouse : ControllerRequestHouse?
     
     override func viewDidLoad() {
         super.viewDidLoad()
        
         if(typeUser){
              prepareNav(label: titleLabel, text: "Solicitudes")
+            controller =  ControllerRequestUser(main: self)
+            configureSearchButton(typeUser)
         }else{
              prepareNavRoot(label:  titleLabel, text: "Solicitudes")
+            controller = ControllerRequestHouse(main: self)
+            configureSearchButton(typeUser)
         }
         
          setuptable()
          listAddedRequest()
          listDeleteRequest()
+    }
+    func configureSearchButton( _ mode: Bool){
+        searchUserButton.isEnabled = !mode
+        searchUserButton.isHidden = mode
+        MainHelper.circleButton(button: searchUserButton)
+        MainHelper.borderShadowRedondNotRadius(view: searchUserButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -37,17 +51,19 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
         }else{
             self.navigationController?.navigationBar.isHidden = false
         }
-     
+     //poner barra de navegacion
     }
   
     override func viewWillAppear(_ animated: Bool) {
          refreshModel()
+        //refrescar modelo
     }
     func setuptable(){
         table.delegate = self
         table.dataSource = self
         table.separatorStyle = .none
         table.register(UINib(nibName: "RequestCell", bundle: nil), forCellReuseIdentifier: "cellItem")
+        //configurar tabla
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -211,7 +227,7 @@ class RequestView: BaseViewController, UITableViewDelegate, UITableViewDataSourc
             let manager = RequestMessageManager()
             manager.setCancellAllRequestUser(listOfRequest: listOfRequest!, idAccepted: idAccepted)
             let story : UIStoryboard = UIStoryboard(name:"Login", bundle: nil)
-            let alpha = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
+            _ = story.instantiateViewController(withIdentifier: "AlphaViewController") as! AlphaViewController
             self.navigationController?.popToRootViewController(animated: true)
           
            

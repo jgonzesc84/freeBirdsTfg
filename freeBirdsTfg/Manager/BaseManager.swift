@@ -43,8 +43,8 @@ class BaseManager{
     //////////////////HOUSE///////////////////
     func parseHouseJson(json: JSON)-> ModelHouse{
         let house = ModelHouse()
-        house.price = json["Price"].stringValue
-        house.completeDescription = json["DESCRIPTION"].stringValue
+       // house.price = json["Price"].stringValue
+        house.description = json["DESCRIPTION"].stringValue
         house.idHouse = json["IDHOUSE"].stringValue
         house.direction = getDirectionJson(json:json["DIRECTION"])
         house.listOfRoom = getRoomJson(json: json["ROOMS"])
@@ -105,7 +105,7 @@ class BaseManager{
         var users = [ModelUser]()
         _ = json.dictionary?.compactMap{ json -> Void in
             let values = json.value
-            if let userId = values["userId"].string {
+            if let userId = values["idUser"].string {
                 if (userId.count > 0){
                     let user = ModelUser()
                     user.idUser = userId
@@ -143,20 +143,38 @@ class BaseManager{
         return direction
     }
 
-     func prepareHouse(model : ModelHouse, idHouse: String)-> (Dictionary<String, Any>){
-        model.idHouse = idHouse
-//        let dictioHouse=[
-//            "PRECIO": model.price ?? "0.0",
-//            "IDHOUSE": idHouse,
-//            "DESCRIPTION": model.completeDescription ?? "text",
-//            "DIRECTION" : prepareDirection(model: model.direction!,new: true),
-//            "ROOMS" : prepareRoom(model: model),
-//            "SECTIONS" : prepareSection(model: model),
-//            "USER": prepareUser(model: model),
-//            "SEARCHMATE" : model.searchMate!,
-//            "BILL" : ""
-//            ] as Dictionary
+     func prepareHouse(model : ModelHouse)-> (Dictionary<String, Any>){
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(model)
+        if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+            dictio = dictionary
+        }
+        if let rooms = model.listOfRoom{
+            dictio["ROOMS"] = prepareRoom(rooms:rooms)
+        }
+        if let sections = model.section{
+            dictio["SECTIONS"] = prepareSection(sections: sections)
+        }
+        if let user = model.user{
+            dictio["USER"] = prepareUser(users: user)
+        }
+        return dictio
+    }
+    
+    func prepareHouseBill(model : ModelHouse)-> (Dictionary<String, Any>){
+    
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try! jsonEncoder.encode(model)
+        if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+            dictio = dictionary
+        }
+        return dictio
         
+    }
+    
+    func prepareDirection(model : ModelDirection,  new: Bool) -> (Dictionary<String, Any>){
         var dictio = [String: Any]()
         let jsonEncoder = JSONEncoder()
         let jsonData = try! jsonEncoder.encode(model)
@@ -166,62 +184,48 @@ class BaseManager{
         return dictio
     }
     
-    func prepareHouseBill(model : ModelHouse, idHouse: String)-> (Dictionary<String, Any>){
-        let dictioHouse=[
-            "PRECIO": model.price ?? "0.0",
-            "IDHOUSE": idHouse,
-            "DESCRIPTION": model.completeDescription ?? "text",
-            "DIRECTION" : prepareDirection(model: model.direction!,new: true),
-            "ROOMS" : prepareRoom(model: model),
-            "SECTIONS" : prepareSection(model: model),
-            "USER": prepareUser(model: model),
-            "SEARCHMATE" : model.searchMate!,
-            "BILL" : prepareListOfBill(list: model.listOfBill!)
-            ] as Dictionary
-        return dictioHouse
-    }
-    
-    func prepareDirection(model : ModelDirection,  new: Bool) -> (Dictionary<String, Any>){
-         let idDirection = new ? Database.database().reference().childByAutoId().key : "N/A "
-        let directionDictio = ["title": model.title!,
-                               "latitude":model.coordinate!.latitude,
-                               "longitude":model.coordinate!.longitude,
-                               "idDirection":idDirection ] as Dictionary
-        return directionDictio
-    }
-    
-     func prepareRoom(model : ModelHouse) -> (Dictionary<String, Any>){
-         var roomDictio = Dictionary<String, Any>()
-        for item in model.listOfRoom! {
-            let idRoom = Database.database().reference().childByAutoId().key
-            let dict = ["user":item.user?.idUser  ?? "" ,
-                        "image":item.image as Any,
-                        "PRICE":item.price!,
-                        "search": item.search!
-                        ] as Dictionary
-            roomDictio[idRoom] = dict
-            
-    }
-        return roomDictio
-    }
-    
-     func prepareSection(model : ModelHouse) -> (Dictionary<String, Any>){
-        var sectionDictio = Dictionary<String, Any>()
-        if let secciones = model.section {
-            for section in secciones {
-                let idSection = Database.database().reference().childByAutoId().key
-                let dict = ["title":section.title! ,
-                            "description":section.description!,
-                            "image":section.image as Any,
-                            ] as Dictionary
-                sectionDictio[idSection] = dict
-                
+     func prepareRoom(rooms : [ModelRoom]) -> (Dictionary<String, Any>){
+            var dictio = [String: Any]()
+            let jsonEncoder = JSONEncoder()
+            for room in rooms{
+                let jsonData = try! jsonEncoder.encode(room)
+                if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                     let idRoom = Database.database().reference().childByAutoId().key
+                    dictio[idRoom] = dictionary
+                }
             }
-    }
-        return sectionDictio
+       
+        return dictio
+        
     }
     
+     func prepareSection(sections : [ModelHouseSection]) -> (Dictionary<String, Any>){
+        var dictio = [String: Any]()
+       
+            let jsonEncoder = JSONEncoder()
+            for section in sections{
+                let jsonData = try! jsonEncoder.encode(section)
+                if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                    let idSection = Database.database().reference().childByAutoId().key
+                    dictio[idSection] = dictionary
+                }
+            }
+        
+        return dictio
+    }
     
+    func prepareUser(users : [ModelUser]) -> (Dictionary<String, Any>){
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        for user in users{
+            let jsonData = try! jsonEncoder.encode(user)
+            if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                dictio[user.idUser ?? ""] = dictionary
+            }
+        }
+        
+        return dictio
+    }
     
     /////////////////USER////////
     
@@ -242,16 +246,8 @@ class BaseManager{
         return arrayUser
     }
 
-    func prepareUser(model : ModelHouse) -> (Dictionary<String, Any>){
-        var userDictio = Dictionary<String, Any>()
-        var userDictioKey = Dictionary<String, Any>()
-        
-        for nameUser in model.user!{
-            userDictio = ["userId":nameUser.idUser!]
-            userDictioKey[nameUser.idUser!] = userDictio
-        }
-        return userDictioKey
-    }
+   
+    
     func prepareUserNoHouse(idUser : String) -> (Dictionary<String, Any>){
         var userDictio = Dictionary<String, Any>()
        
@@ -259,6 +255,7 @@ class BaseManager{
         
         return userDictio
     }
+
     func getUserModel(_ dictio : NSDictionary, _ idUser: String) ->(ModelUser){
         let model = ModelUser()
         model.idUser = idUser
@@ -312,19 +309,8 @@ class BaseManager{
             dictio = dictionary
         }
         return dictio
-        
     }
     
-    /*
-     var userDictio = Dictionary<String, Any>()
-     var userDictioKey = Dictionary<String, Any>()
-     
-     for nameUser in model.user!{
-     userDictio = ["userId":nameUser.idUser!]
-     userDictioKey[nameUser.idUser!] = userDictio
-     }
-     return userDictioKey
- */
     func prepareListOfBill(list : Array<ModelBill>) -> (Dictionary<String,Any>){
         var userDictio = Dictionary<String, Any>()
         var innerDictio = Dictionary<String, Any>()
@@ -335,8 +321,6 @@ class BaseManager{
         return userDictio
     }
     
-    ///EXPENSE//
-     //SET//
     func prepareExpenseJson(model: ModelExpense) -> [String : Any]{
         var dictio = [String: Any]()
         let jsonEncoder = JSONEncoder()
@@ -405,6 +389,7 @@ class BaseManager{
         }
         return rooms
     }
+
     func parseUserOnRoom(_ model:ModelHouse) -> Array<ModelRoom>{
         if var rooms = model.listOfRoom, model.listOfRoom != nil{
             if let user = model.user, model.user != nil{
@@ -424,5 +409,5 @@ class BaseManager{
         }
         return model.listOfRoom!
     }
-}
 
+}

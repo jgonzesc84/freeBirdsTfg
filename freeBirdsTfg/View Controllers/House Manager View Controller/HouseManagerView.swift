@@ -33,6 +33,8 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
     var userList: Array<ModelUser>?
     var mainUser : ModelUser?
     var roomAsigned : Bool?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initView()
@@ -81,7 +83,7 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
 
         cell.userHaveRoom = asignedRoom()
         cell.setupCell(model, atRow: indexPath)
-        if(cell.owner!){
+        if(cell.owner){
             cell.layer.cornerRadius = 10.0
             MainHelper.borderShadow(view: cell)
         }else{

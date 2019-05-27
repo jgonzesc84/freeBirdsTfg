@@ -27,7 +27,7 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var roomImageView: UIImageView!
     @IBOutlet weak var acceptButtom: Button!
     var user = ModelUser()
-    var owner: Bool?
+    var owner = false
     var room : ModelRoom?
     var userHaveRoom : Bool?
     var delegate : cellInsertUserHouse?
@@ -37,6 +37,7 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
       setupView()
     }
     func setupView(){
+      
         MainHelper.theStyle(view: topView)
         MainHelper.theStyle(view: bottomView)
     }
@@ -44,14 +45,19 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
         room = model
         row = atRow
         priceTextField.text = model.price
-        if( model.user!.idUser != nil && model.user!.idUser!.count > 0){
-            userNameLabel.text = model.user?.alias
-            self.user = model.user!
-            //userImageView.image = user.image
-            configureButton(isEmpty: false)
+        if model.user != nil{
+            if( model.user!.idUser != nil && model.user!.idUser!.count > 0){
+                userNameLabel.text = model.user?.alias
+                self.user = model.user!
+                //userImageView.image = user.image
+                configureButton(isEmpty: false)
+            }else{
+                configureButton(isEmpty: true)
+            }
         }else{
-            configureButton(isEmpty: true)
+             configureButton(isEmpty: true)
         }
+        
        // roomImageView.image = model.image
     }
     
@@ -81,7 +87,7 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
         if(isEmpty && !userHaveRoom!){
             acceptButtom.setTitle("Entrar", for: .normal)
         }else{
-            if(owner!){
+            if(owner){
                 acceptButtom.setTitle("Salir", for: .normal)
             }else{
                 MainHelper.dissableButton(button: acceptButtom)

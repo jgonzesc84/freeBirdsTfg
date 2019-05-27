@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,6 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RequestView" customModule="freeBirdsTfg" customModuleProvider="target">
             <connections>
                 <outlet property="navView" destination="Yf4-gJ-Iwa" id="NK0-Hn-i8b"/>
+                <outlet property="searchUserButton" destination="cXd-en-MJT" id="3rO-Ue-J31"/>
                 <outlet property="table" destination="qLN-03-EPO" id="7yh-lD-Dvi"/>
                 <outlet property="titleLabel" destination="97z-U8-5KX" id="mMd-6c-SQ9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -63,13 +64,23 @@
                             <rect key="frame" x="0.0" y="0.0" width="376" height="608"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </tableView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cXd-en-MJT">
+                            <rect key="frame" x="302" y="534" width="64" height="64"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="64" id="Lpf-sb-5jC"/>
+                                <constraint firstAttribute="height" constant="64" id="Zfl-Ay-o2X"/>
+                            </constraints>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="qLN-03-EPO" firstAttribute="leading" secondItem="tzV-hU-MA3" secondAttribute="leading" id="3Yv-I1-50c"/>
                         <constraint firstItem="qLN-03-EPO" firstAttribute="top" secondItem="tzV-hU-MA3" secondAttribute="top" id="CRe-FC-arh"/>
                         <constraint firstAttribute="trailing" secondItem="qLN-03-EPO" secondAttribute="trailing" id="MLh-GB-o1G"/>
+                        <constraint firstAttribute="bottom" secondItem="cXd-en-MJT" secondAttribute="bottom" constant="10" id="m5R-jR-iy4"/>
                         <constraint firstAttribute="bottom" secondItem="qLN-03-EPO" secondAttribute="bottom" id="nBo-0c-27G"/>
+                        <constraint firstAttribute="trailing" secondItem="cXd-en-MJT" secondAttribute="trailing" constant="10" id="vQ9-uz-LaE"/>
                     </constraints>
                 </view>
             </subviews>
