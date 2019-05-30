@@ -44,7 +44,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Primera Pantalla" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taa-cm-L3M">
-                                            <rect key="frame" x="37.5" y="28" width="300" height="30.5"/>
+                                            <rect key="frame" x="37.5" y="28" width="300" height="41.5"/>
                                             <fontDescription key="fontDescription" name="KGHAPPY" family="KG HAPPY" pointSize="26"/>
                                             <color key="textColor" red="0.71710350609999995" green="0.85328454570000001" blue="0.82918128410000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                     <rect key="frame" x="0.0" y="67" width="375" height="600"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-Rw-Rr0" userLabel="roomsChooseView">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="450"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="390"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="84U-1C-HSN" userLabel="tileRoomView">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
@@ -92,13 +92,13 @@
                                                     </constraints>
                                                 </view>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Itk-d1-GCT">
-                                                    <rect key="frame" x="0.0" y="40" width="375" height="410"/>
+                                                    <rect key="frame" x="0.0" y="40" width="375" height="350"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Dac-nO-3uP">
                                                         <size key="itemSize" width="50" height="50"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                        <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                                     </collectionViewFlowLayout>
                                                 </collectionView>
                                             </subviews>
@@ -114,10 +114,10 @@
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmY-Ig-wyc" userLabel="rootOptionView">
-                                            <rect key="frame" x="0.0" y="450" width="375" height="150"/>
+                                            <rect key="frame" x="0.0" y="390" width="375" height="210"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PxR-Ow-P61" userLabel="SearchUser">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="45"/>
+                                                    <rect key="frame" x="0.0" y="30" width="375" height="45"/>
                                                     <subviews>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOs-0g-qum" customClass="Button" customModule="Material">
                                                             <rect key="frame" x="24" y="2.5" width="40" height="40"/>
@@ -177,16 +177,15 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="PxR-Ow-P61" firstAttribute="top" secondItem="ZmY-Ig-wyc" secondAttribute="top" id="21H-EI-4gg"/>
+                                                <constraint firstItem="PxR-Ow-P61" firstAttribute="top" secondItem="ZmY-Ig-wyc" secondAttribute="top" constant="30" id="21H-EI-4gg"/>
                                                 <constraint firstItem="PxR-Ow-P61" firstAttribute="leading" secondItem="ZmY-Ig-wyc" secondAttribute="leading" id="fDx-FF-EVs"/>
                                                 <constraint firstAttribute="trailing" secondItem="PxR-Ow-P61" secondAttribute="trailing" id="j14-Jy-Khu"/>
-                                                <constraint firstItem="PxR-Ow-P61" firstAttribute="height" secondItem="ZmY-Ig-wyc" secondAttribute="height" multiplier="0.3" id="mdc-VK-QJH"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="nkR-Rw-Rr0" firstAttribute="height" secondItem="vTD-a2-EIB" secondAttribute="height" multiplier="0.75" id="0gm-ps-Z1A"/>
+                                        <constraint firstItem="nkR-Rw-Rr0" firstAttribute="height" secondItem="vTD-a2-EIB" secondAttribute="height" multiplier="0.65" id="0gm-ps-Z1A"/>
                                         <constraint firstItem="nkR-Rw-Rr0" firstAttribute="leading" secondItem="vTD-a2-EIB" secondAttribute="leading" id="4WR-YJ-Zsd"/>
                                         <constraint firstAttribute="bottom" secondItem="ZmY-Ig-wyc" secondAttribute="bottom" id="Dqw-Fn-WRe"/>
                                         <constraint firstItem="ZmY-Ig-wyc" firstAttribute="top" secondItem="nkR-Rw-Rr0" secondAttribute="bottom" id="KMa-fg-y5C"/>

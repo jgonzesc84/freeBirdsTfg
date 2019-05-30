@@ -97,16 +97,16 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
         //let cellScaling: CGFloat = 0.8
         let parentSize = collection.frame
         let cellWidth = parentSize.width / 2
-        let cellHeight = parentSize.height
+        let cellHeight = parentSize.height - 20
         
 //        let insetX = (parentSize.width - cellWidth) / 3.0
 //        let insetY  = (parentSize.height - cellHeight) / 3.0
         let layout = collection.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.itemSize = CGSize(width: cellWidth , height: cellHeight)
+        layout.itemSize = CGSize(width: cellWidth , height: cellHeight )
         if(numberOfItem < 2){
-          collection.contentInset = UIEdgeInsets(top: 0, left: parentSize.width/4, bottom: 0, right: parentSize.width/4)
+          collection.contentInset = UIEdgeInsets(top: 20, left: parentSize.width/4, bottom: 20, right: parentSize.width/4)
         }else{
-            collection.contentInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+            collection.contentInset = UIEdgeInsets(top: 20, left: 5, bottom: 20, right: 5)
         }
       
         
