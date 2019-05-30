@@ -65,7 +65,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         let bill = arrayBill![indexPath.row]
         let numberExpense = bill.expenses!.count
         
-        return CGFloat(constant.billCellHeight * Double(numberExpense)) + CGFloat(constant.billheaderHeight) + CGFloat(constant.billPaddingTop)
+    return CGFloat(constant.billCellHeight * Double(numberExpense)) + CGFloat(constant.sectionExpenseHeight) + CGFloat(constant.billPaddingTop)
     }
     func refresh(){
        

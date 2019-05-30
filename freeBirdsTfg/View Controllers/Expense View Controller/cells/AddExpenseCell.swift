@@ -8,7 +8,11 @@
 
 import UIKit
 
-class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource,RefreshHouseData,RefreshExpense{
+class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSource,RefreshHouseData,RefreshExpense,sectionExpenseProtocol{
+    
+    
+   
+    
    
     var refreshCell : (() -> ())?
     var pushToCellExpense :( () -> ())?
@@ -93,7 +97,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             sectionExpense.setupCell(model: sectionModel)
             sectionExpense.animation(percentage: givePercentage(item: sectionModel.quantify!))
         }
-       
+        sectionExpense.delegate = self
         return sectionExpense
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,6 +123,9 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         self.pushToEditCellExpense!(expense, self.model!.total!)
     }
     
+    func goToEditExpense(_ model: ModelExpense) {
+         self.pushToEditCellExpense!(model, self.model!.total!)
+    }
    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let deleteAction = UIContextualAction(style: .normal,
@@ -145,6 +152,17 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         return swipeConfig
     }
 
+    func deleteExpense(_ model: ModelExpense) {
+        HouseManager.sharedInstance.deleteExpenseOnBill(billId:self.model!.billId!, expenseId: model.idExpense!){
+            (result) in
+            let total = self.model?.total
+            let x = total! - model.quantify!
+            self.model?.total = x.rounded(toPlaces: 2)
+            
+            self.refreshCell!()
+            
+        }
+    }
     
     @IBAction func addExpense(_ sender: Any) {
         self.pushToCellExpense!()

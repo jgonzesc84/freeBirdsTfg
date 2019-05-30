@@ -7,6 +7,10 @@
 //
 
 import UIKit
+protocol sectionExpenseProtocol {
+    func goToEditExpense( _ model: ModelExpense)
+    func deleteExpense( _ model: ModelExpense)
+}
 
 class ExpenseSection: UITableViewHeaderFooterView {
     
@@ -28,6 +32,7 @@ class ExpenseSection: UITableViewHeaderFooterView {
     @IBOutlet weak var icoImage: UIImageView!
     @IBOutlet weak var titleNameLabel: UILabel!
     
+    @IBOutlet weak var editButton: UIButton!
     var percentage = 0
     
     @IBOutlet weak var widthPercentageConstraint: NSLayoutConstraint!
@@ -35,6 +40,7 @@ class ExpenseSection: UITableViewHeaderFooterView {
     
     @IBOutlet weak var pricelabel: UILabel!
     
+    var delegate : sectionExpenseProtocol?
     
     var model : ModelExpense?
     
@@ -53,6 +59,8 @@ class ExpenseSection: UITableViewHeaderFooterView {
         MainHelper.circleView(view: icoImage)
         MainHelper.borderShadowRedonde(view: icoImage)
         percentageLabel.textColor = UIColor .black
+        MainHelper.circleView(view: editButton)
+        setupTap()
     }
     func resetCell(){
         self.widthPercentageConstraint.constant = 0
@@ -95,5 +103,27 @@ class ExpenseSection: UITableViewHeaderFooterView {
         print("Despues \(self.widthPercentageConstraint.constant)")
         
         
+    }
+    
+    
+    func setupTap(){
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(editActionExpense))
+        
+        self.addGestureRecognizer(tap)
+    }
+    
+    @objc func editActionExpense(sender: UITapGestureRecognizer? = nil) {
+        
+        if let modelSend = self.model{
+            delegate?.goToEditExpense(modelSend)
+        }
+    }
+    
+    @IBAction func editAction(_ sender: Any) {
+        if let modelSend = self.model{
+             delegate?.deleteExpense(modelSend)
+        }
+
     }
 }
