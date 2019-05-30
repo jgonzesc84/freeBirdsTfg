@@ -50,17 +50,26 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-         let cell = collectionView.cellForItem(at: indexPath) as! UserPayCollectionCell
-         cell.touchCell()
+        if (indexPath.row > 0){
+            let cell = collectionView.cellForItem(at: indexPath) as! UserPayCollectionCell
+           let value = cell.touchCell()
+            value ?  self.usersSelected?.removeAll(where: {$0 === cell.user!}) : self.usersSelected?.append(cell.user!)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItem", for: indexPath) as! UserPayCollectionCell
+       //la primera celda se queda seleccionada siempre ya que es el usario que crea el gasto
         cell.setupCell(model: users![indexPath.row])
+        if(indexPath.row == 0){
+         _ = cell.touchCell()
+        }
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 100, height: 100)
     }
+    
+   
 }

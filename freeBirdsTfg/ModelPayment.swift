@@ -8,11 +8,12 @@
 
 import Foundation
 
-class ModelPayment{
+class ModelPayment:  Encodable{
     
     var idPayment: String?
-    var exppense: ModelExpense?
+   // var idExpense: String?
     var quantify = 0.00
-    var users : [ModelUser]?
+   // var user : ModelUser?
+    var idUser : String?
     
 }

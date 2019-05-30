@@ -17,9 +17,9 @@ class ModelExpense: Encodable{
     var selection:Bool?
     var color: String?
     var ico: String?
-    var users: Array<ModelUser>?
+   // var users: Array<ModelUser>?
     var idUser: String?
-    
+    var payment: [ModelPayment]?
     init(){
         
     }

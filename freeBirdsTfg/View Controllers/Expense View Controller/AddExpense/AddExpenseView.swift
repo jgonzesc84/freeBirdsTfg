@@ -100,7 +100,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         let payment = checkBoxView.variableSelection
         let color = icoColorView.colorSelected
         let ico = icoColorView.icoSelected
-        let userSelected = BaseManager().userId()//asignationView.userSelected
+        let userSelected = asignationView.usersSelected
         
         let expense = ModelExpense()
         expense.name = name
@@ -108,13 +108,14 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         expense.selection = payment
         expense.color = color
         expense.ico = ico
-        expense.idUser = userSelected
+      //  expense.users = userSelected
         expense.idBill = bill?.billId
         expense.idExpense = editExpense?.idExpense ?? ""
+        expense.payment = BillManager().createPayment( users: userSelected!, quantify: (quantify as NSString).doubleValue)
         editMode! ? editExpense(expense) : createExpense(expense)
         
             }
-    
+
     func createExpense( _ expense: ModelExpense){
         FireBaseManager.createExpense(model:expense) { (success) in
             if(success){

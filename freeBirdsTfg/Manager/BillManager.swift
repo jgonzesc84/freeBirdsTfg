@@ -40,6 +40,21 @@ class BillManager : BaseManager{
         return model
     }
     
+    func createPayment(users:[ModelUser], quantify: Double ) -> [ModelPayment]{
+        var payments = [ModelPayment]()
+        let totalPerUser = quantify / Double(users.count)
+       let ref = Database.database().reference()
+        for user in users{
+            let pay = ModelPayment()
+            pay.idUser = user.idUser;
+            pay.quantify = totalPerUser
+            pay.idPayment = ref.childByAutoId().key
+            payments.append(pay)
+        }
+        
+        return payments
+    }
+    
     
     func createDate() -> (Date){
         let date = Date()

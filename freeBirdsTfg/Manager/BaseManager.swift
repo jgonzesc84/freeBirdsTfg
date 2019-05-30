@@ -219,7 +219,20 @@ class BaseManager{
         
         return dictio
     }
-    
+    func prepareUserId(users : [ModelUser]) -> (Dictionary<String, Any>){
+        var dictio = [String: Any]()
+        let jsonEncoder = JSONEncoder()
+        for user in users{
+            var userOnlyId  = ModelUser()
+            userOnlyId.idUser = user.idUser
+            let jsonData = try! jsonEncoder.encode(userOnlyId)
+            if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                dictio[user.idUser ?? ""] = dictionary
+            }
+        }
+        
+        return dictio
+    }
     func prepareUser(users : [ModelUser]) -> (Dictionary<String, Any>){
         var dictio = [String: Any]()
         let jsonEncoder = JSONEncoder()
@@ -232,6 +245,21 @@ class BaseManager{
         
         return dictio
     }
+    
+    func preparePayment(payments: [ModelPayment]) -> (Dictionary<String, Any>){
+        let jsonEncoder = JSONEncoder()
+        var dictio = [String: Any]()
+        for pay in payments{
+            let jsonData = try! jsonEncoder.encode(pay)
+            if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                let idPayment = pay.idPayment
+                dictio[idPayment ?? ""] = dictionary
+            }
+        }
+        
+        return dictio
+    }
+    
     
     /////////////////USER////////
     
@@ -333,6 +361,12 @@ class BaseManager{
         let jsonData = try! jsonEncoder.encode(model)
         if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
             dictio = dictionary
+//            if let user = model.users{
+//                dictio["users"] = prepareUserId(users: user)
+//            }
+            if let payment = model.payment{
+                dictio["payment"] = preparePayment(payments: payment)
+            }
         }
         return dictio
         
@@ -343,6 +377,12 @@ class BaseManager{
         let jsonData = try! jsonEncoder.encode(model)
         if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
             dictio = dictionary
+//            if let user = model.users{
+//                dictio["users"] = prepareUserId(users: user)
+//            }
+            if let payment = model.payment{
+                dictio["payment"] = preparePayment(payments: payment)
+            }
         }
         return dictio
     }

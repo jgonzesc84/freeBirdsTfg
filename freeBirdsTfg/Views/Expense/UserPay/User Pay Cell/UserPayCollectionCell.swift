@@ -15,7 +15,11 @@ class UserPayCollectionCell: UICollectionViewCell {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    
+    
     var selection : Bool?
+    var user: ModelUser?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         selection = false
@@ -25,24 +29,30 @@ class UserPayCollectionCell: UICollectionViewCell {
     }
 
     func setupCell(model: ModelUser){
-        
+        self.user = model
         nameLabel.text = model.alias
         if (model.image == nil){
            
         }
       
     }
-    func touchCell(){
+    func touchCell() -> Bool{
+        var value = false
         UIView.animate(withDuration: 0.25
             , animations: {
                 self.backGroundView.alpha = self.selection! ? 0.65 : 0.0
                 self.mainView.layer.borderWidth = self.selection!  ? 0 : 1
                 self.mainView.layer.borderColor = self.selection! ? UIColor.white.cgColor : UIColor.AppColor.Gray.greyApp.cgColor
+                
         }) { (finished: Bool) in
             
-            self.selection = self.selection! ? false : true
+              self.selection = self.selection! ? false : true
+          
         }
-        
+        if let aux = self.selection{
+            value = aux
+        }
+        return value
     }
     
     
