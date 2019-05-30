@@ -145,6 +145,12 @@
 		7A2167DE22649F760074BA1E /* AddExpenseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2167DC22649F760074BA1E /* AddExpenseView.swift */; };
 		7A2167DF22649F760074BA1E /* AddExpenseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A2167DD22649F760074BA1E /* AddExpenseView.xib */; };
 		7A2167E122649FC70074BA1E /* AddExpenseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2167E022649FC70074BA1E /* AddExpenseController.swift */; };
+		7A241226229FA97E0026FDF1 /* ModelDebtor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A241225229FA97E0026FDF1 /* ModelDebtor.swift */; };
+		7A241228229FA9A40026FDF1 /* ModelCreditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A241227229FA9A40026FDF1 /* ModelCreditor.swift */; };
+		7A24122A229FA9BD0026FDF1 /* ModelDebt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A241229229FA9BD0026FDF1 /* ModelDebt.swift */; };
+		7A24122C229FAB110026FDF1 /* ModelPayment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A24122B229FAB110026FDF1 /* ModelPayment.swift */; };
+		7A24122E229FD6D20026FDF1 /* ExpenseSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A24122D229FD6D20026FDF1 /* ExpenseSection.swift */; };
+		7A241230229FD7050026FDF1 /* ExpenseSection.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A24122F229FD7050026FDF1 /* ExpenseSection.xib */; };
 		7A387A2D226771C900D50D80 /* UserPayCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A387A2B226771C900D50D80 /* UserPayCollectionCell.swift */; };
 		7A387A2E226771C900D50D80 /* UserPayCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7A387A2C226771C900D50D80 /* UserPayCollectionCell.xib */; };
 		7A3AE24B22805D23008B9913 /* RequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3AE24922805D23008B9913 /* RequestView.swift */; };
@@ -353,6 +359,12 @@
 		7A2167DC22649F760074BA1E /* AddExpenseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseView.swift; sourceTree = "<group>"; };
 		7A2167DD22649F760074BA1E /* AddExpenseView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddExpenseView.xib; sourceTree = "<group>"; };
 		7A2167E022649FC70074BA1E /* AddExpenseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddExpenseController.swift; sourceTree = "<group>"; };
+		7A241225229FA97E0026FDF1 /* ModelDebtor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDebtor.swift; sourceTree = "<group>"; };
+		7A241227229FA9A40026FDF1 /* ModelCreditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelCreditor.swift; sourceTree = "<group>"; };
+		7A241229229FA9BD0026FDF1 /* ModelDebt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDebt.swift; sourceTree = "<group>"; };
+		7A24122B229FAB110026FDF1 /* ModelPayment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelPayment.swift; sourceTree = "<group>"; };
+		7A24122D229FD6D20026FDF1 /* ExpenseSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseSection.swift; sourceTree = "<group>"; };
+		7A24122F229FD7050026FDF1 /* ExpenseSection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseSection.xib; sourceTree = "<group>"; };
 		7A387A2B226771C900D50D80 /* UserPayCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPayCollectionCell.swift; sourceTree = "<group>"; };
 		7A387A2C226771C900D50D80 /* UserPayCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPayCollectionCell.xib; sourceTree = "<group>"; };
 		7A3AE24922805D23008B9913 /* RequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestView.swift; sourceTree = "<group>"; };
@@ -504,6 +516,10 @@
 				5963489F2275B1CD002AF59B /* ModelExpense.swift */,
 				7A3AE25122806072008B9913 /* ModelRequestHouse.swift */,
 				7A3AE2532280609C008B9913 /* ModelRequestMessageHouse.swift */,
+				7A241225229FA97E0026FDF1 /* ModelDebtor.swift */,
+				7A241227229FA9A40026FDF1 /* ModelCreditor.swift */,
+				7A241229229FA9BD0026FDF1 /* ModelDebt.swift */,
+				7A24122B229FAB110026FDF1 /* ModelPayment.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1023,6 +1039,8 @@
 				7A2167D3226491BD0074BA1E /* AddExpenseCell.xib */,
 				597D5876227A16F20075B4FF /* ExpenseBillCell.swift */,
 				597D5877227A16F20075B4FF /* ExpenseBillCell.xib */,
+				7A24122D229FD6D20026FDF1 /* ExpenseSection.swift */,
+				7A24122F229FD7050026FDF1 /* ExpenseSection.xib */,
 			);
 			path = cells;
 			sourceTree = "<group>";
@@ -1382,6 +1400,7 @@
 				59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */,
 				59F493822190D04400014560 /* supViewCollectionViewCell.xib in Resources */,
 				7A2167D5226491BD0074BA1E /* AddExpenseCell.xib in Resources */,
+				7A241230229FD7050026FDF1 /* ExpenseSection.xib in Resources */,
 				59FEB80E210F99BE00901D62 /* ModernPictogramsForLottie_Home.json in Resources */,
 				59FEB806210F8C1C00901D62 /* KGHAPPYShadows.ttf in Resources */,
 				5939CC43218D8ED0005C67D0 /* ModalCreateRoom.xib in Resources */,
@@ -1556,8 +1575,10 @@
 				7A3AE25C228075B7008B9913 /* MessageViewCell.swift in Sources */,
 				7A898B9B2264C3DE00D0E87C /* CheckBoxExpenseView.swift in Sources */,
 				3B5BBA60215B98B0005DD98B /* FireBaseManager.swift in Sources */,
+				7A241228229FA9A40026FDF1 /* ModelCreditor.swift in Sources */,
 				59D8C5A622704EF300777C0C /* BaseManager.swift in Sources */,
 				59F991AD2299C989008563F2 /* ControllerRequestUser.swift in Sources */,
+				7A24122A229FA9BD0026FDF1 /* ModelDebt.swift in Sources */,
 				5924F5D9214BE7D3004DECCA /* searchMapView.swift in Sources */,
 				5990EB002197749F00627F12 /* ProfileTableViewCell.swift in Sources */,
 				59F991AF2299CC23008563F2 /* ControllerRequestView.swift in Sources */,
@@ -1612,6 +1633,8 @@
 				593B5C60215ACD5B0013CBD1 /* ModelDirection.swift in Sources */,
 				5990EB03219775C300627F12 /* ProfileCellController.swift in Sources */,
 				7A898BAE2264D6FD00D0E87C /* ConfirmExpenseView.swift in Sources */,
+				7A241226229FA97E0026FDF1 /* ModelDebtor.swift in Sources */,
+				7A24122E229FD6D20026FDF1 /* ExpenseSection.swift in Sources */,
 				7AD9682C22607C2A007B773E /* ProfileEditView.swift in Sources */,
 				7A2167D4226491BD0074BA1E /* AddExpenseCell.swift in Sources */,
 				7A3AE25222806072008B9913 /* ModelRequestHouse.swift in Sources */,
@@ -1644,6 +1667,7 @@
 				5950CAE821170FD200A97B49 /* FontYo.swift in Sources */,
 				59118B2E2149859400031AFB /* HouseSectionCell.swift in Sources */,
 				59E11466219621EA002D325D /* infViewCollectionViewCellController.swift in Sources */,
+				7A24122C229FAB110026FDF1 /* ModelPayment.swift in Sources */,
 				7AD9681E22607A5C007B773E /* ExpenseView.swift in Sources */,
 				3B303B82215A34380002A7CA /* showLocalizationCell.swift in Sources */,
 				7ADA21EB22662A68008B2B9C /* colorTest.swift in Sources */,

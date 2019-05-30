@@ -35,6 +35,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         tableView.dataSource = self
         tableView.isScrollEnabled = false
         tableView.register(UINib(nibName: "ExpenseBillCell", bundle: nil), forCellReuseIdentifier: "expenseBillCell")
+        tableView.register(UINib(nibName:"ExpenseSection", bundle: nil), forHeaderFooterViewReuseIdentifier: "ExpenseSection")
         tableView.separatorStyle = .none
         model?.expenses = reOrderList()
         HouseManager.sharedInstance.delegateRefresh = self
@@ -69,17 +70,37 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     func setupTable(){
        
     }
-    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        numberItem = 0
+                if let list = model?.expenses{
+                    numberItem = list.count
+                }
+        return numberItem!
+    }
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        
-        return CGFloat(Double(constant.billCellHeight))
+        return CGFloat(Double(constant.sectionExpenseHeight))
     }
-    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return CGFloat(Double(constant.billheaderHeight));
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let sectionExpense  = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExpenseSection") as! ExpenseSection
+        let index = section
+        if let sectionModel = model?.expenses![index]{
+            sectionExpense.setupCell(model: sectionModel)
+            sectionExpense.animation(percentage: givePercentage(item: sectionModel.quantify!))
+        }
+       
+        return sectionExpense
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          numberItem = 0
-        if let list = model?.expenses{
-            numberItem = list.count
-        }
+//        if let list = model?.expenses{
+//            numberItem = list.count
+//        }
         return numberItem!
     }
     

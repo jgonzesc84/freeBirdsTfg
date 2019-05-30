@@ -133,7 +133,7 @@ class FireBaseManager : BaseManager{
         let ref = Database.database().reference()
         let idHouse = model.idHouse
         model.idHouse = idHouse
-        ref.child("CASA").child(idHouse!).setValue(BaseManager().prepareHouseBill(model: model)){
+        ref.child("CASA").child(idHouse!).setValue(BaseManager().prepareHouse(model: model)){
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
                 print("Data could not be saved: \(error).")

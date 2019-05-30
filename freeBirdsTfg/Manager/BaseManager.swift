@@ -159,6 +159,9 @@ class BaseManager{
         if let user = model.user{
             dictio["USER"] = prepareUser(users: user)
         }
+        if let bill = model.listOfBill{
+            dictio["BILL"] = prepareListOfBill(list: bill)
+        }
         return dictio
     }
     
@@ -189,8 +192,11 @@ class BaseManager{
             let jsonEncoder = JSONEncoder()
             for room in rooms{
                 let jsonData = try! jsonEncoder.encode(room)
-                if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                if var dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
                      let idRoom = Database.database().reference().childByAutoId().key
+                    if let userRoom = room.user{
+                             dictionary["user"] = userRoom.idUser
+                    }
                     dictio[idRoom] = dictionary
                 }
             }
@@ -251,7 +257,7 @@ class BaseManager{
     func prepareUserNoHouse(idUser : String) -> (Dictionary<String, Any>){
         var userDictio = Dictionary<String, Any>()
        
-            userDictio = ["userId":idUser]
+            userDictio = ["idUser":idUser]
         
         return userDictio
     }

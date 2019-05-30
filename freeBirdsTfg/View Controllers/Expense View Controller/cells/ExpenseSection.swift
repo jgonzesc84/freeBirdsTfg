@@ -1,25 +1,24 @@
 //
-//  ExpenseBillCell.swift
+//  ExpenseSection.swift
 //  freeBirdsTfg
 //
-//  Created by javier gonzalez escudero on 01/05/2019.
+//  Created by Javier Gonzalez Escudero on 30/05/2019.
 //  Copyright © 2019 javier gonzalez escudero. All rights reserved.
 //
 
 import UIKit
 
-class ExpenseBillCell: UITableViewCell {
-    
+class ExpenseSection: UITableViewHeaderFooterView {
     
     @IBOutlet weak var mainView: UIView!
     
-     @IBOutlet weak var icoVoew: UIView!
+    @IBOutlet weak var icoVoew: UIView!
     
     @IBOutlet weak var midView: UIView!
     @IBOutlet weak var statView: UIView!
     @IBOutlet weak var statBackgroundView: UIView!
     
-   
+    
     @IBOutlet weak var percentageView: UIView!
     @IBOutlet weak var percentageLabel: UILabel!
     @IBOutlet weak var leftView: UIView!
@@ -33,7 +32,7 @@ class ExpenseBillCell: UITableViewCell {
     
     @IBOutlet weak var widthPercentageConstraint: NSLayoutConstraint!
     
-   
+    
     @IBOutlet weak var pricelabel: UILabel!
     
     
@@ -41,10 +40,10 @@ class ExpenseBillCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectionStyle = .none
         statView.layer.cornerRadius = 10.0
         statBackgroundView.layer.cornerRadius = 10.0
         statBackgroundView.alpha = 0.5
+        
         MainHelper.theStyle(view: icoVoew)
         MainHelper.theStyle(view: midView)
         MainHelper.theStyle(view: innerLeftView)
@@ -55,11 +54,10 @@ class ExpenseBillCell: UITableViewCell {
         MainHelper.borderShadowRedonde(view: icoImage)
         percentageLabel.textColor = UIColor .black
     }
-    
     func resetCell(){
         self.widthPercentageConstraint.constant = 0
     }
-        
+    
     func setupCell(model: ModelExpense){
         self.model = model
         icoImage.image = UIImage(named: model.ico!)
@@ -67,35 +65,35 @@ class ExpenseBillCell: UITableViewCell {
         pricelabel.text = "\(model.quantify!.rounded(toPlaces: 2))€"
         statView.backgroundColor = UIColor().colorFromHex(model.color!)
         statBackgroundView.backgroundColor = UIColor().colorFromHex(model.color!)
+        
     }
     
     override func layoutSubviews() {
-        let comprobation = self.statBackgroundView.frame.width
-        let comprobation1 = self.midView.frame.width
-          print("el tamaño de backAncho \(comprobation)")
-          print("el tamaño de midAnco \(comprobation1)")
+//        let comprobation = self.statBackgroundView.frame.width
+//        let comprobation1 = self.midView.frame.width
+//        print("el tamaño de backAncho \(comprobation)")
+//        print("el tamaño de midAnco \(comprobation1)")
+//        self.percentageLabel.text = "\(percentage)%"
+//        let widtTotal = self.statBackgroundView.frame.width
+//        print("el tamaño de la vista es \(widtTotal)")
+//        let totalConstant =  Float (percentage) * Float(widtTotal) / 100
+//        print("Antes \(self.widthPercentageConstraint.constant)")
+//        self.widthPercentageConstraint.constant = CGFloat(totalConstant)
+//        print("Despues \(self.widthPercentageConstraint.constant)")
+    }
+    
+    
+    
+    func animation(percentage:Int){
+        
         self.percentageLabel.text = "\(percentage)%"
-        let widtTotal = self.statBackgroundView.frame.width
-        print("el tamaño de la vista es \(widtTotal)")
+        let widtTotal = self.midView.frame.width
+        print("el tamañoi de la pantalla es \(widtTotal)")
         let totalConstant =  Float (percentage) * Float(widtTotal) / 100
         print("Antes \(self.widthPercentageConstraint.constant)")
         self.widthPercentageConstraint.constant = CGFloat(totalConstant)
         print("Despues \(self.widthPercentageConstraint.constant)")
+        
+        
     }
-    
-    
-
-    func animation(percentage:Int){
-
-                self.percentageLabel.text = "\(percentage)%"
-                  let widtTotal = self.midView.frame.width
-                print("el tamañoi de la pantalla es \(widtTotal)")
-                let totalConstant =  Float (percentage) * Float(widtTotal) / 100
-                print("Antes \(self.widthPercentageConstraint.constant)")
-                self.widthPercentageConstraint.constant = CGFloat(totalConstant)
-                print("Despues \(self.widthPercentageConstraint.constant)")
-  
-       
-    }
-    
 }
