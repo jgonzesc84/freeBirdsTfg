@@ -11,11 +11,12 @@ import CoreLocation
 import MapKit
 
 class ExpenseController {
-    
+   
     var view : ExpenseView?
     
     init(view : ExpenseView){
         self.view = view;
+        
     }
     
     func drawCell(tableView: UITableView, indexPath: IndexPath)-> UITableViewCell{
@@ -28,6 +29,9 @@ class ExpenseController {
     //mal dno se deria poder cambiar el arry original
     func setupBill(listOfBill:Array<ModelBill>){
         listOfBill.count == 0 ?   createBill() : compareDate(listArray: listOfBill)
+//        _ = listOfBill.map{ view!.billManager.oberveBill($0.billId!, completion: { (model) in
+//          //  self.actualizeBill(model)
+//        })}
     }
     
     func createBill(){
@@ -63,6 +67,13 @@ class ExpenseController {
                 
             }
         }
+    }
+    
+    func actualizeBill(_ bill: ModelBill){
+    let index = self.view?.arrayBill!.firstIndex(where: {$0.billId == bill.billId})
+        self.view?.arrayBill![index!] = bill
+       // self.view?.tableView.reloadData()
+    
     }
     
     func cellListener(_ cell : AddExpenseCell, indexPath: IndexPath){

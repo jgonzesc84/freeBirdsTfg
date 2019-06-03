@@ -264,7 +264,11 @@ class BaseManager{
     /////////////////USER////////
     
     func getUser(dictio : Dictionary <String, Any>) -> (Array<ModelUser>){
-        let testUserList = dictio["USER"] as? [String:AnyObject]
+        
+        var testUserList = dictio["USER"] as? [String:AnyObject]
+        if(testUserList == nil){
+            testUserList = dictio["users"] as? [String: AnyObject]
+        }
         var arrayUser : Array<ModelUser> = []
         let dictioUser = testUserList?.keys
         let componentUser = Array(dictioUser!)
@@ -361,9 +365,9 @@ class BaseManager{
         let jsonData = try! jsonEncoder.encode(model)
         if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
             dictio = dictionary
-//            if let user = model.users{
-//                dictio["users"] = prepareUserId(users: user)
-//            }
+            if let user = model.users{
+                dictio["users"] = prepareUserId(users: user)
+            }
             if let payment = model.payment{
                 dictio["payment"] = preparePayment(payments: payment)
             }
@@ -377,9 +381,9 @@ class BaseManager{
         let jsonData = try! jsonEncoder.encode(model)
         if let dictionary = try! JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
             dictio = dictionary
-//            if let user = model.users{
-//                dictio["users"] = prepareUserId(users: user)
-//            }
+            if let user = model.users{
+                dictio["users"] = prepareUserId(users: user)
+            }
             if let payment = model.payment{
                 dictio["payment"] = preparePayment(payments: payment)
             }
@@ -387,7 +391,7 @@ class BaseManager{
         return dictio
     }
     
-    ///GETTER//////
+    ///GETTER////// DIOS!!!!!!!!!!!!!!!!!
     func getExpense(dictio: NSDictionary,idExpense: String) -> (ModelExpense){
         let model = ModelExpense()
         model.idExpense = idExpense
@@ -397,10 +401,11 @@ class BaseManager{
         model.color = dictio["color"] as? String ?? ""
         model.ico = dictio["ico"] as? String ?? ""
         model.idBill = dictio["idBill"] as? String ?? ""
-        //
-        //model.users = dictio["users"] as? Array
+        model.users = getUser(dictio: dictio as! Dictionary<String, Any>)
         model.idUser = dictio["users"] as? String ?? ""
-        //
+//        if let pepe = dictio["users"] as? [String:AnyObject]{
+//       print (pepe.count)
+//    }
         print("HE SE HA MODIFOCADO ALGO")
         return model
     }
@@ -456,4 +461,5 @@ class BaseManager{
         return model.listOfRoom!
     }
 
+    
 }

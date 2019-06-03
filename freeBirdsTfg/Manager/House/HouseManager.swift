@@ -22,8 +22,9 @@ protocol RefreshHouseData: class {
 
 class HouseManager : BaseManager{
     //gastos collection
-     var user :  Array<ModelUser>?
-     var house : ModelHouse?
+    
+    var user :  Array<ModelUser>?
+    var house : ModelHouse?
     var mainUser: ModelUser?
     var  theGreateye :  DatabaseHandle!
     var theReference : DatabaseReference!
@@ -53,7 +54,7 @@ class HouseManager : BaseManager{
             self.house = ModelHouse()
             let json = JSON(shot.value as Any)
             self.house = self.parseHouseJson(json: json)
-            self.user = self.house?.user
+            self.user = self.reOrderUser((self.house?.user)!)
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser
                 self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
@@ -89,7 +90,7 @@ class HouseManager : BaseManager{
               self.house = self.parseHouseJson(json: json)
 //            let value = shot.value as? NSDictionary
 //            self.house = self.parseHouse(dictioHouse: value!)
-            self.user = self.house?.user
+        self.user = self.reOrderUser((self.house?.user!)!)
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser
                 self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
@@ -115,7 +116,7 @@ class HouseManager : BaseManager{
             self.house = self.parseHouseJson(json: json)
 //            let value = shot.value as? NSDictionary
 //            self.house = self.parseHouse(dictioHouse: value!)
-            self.user = self.house?.user
+            self.user = self.reOrderUser((self.house?.user!)!)
             self.fillUserHouse(completion: { (listOfUser) in
                 self.house!.user = listOfUser
                 self.house?.listOfRoom = self.fillRoomWithuUser(rooms: (self.house?.listOfRoom)!, users: (self.house?.user)!)
@@ -143,26 +144,40 @@ class HouseManager : BaseManager{
         if list.count > 0{
             for item in list{
                 getBillById(billId: item.billId!) { (model) in
-                    self.getExpenseUser(idBill: item.billId!, idUser: idUser, completion: { (listExpense) in
+                  //  self.getExpenseUser(idBill: item.billId!, idUser: idUser, completion: { (listExpense) in
+                      var expenseFiletered = [ModelExpense]()
+                    if let listExpense = model.expenses{
+                        for expense in listExpense{
+                            if  (expense.users?.first(where: {$0.idUser == idUser})) != nil{
+                                expenseFiletered.append(expense)
+                            }
+                           
+                        }
+                    }
+                    let listExpense = expenseFiletered
                         if(listExpense.count > 0){
+                            //var countExp = 0
                             self.getListOfExpense(list: listExpense, completion: { (listOfExpense) in
                                 model.expenses = listOfExpense
                                 completedList.append(model)
-                                count = count + 1
-                                if(count == list.count){
-                                    completion(completedList)
-                                }
+                              //  countExp = countExp + 1
+                              //  if(countExp == listExpense.count){
+                                let arrayBill = completedList
+                                  completedList.removeAll()
+                                    completion(arrayBill)
+                               // }
                             })
                         }else{
                             model.expenses = listExpense
                             completedList.append(model)
-                            count = count + 1
-                            if(count == list.count){
-                                completion(completedList)
-                            }
+                             let arrayBill = completedList
+                            completedList.removeAll()
+                            //count = count + 1
+//                            if(count == list.count){
+//                                completion(completedList)
+//                            }
+                             completion(arrayBill)
                         }
-                    })
-                    
                 }
             }
         }else{
@@ -183,41 +198,43 @@ class HouseManager : BaseManager{
             print(error.localizedDescription)
         }
     }
-    func getExpenseUser(idBill:String,idUser:String,completion:@escaping(Array<ModelExpense>) -> Void){
-//        let rof = Database.database().reference()
-//       rof.child("EXPENSE").queryOrdered(byChild: "idBill").queryEqual(toValue:"-Lewwwyyclf-ynXKIjkb").observe(.value) { (shot) in
+//    func getExpenseUser(idBill:String,idUser:String,completion:@escaping(Array<ModelExpense>) -> Void){
+////        let rof = Database.database().reference()
+////       rof.child("EXPENSE").queryOrdered(byChild: "idBill").queryEqual(toValue:"-Lewwwyyclf-ynXKIjkb").observe(.value) { (shot) in
+////            let value = shot.value as? NSDictionary
+////          var collectionExpense = Array<ModelExpense>()
+////            if let dictio = value, value != nil {
+////                let keys = dictio.allKeys
+////                for key in keys{
+////                    let dictioModel = dictio[key] as! NSDictionary
+////                    let modelExpense = self.getExpense(dictio: dictioModel , idExpense: "")
+////                    if (modelExpense.idUser == idUser){
+////                        collectionExpense.append(modelExpense)
+////                    }
+////                }
+////            }
+////         print(collectionExpense[0].idUser)
+////        }
+////
+//        let ref = Database.database().reference() //cogemos solo los gasto de usuario
+//        //   ref.child("BILL").child(idBill).child("expense").queryOrdered(byChild:"idUser").queryEqual(toValue: idUser).observe
+//        // ref.child("BILL").child(idBill).child("expense").child("idUser")
+//        ref.child("BILL").child(idBill).child("expense").observe(.value, with:{(shot)in
 //            let value = shot.value as? NSDictionary
-//          var collectionExpense = Array<ModelExpense>()
+//            var listExpense = Array<ModelExpense>()
 //            if let dictio = value, value != nil {
-//                let keys = dictio.allKeys
-//                for key in keys{
-//                    let dictioModel = dictio[key] as! NSDictionary
-//                    let modelExpense = self.getExpense(dictio: dictioModel , idExpense: "")
-//                    if (modelExpense.idUser == idUser){
-//                        collectionExpense.append(modelExpense)
-//                    }
+//               let keys = dictio.allKeys
+//                for idExpense in keys{
+//                    let model = ModelExpense()
+//                    model.idExpense = idExpense as? String
+//                    listExpense.append(model)
 //                }
+//                completion(listExpense)
+//            }else{
+//               completion(listExpense)
 //            }
-//         print(collectionExpense[0].idUser)
-//        }
-//
-        let ref = Database.database().reference() //cogemos solo los gasto de usuario
-        ref.child("BILL").child(idBill).child("expense").queryOrdered(byChild:"idUser").queryEqual(toValue: idUser).observe(.value, with:{(shot)in
-            let value = shot.value as? NSDictionary
-            var listExpense = Array<ModelExpense>()
-            if let dictio = value, value != nil {
-               let keys = dictio.allKeys
-                for idExpense in keys{
-                    let model = ModelExpense()
-                    model.idExpense = idExpense as? String
-                    listExpense.append(model)
-                }
-                completion(listExpense)
-            }else{
-               completion(listExpense)
-            }
-    })
-    }
+//    })
+//    }
     
     func getListOfExpense(list:Array<ModelExpense>, completion:@escaping(Array<ModelExpense>) -> Void){
         var completedList = Array<ModelExpense>()
@@ -229,6 +246,7 @@ class HouseManager : BaseManager{
                         completedList.append(model)
                         count = count + 1
                         if(count == list.count){
+                            // self.delegateRefresh?.refreshExpense(expense: model)
                             completion(completedList)
                         }
                     }else{
@@ -251,8 +269,9 @@ class HouseManager : BaseManager{
         ref.child("EXPENSE").child(expenseId).observe( .value, with: { (shot) in
             let value = shot.value as? NSDictionary
             guard let dictio = value, value != nil else{
-                return //deveria ser un completion false
+                return //deberia ser un completion false
             }
+            let valueJson = shot.value as? JSON
             completion(self.getExpense(dictio:dictio,idExpense:expenseId))
         } , withCancel: { (error) in
     
@@ -420,5 +439,30 @@ class HouseManager : BaseManager{
     
     func cancelEye(){
       //  theReference.removeObserver(withHandle: theGreateye)
+    }
+    /*
+     var arr = array
+     let element = arr.removeAtIndex(fromIndex)
+     arr.insert(element, atIndex: toIndex)
+
+ */
+    func returnUsers( ) -> [ModelUser] {
+        var returnValue = [ModelUser]()
+        if let list = self.house!.user{
+          returnValue =  reOrderUser(list)
+        }
+        
+        return returnValue
+    }
+    
+    func reOrderUser( _ usersL: [ModelUser]) -> [ModelUser]{
+        var userList = usersL
+        if let index = userList.firstIndex(where: {$0.idUser == self.mainUser?.idUser}){
+            if (index != 0){
+                let mainUser = userList.remove(at: index)
+                userList.insert(mainUser, at: 0)
+            }
+        }
+       return userList
     }
 }

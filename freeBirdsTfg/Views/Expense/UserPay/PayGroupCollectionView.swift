@@ -31,9 +31,14 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         contentView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         MainHelper.theStyle(view: mainView)
         
-        users = HouseManager.sharedInstance.house?.user
-        usersSelected = Array()
-        usersSelected?.append(users![0])
+        users = HouseManager.sharedInstance.returnUsers()
+        if let _ = usersSelected{
+            
+        }else{
+            usersSelected = Array()
+            usersSelected?.append(users![0])
+        }
+       
         setupCollection()
        
     }
@@ -52,8 +57,14 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if (indexPath.row > 0){
             let cell = collectionView.cellForItem(at: indexPath) as! UserPayCollectionCell
-           let value = cell.touchCell()
-            value ?  self.usersSelected?.removeAll(where: {$0 === cell.user!}) : self.usersSelected?.append(cell.user!)
+            let value = cell.touchCell()
+            let index = self.usersSelected?.index(where: {$0.idUser == cell.user!.idUser})
+            if (value){
+                self.usersSelected?.remove(at: index!)
+            }else{
+                 self.usersSelected?.append(cell.user!)
+            }
+             self.usersSelected?.count
         }
     }
     
@@ -63,7 +74,15 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         cell.setupCell(model: users![indexPath.row])
         if(indexPath.row == 0){
          _ = cell.touchCell()
+        }else{
+            if let usserSelec = usersSelected , (usersSelected?.count)! > 1{
+                let index = indexPath.row
+                if (index <= usserSelec.count){
+                     _ = cell.touchCell()
+                }
+            }
         }
+       
         return cell
     }
 

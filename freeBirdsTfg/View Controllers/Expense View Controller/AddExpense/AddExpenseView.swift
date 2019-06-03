@@ -75,6 +75,8 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         textView.quantifyTextField.text = "\(expense.quantify!)"
         checkBoxView.setupEdit(expense.selection!)
         icoColorView.setupEdit(expense.color!, expense.ico!)
+        asignationView.usersSelected = HouseManager.sharedInstance.reOrderUser(expense.users!)
+    
         
     }
   
@@ -108,7 +110,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         expense.selection = payment
         expense.color = color
         expense.ico = ico
-      //  expense.users = userSelected
+        expense.users = userSelected
         expense.idBill = bill?.billId
         expense.idExpense = editExpense?.idExpense ?? ""
         expense.payment = BillManager().createPayment( users: userSelected!, quantify: (quantify as NSString).doubleValue)

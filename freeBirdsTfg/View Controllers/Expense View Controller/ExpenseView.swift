@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSource, RefreshHouseData{
+class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSource, RefreshHouseData, BillProtocol{
+ 
+    
     
     @IBOutlet weak var titlelabel: UILabel!
     @IBOutlet weak var navView: UIView!
@@ -19,6 +21,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     var arrayBill : Array<ModelBill>?
     var firstTime = true
     var widthScreen : Float?
+     let billManager = BillManager()
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -26,6 +29,11 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
          initView()
          setuptable()
          firstTime = true
+        
+//        let billMger = BillManager()
+//        billMger.delegate = self
+//
+        
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -38,8 +46,12 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         prepareNavRoot(label: titlelabel, text: "Gastos")
         MainHelper.navStyle(view:navView)
         arrayBill=HouseManager.sharedInstance.house?.listOfBill
+        billManager.oberveBill(arrayBill![0].billId!) { (bill) in
+            
+         print(bill.billId)
+        }
         controller?.setupBill(listOfBill:arrayBill!)
-       
+        billChange()
     }
 
     func setuptable(){
@@ -68,10 +80,16 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     return CGFloat(constant.billCellHeight * Double(numberExpense)) + CGFloat(constant.sectionExpenseHeight) + CGFloat(constant.billPaddingTop)
     }
     func refresh(){
-       
             controller?.actualize()
-      
     
 }
-
+    
+    func billRefresh(bill: ModelBill) {
+  //  controller?.actualizeBill(bill)
+    }
+    
+    func billChange(){
+       
+    }
+   
 }

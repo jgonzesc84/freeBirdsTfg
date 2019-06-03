@@ -224,7 +224,10 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         let expenses = model?.expenses
          var sum = 0.00
         for expense in expenses!{
-             sum += Double(expense.quantify!)
+            if let quantify = expense.quantify{
+               sum += Double(quantify)
+            }
+            
         }
         return sum.rounded(toPlaces: 2)
     }

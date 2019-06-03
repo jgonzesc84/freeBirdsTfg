@@ -214,8 +214,14 @@ class FireBaseManager : BaseManager{
         insertExpense(model: model) { (sucess) in
             if(sucess){
                 let ref = Database.database().reference()
-                let dictio = ["idExpense":model.idExpense,
-                              "idUser":model.idUser
+                var dictioInner = [String: String]()
+                if let users =  model.users{
+                    for user in users{
+                        dictioInner[user.idUser!] = user.idUser
+                    }
+                }
+                let dictio = ["idExpense":model.idExpense as Any,
+                              "idUser":dictioInner
                 ]
                 ref.child("BILL").child(model.idBill!).child("expense").child(model.idExpense!).setValue(dictio){
                     (error:Error?, ref:DatabaseReference)in
@@ -239,7 +245,26 @@ class FireBaseManager : BaseManager{
                         print("Data could not be saved: \(error).")
                     }else{
                         print("Data saved successfully!")
-                        completion(true)
+                         let rof = Database.database().reference()
+                        var dictioInner = [String: String]()
+                        if let users =  model.users{
+                            for user in users{
+                                dictioInner[user.idUser!] = user.idUser
+                            }
+                        }
+                        let dictioBill = ["idExpense":model.idExpense as Any,
+                                      "idUser":dictioInner
+                        ]
+                        rof.child("BILL").child(model.idBill!).child("expense").child(model.idExpense!).setValue(dictioBill){
+                            (error:Error?, ref:DatabaseReference)in
+                            if let error = error{
+                                print("Data could not be saved: \(error).")
+                            }else{
+                                print("Data saved successfully!")
+                                 completion(true)
+                            }
+                        }
+                       
                     }
                 }
             }
