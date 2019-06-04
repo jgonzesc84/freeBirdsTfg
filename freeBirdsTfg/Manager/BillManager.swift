@@ -67,6 +67,8 @@ class BillManager : BaseManager{
         expense.name = json["name"].string
         expense.quantify = json["quantify"].double
         expense.selection = json["selection"].bool
+        expense.users = getUserJson(json: json["users"])
+        expense.payment = parsePayment(json: json["payment"])
         return expense
     }
 //    func parseExpense(json : JSON) -> ModelExpense{
@@ -111,24 +113,25 @@ class BillManager : BaseManager{
     }
    
     func oberveBill(_ idBill: String,completion:@escaping(ModelBill) -> Void){
-         let billRef = Database.database().reference().child("BILL")
+        let billRef = Database.database().reference().child("BILL")
         billRef.child(idBill).observe(.value) { (shot) in
             let json = JSON(shot.value as Any)
-           let bill = self.parseBill(json: json)
+            let bill = self.parseBill(json: json)
             if let expenses = bill.expenses{
                 // completion: { (listOfSuccess) in
                 for item in expenses{
                     self.getExpenseBill(idReference: item.idExpense!, idUser: BaseManager().userId(),completion: {
                         (expense) in
                         bill.expenses?.append(expense)
-                })
+                        completion(bill)
+                    })
+                }
+                
+            }else{
+                completion(bill)
             }
-          completion(bill)
         }
     }
-    }
-    //
-    //    //   ref.child("BILL").child(idBill).child("expense").queryOrdered(byChild:"idUser").queryEqual(toValue: idUser).observe
     func getExpenseBill(idReference:String,idUser: String, completion:@escaping (ModelExpense) -> Void){
         let ref = Database.database().reference().child("EXPENSE")
         ref.child(idReference).observe(.value){
@@ -139,4 +142,20 @@ class BillManager : BaseManager{
         }
         
     }
+    func parsePayment(json: JSON) -> [ModelPayment]{
+        var payments = [ModelPayment]()
+        _ = json.dictionary?.compactMap{json -> Void in
+        let payment = ModelPayment()
+            let values = json.value
+            payment.idPayment = values["idPayment"].string
+            payment.idUser = values["idUser"].string
+            payment.quantify = values["quantify"].double!
+            payments.append(payment)
+    }
+        return payments
+}
+    func observeRemoveExpense(){
+        
+    }
+
 }
