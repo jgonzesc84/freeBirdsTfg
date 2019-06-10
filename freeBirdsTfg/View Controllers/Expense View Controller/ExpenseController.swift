@@ -29,16 +29,13 @@ class ExpenseController {
     //mal dno se deria poder cambiar el arry original
     func setupBill(listOfBill:Array<ModelBill>){
         listOfBill.count == 0 ?   createBill() : compareDate(listArray: listOfBill)
-//        _ = listOfBill.map{ view!.billManager.oberveBill($0.billId!, completion: { (model) in
-//          //  self.actualizeBill(model)
-//        })}
+
     }
     
     func createBill(){
        let model = ModelBill()
        model.expenses = Array<ModelExpense>()
        model.dateBill = Date()
-    //   model.dateBill = BillManager().createDate()
        model.total = 0.0
         FireBaseManager.createBill(model: model){ (success) in
             if(success){

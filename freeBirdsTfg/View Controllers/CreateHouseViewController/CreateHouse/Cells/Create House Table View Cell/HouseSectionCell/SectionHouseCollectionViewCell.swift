@@ -15,6 +15,7 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var addView: UIView!
     @IBOutlet weak var deleteButton: Button!
     
+    @IBOutlet weak var sectionImageView: UIImageView!
     
     //sectionView outletes
     @IBOutlet weak var sectionView: UIView!
@@ -71,12 +72,16 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
         hideSectionView(hide:false)
         titleLabelSectionView.text = self.model?.title
         descriptionLabelSectionView.text = self.model?.description
+        if let imageData = model.imageData{
+            sectionImageView.image = imageData
+        }
     }
     func resetCell(){
         addView.isHidden = false
         hideSectionView(hide: true)
         titleLabelSectionView.text = ""
         descriptionLabelSectionView.text = ""
+        sectionImageView.image = UIImage (named: "steven_playa ")
         
     }
     @IBAction func addButtonAction(_ sender: Any) {

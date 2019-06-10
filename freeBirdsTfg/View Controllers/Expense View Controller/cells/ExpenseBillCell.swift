@@ -12,90 +12,52 @@ class ExpenseBillCell: UITableViewCell {
     
     
     @IBOutlet weak var mainView: UIView!
-    
-     @IBOutlet weak var icoVoew: UIView!
-    
-    @IBOutlet weak var midView: UIView!
-    @IBOutlet weak var statView: UIView!
-    @IBOutlet weak var statBackgroundView: UIView!
+  
+    @IBOutlet weak var nameLabel: UILabel!
+   
+    @IBOutlet weak var paiedLabel: UILabel!
+    @IBOutlet weak var quantifyView: UIView!
+    @IBOutlet weak var quantifyLabel: UILabel!
     
    
-    @IBOutlet weak var percentageView: UIView!
-    @IBOutlet weak var percentageLabel: UILabel!
-    @IBOutlet weak var leftView: UIView!
-    
-    @IBOutlet weak var innerLeftView: UIView!
-    
-    @IBOutlet weak var icoImage: UIImageView!
-    @IBOutlet weak var titleNameLabel: UILabel!
-    
-    var percentage = 0
-    
-    @IBOutlet weak var widthPercentageConstraint: NSLayoutConstraint!
-    
-   
-    @IBOutlet weak var pricelabel: UILabel!
-    
+    @IBOutlet weak var columnView: UIView!
+    @IBOutlet weak var circleView: UIView!
     
     var model : ModelExpense?
     
     override func awakeFromNib() {
         super.awakeFromNib()
         self.selectionStyle = .none
-        statView.layer.cornerRadius = 10.0
-        statBackgroundView.layer.cornerRadius = 10.0
-        statBackgroundView.alpha = 0.5
-        MainHelper.theStyle(view: icoVoew)
-        MainHelper.theStyle(view: midView)
-        MainHelper.theStyle(view: innerLeftView)
-        MainHelper.theStyle(view: percentageView)
-        MainHelper.circleView(view: innerLeftView)
-        MainHelper.borderShadowRedonde(view: innerLeftView)
-        MainHelper.circleView(view: icoImage)
-        MainHelper.borderShadowRedonde(view: icoImage)
-        percentageLabel.textColor = UIColor .black
+         initView()
     }
-    
-    func resetCell(){
-        self.widthPercentageConstraint.constant = 0
-    }
-        
-    func setupCell(model: ModelExpense){
-        self.model = model
-        icoImage.image = UIImage(named: model.ico!)
-        titleNameLabel.text = model.name!
-        pricelabel.text = "\(model.quantify!.rounded(toPlaces: 2))€"
-        statView.backgroundColor = UIColor().colorFromHex(model.color!)
-        statBackgroundView.backgroundColor = UIColor().colorFromHex(model.color!)
-    }
-    
-    override func layoutSubviews() {
-        let comprobation = self.statBackgroundView.frame.width
-        let comprobation1 = self.midView.frame.width
-          print("el tamaño de backAncho \(comprobation)")
-          print("el tamaño de midAnco \(comprobation1)")
-        self.percentageLabel.text = "\(percentage)%"
-        let widtTotal = self.statBackgroundView.frame.width
-        print("el tamaño de la vista es \(widtTotal)")
-        let totalConstant =  Float (percentage) * Float(widtTotal) / 100
-        print("Antes \(self.widthPercentageConstraint.constant)")
-        self.widthPercentageConstraint.constant = CGFloat(totalConstant)
-        print("Despues \(self.widthPercentageConstraint.constant)")
-    }
-    
-    
-
-    func animation(percentage:Int){
-
-                self.percentageLabel.text = "\(percentage)%"
-                  let widtTotal = self.midView.frame.width
-                print("el tamañoi de la pantalla es \(widtTotal)")
-                let totalConstant =  Float (percentage) * Float(widtTotal) / 100
-                print("Antes \(self.widthPercentageConstraint.constant)")
-                self.widthPercentageConstraint.constant = CGFloat(totalConstant)
-                print("Despues \(self.widthPercentageConstraint.constant)")
-  
+    func initView(){
+        MainHelper.circleView(view: circleView)
+        MainHelper.theStyle(view: mainView)
        
+        MainHelper.circleView(view: quantifyView)
+        MainHelper.borderShadowRedondNotRadius(view: quantifyView)
+      
+        MainHelper.giveMeStyle(label: quantifyLabel)
+        MainHelper.giveMeStyle(label: paiedLabel)
+        
+        MainHelper.giveMeStyle(label: nameLabel)
+        
     }
+    func resetCell(){
+
+    }
+    func setupCell(model: ModelPayment,color: String){
+       
+        let user = HouseManager.sharedInstance.house!.user!.first(where:{$0.idUser == model.idUser})
+        columnView.backgroundColor = UIColor().colorFromHex(color)
+        circleView.backgroundColor = UIColor().colorFromHex(color)
+        nameLabel.text = user?.alias
+        quantifyLabel.text = String(model.quantify)
+        paiedLabel.text = "\(model.payed) de"
+        quantifyLabel.textColor = UIColor().colorFromHex(color)
+        
+        
+    }
+
     
 }

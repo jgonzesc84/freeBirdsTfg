@@ -66,6 +66,7 @@ class HouseManager : BaseManager{
                 self.getListOfBill(list: self.house!.listOfBill!, completion: { (listOfSuccess) in
                     self.house?.listOfBill = listOfSuccess
                     completion(true)
+                    ref.cancelDisconnectOperations()
                 })
             })
         }, withCancel: { (error) in
@@ -189,7 +190,7 @@ class HouseManager : BaseManager{
      func getBillById(billId: String , completion:@escaping(ModelBill)-> Void){
         
         let ref = Database.database().reference()
-        ref.child("BILL").child(billId).observe(.value, with: { (snapshot) in
+        ref.child("BILL").child(billId).observeSingleEvent(of: .value, with: { (snapshot) in
              let json = JSON(snapshot.value as Any)
             
             completion(BillManager().parseBill(json: json))

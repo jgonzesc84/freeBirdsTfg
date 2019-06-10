@@ -16,4 +16,6 @@ class ModelPayment:  Encodable{
    // var user : ModelUser?
     var idUser : String?
     
+    var payed = 0.00
+    
 }

@@ -25,6 +25,10 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     public var cellCollection : HouseSectionCell?
     public var sendLocationToParent: ((Any) -> ())?
     public var showModalParent: ((Any) -> ())?
+    
+    public var showPickerParent: ((UIImagePickerController,Bool) -> ())?
+     public var showPickerAlertParent: ((UIAlertController,Bool) -> ())?
+    
     public var listOfRoom = Array<ModelRoom>()
     public var modalView : ModalMain?
     public var house: ModelHouse?
@@ -361,6 +365,15 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
                 let listSection = self.cellCollection?.listOfModelHouseSection
                 self.showModalParent?(listSection as Any)
             }
+        }
+        self.modalView?.showPicker = { (picker,true) -> () in
+          // self.present(picker, animated: true, completion: nil)
+            self.showPickerParent?(picker, true)
+        }
+        self.modalView?.showPickerAlert = { (alert,true) -> () in
+            // self.present(picker, animated: true, completion: nil)
+           // self.showPickerParent?(picker, true)
+             self.showPickerAlertParent?(alert, true)
         }
         
     }

@@ -11,6 +11,7 @@ import UIKit
 
 class constant{
     static let billCellHeight = 70.0
+    static let paymentCellHeight = 70.0
     static let sectionExpenseHeight = 100.0
     static let billheaderHeight = 80
     static let billPaddingTop = 40

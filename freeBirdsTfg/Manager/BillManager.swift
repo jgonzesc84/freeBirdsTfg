@@ -84,6 +84,7 @@ class BillManager : BaseManager{
             pay.idUser = user.idUser;
             pay.quantify = totalPerUser
             pay.idPayment = ref.childByAutoId().key
+            pay.payed = 0.00
             payments.append(pay)
         }
         
@@ -112,36 +113,105 @@ class BillManager : BaseManager{
         return sortedArray
     }
    
-    func oberveBill(_ idBill: String,completion:@escaping(ModelBill) -> Void){
+    func oberveBill(_ idBill: String,completion:@escaping(ModelBill,Bool) -> Void){
         let billRef = Database.database().reference().child("BILL")
         billRef.child(idBill).observe(.value) { (shot) in
             let json = JSON(shot.value as Any)
             let bill = self.parseBill(json: json)
             if let expenses = bill.expenses{
-                // completion: { (listOfSuccess) in
-                for item in expenses{
-                    self.getExpenseBill(idReference: item.idExpense!, idUser: BaseManager().userId(),completion: {
-                        (expense) in
-                        bill.expenses?.append(expense)
-                        completion(bill)
+                let filterExpense = self.filterExpenseByUser(idUser: BaseManager().userId(), listExpsenses: expenses)
+               let change = self.changeExpense(idUser: BaseManager().userId(), listExpsenses: expenses)
+                 bill.expenses? = filterExpense
+                    self.getExpenseBill(listExpense:filterExpense, idUser: BaseManager().userId(),completion: {
+                        (list) in
+                        bill.expenses = list
+                       completion(bill,change)
                     })
-                }
+                    
+                
                 
             }else{
-                completion(bill)
+                completion(bill,false)
             }
         }
     }
-    func getExpenseBill(idReference:String,idUser: String, completion:@escaping (ModelExpense) -> Void){
-        let ref = Database.database().reference().child("EXPENSE")
-        ref.child(idReference).observe(.value){
-            (shot) in
-             let json = JSON(shot.value as Any)
-            let expense = self.parseExpense(json: json)
-          completion(expense)
+    func checkEdited(_ listExpense:[ModelExpense], expense:ModelExpense) -> Int{
+         var indice = -1
+        if let index = listExpense.index(where:{$0.idExpense == expense.idExpense}){
+            indice = index
+        }
+       return indice
+        
+    }
+    func observeAddeChild(_ idBill: String,completion:@escaping(ModelExpense) -> Void){
+        let billRef = Database.database().reference().child("BILL")
+        billRef.child(idBill).child("expense").observe(.childAdded){ (shot) in
+            let json = JSON(shot.value as Any)
+            let idExpense = json["idExpense"].string
+            self.getExpenseBillOnce(idReference: idExpense!, completion: { (match,expense)  in
+                if(match){
+                    completion(expense)
+                }else{
+                    completion(ModelExpense())
+                }
+                
+            })
+          
         }
         
     }
+    
+    func observeRemoveExpenseBill(_ idBill: String,completion:@escaping(ModelExpense) -> Void){
+    let billRef = Database.database().reference().child("BILL")
+    billRef.child(idBill).child("expense").observe(.childRemoved){ (shot) in
+        let json = JSON(shot.value as Any)
+        let expense = self.parseExpense(json: json)
+        completion(expense)
+    }
+    
+    }
+    
+    
+    
+    func getExpenseBill(listExpense:[ModelExpense],idUser: String, completion:@escaping ([ModelExpense]) -> Void){
+        let count = listExpense.count
+        var aux = 0
+        var listCompleted = listExpense
+        for expense in listExpense{
+            let ref = Database.database().reference().child("EXPENSE")
+            ref.child(expense.idExpense!).observe(.value){
+                (shot) in
+                let json = JSON(shot.value as Any)
+                let expense = self.parseExpense(json: json)
+                let indexEdited = self.checkEdited(listExpense, expense: expense)
+                if (indexEdited >= 0){
+                    listCompleted[indexEdited] = expense
+                }else{
+                    listCompleted.append(expense)
+                }
+                aux += 1
+                if (aux >= count){
+                    completion(listCompleted)
+                }
+            }
+        }
+    }
+    
+    func getExpenseBillOnce(idReference:String,completion:@escaping (Bool,ModelExpense) -> Void){
+        let ref = Database.database().reference().child("EXPENSE")
+        ref.child(idReference).observeSingleEvent(of: .value){
+            (shot) in
+            let json = JSON(shot.value as Any)
+            let expense = self.parseExpense(json: json)
+            if (expense.users?.first(where: {$0.idUser == BaseManager().userId()})) != nil{
+                completion(true,expense)
+            }else{
+                completion(false,ModelExpense())
+            }
+        }
+        
+    }
+    
     func parsePayment(json: JSON) -> [ModelPayment]{
         var payments = [ModelPayment]()
         _ = json.dictionary?.compactMap{json -> Void in
@@ -150,12 +220,38 @@ class BillManager : BaseManager{
             payment.idPayment = values["idPayment"].string
             payment.idUser = values["idUser"].string
             payment.quantify = values["quantify"].double!
+            payment.payed = values["payed"].double!
             payments.append(payment)
     }
         return payments
 }
     func observeRemoveExpense(){
         
+    }
+    
+    func filterExpenseByUser(idUser: String, listExpsenses:[ModelExpense]) -> [ModelExpense]{
+        var expenseFiletered = [ModelExpense]()
+            for expense in listExpsenses{
+                if  (expense.users?.first(where: {$0.idUser == idUser})) != nil{
+                    expenseFiletered.append(expense)
+                }
+                
+            }
+        return expenseFiletered;
+    }
+    
+    func changeExpense(idUser: String, listExpsenses:[ModelExpense]) -> Bool{
+        var change = false
+        var expenseFiletered = [ModelExpense]()
+        for expense in listExpsenses{
+            if  (expense.users?.first(where: {$0.idUser == idUser})) != nil{
+                expenseFiletered.append(expense)
+                change = true;
+                return change
+            }
+            
+        }
+        return change;
     }
 
 }

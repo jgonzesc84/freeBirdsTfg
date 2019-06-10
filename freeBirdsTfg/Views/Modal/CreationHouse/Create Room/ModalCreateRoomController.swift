@@ -37,6 +37,9 @@ class ModalCreateRoomController{
         roomModel.price = modal?.priceTextEdit.text!
         roomModel.user?.idUser = modal?.userTextEdit.text!
         roomModel.search = modal?.searchSelection!
+        if let imageData = modal?.roomImageView.image{
+            roomModel.imageData = imageData
+        }
         modal?.returnDataCreateRoom?(roomModel)
     }
     
@@ -44,6 +47,9 @@ class ModalCreateRoomController{
          var roomModel = ModelRoom()
         if let room = modal!.model, modal!.model != nil{
             roomModel = room
+        }
+        if let imageData = modal?.roomImageView.image{
+            roomModel.imageData = imageData
         }
         roomModel.price = modal?.priceTextEdit.text!
        // roomModel.user?.idUser = modal?.userTextEdit.text!

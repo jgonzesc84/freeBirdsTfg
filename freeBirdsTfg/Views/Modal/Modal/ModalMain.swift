@@ -26,6 +26,11 @@ class ModalMain: UIView {
     public var returnRequestHouseData: ((String) -> ())?
     public var returnExpenseColour: ((String) -> ())?
     public var returnExpenseIco: ((String) -> ())?
+    
+    
+    //picker image showPickerAlert
+     public var showPicker: ((UIImagePickerController,Bool) -> ())?
+     public var showPickerAlert: ((UIAlertController,Bool) -> ())?
     // public var editeMode : Bool!
     
     //MARK: cycle life methods

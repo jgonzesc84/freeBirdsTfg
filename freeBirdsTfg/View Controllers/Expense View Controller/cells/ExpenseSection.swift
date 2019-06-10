@@ -77,17 +77,7 @@ class ExpenseSection: UITableViewHeaderFooterView {
     }
     
     override func layoutSubviews() {
-//        let comprobation = self.statBackgroundView.frame.width
-//        let comprobation1 = self.midView.frame.width
-//        print("el tamaño de backAncho \(comprobation)")
-//        print("el tamaño de midAnco \(comprobation1)")
-//        self.percentageLabel.text = "\(percentage)%"
-//        let widtTotal = self.statBackgroundView.frame.width
-//        print("el tamaño de la vista es \(widtTotal)")
-//        let totalConstant =  Float (percentage) * Float(widtTotal) / 100
-//        print("Antes \(self.widthPercentageConstraint.constant)")
-//        self.widthPercentageConstraint.constant = CGFloat(totalConstant)
-//        print("Despues \(self.widthPercentageConstraint.constant)")
+
     }
     
     

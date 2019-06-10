@@ -46,7 +46,7 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-         self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.isTranslucent = true
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -74,8 +74,9 @@ class AddExpenseView: BaseViewController, confirmProtocol {
         textView.nameTextField.text = expense.name
         textView.quantifyTextField.text = "\(expense.quantify!)"
         checkBoxView.setupEdit(expense.selection!)
+          asignationView.usersSelected = HouseManager.sharedInstance.reOrderUser(expense.users!)
         icoColorView.setupEdit(expense.color!, expense.ico!)
-        asignationView.usersSelected = HouseManager.sharedInstance.reOrderUser(expense.users!)
+      
     
         
     }

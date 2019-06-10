@@ -30,28 +30,27 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
          setuptable()
          firstTime = true
         
-//        let billMger = BillManager()
-//        billMger.delegate = self
-//
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.isHidden = true
-        refresh()
-       
+      //  refresh()
+    
     }
     func initView(){
         prepareNavRoot(label: titlelabel, text: "Gastos")
         MainHelper.navStyle(view:navView)
-        arrayBill=HouseManager.sharedInstance.house?.listOfBill
-        billManager.oberveBill(arrayBill![0].billId!) { (bill) in
-            
-         print(bill.billId)
+        if let arrayBill = HouseManager.sharedInstance.house?.listOfBill{
+            self.arrayBill = arrayBill
+            controller?.setupBill(listOfBill:arrayBill)
+            let idBill = arrayBill[0].billId
+            observerBillChanges(idBill!)
+        }else{
+            self.arrayBill = [ModelBill]()
         }
-        controller?.setupBill(listOfBill:arrayBill!)
-        billChange()
+       
     }
 
     func setuptable(){
@@ -60,36 +59,61 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle .none
         self.tableView.estimatedRowHeight = 400
         self.tableView.register(UINib(nibName:"AddExpenseCell", bundle: nil), forCellReuseIdentifier: "addExpense")
+       
     }
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrayBill!.count;
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-      return (controller?.drawCell(tableView: tableView, indexPath: indexPath))!
+     return (controller?.drawCell(tableView: tableView, indexPath: indexPath))!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-           //controller?.didSelectRow(tableView: tableView, indexPath: indexPath)
+       
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
+        //CGFloat(constant.billCellHeight * Double(numberExpense)) + CGFloat(constant.sectionExpenseHeight) + CGFloat(constant.billPaddingTop)
         let bill = arrayBill![indexPath.row]
         let numberExpense = bill.expenses!.count
-        
-    return CGFloat(constant.billCellHeight * Double(numberExpense)) + CGFloat(constant.sectionExpenseHeight) + CGFloat(constant.billPaddingTop)
+        let total = calculateHeight(numberExpense: numberExpense, expenses: bill.expenses!)
+    return total
     }
     func refresh(){
-            controller?.actualize()
+   
     
 }
+    func calculateHeight(numberExpense: Int, expenses : [ModelExpense]) -> CGFloat{
+        let totalSections = CGFloat(constant.billCellHeight * Double(numberExpense))
+        let paddingTopBot = CGFloat(constant.sectionExpenseHeight) + CGFloat(constant.billPaddingTop)
+        var heightPayment = 0.00
+        for expense in expenses{
+            if let payments = expense.payment{
+                 heightPayment = heightPayment + constant.paymentCellHeight * Double(payments.count)
+            }
+        }
+        let total = totalSections + CGFloat(paddingTopBot) + CGFloat(heightPayment)
+        return total
+    }
     
     func billRefresh(bill: ModelBill) {
-  //  controller?.actualizeBill(bill)
+ 
     }
     
     func billChange(){
        
+    }
+    
+    func observerBillChanges(_ idBill: String){
+        
+        billManager.oberveBill(idBill) { (bill,change) in //coge la primera hay q poner observadores solo a la de este mes no a la
+            if (change){
+                self.arrayBill![0] = bill;
+                self.tableView.reloadData {
+                    
+                }
+            }
+        }
     }
    
 }

@@ -80,9 +80,13 @@ class FireBaseManager : BaseManager{
     static func createUser(model: ModelUser){
         let ref = Database.database().reference()
         let idUser = Auth.auth().currentUser?.uid
+        let storage = Storage.storage().reference()
+        let imageName = UUID()
+        let directory = storage.child("imagenes/\(imageName)")
         let userDictio = ["alias":model.alias!,
                           "houseId":model.houseId,
                           "email":Auth.auth().currentUser?.email,
+                          "image": String(describing:directory)
                           ]
         ref.child("USUARIO").child(idUser!).setValue(userDictio){
             (error:Error?, ref:DatabaseReference) in
@@ -91,14 +95,32 @@ class FireBaseManager : BaseManager{
             } else {
                 print("Data saved successfully!")
         }
+            let resizedImaged = model.imageData?.resizeWithPercent(percentage: 0.1)
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            directory.putData(resizedImaged!.pngData()!, metadata: metadata) { (data, error) in
+                if error == nil {
+                    print("carga completada")
+                }else{
+                    if let error = error?.localizedDescription{
+                        print("error al subir imagen firebase", error)
+                    }
+                }
+            }
         }
     }
     static func editeUser(model: ModelUser){
         let ref = Database.database().reference()
+        let storage = Storage.storage().reference()
+        let imageName = UUID()
+        let directory = storage.child("imagenes/\(imageName)")
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/png"
         let idUser = model.idUser
         let userDictio = ["alias":model.alias!,
                           "houseId":model.houseId,
                           "email":Auth.auth().currentUser?.email,
+                          "image": String(describing:directory)
                           ]
         ref.child("USUARIO").child(idUser!).setValue(userDictio){
             (error:Error?, ref:DatabaseReference) in
@@ -106,6 +128,19 @@ class FireBaseManager : BaseManager{
                 print("Data could not be saved: \(error).")
             } else {
                 print("Data saved successfully!")
+            }
+        }
+        let imageDeleted = Storage.storage().reference(forURL: model.image!)
+        imageDeleted.delete(completion: nil)
+        HouseManager.sharedInstance.mainUser!.image = String(describing:directory)
+       let resizedImaged = model.imageData?.resizeWithPercent(percentage: 0.1)
+        directory.putData(resizedImaged!.pngData()!, metadata: metadata) { (data, error) in
+            if error == nil {
+                print("carga completada")
+            }else{
+                if let error = error?.localizedDescription{
+                    print("error al subir imagen firebase", error)
+                }
             }
         }
     }
@@ -317,6 +352,12 @@ class FireBaseManager : BaseManager{
         
     }
     
+    func giveDirectoryImage()-> String{
+        let storage = Storage.storage().reference()
+        let imageName = UUID()
+        let directory = storage.child("imagenes/\(imageName)")
+        return String(describing:directory)
+    }
     
     }
     

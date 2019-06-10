@@ -14,6 +14,7 @@ class ModelRoom: Encodable{
     var user : ModelUser?
     var price : String!
     var image : String?
+    var imageData : UIImage?
     var search : Bool?
     var idRoom : String?
     

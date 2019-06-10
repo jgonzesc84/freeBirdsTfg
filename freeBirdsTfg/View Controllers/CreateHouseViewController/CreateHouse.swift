@@ -121,6 +121,12 @@ class CreateHouse: BaseViewController {
             }
            
         }
+        createHouseTable.showPickerParent = { (picker, true) -> () in
+             self.present(picker, animated: true, completion: nil)
+        }
+        createHouseTable.showPickerAlertParent = { (alert, true) -> () in
+            self.present(alert, animated: true, completion: nil)
+        }
     }
    
     func prepareButton(){

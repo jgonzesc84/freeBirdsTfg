@@ -111,6 +111,7 @@
 		59A32AA9219850D500CBDC77 /* ModelUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A32AA8219850D500CBDC77 /* ModelUser.swift */; };
 		59A50A6E21864EDF00ACE75B /* AlphaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */; };
 		59A50A70218652A100ACE75B /* loadingAplhaAnimation.json in Resources */ = {isa = PBXBuildFile; fileRef = 59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */; };
+		59B5B50922AE7A21002A11DB /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B5B50822AE7A21002A11DB /* ImageManager.swift */; };
 		59C277F02143DD09006CDBC4 /* mainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59C277EF2143DD09006CDBC4 /* mainHelper.swift */; };
 		59D8C5A622704EF300777C0C /* BaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D8C5A522704EF300777C0C /* BaseManager.swift */; };
 		59D8C5AC2270B95800777C0C /* ExpenseIcoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59D8C5AA2270B95800777C0C /* ExpenseIcoCell.swift */; };
@@ -324,6 +325,7 @@
 		59A32AA8219850D500CBDC77 /* ModelUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelUser.swift; sourceTree = "<group>"; };
 		59A50A6D21864EDF00ACE75B /* AlphaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaViewController.swift; sourceTree = "<group>"; };
 		59A50A6F218652A100ACE75B /* loadingAplhaAnimation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingAplhaAnimation.json; sourceTree = "<group>"; };
+		59B5B50822AE7A21002A11DB /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 		59C277EF2143DD09006CDBC4 /* mainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mainHelper.swift; sourceTree = "<group>"; };
 		59D8C5A522704EF300777C0C /* BaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseManager.swift; sourceTree = "<group>"; };
 		59D8C5AA2270B95800777C0C /* ExpenseIcoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseIcoCell.swift; sourceTree = "<group>"; };
@@ -890,6 +892,14 @@
 			path = AlphaViewController;
 			sourceTree = "<group>";
 		};
+		59B5B50722AE79E2002A11DB /* image manager */ = {
+			isa = PBXGroup;
+			children = (
+				59B5B50822AE7A21002A11DB /* ImageManager.swift */,
+			);
+			path = "image manager";
+			sourceTree = "<group>";
+		};
 		59E802FB20FFA379001F014C /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -934,6 +944,7 @@
 		59E802FE20FFA3B7001F014C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				59B5B50722AE79E2002A11DB /* image manager */,
 				7A3AE25E22808299008B9913 /* Request Message */,
 				599C1EAA227CE7C700B67107 /* Expense */,
 				599C1EA9227CE79E00B67107 /* House */,
@@ -1674,6 +1685,7 @@
 				7A2167DE22649F760074BA1E /* AddExpenseView.swift in Sources */,
 				599C1EAC227CE7DA00B67107 /* ObserverExpense.swift in Sources */,
 				7A0ECEAF2274D993006756F3 /* ModalErrorText.swift in Sources */,
+				59B5B50922AE7A21002A11DB /* ImageManager.swift in Sources */,
 				595594592151A41A006490D5 /* Direction.swift in Sources */,
 				5960022820FF99240042CF9F /* AppDelegate.swift in Sources */,
 				7ADA21E42265E4F0008B2B9C /* ExpenseIcoCoCell.swift in Sources */,

@@ -64,22 +64,20 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
             }else{
                  self.usersSelected?.append(cell.user!)
             }
-             self.usersSelected?.count
+             //self.usersSelected?.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItem", for: indexPath) as! UserPayCollectionCell
        //la primera celda se queda seleccionada siempre ya que es el usario que crea el gasto
-        cell.setupCell(model: users![indexPath.row])
+        let user = users![indexPath.row]
+        cell.setupCell(model: user )
         if(indexPath.row == 0){
          _ = cell.touchCell()
         }else{
-            if let usserSelec = usersSelected , (usersSelected?.count)! > 1{
-                let index = indexPath.row
-                if (index <= usserSelec.count){
-                     _ = cell.touchCell()
-                }
+            if  let _ = usersSelected?.first(where:{$0.idUser == user.idUser}){
+                _ = cell.touchCell()
             }
         }
        

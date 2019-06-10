@@ -36,6 +36,7 @@ class ModalCreateSectionController{
     func createAccept(){
         
         let sectionModel = ModelHouseSection()
+        sectionModel.imageData = modal?.sectiomRoomImage.image
         sectionModel.title = modal?.titleSectionTextField.text
         sectionModel.description = modal?.descriptionSectionTextField.text
         modal?.returnDataCreateSection?(sectionModel)
@@ -44,6 +45,9 @@ class ModalCreateSectionController{
     
     func editAccept(){
         let sectionModel = ModelHouseSection()
+        if let imageData = modal?.sectiomRoomImage.image{
+            sectionModel.imageData = imageData
+        }
         sectionModel.title = modal?.titleSectionTextField.text
         sectionModel.description = modal?.descriptionSectionTextField.text
         modal?.returnDataEditSection?(sectionModel)

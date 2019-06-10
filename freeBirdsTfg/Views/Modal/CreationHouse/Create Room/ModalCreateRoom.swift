@@ -9,7 +9,7 @@
 import UIKit
 import Material
 
-class ModalCreateRoom: UIView {
+class ModalCreateRoom: UIView, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
      //MARK: atributes and outlets
     
@@ -18,6 +18,7 @@ class ModalCreateRoom: UIView {
     @IBOutlet weak var modalAddRoomView: UIView!
     @IBOutlet weak var acceptButton: Button!
     
+    @IBOutlet weak var roomImageView: UIImageView!
     @IBOutlet weak var seacrhButton: UIButton!
     
     @IBOutlet weak var botView: UIView!
@@ -26,10 +27,15 @@ class ModalCreateRoom: UIView {
     public var roomModel = ModelRoom()
     var returnDataCreateRoom: ((ModelRoom) -> ())?
     var returnDataEditRoom: ((ModelRoom) -> ())?
+    var showPicker: ((UIImagePickerController, Bool) -> ())?
+    var showPickerAlert:((UIAlertController,Bool) -> ())?
+    
+    
     var editMode : Bool?
     var searchSelection: Bool?
     var controller : ModalCreateRoomController?
     var model:ModelRoom?
+     var imagePicker = UIImagePickerController()
     //MARK: cycle life methods
     
     override func awakeFromNib() {
@@ -52,6 +58,7 @@ class ModalCreateRoom: UIView {
         photoRoomButton.backgroundColor = UIColor .AppColor.Green.mindApp
         seacrhButton.backgroundColor = UIColor .AppColor.Gray.greyApp
         searchSelection = false
+         imagePicker.delegate = self
         
     }
     func setupSelection(_ selection: Bool){
@@ -78,5 +85,69 @@ class ModalCreateRoom: UIView {
     @IBAction func acceptAction(_ sender: Any) {
         
       controller?.acceptButton()
+    }
+    
+    @IBAction func photoAction(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.openGallary()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        if (showPickerAlert != nil){
+            showPickerAlert!(alert,true)
+        }
+        
+        
+    }
+    
+    
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = true
+            if(showPicker != nil){
+                showPicker!(imagePicker,true)
+            }
+            
+            
+            //   self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            if (showPickerAlert != nil){
+                showPickerAlert!(alert,true)
+            }
+            // self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openGallary()
+    {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        if(showPicker != nil){
+            showPicker!(imagePicker,true)
+        }
+        // self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            roomImageView.contentMode = .scaleToFill
+            let imageResizable = pickedImage.resizeImage(targetSize: roomImageView!.frame.size)
+            roomImageView.image = imageResizable
+        }
+        picker.dismiss(animated: true, completion: nil)
     }
 }

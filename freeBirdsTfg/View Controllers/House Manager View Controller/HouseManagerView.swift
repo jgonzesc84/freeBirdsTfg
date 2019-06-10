@@ -39,6 +39,7 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
         super.viewDidLoad()
         initView()
         setupCollection()
+        actualize()
     }
     
     
@@ -180,6 +181,15 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
                 
             }else{
                 print("fallo")
+            }
+        }
+    }
+    
+    func  actualize(){
+        HouseManager.sharedInstance.setupData { (finish) in
+            if(finish){
+                //i dont know
+                
             }
         }
     }

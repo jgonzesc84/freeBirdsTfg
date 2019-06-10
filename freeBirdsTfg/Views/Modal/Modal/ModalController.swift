@@ -46,6 +46,14 @@ class ModalController{
                 self.modal?.returnEditData!(model)
                 self.modal?.removeFromSuperview()
             }
+            modalCreateRoom?.showPicker = { (picker,true) -> () in
+                self.modal?.showPicker?(picker, true)
+                //poner atras?
+            }
+            modalCreateRoom?.showPickerAlert = { (picker,true) -> () in
+                self.modal?.showPickerAlert?(picker, true)
+                //poner atras?
+            }
             break
         case "createSection":
             modalCreateSection = Bundle.main.loadNibNamed("ModalCreateSectionView", owner: nil, options: nil)![0] as? ModalCreateSectionView
@@ -55,6 +63,14 @@ class ModalController{
                 self.modal?.returnData?(model)
                 self.modal?.removeFromSuperview()
             }
+            modalCreateSection?.showPicker = { (picker,true) -> () in
+                self.modal?.showPicker?(picker, true)
+                //poner atras?
+            }
+            modalCreateSection?.showPickerAlert = { (picker,true) -> () in
+                self.modal?.showPickerAlert?(picker, true)
+                //poner atras?
+            }
             break
         case "editSection":
             modalCreateSection = Bundle.main.loadNibNamed("ModalCreateSectionView", owner: nil, options: nil)![0] as? ModalCreateSectionView
@@ -63,6 +79,14 @@ class ModalController{
             modalCreateSection?.returnDataEditSection = { (model) -> () in
                 self.modal?.returnEditData?(model)
                 self.modal?.removeFromSuperview()
+            }
+            modalCreateSection?.showPicker = { (picker,true) -> () in
+                self.modal?.showPicker?(picker, true)
+                //poner atras?
+            }
+            modalCreateSection?.showPickerAlert = { (picker,true) -> () in
+                self.modal?.showPickerAlert?(picker, true)
+                //poner atras?
             }
             
             break
@@ -131,6 +155,9 @@ class ModalController{
         case is ModelHouseSection:
             
             let section = model as! ModelHouseSection
+            if let imageData = section.imageData{
+                modalCreateSection!.sectiomRoomImage.image = imageData
+            }
             modalCreateSection!.titleSectionTextField.text = section.title
             modalCreateSection!.descriptionSectionTextField.text = section.description
             //falta img

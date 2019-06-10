@@ -300,6 +300,7 @@ class BaseManager{
         model.alias = dictio["alias"] as? String ?? ""
         model.email = dictio["email"] as? String ?? ""
         model.houseId = dictio["houseId"] as? String ?? ""
+        model.image = dictio["image"] as? String ?? ""
         if let valueRequest = dictio["solicitudes"] as? NSDictionary {
             let listId = valueRequest.allKeys
             model.request = convertRequestMessageColection(listId as! Array<String>)

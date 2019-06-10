@@ -81,14 +81,20 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
                 }
         return numberItem!
     }
+    
+    
      func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
        
-        return CGFloat(Double(constant.sectionExpenseHeight))
+        return CGFloat(Double(constant.billCellHeight))
     }
+    
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return CGFloat(Double(constant.billheaderHeight));
     }
+    
+    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let sectionExpense  = tableView.dequeueReusableHeaderFooterView(withIdentifier: "ExpenseSection") as! ExpenseSection
@@ -102,25 +108,27 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
          numberItem = 0
-//        if let list = model?.expenses{
-//            numberItem = list.count
-//        }
+        if let expenses = model?.expenses{
+            let expense = expenses[section]
+            if let payments = expense.payment{
+                numberItem = payments.count
+            }
+        }
         return numberItem!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "expenseBillCell", for: indexPath) as! ExpenseBillCell
-        cell.resetCell()
-        let expense = model!.expenses![indexPath.row]
-        cell.setupCell(model:expense)
-        cell.percentage = givePercentage(item: expense.quantify!)
+        let expense = model!.expenses![indexPath.section]
+        cell.setupCell(model:expense.payment![indexPath.row],color: expense.color!)
+     
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         let expense = model!.expenses![indexPath.row]
-        self.pushToEditCellExpense!(expense, self.model!.total!)
+//         let expense = model!.expenses![indexPath.row]
+//        self.pushToEditCellExpense!(expense, self.model!.total!)
     }
     
     func goToEditExpense(_ model: ModelExpense) {

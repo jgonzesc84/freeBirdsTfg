@@ -54,9 +54,12 @@ class roomCell: UITableViewCell  {
     
    public func setup(room: ModelRoom?){
         model = room
-        if (room != nil){
+    if (room != nil){
         userlabel.text = room?.user?.alias
         priceLabel.text = room?.price
+        if let imageData = room?.imageData{
+            roomImageView.image = imageData
+        }
         addView.isHidden = true
         roomView.isHidden = false
         //Imagen? guardar en otra parte para no llamar todo el rato al servicio??

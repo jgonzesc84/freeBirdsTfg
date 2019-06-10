@@ -101,6 +101,9 @@
                                         <constraint firstAttribute="height" constant="44" id="ulS-Mn-AoL"/>
                                     </constraints>
                                     <state key="normal" image="cm_photo_camera_white"/>
+                                    <connections>
+                                        <action selector="photoAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="Fad-X8-I8J"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4d6-mO-noA" customClass="Button" customModule="Material">
                                     <rect key="frame" x="179.5" y="245" width="70" height="30"/>
@@ -163,6 +166,7 @@
                 <outlet property="modalAddRoomView" destination="ZAh-eZ-uU2" id="1gu-jk-p8L"/>
                 <outlet property="photoRoomButton" destination="Afm-vd-Yug" id="gXe-UU-C33"/>
                 <outlet property="priceTextEdit" destination="5l0-hQ-r37" id="XgV-eL-LmF"/>
+                <outlet property="roomImageView" destination="tBT-oI-Jsm" id="zyc-J6-Q4N"/>
                 <outlet property="seacrhButton" destination="kp1-Ko-AxO" id="sPM-0m-reO"/>
                 <outlet property="topView" destination="OyD-FN-Gq0" id="tVs-ee-Ara"/>
                 <outlet property="userTextEdit" destination="zI8-Nj-USc" id="1YI-gj-aUW"/>

@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class ProfileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource {
+class ProfileViewController: BaseViewController, UITableViewDelegate, UITableViewDataSource,UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
       //MARK: atributes and outlets
     
@@ -31,6 +31,10 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     var user : ModelUser?
     var controller : ProfileController?
     var register = false
+    var imagePicker = UIImagePickerController()
+    
+    
+    
     
     //MARK: cycle life methods
     override func viewDidLoad() {
@@ -43,6 +47,12 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
        // setupTable()
        // gradientStyle()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        ImageManager().refreshMainUser()
+    }
+   
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         //gradientStyle()
@@ -78,9 +88,17 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             closeSessionButton.isHidden = false
             closeSessionButton.isEnabled = true
             nameTextField.text = HouseManager.sharedInstance.mainUser!.alias
+            ImageManager.shared.checkMainUserHasImage{(model,match) in
+                if(match){
+                    self.profileImage.image = model.imageData
+                }else{
+                    if let image = HouseManager.sharedInstance.mainUser!.imageData{
+                        self.profileImage.image = image
+                    }
+                }
+            }
         }
-        
-       
+        imagePicker.delegate = self
     }    
     func setupTable(){
         myTable.delegate = self
@@ -145,6 +163,9 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
        let aliasUser = nameTextField.text
         let model = HouseManager.sharedInstance.mainUser!
         model.alias = aliasUser
+        if let imageData = profileImage.image{
+            model.imageData = imageData
+        }
         FireBaseManager.editeUser(model: model)
         nameTextField.resignFirstResponder()
     }
@@ -164,12 +185,57 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     @IBAction func closeSessionAction(_ sender: Any) {
         
         FireBaseManager.sharedInstance.ref.removeAllObservers()
+        ImageManager.shared.resetAll()
         try! Auth.auth().signOut()
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    
+    @IBAction func takeImageAction(_ sender: Any) {
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.openGallary()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func openCamera()
+    {
+        if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera))
+        {
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
+    func openGallary()
+    {
+        imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+        imagePicker.allowsEditing = true
+        self.present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let pickedImage = info[.originalImage] as? UIImage {
+            profileImage.image = pickedImage
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
 
 
