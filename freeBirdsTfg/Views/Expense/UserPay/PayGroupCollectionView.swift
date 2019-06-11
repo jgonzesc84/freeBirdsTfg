@@ -32,6 +32,7 @@ class PayGroupCollectionView: UIView , UICollectionViewDelegate, UICollectionVie
         MainHelper.theStyle(view: mainView)
         
         users = HouseManager.sharedInstance.returnUsers()
+        
         if let _ = usersSelected{
             
         }else{

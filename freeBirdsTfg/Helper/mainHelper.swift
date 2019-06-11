@@ -361,7 +361,20 @@ extension UIImage {
         
         return newImage!
     }
-    
+    func resizeCI(size:CGSize) -> UIImage? {
+        let scale = (Double)(size.width) / (Double)(self.size.width)
+        let image = UIKit.CIImage(cgImage:self.cgImage!)
+        
+        let filter = CIFilter(name: "CILanczosScaleTransform")!
+        filter.setValue(image, forKey: kCIInputImageKey)
+        filter.setValue(NSNumber(value:scale), forKey: kCIInputScaleKey)
+        filter.setValue(1.0, forKey:kCIInputAspectRatioKey)
+        let outputImage = filter.value(forKey: kCIOutputImageKey) as! UIKit.CIImage
+        
+        let context = CIContext(options: [CIContextOption.useSoftwareRenderer: false])
+        let resizedImage = UIImage(cgImage: context.createCGImage(outputImage, from: outputImage.extent)!)
+        return resizedImage
+    }
     /*
      myImage = myImage.resizeWithWidth(700)!
      Now next you can still compress it using compression ratio of your choice

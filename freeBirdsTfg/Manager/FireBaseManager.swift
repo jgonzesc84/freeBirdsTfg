@@ -15,6 +15,8 @@ import SwiftyJSON
 
 private let fireManager = FireBaseManager()
 
+ let storage = Storage.storage().reference()
+
  protocol getAllHouseDelegate: class {
     func isActiveSession(landingPage:String )
 }
@@ -130,8 +132,12 @@ class FireBaseManager : BaseManager{
                 print("Data saved successfully!")
             }
         }
-        let imageDeleted = Storage.storage().reference(forURL: model.image!)
-        imageDeleted.delete(completion: nil)
+        if let image = model.image{
+            if image.count > 0{
+                let imageDeleted = Storage.storage().reference(forURL: model.image!)
+                imageDeleted.delete(completion: nil)
+            }
+        }
         HouseManager.sharedInstance.mainUser!.image = String(describing:directory)
        let resizedImaged = model.imageData?.resizeWithPercent(percentage: 0.1)
         directory.putData(resizedImaged!.pngData()!, metadata: metadata) { (data, error) in
@@ -150,6 +156,12 @@ class FireBaseManager : BaseManager{
     let ref = Database.database().reference()
     let idHouse = ref.childByAutoId().key
         model.idHouse = idHouse
+        if let section = model.section{
+            model.section = prepareListSectionWithImage(section)
+        }
+        if let rooms = model.listOfRoom{
+            model.listOfRoom = prepareListRoomWithImage(rooms)
+        }
         ref.child("CASA").child(idHouse).setValue(BaseManager().prepareHouse(model: model)){
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
@@ -163,11 +175,30 @@ class FireBaseManager : BaseManager{
                 completion(true)
             }
     }
+        if let section = model.section{ //subir imagenes nuevas seccion
+            uploadAllSectionImage(section)
+        }
+        if let rooms = model.listOfRoom{
+            uploadAllRoomImage(rooms)
+        }
     }
     static func  editHouse(model : ModelHouse,completion:@escaping(Bool)-> (Void) ){
         let ref = Database.database().reference()
         let idHouse = model.idHouse
         model.idHouse = idHouse
+  //      var oldPath = [String]()
+        if let section = model.section{
+//            for item in section{
+//                if let path = item.oldPath{
+//                   oldPath.append(path)
+//                }
+//
+//            }
+            model.section = prepareListSectionWithImage(section)
+        }
+        if let rooms = model.listOfRoom{
+            model.listOfRoom = prepareListRoomWithImage(rooms)
+        }
         ref.child("CASA").child(idHouse!).setValue(BaseManager().prepareHouse(model: model)){
             (error:Error?, ref:DatabaseReference) in
             if let error = error {
@@ -177,6 +208,22 @@ class FireBaseManager : BaseManager{
                 completion(true)
             }
         }
+        if let section = model.section{ //subir imagenes editadas seccion
+            uploadAllSectionImage(section)
+        }
+        if let rooms = model.listOfRoom{
+            uploadAllRoomImage(rooms)
+        }
+//        if (oldPath.count > 0){
+//            for path in oldPath{
+//                let imageDeleted = Storage.storage().reference(forURL: path)
+//                imageDeleted.delete(completion: nil)
+//            }
+//
+//        }
+        
+        
+        ///WALLY
     }
     func getHouse(completion: @escaping (Array<ModelHouse>) -> Void){
         var collectionHouse : Array<ModelHouse> = []
@@ -352,11 +399,99 @@ class FireBaseManager : BaseManager{
         
     }
     
-    func giveDirectoryImage()-> String{
+   static func prepareListSectionWithImage(_ list: [ModelHouseSection]) -> [ModelHouseSection]{
+        var returnList = [ModelHouseSection]()
+        for section in list{
+            if (section.imageData != nil){
+                section.image = giveDirectoryImage()
+            }
+            returnList.append(section)
+        }
+         return returnList
+    }
+    static func prepareListRoomWithImage(_ list: [ModelRoom]) -> [ModelRoom]{
+        var returnList = [ModelRoom]()
+        for room in list{
+            if (room.imageData != nil){
+                room.image = giveDirectoryImage()
+            }
+            returnList.append(room)
+        }
+        return returnList
+    }
+    
+  static  func giveDirectoryImage()-> String{
         let storage = Storage.storage().reference()
         let imageName = UUID()
         let directory = storage.child("imagenes/\(imageName)")
         return String(describing:directory)
+    }
+    
+    static func uploadAllSectionImage(_ list:[ModelHouseSection]){
+        for section in list{
+            if let path = section.image{
+                if (path.count > 0 && section.imageData != nil){
+                    uploadImage(path: path, image: section.imageData!,percentage:0.3)
+                }
+            }
+        }
+    }
+    
+    static func uploadAllRoomImage(_ list:[ModelRoom]){
+        for room in list{
+            if let path = room.image{
+                if (path.count > 0 && room.imageData != nil){
+                    uploadImage(path: path, image: room.imageData!, percentage: 1)
+                }
+            }
+        }
+    }
+    
+    static func uploadImage(path: String, image: UIImage, percentage:CGFloat){
+        let storage = Storage.storage().reference()
+        let lastString = path.split(separator: "/").last
+        let directory = storage.child("imagenes/\(lastString ?? "")")
+        let resizedImaged = image.resizeWithPercent(percentage: percentage)
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/png"
+        directory.putData(resizedImaged!.pngData()!, metadata: metadata) { (data, error) in
+            if error == nil {
+                print("carga completada")
+            }else{
+                if let error = error?.localizedDescription{
+                    print("error al subir imagen firebase", error)
+                }
+            }
+        }
+    }
+    /*
+     if let image = model.image{
+     if image.count > 0{
+     let imageDeleted = Storage.storage().reference(forURL: model.image!)
+     imageDeleted.delete(completion: nil)
+     }
+ */
+    static func uploadImageEdited(path: String, image: UIImage, oldPath:String){
+        let storage = Storage.storage().reference()
+        let lastString = path.split(separator: "/").last
+        let directory = storage.child("imagenes/\(lastString ?? "")")
+      //  let resizedImaged = image.resizeWithPercent(percentage: 0.9)
+        let testImage = image.resizeCI(size: CGSize(width: 400, height: 400))
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/png"
+        if oldPath.count > 0{
+            let imageDeleted = Storage.storage().reference(forURL: oldPath)
+            imageDeleted.delete(completion: nil)
+        }
+        directory.putData(testImage!.pngData()!, metadata: metadata) { (data, error) in
+            if error == nil {
+                print("carga completada")
+            }else{
+                if let error = error?.localizedDescription{
+                    print("error al subir imagen firebase", error)
+                }
+            }
+        }
     }
     
     }

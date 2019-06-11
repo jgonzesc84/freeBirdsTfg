@@ -23,7 +23,7 @@ class ModelRoom: Encodable{
         case user
         case search
         case PRICE
-       
+        case image
         
         
     }
@@ -33,7 +33,7 @@ class ModelRoom: Encodable{
         try container.encode(user, forKey: .user)
         try container.encode(price, forKey: .PRICE)
         try container.encode(search, forKey: .search)
-      
+        try container.encode(image, forKey: .image)
     }
     
 }

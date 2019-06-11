@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,6 +22,10 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IcM-QE-ux6">
                         <rect key="frame" x="0.0" y="0.0" width="383" height="236.5"/>
                         <subviews>
+                            <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iXL-Yk-kCF">
+                                <rect key="frame" x="0.0" y="0.0" width="383" height="236.5"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="stevenRoom Ico" translatesAutoresizingMaskIntoConstraints="NO" id="4YF-XF-gvv">
                                 <rect key="frame" x="40" y="14" width="303" height="182.5"/>
                             </imageView>
@@ -32,17 +36,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="J7l-Ox-iOc" firstAttribute="centerY" secondItem="4YF-XF-gvv" secondAttribute="centerY" id="7b7-iq-gmX"/>
+                            <constraint firstAttribute="trailing" secondItem="iXL-Yk-kCF" secondAttribute="trailing" id="8ZM-qW-2xh"/>
                             <constraint firstAttribute="trailing" secondItem="4YF-XF-gvv" secondAttribute="trailing" constant="40" id="OKL-hx-kv8"/>
                             <constraint firstItem="4YF-XF-gvv" firstAttribute="leading" secondItem="IcM-QE-ux6" secondAttribute="leading" constant="40" id="PwL-hv-kvM"/>
                             <constraint firstItem="4YF-XF-gvv" firstAttribute="top" secondItem="IcM-QE-ux6" secondAttribute="top" constant="14" id="QEc-aM-1YX"/>
                             <constraint firstItem="J7l-Ox-iOc" firstAttribute="centerX" secondItem="4YF-XF-gvv" secondAttribute="centerX" id="Tac-At-gTV"/>
                             <constraint firstAttribute="bottom" secondItem="4YF-XF-gvv" secondAttribute="bottom" constant="40" id="XS8-Ai-reT"/>
+                            <constraint firstItem="iXL-Yk-kCF" firstAttribute="leading" secondItem="IcM-QE-ux6" secondAttribute="leading" id="bKK-DE-4Ga"/>
+                            <constraint firstItem="iXL-Yk-kCF" firstAttribute="top" secondItem="IcM-QE-ux6" secondAttribute="top" id="dDw-eN-MLq"/>
+                            <constraint firstAttribute="bottom" secondItem="iXL-Yk-kCF" secondAttribute="bottom" id="qrK-Ak-xbG"/>
                         </constraints>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="IcM-QE-ux6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Evj-yb-tcS"/>
                     <constraint firstAttribute="trailing" secondItem="IcM-QE-ux6" secondAttribute="trailing" id="HGJ-JX-YCC"/>
@@ -50,6 +59,7 @@
                     <constraint firstAttribute="bottom" secondItem="IcM-QE-ux6" secondAttribute="bottom" id="xg5-dK-YQa"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imageRoomView" destination="4YF-XF-gvv" id="Ssl-DU-0M4"/>

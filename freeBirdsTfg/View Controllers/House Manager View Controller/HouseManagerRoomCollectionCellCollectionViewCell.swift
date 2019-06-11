@@ -57,8 +57,14 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
         }else{
              configureButton(isEmpty: true)
         }
+        ImageManager.shared.checkRoomImage(model){
+            (model,match) in
+            if(match){
+                let image = model.imageData?.resizeImage(targetSize: self.roomImageView.frame.size)
+                self.roomImageView.image = image
+            }
+        }
         
-       // roomImageView.image = model.image
     }
     
     func resetCell(){

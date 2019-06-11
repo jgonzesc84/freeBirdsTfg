@@ -72,8 +72,14 @@ class SectionHouseCollectionViewCell: UICollectionViewCell {
         hideSectionView(hide:false)
         titleLabelSectionView.text = self.model?.title
         descriptionLabelSectionView.text = self.model?.description
-        if let imageData = model.imageData{
-            sectionImageView.image = imageData
+        ImageManager.shared.chechSectionImage(model){
+            (model,match) in
+            if (match){
+                let image = model.imageData?.resizeImage(targetSize: self.sectionImageView.frame.size)
+                self.sectionImageView.image = image
+            }else{
+                
+            }
         }
     }
     func resetCell(){

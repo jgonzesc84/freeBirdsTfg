@@ -51,10 +51,11 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
           setupDetailHouseTableView()
           setupCurrentLocation()
           fire.getHouseUpdated { (succes,mode) in
-           
-            self.controller?.updateMap(model: succes ,mode:mode)
-            
-           
+            let requestMng = RequestMessageManager()
+            requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,exit) in
+                self.controller?.requestActive = model
+                self.controller?.updateMap(model: succes ,mode:mode)
+            }
         }
         
     }

@@ -48,6 +48,9 @@ class ModalCreateSectionController{
         if let imageData = modal?.sectiomRoomImage.image{
             sectionModel.imageData = imageData
         }
+        if let image = modal?.oldPath{
+             sectionModel.oldPath = image
+        }
         sectionModel.title = modal?.titleSectionTextField.text
         sectionModel.description = modal?.descriptionSectionTextField.text
         modal?.returnDataEditSection?(sectionModel)

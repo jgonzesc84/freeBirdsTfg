@@ -62,7 +62,17 @@ class roomCell: UITableViewCell  {
         }
         addView.isHidden = true
         roomView.isHidden = false
-        //Imagen? guardar en otra parte para no llamar todo el rato al servicio??
+        //WALLY
+        ImageManager.shared.checkRoomImage(model!){
+            (room,match) in
+            if(match){
+                if  let image = room.imageData{
+                    self.roomImageView.image = image
+                    self.model!.imageData = image
+                }
+              
+            }
+        }
         }
     }
 

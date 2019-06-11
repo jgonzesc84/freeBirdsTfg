@@ -14,7 +14,9 @@ class ModalCreateSectionView: UIView, UINavigationControllerDelegate, UIImagePic
     
     @IBOutlet weak var modalAddSectionView: UIView!
     @IBOutlet weak var titleSectionTextField: UITextField!
-    @IBOutlet weak var descriptionSectionTextField: UITextField!
+    
+    
+    @IBOutlet weak var descriptionSectionTextField: UITextView!
     @IBOutlet weak var cameraButton: UIButton!
     @IBOutlet weak var sectiomRoomImage: UIImageView!
     @IBOutlet weak var acceptSectionButton: UIButton!
@@ -24,7 +26,7 @@ class ModalCreateSectionView: UIView, UINavigationControllerDelegate, UIImagePic
     var imagePicker = UIImagePickerController()
     var returnDataCreateSection: ((ModelHouseSection) -> ())?
     var returnDataEditSection: ((ModelHouseSection) -> ())?
-   
+    var oldPath : String?
     var showPicker: ((UIImagePickerController, Bool) -> ())?
     var showPickerAlert:((UIAlertController,Bool) -> ())?
     
@@ -105,9 +107,9 @@ class ModalCreateSectionView: UIView, UINavigationControllerDelegate, UIImagePic
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let pickedImage = info[.originalImage] as? UIImage {
-            sectiomRoomImage.contentMode = .scaleToFill
-            let imageResizable = pickedImage.resizeImage(targetSize: sectiomRoomImage!.frame.size)
-            sectiomRoomImage.image = imageResizable
+            sectiomRoomImage.contentMode = .scaleAspectFit
+           // let imageResizable = pickedImage.resizeImage(targetSize: sectiomRoomImage!.frame.size)
+            sectiomRoomImage.image = pickedImage
         }
         picker.dismiss(animated: true, completion: nil)
     }

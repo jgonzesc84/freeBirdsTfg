@@ -20,7 +20,14 @@ class MapSearchHousedetailCellController{
     //MARK: setup cell
     func setupCell(model: ModelRoom){
         cell?.priceLabel.text = model.price
-        //TODO: -imagen
+        ImageManager.shared.checkRoomImage(model) {
+            (room,matched) in
+          //  model.imageData?.resizeImage(targetSize: (self.cell?.imageRoomView.frame.size)!)
+            if(matched){
+            let image = room.imageData
+            self.cell?.imageRoomView.image = image
+        }
+        }
     }
     
     func resetCell(){

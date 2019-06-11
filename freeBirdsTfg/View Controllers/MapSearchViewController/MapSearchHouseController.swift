@@ -23,11 +23,13 @@ class MapSearchHouseController {
     let locationManager = CLLocationManager()
     var rooms = Array <ModelRoom>()
     var selectedHouse = ModelHouse()
-    
+    var requestActive = [ModelRequestHouse]()
     //MARK: init
     
     init(viewMap: MapSearchHouseViewController!){
         self.viewMap = viewMap
+      
+          
         
     }
     
@@ -110,7 +112,7 @@ class MapSearchHouseController {
         rooms = selectedHouse.listOfRoom!.filter{ $0.search == true}
       
         viewMap!.listOfRoom = rooms
-        
+       
         UIView.transition(with:  viewMap!.houseDetailTableView,
                           duration: 1,
                           options: .transitionCurlUp,
@@ -150,6 +152,7 @@ class MapSearchHouseController {
         let vc = HouseDetailRequestViewController (nibName:"HouseDetailRequestViewController", bundle: nil)
         vc.house = selectedHouse
         vc.roomSelectAtIndex = indexPath
+        
         viewMap?.navigationController?.pushViewController(vc, animated: true)
         
     }

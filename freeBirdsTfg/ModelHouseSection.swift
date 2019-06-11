@@ -15,7 +15,7 @@ class ModelHouseSection: Encodable{
     var description : String!
     var image : String?
     var imageData: UIImage?
-    
+    var oldPath: String?
     enum CodingKeys: String, CodingKey{
         case title
         case description

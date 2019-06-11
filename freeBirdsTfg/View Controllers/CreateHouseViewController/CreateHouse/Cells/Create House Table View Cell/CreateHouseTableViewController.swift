@@ -115,14 +115,7 @@ class CreateHouseTableViewController: UIView , UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
          let numbSection = indexPath.section
         switch numbSection {
-//        case 0:
-//            let cell : PrecioCell = tableView.dequeueReusableCell(withIdentifier: "PrecioCell", for: indexPath) as! PrecioCell
-//            cell.delegate = self
-//            cell.sendInfo = { (priceCell) -> () in
-//                 self.showModalParent?(priceCell)
-//            }
-//            return cell
-        
+
         case 0:
             
             let cell : roomCell = tableView.dequeueReusableCell(withIdentifier: "roomCell", for: indexPath) as! roomCell

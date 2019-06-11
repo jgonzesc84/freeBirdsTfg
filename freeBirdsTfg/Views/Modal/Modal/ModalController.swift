@@ -19,7 +19,7 @@ class ModalController{
     var modalRequestHouse : ModalRequestHouse?
     var modalExpenseIcoCo : ModalExpenseIcoCoView?
     var modalErrorText : ModalErrorText?
-    
+   
     init(ModalView: ModalMain!){
         modal = ModalView
         
@@ -36,6 +36,14 @@ class ModalController{
             modalCreateRoom?.returnDataCreateRoom = { (model) -> () in
                 self.modal?.returnData?(model)
                 self.modal?.removeFromSuperview()
+            }
+            modalCreateRoom?.showPicker = { (picker,true) -> () in
+                self.modal?.showPicker?(picker, true)
+                //poner atras?
+            }
+            modalCreateRoom?.showPickerAlert = { (picker,true) -> () in
+                self.modal?.showPickerAlert?(picker, true)
+                //poner atras?
             }
             break
         case "editRoom":
@@ -147,6 +155,9 @@ class ModalController{
             if(room.user != nil){
               modalCreateRoom?.model = room
             }
+            if let imageData = room.imageData{
+               modalCreateRoom!.roomImageView.image = imageData
+            }
             modalCreateRoom!.userTextEdit.text = room.user?.alias
             modalCreateRoom!.priceTextEdit.text = room.price
             modalCreateRoom!.setupSelection(room.search!)
@@ -158,6 +169,7 @@ class ModalController{
             if let imageData = section.imageData{
                 modalCreateSection!.sectiomRoomImage.image = imageData
             }
+           // modalCreateSection!.oldPath = section.image
             modalCreateSection!.titleSectionTextField.text = section.title
             modalCreateSection!.descriptionSectionTextField.text = section.description
             //falta img

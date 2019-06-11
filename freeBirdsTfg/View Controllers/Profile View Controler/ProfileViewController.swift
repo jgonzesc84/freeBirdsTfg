@@ -31,6 +31,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     var user : ModelUser?
     var controller : ProfileController?
     var register = false
+    var fromMain = false
     var imagePicker = UIImagePickerController()
     
     
@@ -81,6 +82,23 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             closeSessionButton.isEnabled = false
             continueButton.setTitle("Continuar", for: .normal)
             giveStyleProfile(continueButton)
+        }else if(fromMain){
+            self.navigationController?.navigationBar.isHidden = false
+            continueButton.setTitle("Editar", for: .normal)
+            giveStyleProfile(continueButton)
+            continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+            closeSessionButton.isHidden = false
+            closeSessionButton.isEnabled = true
+            nameTextField.text = HouseManager.sharedInstance.mainUser!.alias
+            ImageManager.shared.checkMainUserHasImage{(model,match) in
+                if(match){
+                    self.profileImage.image = model.imageData
+                }else{
+                    if let image = HouseManager.sharedInstance.mainUser!.imageData{
+                        self.profileImage.image = image
+                    }
+                }
+            }
         }else{
             continueButton.setTitle("Editar", for: .normal)
             giveStyleProfile(continueButton)
@@ -146,8 +164,12 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
     @IBAction func continueButtonAction(_ sender: Any) {
         if (register){
              goHome()
-        }else{
+        }else
+        if(fromMain){
            actualizeUser()
+            self.dismiss(animated: true, completion: nil)
+        }else{
+            actualizeUser()
         }
         
        
@@ -165,6 +187,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         model.alias = aliasUser
         if let imageData = profileImage.image{
             model.imageData = imageData
+           HouseManager.sharedInstance.mainUser?.imageData = imageData
         }
         FireBaseManager.editeUser(model: model)
         nameTextField.resignFirstResponder()
@@ -189,7 +212,9 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         try! Auth.auth().signOut()
         UserDefaults.standard.removePersistentDomain(forName: Bundle.main.bundleIdentifier!)
         UserDefaults.standard.synchronize()
+        
         self.navigationController?.popToRootViewController(animated: true)
+        
     }
     
     

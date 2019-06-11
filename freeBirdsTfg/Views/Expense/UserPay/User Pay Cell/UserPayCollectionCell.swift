@@ -26,15 +26,21 @@ class UserPayCollectionCell: UICollectionViewCell {
         MainHelper.theStyle(view: mainView)
         backGroundView.layer.cornerRadius = 20
         mainView.layer.cornerRadius = 20
+        MainHelper.circleView(view: userImageView)
     }
 
     func setupCell(model: ModelUser){
         self.user = model
         nameLabel.text = model.alias
-        if (model.image == nil){
-           
+        //cargarImagen aqui
+        ImageManager.shared.checkUserImage(model){(model, match) in
+        if (match){
+            let image = model.imageData?.resizeImage(targetSize: self.userImageView.frame.size)
+           self.userImageView.image = image
+        }else{
+            
+            }
         }
-      
     }
     func touchCell() -> Bool{
         var value = false

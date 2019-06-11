@@ -31,12 +31,6 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="16" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="Ki0-Zn-rYi">
-                                    <rect key="frame" x="29" y="70" width="324" height="107"/>
-                                    <nil key="textColor"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_playa " translatesAutoresizingMaskIntoConstraints="NO" id="DuY-TO-TJM">
                                     <rect key="frame" x="29" y="190" width="324" height="220"/>
                                 </imageView>
@@ -62,21 +56,30 @@
                                         <action selector="aceptButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="lCp-zU-zug"/>
                                     </connections>
                                 </button>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="t5L-2z-gWD">
+                                    <rect key="frame" x="29" y="68" width="324" height="102"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="102" id="y6h-Br-L7a"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="DuY-TO-TJM" firstAttribute="centerX" secondItem="KxO-T1-Hyz" secondAttribute="centerX" id="2ci-IU-Rwv"/>
-                                <constraint firstItem="DuY-TO-TJM" firstAttribute="top" secondItem="Ki0-Zn-rYi" secondAttribute="bottom" constant="13" id="2h6-7f-1k0"/>
+                                <constraint firstAttribute="trailing" secondItem="t5L-2z-gWD" secondAttribute="trailing" constant="29" id="D93-0s-N2t"/>
+                                <constraint firstItem="t5L-2z-gWD" firstAttribute="leading" secondItem="KxO-T1-Hyz" secondAttribute="leading" constant="29" id="Drm-wZ-OmN"/>
                                 <constraint firstItem="baq-U1-Eqv" firstAttribute="leading" secondItem="KxO-T1-Hyz" secondAttribute="leading" constant="96" id="EKg-1C-ymG"/>
-                                <constraint firstAttribute="trailing" secondItem="Ki0-Zn-rYi" secondAttribute="trailing" constant="29" id="Ejb-lm-pdU"/>
                                 <constraint firstItem="Yd6-dc-hpF" firstAttribute="centerY" secondItem="DuY-TO-TJM" secondAttribute="centerY" id="FLr-H9-mjL"/>
                                 <constraint firstItem="Yd6-dc-hpF" firstAttribute="centerX" secondItem="DuY-TO-TJM" secondAttribute="centerX" id="G7V-fB-woJ"/>
                                 <constraint firstItem="CMf-dS-AcO" firstAttribute="centerX" secondItem="KxO-T1-Hyz" secondAttribute="centerX" id="Rg7-4x-RpK"/>
                                 <constraint firstAttribute="trailing" secondItem="CMf-dS-AcO" secondAttribute="trailing" constant="29" id="VQ8-ma-HEv"/>
-                                <constraint firstItem="Ki0-Zn-rYi" firstAttribute="leading" secondItem="KxO-T1-Hyz" secondAttribute="leading" constant="29" id="beq-Ni-qND"/>
                                 <constraint firstAttribute="bottom" secondItem="baq-U1-Eqv" secondAttribute="bottom" constant="10" id="c5G-Pb-40F"/>
                                 <constraint firstItem="CMf-dS-AcO" firstAttribute="top" secondItem="KxO-T1-Hyz" secondAttribute="top" constant="25" id="dM1-On-bMr"/>
-                                <constraint firstItem="Ki0-Zn-rYi" firstAttribute="top" secondItem="CMf-dS-AcO" secondAttribute="bottom" constant="10" id="ddo-mJ-BL7"/>
+                                <constraint firstItem="DuY-TO-TJM" firstAttribute="top" secondItem="t5L-2z-gWD" secondAttribute="bottom" constant="20" id="ems-ME-1Er"/>
+                                <constraint firstItem="t5L-2z-gWD" firstAttribute="top" secondItem="CMf-dS-AcO" secondAttribute="bottom" constant="8" id="gLT-fn-k45"/>
                                 <constraint firstItem="CMf-dS-AcO" firstAttribute="leading" secondItem="KxO-T1-Hyz" secondAttribute="leading" constant="29" id="gU4-wP-EoP"/>
                                 <constraint firstAttribute="trailing" secondItem="DuY-TO-TJM" secondAttribute="trailing" constant="29" id="nYc-n5-0oV"/>
                                 <constraint firstItem="baq-U1-Eqv" firstAttribute="top" secondItem="DuY-TO-TJM" secondAttribute="bottom" constant="20" id="plE-Rd-0ar"/>
@@ -106,7 +109,7 @@
             <connections>
                 <outlet property="acceptSectionButton" destination="baq-U1-Eqv" id="Ew1-qU-0o8"/>
                 <outlet property="cameraButton" destination="Yd6-dc-hpF" id="fiH-IS-ScP"/>
-                <outlet property="descriptionSectionTextField" destination="Ki0-Zn-rYi" id="Jc5-GO-asL"/>
+                <outlet property="descriptionSectionTextField" destination="t5L-2z-gWD" id="bSq-kM-iFz"/>
                 <outlet property="modalAddSectionView" destination="KxO-T1-Hyz" id="R25-Kd-htT"/>
                 <outlet property="sectiomRoomImage" destination="DuY-TO-TJM" id="Q8I-N8-exD"/>
                 <outlet property="titleSectionTextField" destination="CMf-dS-AcO" id="Um5-gL-iRP"/>

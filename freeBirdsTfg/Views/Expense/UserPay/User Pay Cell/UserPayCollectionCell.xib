@@ -28,7 +28,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="steven_user" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-cf-qbt">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="steven_user" translatesAutoresizingMaskIntoConstraints="NO" id="iTC-cf-qbt">
                                 <rect key="frame" x="25" y="11" width="50" height="50"/>
                             </imageView>
                             <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9wA-8e-MzP">

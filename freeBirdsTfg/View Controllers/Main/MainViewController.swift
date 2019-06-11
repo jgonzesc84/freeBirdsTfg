@@ -21,6 +21,7 @@ class MainViewController: BaseViewController {
     @IBOutlet weak var searchHouseView: UIView!
     @IBOutlet weak var createHouseView: UIView!
    
+    @IBOutlet weak var profileButon: UIButton!
     @IBOutlet weak var requestButton: Button!
     let fire = FireBaseManager()
     
@@ -31,12 +32,22 @@ class MainViewController: BaseViewController {
         lottieAnimationSearch()
         self.animationButtons(button: self.searchHouseButton)
         self.animationButtons(button: self.createHouseButton)
-        
+        MainHelper.circleView(view: profileButon)
+        MainHelper.borderShadowRedondNotRadius(view: profileButon)
        
     }
     
     override func viewWillAppear(_ animated: Bool) {
        self.navigationController?.navigationBar.isHidden = true
+        ImageManager.shared.checkMainUserHasImage{(model,match) in
+            if(match){
+                self.profileButon.setImage(model.imageData, for: .normal)
+            }else{
+                if let image = ImageManager.shared.mainUser.imageData{
+                    self.profileButon.setImage(image, for: .normal)
+                }
+            }
+        }
        
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -159,6 +170,14 @@ class MainViewController: BaseViewController {
             }
         }
         
+       
+    }
+    
+    
+    @IBAction func goToProfile(_ sender: Any) {
+        let vc = ProfileViewController(nibName:"ProfileViewController", bundle:nil)
+        vc.fromMain = true
+        self.navigationController?.pushViewController(vc, animated: true)
        
     }
     

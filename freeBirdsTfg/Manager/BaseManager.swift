@@ -77,6 +77,7 @@ class BaseManager{
             let values = json.value
             section.title = values["title"].stringValue
             section.description = values ["description"].string
+            section.image = values["image"].string ?? ""
             sections.append(section)
         }
         
@@ -96,6 +97,8 @@ class BaseManager{
                 user.idUser = userId
                 room.user = user
             }
+           //WALLY
+            room.image = values["image"].string ?? ""
             rooms.append(room)
         }
         return rooms
