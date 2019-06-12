@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Material
 
 class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDelegate ,UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
 
@@ -23,12 +24,14 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     @IBOutlet weak var infViewCollection: UICollectionView!
     
     @IBOutlet weak var footerview: UIView!
-    @IBOutlet weak var requestButton: UIButton!
+   // @IBOutlet weak var requestButton: UIButton!
+    
+    @IBOutlet weak var requestButton: Button!
     
     var controller : HouseDetailRequestController?
     var house : ModelHouse?
     var roomSelectAtIndex : IndexPath?
-    
+    var state : String?
    public var modalView : ModalMain?
     
     //MARK: cycle life methods
@@ -52,11 +55,46 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
         initData()
         MainHelper.circleButton(button: requestButton)
         MainHelper.borderShadowRedonde(view: requestButton)
-        requestButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+        //requestButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
         let filteredRooms = self.house?.listOfRoom!.filter{$0.search == true}
         self.house!.listOfRoom! = filteredRooms!
+        MainHelper.giveMeStyle(button: requestButton)
+        if let request = house?.request{
+            configureButton(request.state!)
+            state = request.state!
+        }else{
+              configureButton("")
+            state = ""
+        }
     }
   
+    func configureButton(_ stateRequest:(String)){
+        
+        let option = stateRequest
+        switch (option) {
+        case constant.stateAcceptRequest:
+            requestButton.setTitle("  Aceptada  ", for: .normal)
+            requestButton.isEnabled = false
+            break
+            
+        case constant.statcDeclineRequest:
+            requestButton.setTitle("  Cancelar  ", for: .normal)
+           // requestButton.isEnabled = false
+            break
+            
+        case constant.stateOpendRequest:
+            requestButton.setTitle("  Esperando respuesta  ", for: .normal)
+            requestButton.isEnabled = false
+            break
+            
+        default:
+            
+            requestButton.setTitle("  Solicitar entrada  ", for: .normal)
+            requestButton.isEnabled = true
+          break
+        }
+        
+    }
     func initData(){
         supViewCollection.delegate  = self
         supViewCollection.dataSource = self
@@ -119,7 +157,23 @@ class HouseDetailRequestViewController: BaseViewController ,UICollectionViewDele
     //MARK: modal view methods
     
     @IBAction func requestAction(_ sender: Any) {
-        controller!.requestAction()
+        switch (state) {
+        case constant.statcDeclineRequest:
+            let requestMng = RequestMessageManager()
+            requestMng.deleteRequestFromUser(request:(self.house?.request)!, idUser: (self.house?.request?.aplicantId!)!){(sucess) in
+                self.navigationController?.popViewController(animated: true)
+                
+            }
+            break
+        case constant.stateAcceptRequest:
+            // ouch
+            break
+        default:
+            controller!.requestAction()
+            break;
+        }
+        
+        
         
     }
 }

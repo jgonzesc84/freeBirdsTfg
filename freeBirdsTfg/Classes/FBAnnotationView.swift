@@ -18,6 +18,7 @@ class FBAnnotationView : MKAnnotationView{
     let selectedTextView: UITextView = UITextView()
     let vistaTest = UIView()
     var descriptionText = "HOLA!!"
+    var estaterequest : String?
     
     override func setSelected(_ selected: Bool, animated: Bool)
     {

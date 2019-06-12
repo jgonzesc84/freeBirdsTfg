@@ -43,9 +43,10 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         prepareNavRoot(label: titlelabel, text: "Gastos")
         MainHelper.navStyle(view:navView)
         if let arrayBill = HouseManager.sharedInstance.house?.listOfBill{
-            self.arrayBill = arrayBill
-            controller?.setupBill(listOfBill:arrayBill)
-            let idBill = arrayBill[0].billId
+        let  listOrdered =  BillManager().compareDate(listArray:arrayBill)
+            self.arrayBill = listOrdered
+            controller?.setupBill(listOfBill:listOrdered)
+            let idBill = listOrdered[0].billId
             observerBillChanges(idBill!)
         }else{
             self.arrayBill = [ModelBill]()
@@ -84,12 +85,12 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
     
 }
     func calculateHeight(numberExpense: Int, expenses : [ModelExpense]) -> CGFloat{
-        let totalSections = CGFloat(constant.billCellHeight * Double(numberExpense))
+        let totalSections = CGFloat(Double(constant.billheaderHeight) * Double(numberExpense))
         let paddingTopBot = CGFloat(constant.sectionExpenseHeight) + CGFloat(constant.billPaddingTop)
         var heightPayment = 0.00
         for expense in expenses{
             if let payments = expense.payment{
-                 heightPayment = heightPayment + constant.paymentCellHeight * Double(payments.count)
+                 heightPayment = heightPayment + constant.billCellHeight * Double(payments.count)
             }
         }
         let total = totalSections + CGFloat(paddingTopBot) + CGFloat(heightPayment)

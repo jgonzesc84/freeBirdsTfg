@@ -287,7 +287,33 @@ class BaseManager{
         return arrayUser
     }
 
-   
+    func getPayments(dictio : Dictionary <String, Any> ) -> [ModelPayment]{
+        var dictioPayments = dictio["payment"] as? [String:AnyObject]
+        var arrayPayments = [ModelPayment]()
+        if  let keyDictioPayments = dictioPayments?.keys{
+            for keyId in keyDictioPayments{
+                let dictioPay = dictioPayments![keyId]
+                arrayPayments.append(getPayment(dictio: dictioPay as! Dictionary<String, Any>))
+            }
+        }
+        return arrayPayments
+    }
+    
+    
+    func getPayment(dictio: Dictionary<String, Any>) -> ModelPayment{
+        let payment = ModelPayment()
+        let idPayment = dictio["idPayment"] as? String ?? ""
+        let idUser = dictio["idUser"] as? String ?? ""
+        let payed = dictio["payed"] as? Double ?? 0
+        let quantify = dictio["quantify"] as? Double ?? 0
+        
+        payment.idPayment = idPayment
+        payment.idUser = idUser
+        payment.payed = payed
+        payment.quantify = quantify
+        
+        return payment
+    }
     
     func prepareUserNoHouse(idUser : String) -> (Dictionary<String, Any>){
         var userDictio = Dictionary<String, Any>()
@@ -407,6 +433,7 @@ class BaseManager{
         model.idBill = dictio["idBill"] as? String ?? ""
         model.users = getUser(dictio: dictio as! Dictionary<String, Any>)
         model.idUser = dictio["users"] as? String ?? ""
+        model.payment = getPayments(dictio: dictio as! Dictionary<String, Any>)
 //        if let pepe = dictio["users"] as? [String:AnyObject]{
 //       print (pepe.count)
 //    }

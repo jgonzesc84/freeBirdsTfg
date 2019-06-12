@@ -17,7 +17,7 @@
                 <outlet property="infViewCollection" destination="vK5-Lb-fxF" id="Kt0-S9-Lk8"/>
                 <outlet property="infViewLabel" destination="HEA-Uy-rMu" id="PHb-2I-Gbg"/>
                 <outlet property="navView" destination="iD4-lf-6yT" id="56b-Zl-ftd"/>
-                <outlet property="requestButton" destination="Duq-Bo-yr8" id="Hrn-hh-c3d"/>
+                <outlet property="requestButton" destination="Duq-Bo-yr8" id="pEr-zF-nWa"/>
                 <outlet property="supView" destination="0np-rF-56S" id="BbX-jH-gvX"/>
                 <outlet property="supViewCollection" destination="x8n-eP-MkR" id="DCK-Av-kfB"/>
                 <outlet property="supViewLabel" destination="nsG-z1-4V3" id="nVT-Jy-4M2"/>
@@ -129,14 +129,12 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYk-Uf-WF4" userLabel="footerView">
                                     <rect key="frame" x="0.0" y="540" width="375" height="60"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Duq-Bo-yr8">
-                                            <rect key="frame" x="164.5" y="7" width="46" height="46"/>
-                                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="46" id="866-5D-hxB"/>
-                                                <constraint firstAttribute="width" constant="46" id="qgf-88-BiY"/>
-                                            </constraints>
-                                            <state key="normal" backgroundImage="cm_arrow_downward_white"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Duq-Bo-yr8" customClass="Button" customModule="Material">
+                                            <rect key="frame" x="172.5" y="15" width="30" height="30"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal">
+                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <connections>
                                                 <action selector="requestAction:" destination="-1" eventType="touchUpInside" id="361-bE-Z1a"/>
                                             </connections>
@@ -189,7 +187,4 @@
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
         </view>
     </objects>
-    <resources>
-        <image name="cm_arrow_downward_white" width="24" height="24"/>
-    </resources>
 </document>

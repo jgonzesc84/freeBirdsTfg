@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +23,6 @@
                 <outlet property="leaveHouseButton" destination="XCE-Nf-OIn" id="8FZ-Hg-Fq6"/>
                 <outlet property="navView" destination="Zn4-9z-dMC" id="L0D-Ph-PZ6"/>
                 <outlet property="rootOptionView" destination="ZmY-Ig-wyc" id="kqq-hb-fgl"/>
-                <outlet property="searchUserButton" destination="NOs-0g-qum" id="QhE-53-ah9"/>
                 <outlet property="searchUserView" destination="PxR-Ow-P61" id="taP-Ge-1Zc"/>
                 <outlet property="titleLabel" destination="Taa-cm-L3M" id="2zy-Ww-Gqw"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -119,44 +118,28 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PxR-Ow-P61" userLabel="SearchUser">
                                                     <rect key="frame" x="0.0" y="30" width="375" height="45"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOs-0g-qum" customClass="Button" customModule="Material">
-                                                            <rect key="frame" x="24" y="2.5" width="40" height="40"/>
-                                                            <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="40" id="0gU-g7-fFd"/>
-                                                                <constraint firstAttribute="height" constant="40" id="OtY-Wq-JXY"/>
-                                                            </constraints>
-                                                            <state key="normal">
-                                                                <color key="titleColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="serachUserAction:" destination="-1" eventType="touchUpInside" id="rwn-1r-Izg"/>
-                                                            </connections>
-                                                        </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-oB-4C1" customClass="Button" customModule="Material">
-                                                            <rect key="frame" x="167.5" y="2.5" width="40" height="40"/>
-                                                            <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eWw-oB-4C1" customClass="Button" customModule="Material">
+                                                            <rect key="frame" x="70" y="2.5" width="40" height="40"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="40" id="4Dx-4R-MRb"/>
                                                                 <constraint firstAttribute="height" constant="40" id="ghu-dt-JBg"/>
                                                             </constraints>
-                                                            <state key="normal">
-                                                                <color key="titleColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <state key="normal" image="icons8-warehouse-80">
+                                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <connections>
                                                                 <action selector="editActionButton:" destination="-1" eventType="touchUpInside" id="D7Z-I5-G3q"/>
                                                             </connections>
                                                         </button>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-Nf-OIn" customClass="Button" customModule="Material">
-                                                            <rect key="frame" x="311" y="2.5" width="40" height="40"/>
-                                                            <color key="backgroundColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XCE-Nf-OIn" customClass="Button" customModule="Material">
+                                                            <rect key="frame" x="265" y="2.5" width="40" height="40"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="40" id="8Lv-XN-L7L"/>
                                                                 <constraint firstAttribute="height" constant="40" id="IMb-yx-jMj"/>
                                                             </constraints>
-                                                            <state key="normal">
-                                                                <color key="titleColor" red="0.090196078430000007" green="0.67450980390000004" blue="0.58823529409999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                            </state>
+                                                            <state key="normal" image="icons8-exit-100"/>
                                                             <connections>
                                                                 <action selector="leaveHouseButton:" destination="-1" eventType="touchUpInside" id="yeO-vb-ikt"/>
                                                                 <action selector="serachUserAction:" destination="-1" eventType="touchUpInside" id="ygR-FP-IME"/>
@@ -165,13 +148,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstItem="NOs-0g-qum" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="7rU-d5-7nt"/>
-                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="centerX" secondItem="PxR-Ow-P61" secondAttribute="centerX" id="AOX-Bi-uRA"/>
-                                                        <constraint firstItem="NOs-0g-qum" firstAttribute="leading" secondItem="PxR-Ow-P61" secondAttribute="leading" constant="24" id="Rgz-Cd-IJK"/>
-                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="RiH-zc-qGz"/>
-                                                        <constraint firstAttribute="trailing" secondItem="XCE-Nf-OIn" secondAttribute="trailing" constant="24" id="VHg-a8-3Dp"/>
+                                                        <constraint firstAttribute="trailing" secondItem="XCE-Nf-OIn" secondAttribute="trailing" constant="70" id="VHg-a8-3Dp"/>
                                                         <constraint firstItem="XCE-Nf-OIn" firstAttribute="top" secondItem="PxR-Ow-P61" secondAttribute="top" constant="2.5" id="ebo-Hw-5ra"/>
+                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="hlt-9a-sLn"/>
                                                         <constraint firstItem="XCE-Nf-OIn" firstAttribute="centerY" secondItem="PxR-Ow-P61" secondAttribute="centerY" id="tiE-rZ-TlJ"/>
+                                                        <constraint firstItem="eWw-oB-4C1" firstAttribute="leading" secondItem="PxR-Ow-P61" secondAttribute="leading" constant="70" id="twf-WY-nHx"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
@@ -228,4 +209,8 @@
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
         </view>
     </objects>
+    <resources>
+        <image name="icons8-exit-100" width="80" height="80"/>
+        <image name="icons8-warehouse-80" width="80" height="80"/>
+    </resources>
 </document>

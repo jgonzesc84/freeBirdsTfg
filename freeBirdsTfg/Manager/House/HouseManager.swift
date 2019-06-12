@@ -137,15 +137,13 @@ class HouseManager : BaseManager{
     }
 
      func getListOfBill(list:Array<ModelBill>, completion:@escaping(Array<ModelBill>)-> Void){
-
-
         var completedList = Array<ModelBill>()
         var count = 0
+        let total = list.count
         let idUser = BaseManager().userId()
-        if list.count > 0{
+        if total > 0{
             for item in list{
                 getBillById(billId: item.billId!) { (model) in
-                  //  self.getExpenseUser(idBill: item.billId!, idUser: idUser, completion: { (listExpense) in
                       var expenseFiletered = [ModelExpense]()
                     if let listExpense = model.expenses{
                         for expense in listExpense{
@@ -156,29 +154,34 @@ class HouseManager : BaseManager{
                         }
                     }
                     let listExpense = expenseFiletered
+                     var arrayBill = [ModelBill]()
                         if(listExpense.count > 0){
-                            //var countExp = 0
                             self.getListOfExpense(list: listExpense, completion: { (listOfExpense) in
                                 model.expenses = listOfExpense
                                 completedList.append(model)
-                              //  countExp = countExp + 1
-                              //  if(countExp == listExpense.count){
-                                let arrayBill = completedList
-                                  completedList.removeAll()
+                                arrayBill = completedList
+                               // completedList.removeAll()
+                                count = count + 1
+                              //  completion(arrayBill)
+                                if(count == total ){
+                                    count = 0
                                     completion(arrayBill)
-                               // }
+                                }
                             })
                         }else{
                             model.expenses = listExpense
                             completedList.append(model)
-                             let arrayBill = completedList
-                            completedList.removeAll()
-                            //count = count + 1
-//                            if(count == list.count){
-//                                completion(completedList)
-//                            }
-                             completion(arrayBill)
+                            arrayBill = completedList
+                         //   completedList.removeAll()
+                             count = count + 1
+                            
+                            if(count == total ){
+                                count = 0
+                                completion(arrayBill)
+                            }
+                           //  completion(arrayBill)
                         }
+                    
                 }
             }
         }else{
@@ -272,7 +275,7 @@ class HouseManager : BaseManager{
             guard let dictio = value, value != nil else{
                 return //deberia ser un completion false
             }
-            let valueJson = shot.value as? JSON
+          //  let valueJson = shot.value as? JSON
             completion(self.getExpense(dictio:dictio,idExpense:expenseId))
         } , withCancel: { (error) in
     

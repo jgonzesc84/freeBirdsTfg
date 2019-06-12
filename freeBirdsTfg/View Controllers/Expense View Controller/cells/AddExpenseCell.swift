@@ -51,8 +51,8 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
        
         labelMont.textColor = UIColor .AppColor.Gray.greyStrong
         labelMont.font = UIFont .AppFont.titleFont.middletitleFont
-        let test =  colorExpense.color3.rawValue
-        topViewBackground.backgroundColor = UIColor().colorFromHex(test)
+       // let test =  colorExpense.color3.rawValue
+        topViewBackground.backgroundColor = UIColor .AppColor.Gray.greyCancel
         MainHelper.borderShadowRedonde(view: mainView)
         
       
@@ -220,7 +220,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
 
     func refreshTotalLabel(){
         if let comp = model?.dateBill{
-            let date = BillManager().stringFromDate(date: comp, format: constant.formatBillDate)
+            let date = BillManager().stringFromDate(date: comp, format: constant.formatTestDate)
             let compact = "\(date)  \(String(calculeTotal()))€"
             labelMont.text = compact
             

@@ -105,7 +105,7 @@ class FireBaseManager : BaseManager{
                     print("carga completada")
                 }else{
                     if let error = error?.localizedDescription{
-                        print("error al subir imagen firebase", error)
+                        print("error al subir imágen firebase", error)
                     }
                 }
             }
@@ -271,7 +271,7 @@ class FireBaseManager : BaseManager{
             }
         }
     }
-      static func createBill(model: ModelBill,completion:@escaping (Bool) -> Void){
+      static func createBill(model: ModelBill,completion:@escaping (Bool,String) -> Void){
         inserBill(model: model){ (success) in
             if (success){
                 
@@ -284,7 +284,7 @@ class FireBaseManager : BaseManager{
                         print("Data could not be saved: \(error).")
                     }else{
                         print("Data saved successfully!")
-                        completion(true)
+                        completion(true,model.billId!)
                     }
                 }
 
@@ -354,7 +354,7 @@ class FireBaseManager : BaseManager{
     
     static func insertExpense(model: ModelExpense,completion:@escaping(Bool) -> Void){
         let ref = Database.database().reference()
-         var expenseDictio = Dictionary<String, Any>()
+        var expenseDictio = Dictionary<String, Any>()
         model.idExpense = ref.childByAutoId().key
         expenseDictio[model.idExpense!] = BaseManager().prepareExpense(model: model)
         ref.child("EXPENSE").child(model.idExpense!).setValue(BaseManager().prepareExpenseJson(model: model)){

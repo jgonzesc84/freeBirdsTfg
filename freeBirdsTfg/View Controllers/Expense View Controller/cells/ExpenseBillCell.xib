@@ -38,10 +38,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S3a-xf-xEx">
-                                <rect key="frame" x="268.5" y="5" width="60" height="60"/>
+                                <rect key="frame" x="268.5" y="12.5" width="45" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="snf-Tl-4Zt">
-                                        <rect key="frame" x="9" y="19.5" width="42" height="21"/>
+                                        <rect key="frame" x="1.5" y="12" width="42" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -49,10 +49,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="49E-Y0-Kfy"/>
+                                    <constraint firstAttribute="width" constant="45" id="49E-Y0-Kfy"/>
                                     <constraint firstItem="snf-Tl-4Zt" firstAttribute="centerX" secondItem="S3a-xf-xEx" secondAttribute="centerX" id="8CQ-zW-AfW"/>
                                     <constraint firstItem="snf-Tl-4Zt" firstAttribute="centerY" secondItem="S3a-xf-xEx" secondAttribute="centerY" id="Z49-bh-fwm"/>
-                                    <constraint firstAttribute="height" constant="60" id="uws-3G-TKp"/>
+                                    <constraint firstAttribute="height" constant="45" id="uws-3G-TKp"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="axy-c1-xbz" userLabel="column">

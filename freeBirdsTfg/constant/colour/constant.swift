@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 
 class constant{
-    static let billCellHeight = 70.0
+    static let billCellHeight = 50.0
     static let paymentCellHeight = 70.0
     static let sectionExpenseHeight = 100.0
     static let billheaderHeight = 80
-    static let billPaddingTop = 40
+    static let billPaddingTop = 20
     static let formatBillDate = "MM.yyyy"
+    static let formatTestDate = "MMMM yyyy"
     static let formatMeesageDate = "dd/MM/yyyy HH:mm"
     
     static let stateOpendRequest = "abierta"

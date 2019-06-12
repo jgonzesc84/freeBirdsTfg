@@ -85,7 +85,6 @@ class MainViewController: BaseViewController {
         let animationView = LOTAnimationView(name: "spirit_geekGray")
         let frame = searchHouseView.frame
         animationView.frame = CGRect(x:frame.width/2 - frame.width/2, y: frame.height/2 - frame.height/2, width: frame.size.width, height: frame.size.height )
-       //  animationView.center = self.searchHouseView.center
         animationView.contentMode = .scaleAspectFit 
         searchHouseView.addSubview(animationView)
         searchHouseView.sendSubviewToBack(animationView )
@@ -111,15 +110,7 @@ class MainViewController: BaseViewController {
     }
     
     func configureNav(){
-        
-  //       self.navigationController?.navigationBar.isHidden = false
-//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: .default)
-//        // Sets shadow (line below the bar) to a blank image
-//        UINavigationBar.appearance().shadowImage = UIImage()
-//        // Sets the translucent background color
-//        UINavigationBar.appearance().backgroundColor = .clear
-//        // Set translucent. (Default value is already true, so this can be removed if desired.)
-//        UINavigationBar.appearance().isTranslucent = false
+
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -129,10 +120,39 @@ class MainViewController: BaseViewController {
     
     @IBAction func goToSearchHouse(_ sender: Any) {
         fire.getHouse{(success) in
+            var listHouses = success
             let vc = MapSearchHouseViewController(nibName: "MapSearchHouseViewController", bundle: nil)
-            vc.listOfHouses = success
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
+            let requestMng = RequestMessageManager()
+            let numItem = listHouses.count
+            var count = 0
+            if numItem > 0{
+                for house in listHouses{
+                    requestMng.getOneRequestTrue(house.idHouse!){
+                        (req, match) in
+                        if(match){
+                            house.request = req
+                            if let index = listHouses.firstIndex(where: {$0.idHouse == house.idHouse}){
+                                listHouses[index] = house
+                                count = count + 1
+                            }
+                            if (numItem == count){
+                                vc.listOfHouses = listHouses
+                                count = 0
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
+                        }else{
+                            vc.listOfHouses = listHouses
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        }
+                       
+                    }
+                }
+            }else{
+                vc.listOfHouses = [ModelHouse]()
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+           
+    }
     }
     @IBAction func goToCreateHouse(_ sender: Any) {
         let vc = CreateHouse(nibName: "CreateHouse", bundle: nil)

@@ -52,8 +52,9 @@ class ExpenseBillCell: UITableViewCell {
         columnView.backgroundColor = UIColor().colorFromHex(color)
         circleView.backgroundColor = UIColor().colorFromHex(color)
         nameLabel.text = user?.alias
-        quantifyLabel.text = String(model.quantify)
-        paiedLabel.text = "\(model.payed) de"
+        // "\(model.quantify!.rounded(toPlaces: 2))€"
+        quantifyLabel.text = String(model.quantify.rounded(toPlaces: 2))
+        paiedLabel.text = "\(model.payed.rounded(toPlaces: 2)) de"
         quantifyLabel.textColor = UIColor().colorFromHex(color)
         
         

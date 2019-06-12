@@ -18,6 +18,7 @@ class ModelHouse : Encodable{
     var description : String?
     var listOfBill : Array<ModelBill>?
     var searchMate : Bool?
+    var request : ModelRequestHouse?
     init(){
 
     }

@@ -52,12 +52,28 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
           setupCurrentLocation()
           fire.getHouseUpdated { (succes,mode) in
             let requestMng = RequestMessageManager()
-            requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,exit) in
-                self.controller?.requestActive = model
-                self.controller?.updateMap(model: succes ,mode:mode)
+            requestMng.getOneRequest(succes.idHouse!){
+                (req, match) in
+                if(match){
+                    succes.request = req
+                    self.controller?.updateMap(model: succes ,mode:mode)
+                }else{
+                     self.controller?.updateMap(model: succes ,mode:mode)
+                }
             }
+//            requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,exit) in
+//                self.controller?.requestActive = model
+//                self.settRequestONHouse(succes)
+//                self.controller?.updateMap(model: succes ,mode:mode)
+//            }
         }
         
+    }
+    func settRequestONHouse(_ house:(ModelHouse)){
+        if let request = controller?.requestActive{
+          let req = request.first(where:{$0.requiredId == house.idHouse})
+            house.request = req
+        }
     }
     override func viewDidDisappear(_ animated: Bool) {
        

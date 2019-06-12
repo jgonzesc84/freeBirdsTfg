@@ -70,10 +70,10 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
        
         closeSessionButton.setTitle("Cerrar Session", for: .normal)
         giveStyleProfile(closeSessionButton)
-        closeSessionButton.backgroundColor = UIColor.AppColor.Blue.blueDinosaur
+        closeSessionButton.backgroundColor = UIColor.AppColor.Green.mindApp
         
         nameTextField.font = UIFont .AppFont.middleFont.middlWord
-        nameTextField.textColor = UIColor .AppColor.Blue.blueDinosaur
+        nameTextField.textColor = UIColor .AppColor.Gray.greyStrong
         nameTextField.placeholder = "Pón tu nick"
         nameTextField.delegate = self
         
@@ -86,7 +86,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             self.navigationController?.navigationBar.isHidden = false
             continueButton.setTitle("Editar", for: .normal)
             giveStyleProfile(continueButton)
-            continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+            continueButton.backgroundColor = UIColor .AppColor.Green.mindApp
             closeSessionButton.isHidden = false
             closeSessionButton.isEnabled = true
             nameTextField.text = HouseManager.sharedInstance.mainUser!.alias
@@ -277,9 +277,9 @@ extension ProfileViewController: UITextFieldDelegate{
         }else{
             continueButton.isEnabled = true
             UIView.animate(withDuration: 1) {
-                self.continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+                self.continueButton.backgroundColor = UIColor .AppColor.Green.mindApp
                //self.continueButton.tintColor = UIColor .AppColor.Blue.blueDinosaur
-                self.continueButton.layer.borderColor = UIColor .AppColor.Green.greenDinosaur .cgColor
+                self.continueButton.layer.borderColor = UIColor .AppColor.Green.mindApp .cgColor
                 
             }
         }

@@ -84,7 +84,25 @@ class MapSearchHouseController {
             annotationView = FBAnnotationView(annotation: annotation, reuseIdentifier: annotationID)
         }
         if let annotationView = annotationView {
-            annotationView.image = UIImage(named:"houseIcon2")
+            let request = annotation.estateRequest
+            switch(request){
+            case constant.stateOpendRequest:
+                annotationView.image = UIImage(named:"HouseWaiting")
+                break
+            case constant.stateAcceptRequest:
+                annotationView.image = UIImage(named:"HouseIconAccepted")
+                 break
+            case constant.statcDeclineRequest:
+                annotationView.image = UIImage(named:"HouseRejected")
+                break
+            case constant.stateFinishedRequest:
+                annotationView.image = UIImage(named:"houseIcon2")
+                break
+            default:
+                 annotationView.image = UIImage(named:"houseIcon2")
+                break
+            }
+           // annotationView.image = UIImage(named:"houseIcon2")
             annotationView.descriptionText = annotation.descriptionText ?? "HOLA!!"
         }
         return annotationView
@@ -179,8 +197,23 @@ class MapSearchHouseController {
                 annotation.title = model.direction!.title
                 annotation.idHouse = model.idHouse
                 annotation.descriptionText = model.description
+                annotation.estateRequest = model.request?.state
                 self.viewMap?.map.addAnnotation(annotation)
                 self.viewMap?.listOfHouses?.append(model)
+            }else{
+                if  let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )}){
+                    self.viewMap?.listOfHouses?[index] = model
+                    let annotations = self.viewMap?.map.annotations as? Array<FBAnnotationPoint>
+                    let filtered = annotations?.filter({  $0.idHouse == model.idHouse }).first
+                    let annotation = FBAnnotationPoint()
+                    annotation.coordinate = model.direction!.coordinate!
+                    annotation.title = model.direction!.title
+                    annotation.idHouse = model.idHouse
+                    annotation.descriptionText = model.description
+                    annotation.estateRequest = model.request?.state
+                    self.viewMap?.map.removeAnnotation(filtered!)
+                    self.viewMap?.map.addAnnotation(annotation)
+                }
             }
         }else{
             if  let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )}){
@@ -207,6 +240,7 @@ class MapSearchHouseController {
             annotation.coordinate = item.direction!.coordinate!
             annotation.title = item.direction!.title
             annotation.descriptionText = item.description
+            annotation.estateRequest = item.request?.state
             viewMap?.map.addAnnotation(annotation)
             
         }

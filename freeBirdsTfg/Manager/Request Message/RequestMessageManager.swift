@@ -109,6 +109,60 @@ class RequestMessageManager{
 
             }
         }
+    func getAllRequestOnce( _ idUser:String, completion:@escaping(Array<ModelRequestHouse>,Bool) -> Void){
+        let ref = Database.database().reference()
+        ref.child("USUARIO").child(idUser).child("solicitudes").observeSingleEvent(of: DataEventType.value) { (shot) in
+            let listOfRequest = Array <ModelRequestHouse>()
+            if let data = shot.value as? NSDictionary {
+                self.dataFromRequestService( dictio: data, completion: { (list, sucess) in
+                    completion(list, true)
+                })
+            }else{
+                completion(listOfRequest,false)
+            }
+            
+        }
+    }
+    func getOneRequest(_ idRequired:String, completion:@escaping(ModelRequestHouse,Bool) -> Void){
+         let ref = Database.database().reference()
+        ref.child("SOLICITUD").queryOrdered(byChild: "requiredId").queryEqual(toValue: idRequired).observe(.value){
+            (shot) in
+            if let data = shot.value as? NSDictionary {
+                let keys = data.allKeys as! [String]
+                    for item in keys{
+                        let dictioRequest = data[item]
+                        let model = self.factory.setRequestHouse(dictioRequest as! NSDictionary)
+                        if (model.aplicantId == BaseManager().getUserDefault().idUser){
+                          completion(model,true)
+                        return
+                        }
+                    }
+                completion(ModelRequestHouse(),false)
+            }else{
+              completion(ModelRequestHouse(), false)
+            }
+        }
+    }
+    func getOneRequestTrue(_ idRequired:String, completion:@escaping(ModelRequestHouse,Bool) -> Void){
+        let ref = Database.database().reference()
+        ref.child("SOLICITUD").queryOrdered(byChild: "requiredId").queryEqual(toValue: idRequired).observeSingleEvent(of: .value){
+            (shot) in
+            if let data = shot.value as? NSDictionary {
+                let keys = data.allKeys as! [String]
+                for item in keys{
+                    let dictioRequest = data[item]
+                    let model = self.factory.setRequestHouse(dictioRequest as! NSDictionary)
+                    if (model.aplicantId == BaseManager().getUserDefault().idUser){
+                        completion(model,true)
+                        return
+                    }
+                }
+                completion(ModelRequestHouse(),false)
+            }else{
+                completion(ModelRequestHouse(), false)
+            }
+        }
+    }
     
     func getAllRequestHouse( _ idHouse: String, completion:@escaping(Array<ModelRequestHouse>,Bool) -> Void){
          let ref = Database.database().reference()
@@ -246,6 +300,8 @@ class RequestMessageManager{
             if error != nil{
                  completion(false)
             }else{
+             self.deleteRequest(idRequest: request.idRequest!)
+                completion(true)
 //                if(request.idUser != nil){
 //                    self.deleteRequest(idRequest: request.idRequest!)
 //                    completion(true)

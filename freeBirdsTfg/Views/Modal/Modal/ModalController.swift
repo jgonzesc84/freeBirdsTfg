@@ -113,7 +113,7 @@ class ModalController{
             positionAndHeight(mainView: modal!, auxView: modalRequestHouse!, height: 0.4, y: 0.9)
             modalRequestHouse?.returnDataRequestHouse = { (text) -> () in
                 self.modal?.returnRequestHouseData?(text as! String)
-                self.modal?.removeFromSuperview()
+               // self.modal?.removeFromSuperview()
             }
             break
             

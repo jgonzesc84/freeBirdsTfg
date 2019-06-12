@@ -86,11 +86,8 @@ class ExpenseSection: UITableViewHeaderFooterView {
         
         self.percentageLabel.text = "\(percentage)%"
         let widtTotal = self.midView.frame.width
-        print("el tamañoi de la pantalla es \(widtTotal)")
         let totalConstant =  Float (percentage) * Float(widtTotal) / 100
-        print("Antes \(self.widthPercentageConstraint.constant)")
         self.widthPercentageConstraint.constant = CGFloat(totalConstant)
-        print("Despues \(self.widthPercentageConstraint.constant)")
         
         
     }

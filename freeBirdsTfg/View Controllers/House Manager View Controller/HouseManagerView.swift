@@ -53,6 +53,9 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
         HouseManager.sharedInstance.delegate = self
         MainHelper.giveMeStyle(label: labelRoom)
         MainHelper.theStyle(view: searchUserView)
+        // button.layer.borderColor = UIColor.AppColor.Gray.greyApp .cgColor
+        editUserButton.layer.borderColor = UIColor .clear.cgColor
+        leaveHouseButton.layer.borderColor = UIColor .clear.cgColor
       //  MainHelper.theStyle(view: editHouseView)
     }
     
