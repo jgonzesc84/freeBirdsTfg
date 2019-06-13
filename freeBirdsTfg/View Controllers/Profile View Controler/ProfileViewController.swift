@@ -45,6 +45,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         MainHelper.navStyle(view :  navView)
         navView.backgroundColor = UIColor .clear
         initView()
+        self.view.hideKeyboardWhenTappedAround()
        // setupTable()
        // gradientStyle()
     }
@@ -105,7 +106,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
             closeSessionButton.isHidden = false
             closeSessionButton.isEnabled = true
-            nameTextField.text = HouseManager.sharedInstance.mainUser!.alias
+            nameTextField.text = HouseManager.sharedInstance.mainUser!.alias ?? ""
             ImageManager.shared.checkMainUserHasImage{(model,match) in
                 if(match){
                     self.profileImage.image = model.imageData
@@ -198,6 +199,7 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         user.alias = nameTextField.text
         user.email = Auth.auth().currentUser?.email
         user.houseId = "0"
+        user.imageData = profileImage.image;
         FireBaseManager.createUser(model: user)
         user.idUser = Auth.auth().currentUser?.uid
         let baseManager = BaseManager()

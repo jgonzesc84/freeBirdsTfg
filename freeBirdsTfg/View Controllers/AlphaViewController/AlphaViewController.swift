@@ -83,6 +83,7 @@ extension AlphaViewController : getAllHouseDelegate {
         case "registro":
             let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
                         let homePage = mainStoryboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
+            
 //                        self.present(homePage, animated: true) {
 //                        }
              self.navigationController?.pushViewController(homePage, animated: true)
@@ -100,6 +101,7 @@ extension AlphaViewController : getAllHouseDelegate {
         case "terminar Registro":
             let Objvc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
 //            self.present(Objvc, animated: true) {
+            Objvc.register = true
 //            }
               self.navigationController?.pushViewController(Objvc, animated: true)
             break

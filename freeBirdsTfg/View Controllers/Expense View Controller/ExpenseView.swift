@@ -46,8 +46,11 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         let  listOrdered =  BillManager().compareDate(listArray:arrayBill)
             self.arrayBill = listOrdered
             controller?.setupBill(listOfBill:listOrdered)
-            let idBill = listOrdered[0].billId
-            observerBillChanges(idBill!)
+            if listOrdered.count > 0{
+                let idBill = listOrdered[0].billId
+                observerBillChanges(idBill!)
+            }
+
         }else{
             self.arrayBill = [ModelBill]()
         }

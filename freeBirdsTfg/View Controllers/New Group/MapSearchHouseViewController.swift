@@ -61,12 +61,11 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
                      self.controller?.updateMap(model: succes ,mode:mode)
                 }
             }
-//            requestMng.getAllRequest(BaseManager().getUserDefault().idUser!){ (model,exit) in
-//                self.controller?.requestActive = model
-//                self.settRequestONHouse(succes)
-//                self.controller?.updateMap(model: succes ,mode:mode)
-//            }
         }
+        
+    }
+    
+    func observerHopuse(house: ModelHouse){
         
     }
     func settRequestONHouse(_ house:(ModelHouse)){

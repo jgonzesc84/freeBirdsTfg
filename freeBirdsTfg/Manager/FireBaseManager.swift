@@ -255,6 +255,12 @@ class FireBaseManager : BaseManager{
             fullHouse = self.parseHouseJson(json: json)
             completion(fullHouse,false)
         })
+//        ref.child("CASA").queryOrdered(byChild: "SEARCHMATE").queryEqual(toValue: true).observe(.childChanged, with:{ shot in
+//            var fullHouse = ModelHouse()
+//            let json = JSON(shot.value as Any)
+//            fullHouse = self.parseHouseJson(json: json)
+//            completion(fullHouse,false)
+//        })
     }
     
    static func inserBill(model: ModelBill,completion:@escaping (Bool) -> Void){

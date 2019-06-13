@@ -141,8 +141,12 @@ class MainViewController: BaseViewController {
                                 self.navigationController?.pushViewController(vc, animated: true)
                             }
                         }else{
-                            vc.listOfHouses = listHouses
-                            self.navigationController?.pushViewController(vc, animated: true)
+                            count = count + 1
+                            if (numItem == count){
+                                vc.listOfHouses = listHouses
+                                count = 0
+                                self.navigationController?.pushViewController(vc, animated: true)
+                            }
                         }
                        
                     }
