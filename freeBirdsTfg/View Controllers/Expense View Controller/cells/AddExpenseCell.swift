@@ -135,30 +135,30 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
          self.pushToEditCellExpense!(model, self.model!.total!)
     }
    
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .normal,
-                                              title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
-                                               let row = indexPath.row
-                                                let expense = self.model?.expenses![row]
-                                                HouseManager.sharedInstance.deleteExpenseOnBill(billId:self.model!.billId!, expenseId: expense!.idExpense!){
-                                                (result) in
-                                                    let total = self.model?.total
-                                                    let x = total! - expense!.quantify!
-                                                    self.model?.total = x.rounded(toPlaces: 2)
-                                                 
-                                                    self.refreshCell!()
-                                                    completionHandler(true)
-                                               
-                                                }
-                                                
-                                               
-        }
-        let deleteIco = UIImage(named:"trash_ico")
-        deleteAction.image = deleteIco
-        deleteAction.backgroundColor = UIColor .gray
-        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
-        return swipeConfig
-    }
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        let deleteAction = UIContextualAction(style: .normal,
+//                                              title: "Flag") { (contextAction: UIContextualAction, sourceView: UIView, completionHandler: @escaping (Bool) -> Void) in
+//                                               let row = indexPath.row
+//                                                let expense = self.model?.expenses![row]
+//                                                HouseManager.sharedInstance.deleteExpenseOnBill(billId:self.model!.billId!, expenseId: expense!.idExpense!){
+//                                                (result) in
+//                                                    let total = self.model?.total
+//                                                    let x = total! - expense!.quantify!
+//                                                    self.model?.total = x.rounded(toPlaces: 2)
+//
+//                                                    self.refreshCell!()
+//                                                    completionHandler(true)
+//
+//                                                }
+//
+//
+//        }
+//        let deleteIco = UIImage(named:"trash_ico")
+//        deleteAction.image = deleteIco
+//        deleteAction.backgroundColor = UIColor .gray
+//        let swipeConfig = UISwipeActionsConfiguration(actions: [deleteAction])
+//        return swipeConfig
+//    }
 
     func deleteExpense(_ model: ModelExpense) {
         HouseManager.sharedInstance.deleteExpenseOnBill(billId:self.model!.billId!, expenseId: model.idExpense!){
@@ -166,6 +166,10 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
             let total = self.model?.total
             let x = total! - model.quantify!
             self.model?.total = x.rounded(toPlaces: 2)
+            if let index = self.model?.expenses?.firstIndex(where: { $0.idExpense == model.idExpense
+            }){
+               self.model?.expenses?.remove(at: index)
+            }
             
             self.refreshCell!()
             

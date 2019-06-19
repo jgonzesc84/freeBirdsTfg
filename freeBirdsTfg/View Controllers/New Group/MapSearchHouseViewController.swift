@@ -42,7 +42,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller = MapSearchHouseController(viewMap:self)
         controller?.addAnnotation()
         hearSearchBarMap()
-        test()
+      //  test()
     }
    
     
@@ -51,19 +51,19 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
           setupSearchView()
           setupDetailHouseTableView()
           setupCurrentLocation()
-//         let requestMng = RequestMessageManager()
-//          fire.getHouseUpdated { (succes,mode) in
-//            requestMng.getOneRequestTrue(BaseManager().userId()){
-//                (req, match) in
-//                if(match){
-//                   // self.observeRequest(req.idRequest!)
-//                    succes.request = req
-//                    self.controller?.updateMap(model: succes ,mode:mode)
-//                }else{
-//                     self.controller?.updateMap(model: succes ,mode:mode)
-//                }
-//            }
-//        }
+         let requestMng = RequestMessageManager()
+          fire.getHouseUpdated { (succes,mode) in
+            requestMng.getOneRequestTrue(BaseManager().userId()){
+                (req, match) in
+                if(match){
+                   // self.observeRequest(req.idRequest!)
+                    succes.request = req
+                    self.controller?.updateMap(model: succes ,mode:mode)
+                }else{
+                     self.controller?.updateMap(model: succes ,mode:mode)
+                }
+            }
+        }
     }
     
     func test(){

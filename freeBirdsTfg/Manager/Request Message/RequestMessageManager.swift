@@ -314,8 +314,8 @@ class RequestMessageManager{
             if error != nil{
                  completion(false)
             }else{
-             self.deleteRequest(idRequest: request.idRequest!)
-                completion(true)
+//             self.deleteRequest(idRequest: request.idRequest!)
+//                completion(true)
 //                if(request.idUser != nil){
 //                    self.deleteRequest(idRequest: request.idRequest!)
 //                    completion(true)

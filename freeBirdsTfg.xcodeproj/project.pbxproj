@@ -21,6 +21,8 @@
 		59118B292149546D00031AFB /* ModelRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59118B282149546D00031AFB /* ModelRoom.swift */; };
 		59118B2E2149859400031AFB /* HouseSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59118B2C2149859400031AFB /* HouseSectionCell.swift */; };
 		59118B2F2149859400031AFB /* HouseSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59118B2D2149859400031AFB /* HouseSectionCell.xib */; };
+		5917986722BAF0D1008F8A83 /* ModalExitHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5917986622BAF0D1008F8A83 /* ModalExitHouse.swift */; };
+		5917986922BAF0EA008F8A83 /* ModalExitHouse.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5917986822BAF0EA008F8A83 /* ModalExitHouse.xib */; };
 		5924F5CF214BD5F9004DECCA /* LocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5924F5CD214BD5F9004DECCA /* LocalizationCell.swift */; };
 		5924F5D0214BD5F9004DECCA /* LocalizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5924F5CE214BD5F9004DECCA /* LocalizationCell.xib */; };
 		5924F5D5214BE5D0004DECCA /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5924F5D3214BE5D0004DECCA /* MapViewController.swift */; };
@@ -233,6 +235,8 @@
 		59118B282149546D00031AFB /* ModelRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRoom.swift; sourceTree = "<group>"; };
 		59118B2C2149859400031AFB /* HouseSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HouseSectionCell.swift; sourceTree = "<group>"; };
 		59118B2D2149859400031AFB /* HouseSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HouseSectionCell.xib; sourceTree = "<group>"; };
+		5917986622BAF0D1008F8A83 /* ModalExitHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalExitHouse.swift; sourceTree = "<group>"; };
+		5917986822BAF0EA008F8A83 /* ModalExitHouse.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModalExitHouse.xib; sourceTree = "<group>"; };
 		5924F5CD214BD5F9004DECCA /* LocalizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCell.swift; sourceTree = "<group>"; };
 		5924F5CE214BD5F9004DECCA /* LocalizationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalizationCell.xib; sourceTree = "<group>"; };
 		5924F5D3214BE5D0004DECCA /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -1039,6 +1043,8 @@
 			children = (
 				7A0ECEAC2274D980006756F3 /* ModalErrorText.xib */,
 				7A0ECEAE2274D993006756F3 /* ModalErrorText.swift */,
+				5917986622BAF0D1008F8A83 /* ModalExitHouse.swift */,
+				5917986822BAF0EA008F8A83 /* ModalExitHouse.xib */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -1449,6 +1455,7 @@
 				7A898B982264B57200D0E87C /* QuantifyView.xib in Resources */,
 				59465D872115DEA500106020 /* backAnimation.json in Resources */,
 				597BCAE4214A86560092309D /* SectionHouseCollectionViewCell.xib in Resources */,
+				5917986922BAF0EA008F8A83 /* ModalExitHouse.xib in Resources */,
 				5968B252210DCCF90092E166 /* MainViewController.xib in Resources */,
 				594612332114D17900903478 /* construction_site.json in Resources */,
 				7A898BAC2264D6E100D0E87C /* ConfirmExpenseView.xib in Resources */,
@@ -1671,6 +1678,7 @@
 				5950CAE62117088800A97B49 /* CreateHouseTableViewController.swift in Sources */,
 				7AD9682522607BB8007B773E /* HouseManagerView.swift in Sources */,
 				597BCAE3214A86560092309D /* SectionHouseCollectionViewCell.swift in Sources */,
+				5917986722BAF0D1008F8A83 /* ModalExitHouse.swift in Sources */,
 				7A3AE2542280609C008B9913 /* ModelRequestMessageHouse.swift in Sources */,
 				5963489E2275B17C002AF59B /* ModelBill.swift in Sources */,
 				59972E842146EAE700001B27 /* BaseViewController.swift in Sources */,

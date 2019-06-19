@@ -47,6 +47,7 @@ class ModalCreateRoom: UIView, UINavigationControllerDelegate, UIImagePickerCont
     
     func initView(){
         controller  = ModalCreateRoomController(modalCreateRoom: self)
+        userTextEdit.isHidden = true
         self.hideKeyboardWhenTappedAround()
         MainHelper.theStyle(view: topView)
        

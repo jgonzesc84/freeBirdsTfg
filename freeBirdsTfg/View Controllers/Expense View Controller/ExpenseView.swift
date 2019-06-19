@@ -112,6 +112,7 @@ class ExpenseView: BaseViewController , UITableViewDelegate, UITableViewDataSour
         
         billManager.oberveBill(idBill) { (bill,change) in //coge la primera hay q poner observadores solo a la de este mes no a la
             if (change){
+                //filtrar si seha cmabiado el usuario no tiene que mostrarse
                 self.arrayBill![0] = bill;
                 self.tableView.reloadData {
                     

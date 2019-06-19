@@ -122,11 +122,17 @@ class BillManager : BaseManager{
                 let filterExpense = self.filterExpenseByUser(idUser: BaseManager().userId(), listExpsenses: expenses)
                let change = self.changeExpense(idUser: BaseManager().userId(), listExpsenses: expenses)
                  bill.expenses? = filterExpense
+                if ((bill.expenses?.count)! > 0){
                     self.getExpenseBill(listExpense:filterExpense, idUser: BaseManager().userId(),completion: {
                         (list) in
-                        bill.expenses = list
-                       completion(bill,change)
+                        let filterExpense = self.filterExpenseByUser(idUser: BaseManager().userId(), listExpsenses: list)
+                        bill.expenses = filterExpense
+                        completion(bill,change)
                     })
+                }else{
+                    completion(bill,true)
+                }
+                
                     
                 
                 
