@@ -104,13 +104,14 @@
                                         <constraint firstAttribute="height" constant="50" id="L6D-3g-1Yn"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uoz-eh-ZJO">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uoz-eh-ZJO">
                                     <rect key="frame" x="31" y="0.0" width="23" height="24"/>
-                                    <color key="backgroundColor" red="1" green="0.49327188729999999" blue="0.47399842739999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="95W-LG-Q6p"/>
                                         <constraint firstAttribute="width" constant="23" id="Acu-qY-aC1"/>
                                     </constraints>
+                                    <state key="normal" image="ico_delete_expense"/>
                                     <connections>
                                         <action selector="editAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="UWZ-9r-59c"/>
                                     </connections>
@@ -177,4 +178,7 @@
             <point key="canvasLocation" x="78.400000000000006" y="-111.0944527736132"/>
         </view>
     </objects>
+    <resources>
+        <image name="ico_delete_expense" width="48" height="48"/>
+    </resources>
 </document>

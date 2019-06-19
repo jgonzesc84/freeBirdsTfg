@@ -41,7 +41,7 @@ class ExpenseBillCell: UITableViewCell {
         MainHelper.giveMeStyle(label: paiedLabel)
         
         MainHelper.giveMeStyle(label: nameLabel)
-        
+        paiedLabel.isHidden = true
     }
     func resetCell(){
 

@@ -79,12 +79,14 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
         nameTextField.delegate = self
         
         if(register){
+             self.prepareNav(label: titleLabel, text: "Creación Perfil")
             closeSessionButton.isHidden = true
             closeSessionButton.isEnabled = false
             continueButton.setTitle("Continuar", for: .normal)
             giveStyleProfile(continueButton)
         }else if(fromMain){
             self.navigationController?.navigationBar.isHidden = false
+             self.prepareNav(label: titleLabel, text: "Editar")
             continueButton.setTitle("Editar", for: .normal)
             giveStyleProfile(continueButton)
             continueButton.backgroundColor = UIColor .AppColor.Green.mindApp
@@ -101,9 +103,10 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
                 }
             }
         }else{
+            self.prepareNav(label: titleLabel, text: "Editar")
             continueButton.setTitle("Editar", for: .normal)
             giveStyleProfile(continueButton)
-            continueButton.backgroundColor = UIColor .AppColor.Green.greenDinosaur
+            continueButton.backgroundColor = UIColor .AppColor.Green.mindApp
             closeSessionButton.isHidden = false
             closeSessionButton.isEnabled = true
             nameTextField.text = HouseManager.sharedInstance.mainUser!.alias ?? ""

@@ -29,6 +29,7 @@ extension UIColor {
     
     struct AppColor {
         struct Green {
+            //2FA783  BEEAE0
             static let mindApp = UIColor().colorFromHex("BEEAE0")
             static let greenDinosaur = UIColor().colorFromHex("007a88")
         }

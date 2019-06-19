@@ -27,6 +27,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
     var controller : MapSearchHouseController?
     var listOfHouses : Array <ModelHouse>?
     var listOfRoom : Array <ModelRoom>!
+    var listOfRequest = [ModelRequestHouse]()
     let fire = FireBaseManager()
     let locationManager = CLLocationManager()
     
@@ -41,7 +42,7 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
         controller = MapSearchHouseController(viewMap:self)
         controller?.addAnnotation()
         hearSearchBarMap()
-       
+        test()
     }
    
     
@@ -50,22 +51,43 @@ class MapSearchHouseViewController: BaseViewController, MKMapViewDelegate, CLLoc
           setupSearchView()
           setupDetailHouseTableView()
           setupCurrentLocation()
-          fire.getHouseUpdated { (succes,mode) in
-            let requestMng = RequestMessageManager()
-            requestMng.getOneRequest(succes.idHouse!){
-                (req, match) in
+//         let requestMng = RequestMessageManager()
+//          fire.getHouseUpdated { (succes,mode) in
+//            requestMng.getOneRequestTrue(BaseManager().userId()){
+//                (req, match) in
+//                if(match){
+//                   // self.observeRequest(req.idRequest!)
+//                    succes.request = req
+//                    self.controller?.updateMap(model: succes ,mode:mode)
+//                }else{
+//                     self.controller?.updateMap(model: succes ,mode:mode)
+//                }
+//            }
+//        }
+    }
+    
+    func test(){
+        for house in listOfHouses!{
+            if let requestes = house.request{
+                 observeRequest((requestes.idRequest)!)
+            }
+           
+        }
+    }
+    
+    func observeRequest ( _ idRequest: String){
+         let requestMng = RequestMessageManager()
+        requestMng.observeOneRequest(idRequest){ (req, match) in
+            if let house = self.listOfHouses?.first(where: {$0.idHouse == req.requiredId}){
                 if(match){
-                    succes.request = req
-                    self.controller?.updateMap(model: succes ,mode:mode)
+                    house.request = req
+                    self.controller?.updateMap(model: house ,mode:match)
                 }else{
-                     self.controller?.updateMap(model: succes ,mode:mode)
+                    house.request = req
+                    self.controller?.updateMap(model: house ,mode:match)
                 }
             }
         }
-        
-    }
-    
-    func observerHopuse(house: ModelHouse){
         
     }
     func settRequestONHouse(_ house:(ModelHouse)){

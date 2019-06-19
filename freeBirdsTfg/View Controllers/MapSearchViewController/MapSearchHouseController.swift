@@ -190,32 +190,32 @@ class MapSearchHouseController {
     //MARK: firebase extension delegate methods
     
     func updateMap(model: ModelHouse ,mode:Bool) {
-        if(mode){
-            if(model.idHouse != self.viewMap?.listOfHouses?.last?.idHouse){
-                let annotation = FBAnnotationPoint()
-                annotation.coordinate = model.direction!.coordinate!
-                annotation.title = model.direction!.title
-                annotation.idHouse = model.idHouse
-                annotation.descriptionText = model.description
-                annotation.estateRequest = model.request?.state
-                self.viewMap?.map.addAnnotation(annotation)
-                self.viewMap?.listOfHouses?.append(model)
-            }else{
-                if  let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )}){
-                    self.viewMap?.listOfHouses?[index] = model
-                    let annotations = self.viewMap?.map.annotations as? Array<FBAnnotationPoint>
-                    let filtered = annotations?.filter({  $0.idHouse == model.idHouse }).first
-                    let annotation = FBAnnotationPoint()
-                    annotation.coordinate = model.direction!.coordinate!
-                    annotation.title = model.direction!.title
-                    annotation.idHouse = model.idHouse
-                    annotation.descriptionText = model.description
-                    annotation.estateRequest = model.request?.state
-                    self.viewMap?.map.removeAnnotation(filtered!)
-                    self.viewMap?.map.addAnnotation(annotation)
-                }
+        if(mode){ //añadido o editado
+           if  let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )}){ //editado
+            self.viewMap?.listOfHouses?[index] = model
+            let annotations = self.viewMap?.map.annotations as? Array<FBAnnotationPoint>
+            let filtered = annotations?.filter({  $0.idHouse == model.idHouse }).first
+            let annotation = FBAnnotationPoint()
+            annotation.coordinate = model.direction!.coordinate!
+            annotation.title = model.direction!.title
+            annotation.idHouse = model.idHouse
+            annotation.descriptionText = model.description
+            annotation.estateRequest = model.request?.state
+            self.viewMap?.map.removeAnnotation(filtered!)
+            self.viewMap?.map.addAnnotation(annotation)
+            
+           }else{ //añadido
+            
+            let annotation = FBAnnotationPoint()
+            annotation.coordinate = model.direction!.coordinate!
+            annotation.title = model.direction!.title
+            annotation.idHouse = model.idHouse
+            annotation.descriptionText = model.description
+            annotation.estateRequest = model.request?.state
+            self.viewMap?.map.addAnnotation(annotation)
+            self.viewMap?.listOfHouses?.append(model)
             }
-        }else{
+        }else{ //eliminado
             if  let index = self.viewMap?.listOfHouses?.index(where: { ($0.idHouse == model.idHouse )}){
                 self.viewMap?.listOfHouses?.remove(at: index)
                 let annotation = self.viewMap?.map.annotations as? Array<FBAnnotationPoint>

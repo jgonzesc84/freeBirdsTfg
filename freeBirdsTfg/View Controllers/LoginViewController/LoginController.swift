@@ -139,6 +139,8 @@ class LoginController{
     
     func goProfile(){
         let Objvc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        Objvc.register = true
+
        // let vc = UINavigationController(rootViewController: Objvc)
 //        self.viewLogin!.present(Objvc, animated: true) {
 //        }

@@ -101,7 +101,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
         let index = section
         if let sectionModel = model?.expenses![index]{
             sectionExpense.setupCell(model: sectionModel)
-            sectionExpense.animation(percentage: givePercentage(item: sectionModel.quantify!))
+            sectionExpense.animation(percentage: givePercentage(item: sectionModel.quantify! / Double((sectionModel.payment?.count)!)))
         }
         sectionExpense.delegate = self
         return sectionExpense
@@ -233,7 +233,7 @@ class AddExpenseCell: UITableViewCell, UITableViewDelegate, UITableViewDataSourc
          var sum = 0.00
         for expense in expenses!{
             if let quantify = expense.quantify{
-               sum += Double(quantify)
+                sum += Double(quantify) / Double ((expense.payment?.count)!)
             }
             
         }
