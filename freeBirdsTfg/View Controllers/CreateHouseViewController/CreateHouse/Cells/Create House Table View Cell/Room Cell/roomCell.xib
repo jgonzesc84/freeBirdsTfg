@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,17 +22,21 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZA1-BN-D29" userLabel="roomView">
                             <rect key="frame" x="5" y="5" width="408" height="65"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_user" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIG-Uz-2Gp">
-                                    <rect key="frame" x="8" y="8" width="61" height="52"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_user" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GIG-Uz-2Gp">
+                                    <rect key="frame" x="8" y="8" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="MsK-sj-nwI"/>
+                                        <constraint firstAttribute="width" constant="50" id="h7S-5E-px1"/>
+                                    </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="jovotron@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ro1-KR-SNn">
-                                    <rect key="frame" x="90" y="8" width="156" height="21"/>
+                                    <rect key="frame" x="79" y="8" width="156" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="300" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ut0-VA-MLb">
-                                    <rect key="frame" x="170.5" y="31" width="31" height="21"/>
+                                    <rect key="frame" x="159.5" y="31" width="31" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -41,7 +45,7 @@
                                     <rect key="frame" x="275.5" y="5" width="122.5" height="52"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="precio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qHR-5J-F5x">
-                                    <rect key="frame" x="90" y="31" width="48" height="21"/>
+                                    <rect key="frame" x="79" y="31" width="48" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
@@ -59,10 +63,8 @@
                                 <constraint firstItem="GIG-Uz-2Gp" firstAttribute="top" secondItem="ZA1-BN-D29" secondAttribute="top" constant="8" id="cIo-M0-oyo"/>
                                 <constraint firstItem="Ro1-KR-SNn" firstAttribute="top" secondItem="ZA1-BN-D29" secondAttribute="top" constant="8" id="eMD-8z-14y"/>
                                 <constraint firstAttribute="trailing" secondItem="k0Z-sV-zEf" secondAttribute="trailing" constant="10" id="eVl-VA-8By"/>
-                                <constraint firstItem="GIG-Uz-2Gp" firstAttribute="height" secondItem="ZA1-BN-D29" secondAttribute="height" multiplier="0.8" id="gnt-wA-MaE"/>
                                 <constraint firstItem="GIG-Uz-2Gp" firstAttribute="leading" secondItem="ZA1-BN-D29" secondAttribute="leading" constant="8" id="je1-24-eO1"/>
                                 <constraint firstItem="Ro1-KR-SNn" firstAttribute="leading" secondItem="GIG-Uz-2Gp" secondAttribute="trailing" constant="21" id="nUr-Zy-wK9"/>
-                                <constraint firstItem="GIG-Uz-2Gp" firstAttribute="width" secondItem="ZA1-BN-D29" secondAttribute="width" multiplier="0.15" id="sPl-hJ-xwJ"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mdl-e8-1vp" userLabel="addView">

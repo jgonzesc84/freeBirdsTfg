@@ -40,6 +40,7 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
       
         MainHelper.theStyle(view: topView)
         MainHelper.theStyle(view: bottomView)
+        MainHelper.circleView(view: userImageView)
     }
     func setupCell( _ model: ModelRoom, atRow: IndexPath){
         room = model
@@ -49,6 +50,15 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
             if( model.user!.idUser != nil && model.user!.idUser!.count > 0){
                 userNameLabel.text = model.user?.alias
                 self.user = model.user!
+                ImageManager.shared.checkUserImage(self.user){(model, match) in
+                    if (match){
+                        let image = model.imageData?.resizeImage(targetSize: self.userImageView.frame.size)
+                        self.userImageView.clipsToBounds = true
+                        self.userImageView.image = image
+                    }else{
+                        
+                    }
+                }
                 //userImageView.image = user.image
                 configureButton(isEmpty: false)
             }else{
@@ -71,6 +81,8 @@ class HouseManagerRoomCollectionCellCollectionViewCell: UICollectionViewCell {
         MainHelper.enabledButton(button:acceptButtom)
         acceptButtom.setTitle("Entrar", for: .normal)
         userNameLabel.text = ""
+        userImageView.image = UIImage (named: "steven_user")
+        
     }
     
     @IBAction func acceptAction(_ sender: Any) {

@@ -110,15 +110,23 @@ class ProfileViewController: BaseViewController, UITableViewDelegate, UITableVie
             closeSessionButton.isHidden = false
             closeSessionButton.isEnabled = true
             nameTextField.text = HouseManager.sharedInstance.mainUser!.alias ?? ""
-            ImageManager.shared.checkMainUserHasImage{(model,match) in
-                if(match){
+//            ImageManager.shared.checkMainUserHasImage{(model,match) in
+//                if(match){
+//                    self.profileImage.image = model.imageData
+//                }else{
+//                    if let image = HouseManager.sharedInstance.mainUser!.imageData{
+//                        self.profileImage.image = image
+//                    }
+//                }
+//            }
+            ImageManager.shared.checkUserImage(HouseManager.sharedInstance.mainUser!){(model, match) in
+                if (match){
                     self.profileImage.image = model.imageData
                 }else{
-                    if let image = HouseManager.sharedInstance.mainUser!.imageData{
-                        self.profileImage.image = image
-                    }
+                    
                 }
             }
+
         }
         imagePicker.delegate = self
     }    

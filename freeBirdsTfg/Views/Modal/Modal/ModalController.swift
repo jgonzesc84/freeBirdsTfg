@@ -158,7 +158,28 @@ class ModalController{
             if let imageData = room.imageData{
                modalCreateRoom!.roomImageView.image = imageData
             }
-            modalCreateRoom!.userTextEdit.text = room.user?.alias
+            if let user = room.user{
+               if let alias = user.alias{
+                if alias.count > 0{
+                    modalCreateRoom!.userTextEdit.isHidden = false
+                    modalCreateRoom!.userTextEdit.isEnabled = false
+                    modalCreateRoom!.seacrhButton.isEnabled = false
+                    modalCreateRoom!.userTextEdit.text = user.alias
+                    ImageManager.shared.checkUserImage(user){(model, match) in
+                        if (match){
+                            let image = model.imageData?.resizeImage(targetSize: self.modalCreateRoom!.userImageView.frame.size)
+                            self.modalCreateRoom!.userImageView.isHidden = false
+                            self.modalCreateRoom!.userImageView.clipsToBounds = true
+                            self.modalCreateRoom!.userImageView.image = image
+                        }else{
+                            
+                        }
+                    }
+                }
+                }
+               
+            }
+           
             modalCreateRoom!.priceTextEdit.text = room.price
             modalCreateRoom!.setupSelection(room.search!)
             //falta img

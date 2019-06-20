@@ -18,6 +18,7 @@ class ModalCreateRoom: UIView, UINavigationControllerDelegate, UIImagePickerCont
     @IBOutlet weak var modalAddRoomView: UIView!
     @IBOutlet weak var acceptButton: Button!
     
+    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var roomImageView: UIImageView!
     @IBOutlet weak var seacrhButton: UIButton!
     
@@ -48,6 +49,8 @@ class ModalCreateRoom: UIView, UINavigationControllerDelegate, UIImagePickerCont
     func initView(){
         controller  = ModalCreateRoomController(modalCreateRoom: self)
         userTextEdit.isHidden = true
+        userImageView.isHidden = true
+        MainHelper.circleView(view: userImageView)
         self.hideKeyboardWhenTappedAround()
         MainHelper.theStyle(view: topView)
        

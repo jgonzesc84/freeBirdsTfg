@@ -39,7 +39,7 @@ class roomCell: UITableViewCell  {
   /*  override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }*/
-
+    
     private func commonInit(){
         self.selectionStyle = UITableViewCell.SelectionStyle.none
         MainHelper.theStyle(view: addView)
@@ -49,6 +49,7 @@ class roomCell: UITableViewCell  {
         addButton.layer.cornerRadius = addButton.frame.size.height / 2
         addView.isHidden = false
         roomView.isHidden = true
+        userImageView.isHidden = true
         
     }
     
@@ -59,6 +60,24 @@ class roomCell: UITableViewCell  {
         priceLabel.text = room?.price
         if let imageData = room?.imageData{
             roomImageView.image = imageData
+        }
+        if let user = room?.user{
+            if let alias = user.alias{
+                if (alias.count > 0){
+                    imageView?.isHidden = false
+                    ImageManager.shared.checkUserImage(user){(model, match) in
+                        if (match){
+                            let image = model.imageData?.resizeImage(targetSize: self.userImageView.frame.size)
+                            self.userImageView.isHidden = false
+                            self.userImageView.clipsToBounds = true
+                            self.userImageView.image = image
+                        }else{
+                            
+                        }
+                    }
+                }
+            }
+            
         }
         addView.isHidden = true
         roomView.isHidden = false

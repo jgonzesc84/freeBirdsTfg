@@ -46,7 +46,7 @@ class HouseManagerView: BaseViewController ,UICollectionViewDelegate, UICollecti
 
     func initView(){
         controller = HouseManagerController(view:self)
-        prepareNavRoot(label:  titleLabel, text: "Edicion Casa")
+        prepareNavRoot(label:  titleLabel, text: "Edición Casa")
         mainUser = BaseManager().getUserDefault()
         roomList = HouseManager.sharedInstance.house!.listOfRoom
         userList = HouseManager.sharedInstance.house!.user

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,11 +31,11 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyD-FN-Gq0" userLabel="topView">
                             <rect key="frame" x="10" y="10" width="429" height="131"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_user" translatesAutoresizingMaskIntoConstraints="NO" id="NPl-5I-wd4">
-                                    <rect key="frame" x="103" y="8" width="41" height="35"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="steven_user" translatesAutoresizingMaskIntoConstraints="NO" id="NPl-5I-wd4">
+                                    <rect key="frame" x="103" y="5" width="41" height="41"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="41" id="biF-8Q-S3d"/>
-                                        <constraint firstAttribute="height" constant="35" id="qL7-gd-Fik"/>
+                                        <constraint firstAttribute="height" constant="41" id="qL7-gd-Fik"/>
                                     </constraints>
                                 </imageView>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Usuario " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zI8-Nj-USc">
@@ -47,7 +47,7 @@
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <textInputTraits key="textInputTraits"/>
                                 </textField>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Busqueda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1U-kM-hkv">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Búsqueda" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D1U-kM-hkv">
                                     <rect key="frame" x="152" y="96" width="77" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <nil key="textColor"/>
@@ -169,6 +169,7 @@
                 <outlet property="roomImageView" destination="tBT-oI-Jsm" id="zyc-J6-Q4N"/>
                 <outlet property="seacrhButton" destination="kp1-Ko-AxO" id="sPM-0m-reO"/>
                 <outlet property="topView" destination="OyD-FN-Gq0" id="tVs-ee-Ara"/>
+                <outlet property="userImageView" destination="NPl-5I-wd4" id="Ecl-D3-GKv"/>
                 <outlet property="userTextEdit" destination="zI8-Nj-USc" id="1YI-gj-aUW"/>
             </connections>
             <point key="canvasLocation" x="7.2000000000000002" y="97.151424287856074"/>
